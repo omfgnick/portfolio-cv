@@ -1,297 +1,999 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Currículo | Nicolas Mesquita Fernandes</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CV Terminal | Nicolas Mesquita Fernandes</title>
+  <style>
+    :root{
+      --bg:#050a06;
+      --green:#39ff14;
+      --text:#d7ffe0;
+      --muted:#86c992;
+      --panel: rgba(6, 16, 10, 0.78);
+      --panel2: rgba(6, 16, 10, 0.46);
+      --border: rgba(57,255,20,0.22);
+      --shadow: 0 0 22px rgba(57,255,20,0.18);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      --sans: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
 
-<style>
-:root{
-  --bg:#050a06;
-  --panel:rgba(6, 16, 10, 0.74);
-  --panel2:rgba(6, 16, 10, 0.48);
-  --green:#39ff14;
-  --muted:#86c992;
-  --text:#d7ffe0;
-  --border:rgba(57,255,20,0.25);
-  --shadow: 0 0 22px rgba(57,255,20,0.18);
-  --mono: ui-monospace, Consolas, monospace;
-  --sans: system-ui, Segoe UI, Roboto, Arial, sans-serif;
-}
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--mono);
+      overflow-x:hidden;
+    }
 
-*{box-sizing:border-box;}
-html,body{height:100%;}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:var(--mono);
-  overflow-x:hidden;
-}
+    /* Matrix canvas */
+    #matrix{
+      position:fixed;
+      inset:0;
+      width:100%;
+      height:100%;
+      z-index:-2;
+      display:block;
+    }
+    .vignette{
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      pointer-events:none;
+      background:
+        radial-gradient(1200px 700px at 20% 10%, rgba(57,255,20,0.12), transparent 60%),
+        radial-gradient(900px 500px at 80% 80%, rgba(57,255,20,0.08), transparent 60%),
+        radial-gradient(900px 900px at 50% 50%, transparent 40%, rgba(0,0,0,0.70) 85%);
+      mix-blend-mode:screen;
+    }
 
-/* MATRIX BACKGROUND */
-#matrix{position:fixed;inset:0;z-index:-2;}
-.vignette{
-  position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background:radial-gradient(circle at center,transparent 40%,black 95%);
-}
+    .wrap{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 18px 16px 40px;
+    }
 
-/* HEADER */
-header{max-width:1200px;margin:auto;padding:20px;}
-h1{font-family:var(--sans);font-size:30px;margin:10px 0;}
-.headline{color:var(--muted);font-size:14px;}
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 12px 12px;
+      border:1px solid var(--border);
+      background: rgba(0,0,0,0.35);
+      box-shadow: var(--shadow);
+      border-radius: 14px;
+      backdrop-filter: blur(6px);
+      margin-bottom: 12px;
+    }
+    .leftbar{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width: 0;
+    }
+    .dots{ display:flex; gap:7px; margin-right:6px; }
+    .dot{ width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.15); }
+    .dot:nth-child(1){ background: rgba(255,90,90,0.85); }
+    .dot:nth-child(2){ background: rgba(255,200,80,0.85); }
+    .dot:nth-child(3){ background: rgba(80,255,140,0.85); }
+    .path{
+      color: var(--muted);
+      font-size: 13px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
+    }
 
-.contact{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;}
-.pill{
-  padding:8px 12px;
-  border:1px solid var(--border);
-  border-radius:999px;
-  background:rgba(0,0,0,.3);
-  color:var(--text);
-  text-decoration:none;
-  cursor:pointer;
-}
-.pill:hover{border-color:var(--green);}
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      justify-content:flex-end;
+    }
+    .btn{
+      appearance:none;
+      border:1px solid rgba(57,255,20,0.22);
+      background: rgba(0,0,0,0.22);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-family: var(--mono);
+      font-size: 13px;
+      cursor:pointer;
+      transition: transform .12s ease, border-color .12s ease, box-shadow .12s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(57,255,20,0.45);
+      box-shadow: 0 0 16px rgba(57,255,20,0.14);
+    }
 
-/* LAYOUT */
-.wrap{max-width:1200px;margin:auto;padding:10px 20px;}
-.grid{display:grid;grid-template-columns:380px 1fr;gap:14px;}
-@media(max-width:900px){.grid{grid-template-columns:1fr;}}
+    .terminal{
+      border: 1px solid var(--border);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      border-radius: 18px;
+      overflow:hidden;
+      backdrop-filter: blur(8px);
+    }
+    .terminalHeader{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(57,255,20,0.16);
+      background: linear-gradient(180deg, rgba(57,255,20,0.10), transparent);
+    }
+    .terminalHeader .title{
+      color: var(--green);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+    .terminalHeader .hint{
+      color: var(--muted);
+      font-size: 12px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
 
-.card{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:14px;
-  box-shadow:var(--shadow);
-  overflow:hidden;
-}
-.title{
-  padding:10px 14px;
-  background:rgba(57,255,20,.1);
-  border-bottom:1px solid var(--border);
-  font-size:14px;
-  color:var(--green);
-  letter-spacing:1px;
-}
-.inner{padding:14px;font-size:13.5px;line-height:1.6;}
+    .screen{
+      padding: 14px 14px 8px;
+      font-size: 13.6px;
+      line-height: 1.65;
+      min-height: 45vh;
+    }
 
-ul{padding-left:16px;margin:0;}
-li{margin:5px 0;}
+    .line{ margin: 0 0 6px; }
+    .dim{ color: rgba(215,255,224,0.90); }
+    .muted{ color: var(--muted); }
+    .green{ color: var(--green); }
 
-.xp{
-  border:1px dashed var(--border);
-  border-radius:12px;
-  padding:10px;
-  margin-bottom:10px;
-  background:var(--panel2);
-}
-.xp h3{margin:0;font-family:var(--sans);font-size:14px;}
-.xp span{font-size:12px;color:var(--muted);}
+    a.link{
+      color: rgba(215,255,224,0.95);
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(57,255,20,0.26);
+    }
+    a.link:hover{
+      border-bottom-color: rgba(57,255,20,0.55);
+      color: var(--green);
+    }
 
-/* CLEAN MODE */
-body.clean #matrix, body.clean .vignette{display:none;}
-body.clean{background:#0a0f0b;}
-body.clean .card{background:#0f1c12;}
-body.clean .pill{background:#111;}
+    .badge{
+      display:inline-block;
+      padding: 1px 7px;
+      border:1px solid rgba(57,255,20,0.20);
+      border-radius: 999px;
+      background: rgba(0,0,0,0.18);
+      color: rgba(215,255,224,0.92);
+      font-size: 12px;
+      margin-right: 6px;
+      margin-bottom: 6px;
+      white-space:nowrap;
+    }
+    .sep{
+      margin: 10px 0;
+      border-top: 1px dashed rgba(57,255,20,0.20);
+    }
 
-/* PRINT */
-@media print{
-  #matrix,.vignette,.contact button{display:none;}
-  body{background:white;color:black;}
-  .card{background:white;border:1px solid #ddd;box-shadow:none;}
-  .title{background:#eee;color:black;}
-}
-</style>
+    .promptRow{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      padding: 10px 14px 14px;
+      border-top: 1px solid rgba(57,255,20,0.12);
+      background: rgba(0,0,0,0.18);
+      position: sticky;
+      bottom: 0;
+    }
+    .prompt{
+      white-space:nowrap;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+    .cmd{
+      flex:1;
+      min-width: 0;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    input{
+      width:100%;
+      background: transparent;
+      border:none;
+      outline:none;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 13.6px;
+      padding: 2px 0;
+    }
+
+    .cursor{
+      display:inline-block;
+      width: 10px;
+      height: 16px;
+      margin-top:2px;
+      background: var(--green);
+      animation: blink 1.05s steps(1,end) infinite;
+    }
+    @keyframes blink{ 50%{ opacity:0; } }
+
+    .kbd{
+      display:inline-block;
+      padding: 1px 6px;
+      border:1px solid rgba(57,255,20,0.22);
+      border-bottom-color: rgba(57,255,20,0.40);
+      border-radius: 8px;
+      background: rgba(0,0,0,0.18);
+      font-size: 12px;
+      color: rgba(215,255,224,0.95);
+      margin: 0 4px;
+      white-space:nowrap;
+    }
+
+    /* Recruiter mode (mais clean/agressivo) */
+    body.clean #matrix, body.clean .vignette{ display:none !important; }
+    body.clean{
+      background: #0b120d;
+    }
+    body.clean .terminal, body.clean .topbar{
+      background: rgba(10, 22, 14, 0.94);
+      backdrop-filter: none;
+    }
+    body.clean .screen{
+      font-size: 14.2px;
+      line-height: 1.75;
+    }
+    body.clean .btn{
+      background: rgba(0,0,0,0.32);
+    }
+
+    /* Print */
+    @media print{
+      #matrix, .vignette, .topbar, .promptRow { display:none !important; }
+      body{ background:#fff; color:#111; }
+      .terminal{ box-shadow:none; background:#fff; border:1px solid #ddd; }
+      .terminalHeader{ background:#f2f2f2; border-bottom:1px solid #ddd; }
+      .terminalHeader .title{ color:#111; }
+      .terminalHeader .hint, .muted, .dim{ color:#333 !important; }
+      .badge{ border:1px solid #ddd; background:#fff; color:#111; }
+      .sep{ border-top:1px dashed #ddd; }
+      a.link{ color:#111; border-bottom:1px dashed #aaa; }
+    }
+
+    /* Floating focus button (mobile) */
+    .focusBtn{
+      position: fixed;
+      right: 14px;
+      bottom: 14px;
+      z-index: 30;
+      display:none;
+      border:1px solid rgba(57,255,20,0.22);
+      background: rgba(0,0,0,0.25);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 10px 12px;
+      font-family: var(--mono);
+      cursor:pointer;
+      box-shadow: var(--shadow);
+    }
+    @media (max-width: 820px){
+      .focusBtn{ display:block; }
+    }
+  </style>
 </head>
-
 <body>
-<canvas id="matrix"></canvas>
-<div class="vignette"></div>
+  <canvas id="matrix"></canvas>
+  <div class="vignette"></div>
 
-<header>
-<h1>Nicolas Mesquita Fernandes</h1>
-<p class="headline">
-Analista de Suporte & Infraestrutura | NOC | Segurança da Informação | Automação (PowerShell/Bash)
-</p>
+  <button class="focusBtn" id="focusBtn" type="button">>_ foco</button>
 
-<div class="contact">
-  <span class="pill">📧 seuemail@exemplo.com</span>
-  <span class="pill">📱 +55 00 00000-0000</span>
-  <span class="pill">🔗 LinkedIn</span>
-  <span class="pill">💻 GitHub</span>
-  <button class="pill" id="toggleClean">🕶️ Modo Recrutador</button>
-  <button class="pill" id="btnPdf">🧾 Baixar PDF</button>
-</div>
-</header>
+  <div class="wrap">
+    <div class="topbar" role="toolbar" aria-label="Barra superior">
+      <div class="leftbar">
+        <div class="dots" aria-hidden="true">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>
+        <div class="path">nicolas@matrix:~/cv$ <span class="green">terminal</span></div>
+      </div>
+      <div class="actions">
+        <button class="btn" id="btnMenu" type="button">menu</button>
+        <button class="btn" id="btnQuick" type="button">quick</button>
+        <button class="btn" id="btnDemo" type="button">demo</button>
+        <button class="btn" id="btnClean" type="button">modo recrutador</button>
+        <button class="btn" id="btnPDF" type="button">baixar pdf</button>
+        <button class="btn" id="btnClear" type="button">clear</button>
+      </div>
+    </div>
 
-<div class="wrap">
-<div class="grid">
+    <section class="terminal" aria-label="Terminal currículo">
+      <div class="terminalHeader">
+        <div class="title">CV TERMINAL</div>
+        <div class="hint">Digite <span class="kbd">help</span> • Atalhos: <span class="kbd">quick</span> <span class="kbd">top</span> <span class="kbd">ats</span> • PDF: <span class="kbd">Ctrl</span> + <span class="kbd">P</span></div>
+      </div>
 
-<!-- LEFT -->
-<div class="card">
-<div class="title">SOBRE</div>
-<div class="inner">
-Analista de Suporte e Infraestrutura com 10+ anos de experiência em ambientes corporativos e operações críticas (NOC/field), atuando em disponibilidade, monitoração, gestão de incidentes e segurança da informação. Forte em troubleshooting, padronização e automação de processos.
+      <div class="screen" id="screen" aria-live="polite"></div>
 
-<ul>
-<li>Suporte N2/N3 e atuação em incidentes críticos com foco em SLA e continuidade.</li>
-<li>Monitoração ponta a ponta (triagem → escalonamento → normalização).</li>
-<li>Padronização operacional (5S, inventário, documentação técnica).</li>
-<li>Automação com PowerShell/Bash para reduzir erro manual.</li>
-</ul>
-</div>
-
-<div class="title">STACK TÉCNICA</div>
-<div class="inner">
-<b>Sistemas:</b> Windows, Linux (básico)<br>
-<b>NOC:</b> SolarWinds, Netcool/Omnibus, HP SiteScope<br>
-<b>ITSM:</b> BMC Remedy, Jira, GLPI<br>
-<b>Redes:</b> DNS, LAN/WAN, Cisco Meraki, troubleshooting<br>
-<b>Backup:</b> Symantec NetBackup, HP Data Protector<br>
-<b>Automação:</b> PowerShell, Bash<br>
-<b>Cloud:</b> AWS (fundamentos)<br>
-<b>Outros:</b> ITIL, Inventário, Documentação, Fornecedores
-</div>
-
-<div class="title">FORMAÇÃO</div>
-<div class="inner">
-<ul>
-<li>Defesa Cibernética — Estácio (2024)</li>
-<li>Bacharel em Sistemas de Informação — FACCAMP (2011–2015)</li>
-<li>ETEC Gino Rezaghi (2009–2010)</li>
-</ul>
-</div>
-
-<div class="title">CERTIFICAÇÕES</div>
-<div class="inner">
-<ul>
-<li>Cisco Meraki ECMS1</li>
-<li>Introdução ao Pentest — Desec</li>
-<li>Introdução à Cibersegurança — Cisco</li>
-<li>AWS Cloud Practitioner Essentials</li>
-<li>Python & Programação para Internet — Estácio</li>
-</ul>
-</div>
-</div>
-
-<!-- RIGHT -->
-<div class="card">
-<div class="title">EXPERIÊNCIA PROFISSIONAL</div>
-<div class="inner">
-
-<div class="xp">
-<h3>Técnico de Suporte — Mercado Livre (Randstad)</h3>
-<span>nov/2024 – jan/2026</span>
-<ul>
-<li>Disponibilidade de equipamentos críticos (PCs, Zebra, handhelds, leitores 3D).</li>
-<li>Manutenção preventiva e configuração de hardware.</li>
-<li>Gestão de tickets no Jira e suporte Windows.</li>
-<li>Gestão de MDM e inventário de ativos.</li>
-<li>Padronização 5S e guias de boas práticas.</li>
-</ul>
-</div>
-
-<div class="xp">
-<h3>Operador NOC — Telefónica Ingeniería de Seguridad</h3>
-<span>out/2019 – abr/2022</span>
-<ul>
-<li>Monitoração via SolarWinds e incidentes via Remedy.</li>
-<li>Validação de conectividade (switch/AP/POS/KVS/quiosques).</li>
-<li>Acionamento e acompanhamento de operadoras.</li>
-<li>Ambiente Cisco Meraki.</li>
-</ul>
-</div>
-
-<div class="xp">
-<h3>Analista de Suporte NOC — Tech Mahindra</h3>
-<span>mai/2019 – set/2019</span>
-<ul>
-<li>Atendimento N1, escalonamento e SLA.</li>
-<li>Monitoramento de infraestrutura e servidores.</li>
-<li>Relatórios e feedback ao cliente.</li>
-</ul>
-</div>
-
-<div class="xp">
-<h3>Analista NOC — SONDA</h3>
-<span>fev/2017 – out/2017</span>
-<ul>
-<li>Monitoração, incidentes e operadoras.</li>
-<li>Troubleshooting de conectividade.</li>
-</ul>
-</div>
-
-<div class="xp">
-<h3>Analista de Produção — end-to-end technology</h3>
-<span>2016</span>
-<ul>
-<li>BMC Control-M (batch/schedules).</li>
-<li>Backup/restore com NetBackup.</li>
-</ul>
-</div>
-
-<div class="xp">
-<h3>Analista de Monitoração — Stefanini</h3>
-<span>2014–2016</span>
-<ul>
-<li>Netcool/Omnibus + HP SiteScope.</li>
-<li>Gestão de incidentes e comunicação executiva.</li>
-</ul>
-</div>
-
-<div class="xp">
-<h3>Técnico de Informática Sênior — Lojas Marabraz</h3>
-<span>2013–2014</span>
-<ul>
-<li>Monitoramento open-source e scripts Bash/PowerShell.</li>
-<li>Backup HP Data Protector e VMware.</li>
-</ul>
-</div>
-
-<div class="xp">
-<h3>Estagiário de TI — XMM TI</h3>
-<span>2012–2013</span>
-<ul>
-<li>ServiceDesk GLPI, redes e suporte usuários.</li>
-</ul>
-</div>
-
-</div>
-</div>
-
-</div>
-</div>
+      <div class="promptRow">
+        <div class="prompt" id="prompt">nicolas@matrix:~/cv$</div>
+        <div class="cmd">
+          <input id="input" type="text" autocomplete="off" spellcheck="false" aria-label="Digite um comando" />
+          <span class="cursor" aria-hidden="true"></span>
+        </div>
+      </div>
+    </section>
+  </div>
 
 <script>
-// MATRIX EFFECT
-const c=document.getElementById("matrix"),ctx=c.getContext("2d");
-const chars="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%*+-/";
-let font=16,cols,drops;
+/* ===========================
+   CV DATA
+=========================== */
+const CV = {
+  name: "Nicolas Mesquita Fernandes",
+  headline: "Analista de Suporte & Infraestrutura | NOC | Segurança da Informação | Automação (PowerShell/Bash)",
+  location: "São Paulo, Brasil",
+  contact: {
+    email: "omfg_nick@hotmail.com",
+    phone: "+55 11 94232-7967",
+    linkedin: "https://www.linkedin.com/in/nicolasmesquita/",
+    github: "https://github.com/omfgnick"
+  },
+  about: [
+    "Analista de Suporte e Infraestrutura com 10+ anos em ambientes corporativos e operações críticas (NOC/field), atuando em disponibilidade, monitoração, gestão de incidentes e segurança da informação.",
+    "Experiência com SolarWinds, BMC Remedy, Netcool/Omnibus, Jira e Cisco Meraki, além de automação com PowerShell/Bash e rotinas de backup (NetBackup / HP Data Protector).",
+    "Perfil hands-on, forte em troubleshooting, padronização e documentação de boas práticas."
+  ],
+  highlights: [
+    "Suporte N2/N3 e atuação em incidentes críticos com foco em SLA e continuidade.",
+    "Monitoração ponta a ponta (triagem → escalonamento → normalização).",
+    "Padronização operacional (5S, inventário, documentação técnica).",
+    "Automação com PowerShell/Bash para reduzir erro manual."
+  ],
+  projects: [
+    "Automação: scripts PowerShell/Bash para checks, padronizações e redução de tarefas manuais.",
+    "Documentação: guias de boas práticas + materiais de apoio para operação e onboarding.",
+    "Monitoramento: implementação/uso de ferramentas (incl. mapas) para visibilidade e resposta rápida.",
+    "Backups: rotinas de acompanhamento, validação e restore (NetBackup / HP Data Protector).",
+    "Operação NOC: playbooks de triagem, escalonamento e comunicação de incidentes."
+  ],
+  metrics: [
+    { label: "Tickets/dia", value: "(preencher)" },
+    { label: "Qtd de usuários atendidos", value: "(preencher)" },
+    { label: "Qtd de dispositivos sob suporte", value: "(preencher)" },
+    { label: "Qtd de lojas monitoradas", value: "(preencher)" },
+    { label: "SLA / MTTR", value: "(preencher)" }
+  ],
+  skills: {
+    "Sistemas": ["Windows", "Linux (básico)"],
+    "Monitoramento/NOC": ["SolarWinds", "IBM Tivoli Netcool/Omnibus", "HP SiteScope"],
+    "ITSM": ["BMC Remedy", "Jira", "GLPI"],
+    "Redes": ["DNS", "LAN/WAN", "Troubleshooting", "Cisco Meraki"],
+    "Backup": ["Symantec NetBackup", "HP Data Protector"],
+    "Automação": ["PowerShell", "Bash"],
+    "Cloud": ["AWS (fundamentos)"],
+    "Outros": ["ITIL", "Inventário/Ativos", "Documentação", "Treinamento", "Fornecedores"]
+  },
+  education: [
+    { school: "Estácio", course: "Defesa Cibernética", period: "2024" },
+    { school: "FACCAMP", course: "Bacharelado em Sistemas de Informação", period: "2011–2015" },
+    { school: "ETEC Gino Rezaghi", course: "Formação Técnica", period: "2009–2010" }
+  ],
+  certifications: [
+    "Cisco Meraki — ECMS1 (2021)",
+    "Desec Security — Introdução ao Pentest na Prática (2024)",
+    "Cisco — Introdução à Cibersegurança (2024)",
+    "Estácio — AWS Cloud Practitioner Essentials (2024)",
+    "Ka Solution — Capacitação Computação em Nuvem (2024)",
+    "Estácio — Desenvolvimento de Aplicações em Python (2024)",
+    "Estácio — Programação para Internet (2025)"
+  ],
+  experience: [
+    {
+      role: "Técnico de Suporte — Mercado Livre (via Randstad Brasil)",
+      period: "nov/2024 — jan/2026 • Presencial",
+      summary: "Suporte operacional e infraestrutura em ambiente de alta demanda.",
+      bullets: [
+        "Suporte presencial garantindo disponibilidade de equipamentos críticos (PCs, Zebra, handhelds, leitores 3D e baterias).",
+        "Manutenção preventiva/corretiva em impressoras Zebra (limpeza, ajuste de etiquetas, testes) e configuração de hardware.",
+        "Gestão de chamados no Jira e suporte a usuários (Windows, senhas, periféricos).",
+        "Interação com MDM para gestão/controle de dispositivos móveis.",
+        "Implantação e manutenção de práticas 5S, padronização de postos e organização de inventário."
+      ]
+    },
+    {
+      role: "Operador de Suporte Datacenter — NOC McDonald’s (Telefónica Ingeniería de Seguridad)",
+      period: "out/2019 — abr/2022",
+      summary: "Monitoração de links, incidentes e conectividade em lojas.",
+      bullets: [
+        "Monitoração via SolarWinds e gestão de incidentes/chamados via BMC Remedy.",
+        "Validação de conectividade e troubleshooting remoto (switches, AP, POS, SAT, KVS, quiosques etc.).",
+        "Diagnóstico de indisponibilidade de link (validação local, modem, reinícios, evidências).",
+        "Acionamento e acompanhamento de operadoras até normalização do serviço.",
+        "Atuação com Cisco Meraki e rotinas de operação NOC."
+      ]
+    },
+    {
+      role: "Analista de Suporte — Projeto TDATA Telefônica | VIVO (Tech Mahindra)",
+      period: "mai/2019 — set/2019",
+      summary: "Monitoramento e atendimento N1 com foco em SLA e disponibilidade.",
+      bullets: [
+        "Monitoramento de incidentes, atendimento primeiro nível e acompanhamento de SLA.",
+        "Atualização e resolução de chamados com relatórios e feedback ao cliente (e-mail).",
+        "Apoio à equipe em infraestrutura, redes e monitoramento de servidores físicos/virtuais.",
+        "Acionamentos e escalonamentos com foco em disponibilidade do serviço."
+      ]
+    },
+    {
+      role: "Analista de Suporte — Projeto NOC McDonald’s Telefônica | VIVO (Tech Mahindra)",
+      period: "nov/2017 — set/2019",
+      summary: "Operação NOC com triagem e tratativas de conectividade.",
+      bullets: [
+        "Monitoração de links via SolarWinds e abertura/acompanhamento de incidentes via BMC Remedy.",
+        "Validação de conectividade em equipamentos de loja e encaminhamento para operadoras quando necessário.",
+        "Acompanhamento de indisponibilidades e atualização de status até normalização."
+      ]
+    },
+    {
+      role: "Analista de Suporte — Projeto NOC McDonald’s Telefônica | VIVO (SONDA Brasil)",
+      period: "fev/2017 — out/2017",
+      summary: "Rotina NOC: monitoração, incidentes e tratativas com operadoras.",
+      bullets: [
+        "Monitoração de links via SolarWinds e incidentes via BMC Remedy.",
+        "Testes de conectividade e validações operacionais em lojas.",
+        "Encaminhamento e acompanhamento de chamados com operadoras."
+      ]
+    },
+    {
+      role: "Analista de Produção — Projeto NDC Telefônica | VIVO (end-to-end technology)",
+      period: "jun/2016 — set/2016",
+      summary: "Operação de batch/schedules e backup.",
+      bullets: [
+        "Execução de ações no BMC Control-M (rerun, hold, free, run now, force ok, etc.).",
+        "Análise, escalonamento e acompanhamento de schedules em produção.",
+        "Chamados via BMC Remedy e rotinas de restore/monitoramento de backups (Symantec NetBackup)."
+      ]
+    },
+    {
+      role: "Analista de Monitoração / Ponto Focal — Projeto NDC Telefônica | VIVO (Stefanini/end-to-end)",
+      period: "2014 — 2016",
+      summary: "Monitoração de infraestrutura crítica + gestão de incidentes e comunicação executiva.",
+      bullets: [
+        "Monitoração e análise de alarmes via IBM Tivoli Netcool/Omnibus e HP SiteScope.",
+        "Abertura/gestão de incidentes no BMC Remedy + acionamento técnico e acompanhamento até normalização.",
+        "Comunicação com gestores/diretoria conforme plano de comunicação."
+      ]
+    },
+    {
+      role: "Técnico de Informática Sênior — Lojas Marabraz",
+      period: "ago/2013 — mai/2014",
+      summary: "Monitoramento, automação e rotinas de backup.",
+      bullets: [
+        "Implementação de monitoramento com ferramentas open-source e mapas de visualização.",
+        "Criação de scripts em Bash e PowerShell para checks e monitoramento sob demanda.",
+        "Gestão de jobs/pools de backup no HP Data Protector e vivência com VMware."
+      ]
+    },
+    {
+      role: "Estagiário — TI (XMM Tecnologia da Informação)",
+      period: "mar/2012 — mai/2013",
+      summary: "Service Desk, redes e suporte a usuários.",
+      bullets: [
+        "Atendimento via ServiceDesk (GLPI) e suporte a usuários.",
+        "Vivência em redes, servidores e microinformática (cabeamento, roteadores e switches)."
+      ]
+    }
+  ]
+};
+
+/* ===========================
+   Terminal Engine
+=========================== */
+const screen = document.getElementById("screen");
+const input = document.getElementById("input");
+
+let history = [];
+let histIndex = -1;
+
+function esc(s){
+  return (s ?? "").toString()
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;");
+}
+
+function addHTML(html){
+  const div = document.createElement("div");
+  div.className = "line";
+  div.innerHTML = html;
+  screen.appendChild(div);
+  screen.scrollTop = screen.scrollHeight;
+}
+
+async function typeLine(text, cls="", speed=10){
+  const div = document.createElement("div");
+  div.className = "line";
+  const span = document.createElement("span");
+  if (cls) span.className = cls;
+  div.appendChild(span);
+  screen.appendChild(div);
+
+  for(let i=0;i<text.length;i++){
+    span.innerHTML = esc(text.slice(0,i+1));
+    screen.scrollTop = screen.scrollHeight;
+    await new Promise(r=>setTimeout(r, speed));
+  }
+}
+
+function hr(){
+  const d = document.createElement("div");
+  d.className = "sep";
+  screen.appendChild(d);
+}
+
+function sectionTitle(t){
+  hr();
+  addHTML(`<span class="green">==&gt;</span> <span class="green">${esc(t)}</span>`);
+}
+
+function banner(){
+  addHTML(`<span class="green">[BOOT]</span> <span class="dim">Iniciando sessão…</span>`);
+  addHTML(`<span class="green">[OK]</span> <span class="dim">Acesso concedido.</span>`);
+  addHTML(`<span class="muted">Atalhos rápidos:</span> <span class="kbd">quick</span> <span class="kbd">top</span> <span class="kbd">ats</span> <span class="kbd">contact</span>`);
+  addHTML(`<span class="muted">Dica:</span> digite <span class="kbd">demo</span> para rodar sozinho.`);
+  hr();
+}
+
+function link(url, label){
+  const safe = esc(url);
+  const txt = esc(label ?? url);
+  return `<a class="link" href="${safe}" target="_blank" rel="noreferrer">${txt}</a>`;
+}
+
+function printContact(full=true){
+  addHTML(`<span class="green">${esc(CV.name)}</span> <span class="muted">•</span> <span class="dim">${esc(CV.headline)}</span>`);
+  addHTML(`<span class="muted">Local:</span> <span class="dim">${esc(CV.location)}</span>`);
+  if(full){
+    addHTML(`<span class="muted">Email:</span> ${link("mailto:"+CV.contact.email, CV.contact.email)}`);
+    addHTML(`<span class="muted">Telefone:</span> ${link("tel:"+CV.contact.phone.replace(/\s|\(|\)|-/g,""), CV.contact.phone)}`);
+    addHTML(`<span class="muted">LinkedIn:</span> ${link(CV.contact.linkedin, CV.contact.linkedin)}`);
+    addHTML(`<span class="muted">GitHub:</span> ${link(CV.contact.github, CV.contact.github)}`);
+  }
+}
+
+function listBullets(items){
+  items.forEach(it => addHTML(`<span class="dim">•</span> <span class="dim">${esc(it)}</span>`));
+}
+
+function printSkills(){
+  Object.entries(CV.skills).forEach(([k, arr])=>{
+    addHTML(`<span class="muted">${esc(k)}:</span> ${arr.map(x=>`<span class="badge">${esc(x)}</span>`).join(" ")}`);
+  });
+}
+
+function printExperience(list){
+  list.forEach((xp, idx)=>{
+    addHTML(`<span class="green">[${String(idx+1).padStart(2,"0")}]</span> <span class="dim"><b>${esc(xp.role)}</b></span> <span class="muted">(${esc(xp.period)})</span>`);
+    addHTML(`<span class="muted">↳</span> <span class="dim">${esc(xp.summary)}</span>`);
+    xp.bullets.forEach(b => addHTML(`<span class="dim">   - ${esc(b)}</span>`));
+    addHTML(`<span class="muted"> </span>`);
+  });
+}
+
+function printEducation(){
+  CV.education.forEach(ed=>{
+    addHTML(`<span class="dim"><b>${esc(ed.school)}</b></span> <span class="muted">—</span> <span class="dim">${esc(ed.course)}</span> <span class="muted">(${esc(ed.period)})</span>`);
+  });
+}
+
+function printCerts(){
+  CV.certifications.forEach(c=>{
+    addHTML(`<span class="dim">•</span> <span class="dim">${esc(c)}</span>`);
+  });
+}
+
+function printProjects(){
+  CV.projects.forEach(p => addHTML(`<span class="dim">•</span> <span class="dim">${esc(p)}</span>`));
+}
+
+function printMetrics(){
+  addHTML(`<span class="muted">Preencha essas métricas quando puder:</span>`);
+  CV.metrics.forEach(m => addHTML(`<span class="dim">•</span> <span class="muted">${esc(m.label)}:</span> <span class="dim">${esc(m.value)}</span>`));
+  addHTML(`<span class="muted">Dica:</span> números reais = CV muito mais forte (sem inventar).`);
+}
+
+/* ATS: texto puro e copiável */
+function ats(){
+  sectionTitle("ATS (TEXTO LIMPO PARA COPIAR/COLAR)");
+  addHTML(`<span class="dim"><b>${esc(CV.name)}</b> — ${esc(CV.headline)}</span>`);
+  addHTML(`<span class="dim">${esc(CV.location)} | ${CV.contact.email} | ${CV.contact.phone} | ${CV.contact.linkedin} | ${CV.contact.github}</span>`);
+  hr();
+  addHTML(`<span class="muted">RESUMO</span>`);
+  CV.about.forEach(p=>addHTML(`<span class="dim">${esc(p)}</span>`));
+  addHTML(`<span class="muted">DESTAQUES</span>`);
+  CV.highlights.forEach(h=>addHTML(`<span class="dim">- ${esc(h)}</span>`));
+  hr();
+  addHTML(`<span class="muted">SKILLS</span>`);
+  Object.entries(CV.skills).forEach(([k, arr])=>{
+    addHTML(`<span class="dim">${esc(k)}: ${esc(arr.join(", "))}</span>`);
+  });
+  hr();
+  addHTML(`<span class="muted">EXPERIÊNCIA</span>`);
+  CV.experience.forEach(x=>{
+    addHTML(`<span class="dim"><b>${esc(x.role)}</b> — ${esc(x.period)}</span>`);
+    x.bullets.forEach(b=>addHTML(`<span class="dim">- ${esc(b)}</span>`));
+    addHTML(`<span class="dim"> </span>`);
+  });
+  hr();
+  addHTML(`<span class="muted">FORMAÇÃO</span>`);
+  CV.education.forEach(ed=>addHTML(`<span class="dim">${esc(ed.school)} — ${esc(ed.course)} (${esc(ed.period)})</span>`));
+  hr();
+  addHTML(`<span class="muted">CERTIFICAÇÕES</span>`);
+  CV.certifications.forEach(c=>addHTML(`<span class="dim">- ${esc(c)}</span>`));
+}
+
+/* Quick view (30s) */
+function quick(){
+  sectionTitle("QUICK (30s)");
+  printContact(true);
+  hr();
+  addHTML(`<span class="muted">Destaques:</span>`);
+  listBullets(CV.highlights);
+  addHTML(`<span class="muted">Stack (chave):</span> <span class="dim">Windows • SolarWinds • Remedy • Netcool/Omnibus • SiteScope • Jira • Meraki • PowerShell • Bash • NetBackup • Data Protector</span>`);
+  addHTML(`<span class="muted">Próximo:</span> <span class="dim">use <span class="kbd">top</span> (experiências principais) ou <span class="kbd">ats</span> (texto limpo).</span>`);
+}
+
+/* Top experiences (curadoria) */
+function top(){
+  sectionTitle("TOP EXPERIÊNCIAS");
+  const pick = [
+    CV.experience[0], // Mercado Livre
+    CV.experience[1], // Telefónica NOC
+    CV.experience[6]  // Netcool/SiteScope (agrupado)
+  ].filter(Boolean);
+  printExperience(pick);
+}
+
+/* Impact (sem inventar números) */
+function impact(){
+  sectionTitle("IMPACTO (SEM ENROLAÇÃO)");
+  const lines = [
+    "Disponibilidade operacional: suporte e manutenção preventiva para reduzir indisponibilidade de equipamentos críticos.",
+    "Operação NOC: triagem/escalonamento e acompanhamento de incidentes até normalização (SLA).",
+    "Padronização: 5S + guias de boas práticas para reduzir falhas e retrabalho.",
+    "Automação: scripts para checks e rotinas repetitivas (menos erro manual)."
+  ];
+  listBullets(lines);
+  addHTML(`<span class="muted">Dica:</span> preencha <span class="kbd">metrics</span> e isso vira “impacto com números”.`);
+}
+
+/* Help & Menu */
+function help(){
+  sectionTitle("COMANDOS");
+  addHTML(`<span class="dim">Rápidos:</span> <span class="kbd">quick</span> <span class="kbd">top</span> <span class="kbd">impact</span> <span class="kbd">ats</span>`);
+  addHTML(`<span class="dim">Seções:</span> <span class="kbd">whoami</span> <span class="kbd">contact</span> <span class="kbd">about</span> <span class="kbd">skills</span> <span class="kbd">xp</span> <span class="kbd">edu</span> <span class="kbd">certs</span> <span class="kbd">projects</span> <span class="kbd">metrics</span>`);
+  addHTML(`<span class="dim">Extras:</span> <span class="kbd">menu</span> <span class="kbd">demo</span> <span class="kbd">pdf</span> <span class="kbd">recrutador</span> <span class="kbd">matrix on/off</span> <span class="kbd">clear</span>`);
+  addHTML(`<span class="dim">Exemplos:</span> <span class="kbd">xp 3</span> (top 3 por ordem) • <span class="kbd">matrix off</span>`);
+}
+
+function menu(){
+  sectionTitle("MENU RÁPIDO");
+  addHTML(`<span class="dim">1)</span> <span class="kbd">quick</span> <span class="dim">visão em 30s</span>`);
+  addHTML(`<span class="dim">2)</span> <span class="kbd">top</span> <span class="dim">experiências principais</span>`);
+  addHTML(`<span class="dim">3)</span> <span class="kbd">ats</span> <span class="dim">texto limpo pra ATS</span>`);
+  addHTML(`<span class="dim">4)</span> <span class="kbd">projects</span> <span class="dim">projetos/entregas</span>`);
+  addHTML(`<span class="dim">5)</span> <span class="kbd">metrics</span> <span class="dim">preencher números</span>`);
+  addHTML(`<span class="dim">6)</span> <span class="kbd">pdf</span> <span class="dim">salvar em PDF</span>`);
+  addHTML(`<span class="dim">7)</span> <span class="kbd">recrutador</span> <span class="dim">modo clean</span>`);
+  addHTML(`<span class="dim">8)</span> <span class="kbd">matrix off</span> <span class="dim">desliga o fundo</span>`);
+}
+
+/* All */
+function all(){
+  sectionTitle("IDENTIDADE");
+  printContact(true);
+
+  sectionTitle("SOBRE");
+  CV.about.forEach(p=>addHTML(`<span class="dim">${esc(p)}</span>`));
+  addHTML(`<span class="muted">Destaques:</span>`);
+  listBullets(CV.highlights);
+
+  sectionTitle("STACK / SKILLS");
+  printSkills();
+
+  sectionTitle("PROJETOS / ENTREGAS");
+  printProjects();
+
+  sectionTitle("EXPERIÊNCIA");
+  printExperience(CV.experience);
+
+  sectionTitle("FORMAÇÃO");
+  printEducation();
+
+  sectionTitle("CERTIFICAÇÕES");
+  printCerts();
+
+  sectionTitle("MÉTRICAS (preencher)");
+  printMetrics();
+
+  hr();
+  addHTML(`<span class="muted">Tip:</span> use <span class="kbd">recrutador</span> ou <span class="kbd">ats</span> pra versão clean.`);
+}
+
+/* Toggle modes */
+function setMatrix(enabled){
+  const canvas = document.getElementById("matrix");
+  const vign = document.querySelector(".vignette");
+  canvas.style.display = enabled ? "block" : "none";
+  vign.style.display = enabled ? "block" : "none";
+  matrixEnabled = enabled;
+}
+
+function toggleRecruiter(){
+  document.body.classList.toggle("clean");
+  // Em modo recrutador, sempre desliga matrix
+  if(document.body.classList.contains("clean")){
+    setMatrix(false);
+  }else{
+    setMatrix(true);
+  }
+  addHTML(`<span class="green">[OK]</span> <span class="dim">Modo recrutador: ${document.body.classList.contains("clean") ? "ON" : "OFF"}</span>`);
+}
+
+function clearScreen(){ screen.innerHTML = ""; }
+
+function runCommand(raw){
+  const cmdline = raw.trim();
+  if(!cmdline) return;
+
+  addHTML(`<span class="muted">nicolas@matrix:~/cv$</span> <span class="dim">${esc(cmdline)}</span>`);
+
+  const [cmd, ...rest] = cmdline.split(/\s+/);
+  const arg = rest.join(" ").trim().toLowerCase();
+
+  switch(cmd.toLowerCase()){
+    case "help": help(); break;
+    case "menu": menu(); break;
+
+    case "quick": quick(); break;
+    case "top": top(); break;
+    case "impact": impact(); break;
+    case "ats": ats(); break;
+
+    case "whoami":
+      sectionTitle("IDENTIDADE");
+      printContact(true);
+      break;
+    case "contact":
+      sectionTitle("CONTATO");
+      addHTML(`<span class="muted">Email:</span> ${link("mailto:"+CV.contact.email, CV.contact.email)}`);
+      addHTML(`<span class="muted">Telefone:</span> ${link("tel:"+CV.contact.phone.replace(/\s|\(|\)|-/g,""), CV.contact.phone)}`);
+      addHTML(`<span class="muted">LinkedIn:</span> ${link(CV.contact.linkedin, CV.contact.linkedin)}`);
+      addHTML(`<span class="muted">GitHub:</span> ${link(CV.contact.github, CV.contact.github)}`);
+      break;
+    case "about":
+      sectionTitle("SOBRE");
+      CV.about.forEach(p=>addHTML(`<span class="dim">${esc(p)}</span>`));
+      addHTML(`<span class="muted">Destaques:</span>`);
+      listBullets(CV.highlights);
+      break;
+    case "skills":
+      sectionTitle("STACK / SKILLS");
+      printSkills();
+      break;
+    case "projects":
+      sectionTitle("PROJETOS / ENTREGAS");
+      printProjects();
+      break;
+    case "metrics":
+      sectionTitle("MÉTRICAS (preencher)");
+      printMetrics();
+      break;
+
+    case "xp":
+    case "experience": {
+      sectionTitle("EXPERIÊNCIA");
+      const n = parseInt(rest[0], 10);
+      if(Number.isFinite(n) && n > 0){
+        printExperience(CV.experience.slice(0, n));
+      }else{
+        printExperience(CV.experience);
+      }
+      break;
+    }
+    case "edu":
+    case "education":
+      sectionTitle("FORMAÇÃO");
+      printEducation();
+      break;
+    case "certs":
+    case "cert":
+      sectionTitle("CERTIFICAÇÕES");
+      printCerts();
+      break;
+    case "all":
+      all();
+      break;
+    case "pdf":
+      addHTML(`<span class="green">[OK]</span> <span class="dim">Abrindo diálogo de impressão…</span>`);
+      window.print();
+      break;
+    case "recrutador":
+    case "recruiter":
+      toggleRecruiter();
+      break;
+    case "matrix":
+      if(arg === "off"){
+        setMatrix(false);
+        addHTML(`<span class="green">[OK]</span> <span class="dim">Matrix: OFF</span>`);
+      } else if(arg === "on"){
+        if(document.body.classList.contains("clean")){
+          addHTML(`<span class="green">[INFO]</span> <span class="dim">Modo recrutador ON — Matrix permanece OFF.</span>`);
+        } else {
+          setMatrix(true);
+          addHTML(`<span class="green">[OK]</span> <span class="dim">Matrix: ON</span>`);
+        }
+      } else {
+        addHTML(`<span class="muted">Uso:</span> <span class="kbd">matrix on</span> ou <span class="kbd">matrix off</span>`);
+      }
+      break;
+    case "clear":
+      clearScreen();
+      break;
+    case "demo":
+      demo();
+      break;
+    default:
+      addHTML(`<span class="green">[WARN]</span> <span class="dim">comando não reconhecido:</span> <span class="dim">${esc(cmd)}</span>`);
+      addHTML(`<span class="muted">Dica:</span> digite <span class="kbd">help</span> ou <span class="kbd">menu</span>.`);
+  }
+}
+
+/* ===========================
+   Demo (roteiro automático)
+=========================== */
+let demoRunning = false;
+async function demo(){
+  if(demoRunning) return;
+  demoRunning = true;
+
+  const script = ["quick","top","projects","skills","metrics","ats"];
+  addHTML(`<span class="green">[RUN]</span> <span class="dim">Executando demo…</span>`);
+  for(const c of script){
+    await new Promise(r=>setTimeout(r, 320));
+    runCommand(c);
+  }
+  addHTML(`<span class="green">[DONE]</span> <span class="dim">Demo concluída. Use <span class="kbd">all</span> para ver tudo.</span>`);
+  demoRunning = false;
+}
+
+/* ===========================
+   Input behavior + history
+=========================== */
+input.addEventListener("keydown", (e)=>{
+  if(e.key === "Enter"){
+    const v = input.value;
+    if(v.trim()){
+      history.push(v);
+      histIndex = history.length;
+    }
+    input.value = "";
+    runCommand(v);
+  } else if(e.key === "ArrowUp"){
+    if(history.length === 0) return;
+    histIndex = Math.max(0, histIndex - 1);
+    input.value = history[histIndex] ?? "";
+    setTimeout(()=>input.setSelectionRange(input.value.length, input.value.length), 0);
+    e.preventDefault();
+  } else if(e.key === "ArrowDown"){
+    if(history.length === 0) return;
+    histIndex = Math.min(history.length, histIndex + 1);
+    input.value = history[histIndex] ?? "";
+    setTimeout(()=>input.setSelectionRange(input.value.length, input.value.length), 0);
+    e.preventDefault();
+  }
+});
+
+/* Buttons */
+document.getElementById("btnMenu").addEventListener("click", ()=>runCommand("menu"));
+document.getElementById("btnQuick").addEventListener("click", ()=>runCommand("quick"));
+document.getElementById("btnDemo").addEventListener("click", ()=>runCommand("demo"));
+document.getElementById("btnClean").addEventListener("click", ()=>runCommand("recrutador"));
+document.getElementById("btnPDF").addEventListener("click", ()=>runCommand("pdf"));
+document.getElementById("btnClear").addEventListener("click", ()=>runCommand("clear"));
+document.getElementById("focusBtn").addEventListener("click", ()=>input.focus());
+
+/* Boot sequence */
+(async function boot(){
+  banner();
+  await typeLine("Bem-vindo ao CV Terminal. Inicializando módulos…", "dim", 10);
+  await typeLine("Carregando perfil: " + CV.name, "dim", 9);
+  await typeLine("Digite 'quick' para ver tudo em 30 segundos.", "muted", 9);
+  hr();
+  runCommand("quick");
+  addHTML(`<span class="muted">Pronto.</span> Use <span class="kbd">top</span> ou <span class="kbd">ats</span>.`);
+  input.focus();
+})();
+
+/* ===========================
+   Matrix Rain (leve + pausa em background)
+=========================== */
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d", { alpha: true });
+
+const CHARS =
+  "アァカサタナハマヤャラワガザダバパ" +
+  "イィキシチニヒミリヰギジヂビピ" +
+  "ウゥクスツヌフムユュルグズヅブプ" +
+  "エェケセテネヘメレヱゲゼデベペ" +
+  "オォコソトノホモヨョロヲゴゾドボポヴン" +
+  "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%*+-/<>=";
+
+let fontSize = 16;
+let columns = 0;
+let drops = [];
+let matrixEnabled = true;
+let matrixPaused = false;
 
 function resize(){
-  c.width=window.innerWidth;c.height=window.innerHeight;
-  cols=Math.floor(window.innerWidth/font);
-  drops=new Array(cols).fill(0);
+  const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+  canvas.width = Math.floor(window.innerWidth * dpr);
+  canvas.height = Math.floor(window.innerHeight * dpr);
+  canvas.style.width = window.innerWidth + "px";
+  canvas.style.height = window.innerHeight + "px";
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  fontSize = window.innerWidth < 520 ? 14 : 16;
+  columns = Math.floor(window.innerWidth / fontSize);
+  drops = new Array(columns).fill(0).map(() => Math.random() * window.innerHeight / fontSize);
 }
 function draw(){
-  ctx.fillStyle="rgba(0,0,0,0.08)";
-  ctx.fillRect(0,0,c.width,c.height);
-  ctx.fillStyle="#39ff14";
-  ctx.font=font+"px monospace";
-  for(let i=0;i<drops.length;i++){
-    const text=chars[Math.random()*chars.length|0];
-    ctx.fillText(text,i*font,drops[i]*font);
-    if(drops[i]*font>c.height&&Math.random()>0.975)drops[i]=0;
-    drops[i]++;
+  if(!matrixEnabled || matrixPaused || canvas.style.display === "none"){
+    requestAnimationFrame(draw);
+    return;
   }
+
+  ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+  ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+  ctx.font = fontSize + "px ui-monospace, monospace";
+
+  for(let i=0; i<drops.length; i++){
+    const ch = CHARS[Math.floor(Math.random()*CHARS.length)];
+    const x = i * fontSize;
+    const y = drops[i] * fontSize;
+
+    ctx.fillStyle = "rgba(57, 255, 20, 0.82)";
+    ctx.fillText(ch, x, y);
+
+    if (y > window.innerHeight && Math.random() > 0.975) drops[i] = 0;
+    drops[i] += 0.65 + Math.random() * 0.8;
+  }
+
   requestAnimationFrame(draw);
 }
-resize();draw();window.onresize=resize;
 
-// TOGGLES
-document.getElementById("toggleClean").onclick=()=>document.body.classList.toggle("clean");
-document.getElementById("btnPdf").onclick=()=>window.print();
+document.addEventListener("visibilitychange", ()=>{
+  matrixPaused = document.hidden;
+});
+
+window.addEventListener("beforeprint", ()=>{
+  setMatrix(false);
+});
+window.addEventListener("afterprint", ()=>{
+  if(!document.body.classList.contains("clean")) setMatrix(true);
+});
+
+window.addEventListener("resize", resize);
+resize();
+draw();
 </script>
-
 </body>
 </html>

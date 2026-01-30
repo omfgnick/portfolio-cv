@@ -1,2338 +1,503 @@
 <!doctype html>
-<html lang="pt-BR" data-theme="dark" data-mode="default">
+<html lang="pt-BR">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Nicolas Mesquita Fernandes — Enterprise NOC / Support / Cyber</title>
-  <meta name="description" content="Portfolio enterprise matrix de Nicolas Mesquita Fernandes — 10+ anos em TI. NOC/Datacenter, Suporte N1/N2/N3, Monitoramento, Automação e Segurança. SolarWinds, Remedy, Netcool, SiteScope, Control-M, NetBackup, Meraki, Jira, GLPI, Windows."/>
-  <meta name="theme-color" content="#060907"/>
-
-  <meta property="og:title" content="Nicolas Mesquita Fernandes — Enterprise NOC / Support / Cyber"/>
-  <meta property="og:description" content="NOC/Datacenter, suporte avançado, monitoramento, automação e segurança — versão enterprise com estética Matrix."/>
-  <meta property="og:type" content="website"/>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Currículo | Nicolas Mesquita Fernandes</title>
+  <meta name="description" content="Currículo - tema Matrix" />
   <style>
-    /* =========================
-       MATRIX ENTERPRISE THEME
-       ========================= */
-
     :root{
-      --bg:#060907;
-      --bg2:#030503;
-      --panel: rgba(0,0,0,.70);
-      --panel2: rgba(0,0,0,.55);
-
-      --text: rgba(224,255,232,.95);
-      --muted: rgba(224,255,232,.72);
-      --muted2: rgba(224,255,232,.52);
-
-      --line: rgba(0,255,102,.14);
-      --line2: rgba(0,255,102,.22);
-
-      --accent:#00ff66;
-      --accent2:#00cc55;
-
-      --shadow: 0 18px 60px rgba(0,0,0,.65);
-      --glow: 0 0 0 6px rgba(0,255,102,.08);
-
-      --r: 18px;
-      --r2: 14px;
-      --max: 1240px;
-
-      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --bg:#050a06;
+      --panel:rgba(6, 16, 10, 0.72);
+      --panel2:rgba(6, 16, 10, 0.45);
+      --green:#39ff14;
+      --green2:#1dbb0b;
+      --text:#d7ffe0;
+      --muted:#86c992;
+      --border:rgba(57,255,20,0.25);
+      --shadow: 0 0 22px rgba(57,255,20,0.18);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      --sans: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
 
-    /* Light theme (clean enterprise) */
-    html[data-theme="light"]{
-      --bg:#ffffff;
-      --bg2:#ffffff;
-      --panel:#ffffff;
-      --panel2:#ffffff;
-
-      --text: rgba(11,19,36,.92);
-      --muted: rgba(11,19,36,.72);
-      --muted2: rgba(11,19,36,.58);
-
-      --line: rgba(11,19,36,.14);
-      --line2: rgba(0,168,79,.28);
-
-      --accent:#00a84f;
-      --accent2:#0ea05a;
-
-      --shadow: 0 18px 48px rgba(0,0,0,.10);
-      --glow: 0 0 0 6px rgba(0,168,79,.08);
-    }
-
-    html{scroll-behavior:smooth}
-    *{box-sizing:border-box}
-
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
     body{
       margin:0;
-      font-family: var(--sans);
+      background: var(--bg);
       color: var(--text);
-      background:
-        radial-gradient(1200px 700px at 12% 0%, rgba(0,255,102,.12), transparent 55%),
-        radial-gradient(1000px 700px at 88% 15%, rgba(0,255,102,.08), transparent 60%),
-        linear-gradient(180deg, var(--bg), var(--bg2));
-      min-height:100vh;
+      font-family: var(--mono);
       overflow-x:hidden;
     }
 
-    /* subtle scanlines */
-    body:before{
-      content:"";
+    /* Canvas da "chuva" */
+    #matrix{
       position:fixed;
       inset:0;
-      background: repeating-linear-gradient(
-        180deg,
-        rgba(0,255,102,.016) 0px,
-        rgba(0,255,102,.016) 1px,
-        transparent 1px,
-        transparent 6px
-      );
-      pointer-events:none;
+      width:100%;
+      height:100%;
+      z-index:-2;
+      display:block;
+    }
+
+    /* Vinheta + glow */
+    .vignette{
+      position:fixed;
+      inset:0;
       z-index:-1;
-      opacity:.6;
-    }
-    html[data-theme="light"] body:before{
-      background: repeating-linear-gradient(
-        180deg,
-        rgba(0,168,79,.012) 0px,
-        rgba(0,168,79,.012) 1px,
-        transparent 1px,
-        transparent 7px
-      );
-      opacity:.5;
-    }
-
-    a{ color: var(--accent); text-decoration:none; }
-    a:hover{ color: var(--accent2); }
-
-    .container{ width:min(var(--max), calc(100% - 36px)); margin:0 auto; }
-
-    /* background effects grid */
-    .bgfx{
-      position:fixed; inset:0; pointer-events:none; z-index:-2;
+      pointer-events:none;
       background:
-        linear-gradient(to right, rgba(255,255,255,.035) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,.028) 1px, transparent 1px);
-      background-size: 72px 72px;
-      mask-image: radial-gradient(closest-side, rgba(0,0,0,.92), transparent 75%);
-      opacity:.35;
+        radial-gradient(1200px 700px at 20% 10%, rgba(57,255,20,0.12), transparent 60%),
+        radial-gradient(900px 500px at 80% 80%, rgba(57,255,20,0.08), transparent 60%),
+        radial-gradient(900px 900px at 50% 50%, transparent 40%, rgba(0,0,0,0.65) 85%);
+      mix-blend-mode:screen;
     }
-    html[data-theme="light"] .bgfx{opacity:.22}
-    html[data-mode="recruiter"] .bgfx,
-    html[data-mode="recruiter"] body:before{ display:none !important; }
 
-    /* layout shell */
-    .shell{
+    /* Cabeçalho estilo terminal */
+    header{
+      padding: 22px 18px 10px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .terminal-bar{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border:1px solid var(--border);
+      background: rgba(0,0,0,0.35);
+      box-shadow: var(--shadow);
+      border-radius: 14px;
+      backdrop-filter: blur(6px);
+    }
+    .dots{
+      display:flex; gap:7px; margin-right:6px;
+    }
+    .dot{ width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.15); }
+    .dot:nth-child(1){ background: rgba(255,90,90,0.85); }
+    .dot:nth-child(2){ background: rgba(255,200,80,0.85); }
+    .dot:nth-child(3){ background: rgba(80,255,140,0.85); }
+    .path{
+      color: var(--muted);
+      font-size: 13px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
+    }
+
+    .wrap{
+      max-width:1120px;
+      margin: 0 auto;
+      padding: 10px 18px 38px;
+    }
+
+    /* Layout principal */
+    .grid{
       display:grid;
-      grid-template-columns: 310px 1fr;
-      gap:18px;
-      padding:18px 0 60px;
+      grid-template-columns: 360px 1fr;
+      gap: 14px;
       align-items:start;
     }
+
     @media (max-width: 980px){
-      .shell{grid-template-columns:1fr;}
-    }
-
-    /* common panels */
-    .sidebar, .topbar, .hero, section, .card{
-      border:1px solid var(--line);
-      border-radius: var(--r);
-      background: linear-gradient(180deg, var(--panel), var(--panel2));
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-    }
-
-    /* Sidebar */
-    .sidebar{
-      position:sticky; top:18px;
-      overflow:hidden;
-    }
-    html[data-mode="recruiter"] .sidebar{ position:relative; top:0; }
-
-    .side-top{
-      padding:18px;
-      border-bottom: 1px solid var(--line);
-      position:relative;
-      overflow:hidden;
-    }
-    .side-top:before{
-      content:"";
-      position:absolute; inset:-2px;
-      background:
-        radial-gradient(560px 200px at 20% 0%, rgba(0,255,102,.14), transparent 60%),
-        radial-gradient(520px 240px at 90% 0%, rgba(0,255,102,.10), transparent 60%);
-      opacity:.75;
-      pointer-events:none;
-    }
-    .side-top>*{position:relative; z-index:1}
-
-    .avatar{
-      width:54px; height:54px;
-      border-radius: 18px;
-      border:1px solid rgba(0,255,102,.28);
-      background:
-        radial-gradient(14px 14px at 30% 30%, rgba(255,255,255,.14), transparent 70%),
-        linear-gradient(135deg, rgba(0,255,102,.26), rgba(0,0,0,.45));
-      box-shadow: var(--glow);
-    }
-    html[data-theme="light"] .avatar{ box-shadow: var(--glow); }
-
-    .name{margin:12px 0 2px; font-size:16px; font-weight:800; letter-spacing:-.02em;}
-    .role{margin:0; color:var(--muted2); font-size:12px; line-height:1.35}
-
-    .status{
-      margin-top:12px;
-      display:flex; flex-wrap:wrap; gap:8px;
-    }
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      color: var(--muted);
-      padding:7px 10px;
-      border-radius: 999px;
-      font-size:12px;
-      white-space:nowrap;
-    }
-    .pill.neon{
-      background: rgba(0,255,102,.10);
-      border-color: rgba(0,255,102,.22);
-      color: var(--text);
-      box-shadow:none;
-    }
-
-    .side-actions{ padding:14px 18px 18px; display:grid; gap:10px; }
-    .btn{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      padding:12px 14px;
-      border-radius: 14px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      transition: all .18s ease;
-      font-weight:800;
-      font-size:13px;
-      color: inherit;
-    }
-    .btn:hover{
-      transform: translateY(-1px);
-      border-color: rgba(0,255,102,.35);
-      box-shadow: var(--glow);
-    }
-    .btn.primary{
-      background: linear-gradient(180deg, rgba(0,255,102,.18), rgba(0,255,102,.08));
-      border-color: rgba(0,255,102,.35);
-      color: var(--text);
-    }
-    .btn.primary:hover{ box-shadow: var(--glow); }
-    .btn .sub{
-      font-weight:600;
-      font-size:11px;
-      color:var(--muted2);
-      font-family: var(--mono);
-    }
-    .leftpack{display:flex; align-items:center; gap:10px;}
-
-    .side-nav{ padding:12px; border-top: 1px solid var(--line); display:grid; gap:8px; }
-    .side-link{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:10px 12px;
-      border-radius: 14px;
-      color:var(--muted);
-      border:1px solid transparent;
-      transition: all .18s ease;
-      font-size:13px;
-    }
-    .side-link:hover{
-      color:var(--text);
-      border-color: rgba(0,255,102,.22);
-      background: rgba(0,255,102,.04);
-      box-shadow: 0 0 0 6px rgba(0,255,102,.06);
-    }
-    .kbd{
-      font-family: var(--mono);
-      font-size:11px;
-      color: rgba(224,255,232,.78);
-      border:1px solid rgba(0,255,102,.26);
-      background: rgba(0,255,102,.06);
-      padding:3px 6px;
-      border-radius: 10px;
-    }
-    html[data-theme="light"] .kbd{ color: rgba(11,19,36,.70); border-color: rgba(11,19,36,.14); background: rgba(11,19,36,.04); }
-
-    /* Main */
-    .main{ display:grid; gap:18px; }
-
-    .topbar{
-      padding:14px 14px;
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-    }
-    .topbar .left{
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
-      color:var(--muted);
-      font-family: var(--mono);
-      font-size:12px;
-    }
-    .dot{
-      width:10px;height:10px;border-radius:999px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 0 0 6px rgba(0,255,102,.10);
-    }
-    .toggles{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
-    .toggle{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      border-radius: 14px;
-      padding:10px 12px;
-      font-weight:800;
-      cursor:pointer;
-      transition: all .18s ease;
-      font-size:13px;
-      color: var(--muted);
-    }
-    .toggle:hover{transform: translateY(-1px); border-color: rgba(0,255,102,.35); box-shadow: var(--glow);}
-    .toggle.on{
-      color: var(--text);
-      border-color: rgba(0,255,102,.38);
-      background: rgba(0,255,102,.08);
-    }
-
-    /* Hero */
-    .hero{
-      padding:22px;
-      position:relative;
-      overflow:hidden;
-    }
-    .hero:before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: linear-gradient(90deg, rgba(0,255,102,.10), transparent 25%, transparent 75%, rgba(0,255,102,.06));
-      opacity:.75;
-      mix-blend-mode: overlay;
-      pointer-events:none;
-    }
-    .hero>*{position:relative; z-index:1}
-
-    h1{
-      margin:10px 0 10px;
-      font-size: clamp(26px, 3vw, 44px);
-      line-height:1.05;
-      letter-spacing:-.03em;
-    }
-    .lead{margin:0; color:var(--muted); line-height:1.65; font-size:15px; max-width: 80ch;}
-
-    .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;}
-    .tag{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      padding:7px 10px;
-      border-radius: 999px;
-      font-size:12px;
-      color: var(--muted);
-    }
-    .tag.neon{
-      background: rgba(0,255,102,.10);
-      border-color: rgba(0,255,102,.22);
-      color: var(--text);
-      box-shadow:none;
-    }
-
-    section{ padding:18px; }
-    .sec-head{
-      display:flex; align-items:flex-end; justify-content:space-between; gap:14px; flex-wrap:wrap;
-      margin-bottom:12px;
-    }
-    .sec-title{margin:0; font-size:18px; letter-spacing:-.01em;}
-    .sec-desc{margin:4px 0 0; color:var(--muted2); font-size:13px; line-height:1.5;}
-
-    /* legacy header style used in your content */
-    .section-title{
-      display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
-      margin-bottom:12px;
-    }
-
-    .grid{display:grid; gap:12px;}
-    .grid.two{grid-template-columns: repeat(2, minmax(0,1fr));}
-    .grid.three{grid-template-columns: repeat(3, minmax(0,1fr));}
-    @media (max-width: 980px){
-      .grid.two,.grid.three{grid-template-columns:1fr;}
+      .grid{ grid-template-columns: 1fr; }
     }
 
     .card{
-      border-radius: var(--r2);
-      padding:14px;
-      position:relative;
+      border:1px solid var(--border);
+      background: var(--panel);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
       overflow:hidden;
-      background: rgba(0,0,0,.45);
     }
-    html[data-theme="light"] .card{ background: rgba(255,255,255,.96); }
 
-    .card:before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(520px 200px at 20% 0%, rgba(0,255,102,.10), transparent 60%);
-      opacity:.75; pointer-events:none;
+    .card .inner{
+      padding: 16px 16px 14px;
     }
-    .card>*{position:relative; z-index:1}
 
-    .card h3{margin:0 0 8px; font-size:14px;}
-    .card p{margin:0; color:var(--muted); font-size:13px; line-height:1.55;}
-    .mini{margin-top:10px; display:flex; flex-wrap:wrap; gap:8px;}
-    .mini .tag{font-size:11px; padding:6px 9px;}
+    .card .title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(57,255,20,0.16);
+      background: linear-gradient(180deg, rgba(57,255,20,0.10), transparent);
+    }
 
-    .badge2{
-      display:inline-flex; align-items:center; gap:8px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      border-radius:999px; padding:6px 10px; font-size:11px;
+    .card h2{
+      margin:0;
+      font-size: 14px;
+      color: var(--green);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .tag{
+      font-size: 12px;
+      color: var(--muted);
+      opacity:0.9;
+    }
+
+    h1{
+      margin: 10px 0 2px;
+      font-family: var(--sans);
+      font-size: 30px;
+      letter-spacing: -0.02em;
+      text-shadow: 0 0 18px rgba(57,255,20,0.18);
+    }
+    .role{
+      margin:0 0 8px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height:1.3;
+    }
+
+    .contact{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 12px;
+      margin-top:10px;
+      font-size: 13px;
+      color: var(--text);
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border:1px solid rgba(57,255,20,0.22);
+      background: rgba(0,0,0,0.22);
+      border-radius: 999px;
+      text-decoration:none;
+      color: var(--text);
+      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+    }
+    .pill:hover{
+      transform: translateY(-1px);
+      border-color: rgba(57,255,20,0.45);
+      box-shadow: 0 0 16px rgba(57,255,20,0.16);
+    }
+
+    .mono{
+      font-family: var(--mono);
+      opacity:0.95;
+    }
+
+    .section p{
+      margin: 0 0 10px;
+      color: rgba(215,255,224,0.92);
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+
+    .list{
+      margin:0;
+      padding-left: 16px;
+      color: rgba(215,255,224,0.92);
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+    .list li{ margin: 6px 0; }
+
+    .xp-item{
+      border: 1px dashed rgba(57,255,20,0.22);
+      background: var(--panel2);
+      border-radius: 16px;
+      padding: 12px 12px 10px;
+      margin: 0 0 12px;
+    }
+    .xp-top{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:6px;
+    }
+    .xp-role{
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text);
+    }
+    .xp-meta{
+      font-size: 12px;
       color: var(--muted);
       white-space:nowrap;
     }
-    .badge2.neon{
-      background: rgba(0,255,102,.10);
-      border-color: rgba(0,255,102,.22);
-      color: var(--text);
-    }
-
-    .ico{width:16px;height:16px;display:inline-block;vertical-align:-3px;fill:currentColor}
-    .ico.sm{width:14px;height:14px}
-    .ico.lg{width:18px;height:18px}
-
-    /* Experience search */
-    .search{
-      display:flex; align-items:center; gap:10px;
-      border:1px solid rgba(0,255,102,.18);
-      background: rgba(0,255,102,.04);
-      padding:10px 12px;
-      border-radius: 14px;
-      width:min(520px, 100%);
-      box-shadow: 0 0 0 6px rgba(0,255,102,.06);
-    }
-    .search input{
-      width:100%;
-      border:none; outline:none;
-      background:transparent;
-      color:var(--text);
-      font-family: var(--mono);
-      font-size:13px;
-    }
-    html[data-theme="light"] .search input{ color: rgba(11,19,36,.92); }
-
-    .job{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:12px;
-      align-items:start;
-    }
-    @media (max-width: 980px){ .job{grid-template-columns:1fr;} }
-    .job .meta{
-      display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    .xp-company{
+      font-size: 13px;
+      color: rgba(215,255,224,0.85);
       margin-bottom:8px;
     }
-    .job .when{
-      font-family: var(--mono);
-      font-size:12px;
-      color: rgba(224,255,232,.70);
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      padding:6px 10px;
-      border-radius: 999px;
-      white-space:nowrap;
-    }
-    html[data-theme="light"] .job .when{ color: rgba(11,19,36,.70); }
 
-    ul.clean{margin:10px 0 0; padding-left:18px; color:var(--muted); font-size:13px; line-height:1.6;}
-    ul.clean li{margin:6px 0;}
-
-    /* Logos */
-    .company-logo{
-      width:42px; height:42px;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.04);
-      display:flex; align-items:center; justify-content:center;
-      overflow:hidden;
-      box-shadow: 0 0 0 6px rgba(0,255,102,.06);
-      flex:0 0 auto;
-    }
-    .company-logo img{
-      width:100%; height:100%;
-      object-fit: contain;
-      padding:6px;
-      filter: drop-shadow(0 10px 18px rgba(0,0,0,.20));
-    }
-    html[data-theme="light"] .company-logo{ box-shadow: 0 0 0 6px rgba(0,168,79,.06); border-color: rgba(11,19,36,.14); }
-
-    .company-badge{
-      display:inline-flex; align-items:center; justify-content:center;
-      width:36px; height:36px;
-      border-radius: 12px;
-      border:1px solid rgba(0,255,102,.22);
-      background: rgba(0,255,102,.06);
-      font-family: var(--mono);
-      font-size:12px;
-      font-weight:800;
-      letter-spacing:.02em;
-      box-shadow: 0 0 0 6px rgba(0,255,102,.05);
-      flex:0 0 auto;
+    .kbd{
+      display:inline-block;
+      padding: 2px 6px;
+      border:1px solid rgba(57,255,20,0.25);
+      border-bottom-color: rgba(57,255,20,0.45);
+      border-radius: 8px;
+      background: rgba(0,0,0,0.25);
+      font-size: 12px;
+      color: rgba(215,255,224,0.95);
+      margin-right:6px;
+      margin-bottom:6px;
     }
 
-    /* Table matrix */
-    .matrix{
-      width:100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      overflow:hidden;
-      border:1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(255,255,255,.02);
-    }
-    .matrix th, .matrix td{
-      padding:12px 12px;
-      border-bottom:1px solid var(--line);
-      vertical-align: top;
-      font-size:13px;
-    }
-    .matrix th{
-      text-align:left;
-      color: var(--muted2);
-      font-family: var(--mono);
-      letter-spacing:.02em;
-      font-weight:800;
-      background: rgba(255,255,255,.03);
-    }
-    .matrix tr:last-child td{border-bottom:0;}
-    .chips{display:flex; flex-wrap:wrap; gap:8px;}
-
-    /* Case grid */
-    .casegrid{display:grid; grid-template-columns:repeat(12,1fr); gap:14px;}
-    @media (max-width: 980px){ .casegrid{grid-template-columns:1fr;} }
-    .case{grid-column: span 6;}
-    @media (max-width: 980px){ .case{grid-column: span 12;} }
-    .case .k{font-family: var(--mono); font-size:11px; color: var(--muted2); letter-spacing:.02em; text-transform:uppercase;}
-    .case .v{color: var(--muted); line-height:1.6; margin-top:6px;}
-
-    /* timeline */
-    .timeline{position:relative; padding-left: 18px;}
-    .timeline:before{
-      content:"";
-      position:absolute; left:6px; top:6px; bottom:6px; width:2px;
-      background: linear-gradient(180deg, rgba(0,255,102,.26), rgba(0,255,102,.12));
-      border-radius: 999px;
-    }
-    .node{position:relative;}
-    .node:before{
-      content:"";
-      position:absolute; left:-2px; top:14px;
-      width:12px; height:12px; border-radius:999px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 0 0 6px rgba(0,255,102,.10);
-    }
-
-    /* progress bar */
-    .progress{
-      position:fixed; left:0; top:0; height:3px; width:0%;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      box-shadow: 0 0 18px rgba(0,255,102,.18);
-      z-index:120;
-    }
-
-    /* Command palette */
-    #cmdkBackdrop{
-      position:fixed; inset:0; z-index:80;
-      background: rgba(0,0,0,.55);
-      backdrop-filter: blur(8px);
-      display:none;
-    }
-    #cmdk{
-      position:fixed; left:50%; top:10%;
-      transform: translateX(-50%);
-      width:min(760px, calc(100% - 32px));
-      z-index:90;
-      display:none;
-    }
-    .cmdk{
-      border-radius: 18px;
-      border:1px solid var(--line2);
-      background: rgba(0,0,0,.86);
-      box-shadow: 0 24px 90px rgba(0,0,0,.70);
-      overflow:hidden;
-    }
-    html[data-theme="light"] .cmdk{ background: rgba(255,255,255,.94); }
-    .cmdk-top{
-      padding:12px 14px;
-      display:flex; align-items:center; gap:10px;
-      border-bottom: 1px solid var(--line);
-    }
-    .cmdk-top input{
-      width:100%;
-      border:none; outline:none;
-      background:transparent;
-      color:var(--text);
-      font-family: var(--mono);
-      font-size:13px;
-    }
-    html[data-theme="light"] .cmdk-top input{ color: rgba(11,19,36,.92); }
-    .cmdk-list{max-height: 360px; overflow:auto; padding:8px;}
-    .cmdk-item{
-      display:flex; align-items:center; justify-content:space-between;
+    footer{
+      max-width:1120px;
+      margin: 14px auto 28px;
+      padding: 0 18px;
+      color: rgba(134,201,146,0.9);
+      font-size: 12px;
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
       gap:10px;
-      padding:10px 12px;
-      border-radius: 14px;
-      border:1px solid transparent;
-      cursor:pointer;
     }
-    .cmdk-item:hover, .cmdk-item[aria-selected="true"]{
-      background: rgba(0,255,102,.06);
-      border-color: rgba(0,255,102,.22);
-      box-shadow: 0 0 0 6px rgba(0,255,102,.06);
+
+    /* "cursor" piscando */
+    .cursor::after{
+      content:"█";
+      margin-left:6px;
+      animation: blink 1.1s steps(1,end) infinite;
+      color: var(--green);
     }
-    html[data-theme="light"] .cmdk-item:hover, html[data-theme="light"] .cmdk-item[aria-selected="true"]{
-      background: rgba(0,168,79,.08);
-      border-color: rgba(0,168,79,.22);
-      box-shadow: 0 0 0 6px rgba(0,168,79,.08);
+    @keyframes blink{
+      50%{ opacity:0; }
     }
-    .badge{
-      font-family: var(--mono);
-      font-size:11px;
-      color: rgba(224,255,232,.74);
-      border:1px solid var(--line);
-      padding:3px 8px;
-      border-radius: 999px;
-      white-space:nowrap;
-    }
-    html[data-theme="light"] .badge{color: rgba(11,19,36,.70); border-color: rgba(11,19,36,.14);}
 
-    /* Recruiter mode */
-    html[data-mode="recruiter"]{
-      --bg: #ffffff;
-      --bg2:#ffffff;
-      --panel:#ffffff;
-      --panel2:#ffffff;
-
-      --text: #0b1324;
-      --muted: rgba(11,19,36,.72);
-      --muted2: rgba(11,19,36,.58);
-
-      --line: rgba(11,19,36,.14);
-      --line2: rgba(11,19,36,.14);
-
-      --accent:#00a84f;
-      --accent2:#0ea05a;
-
-      --shadow: 0 18px 48px rgba(0,0,0,.10);
-      --glow: none;
-    }
-    html[data-mode="recruiter"] .tag,
-    html[data-mode="recruiter"] .pill,
-    html[data-mode="recruiter"] .badge2{ background: rgba(11,19,36,.04); border-color: rgba(11,19,36,.12); color: rgba(11,19,36,.80); box-shadow:none; }
-    html[data-mode="recruiter"] .job .when{ background: rgba(11,19,36,.04); border-color: rgba(11,19,36,.12); color: rgba(11,19,36,.70); }
-    html[data-mode="recruiter"] .progress{ display:none; }
-
-    /* Print mode */
-    .print-mode .bgfx, .print-mode body:before{display:none !important;}
-    .print-mode .sidebar, .print-mode .topbar, .print-mode .hero, .print-mode section, .print-mode .card{ box-shadow:none !important; }
-
+    /* Impressão limpa (sem Matrix) */
     @media print{
-      .bgfx, body:before, #cmdk, #cmdkBackdrop, .toggles, .kbd, .progress{display:none !important;}
-      body{background:#fff !important; color:#000 !important;}
-      .sidebar, .topbar, .hero, section, .card{ box-shadow:none !important; border-color:#bbb !important; background:#fff !important; }
-      .tag, .pill, .badge2{ border-color:#bbb !important; background:#fff !important; color:#000 !important; }
-      .container{width:100% !important; margin:0 !important;}
-      .shell{grid-template-columns:1fr !important; gap:0 !important; padding:0 !important;}
+      #matrix, .vignette { display:none !important; }
+      body{ background:#fff; color:#111; }
+      .card{ box-shadow:none; background:#fff; border:1px solid #ddd; }
+      .card .title{ background:#f6f6f6; border-bottom:1px solid #ddd; }
+      .pill{ border:1px solid #ddd; color:#111; background:#fff; }
+      .tag, .xp-meta, .role{ color:#444; }
+      h2{ color:#111; }
+      .kbd{ border:1px solid #ddd; background:#fff; color:#111; }
     }
-
-    /* A11y */
-    .sr-only{
-      position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
-      clip:rect(0,0,0,0);white-space:nowrap;border:0;
-    }
-
-    /* scrollbar */
-    ::-webkit-scrollbar{ width:10px; }
-    ::-webkit-scrollbar-thumb{ background: rgba(0,255,102,.35); border-radius: 10px; }
-    ::-webkit-scrollbar-track{ background: #050805; }
-    html[data-theme="light"] ::-webkit-scrollbar-thumb{ background: rgba(0,168,79,.35); }
-    html[data-theme="light"] ::-webkit-scrollbar-track{ background: #f3f4f6; }
   </style>
 </head>
 
 <body>
-  <div class="bgfx" aria-hidden="true"></div>
-  <div class="progress" aria-hidden="true" id="progressBar"></div>
+  <canvas id="matrix"></canvas>
+  <div class="vignette"></div>
 
-  <!-- Icon Sprite -->
-  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
-    <symbol id="i-github" viewBox="0 0 16 16">
-      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
-    </symbol>
-    <symbol id="i-linkedin" viewBox="0 0 24 24">
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.602 0 4.266 2.37 4.266 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.123 2.062 2.062 0 0 1 0 4.123zM6.814 20.452H3.86V9h2.954v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-    </symbol>
-    <symbol id="i-file" viewBox="0 0 24 24">
-      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM13 9V3.5L18.5 9H13z"/>
-    </symbol>
-    <symbol id="i-sun" viewBox="0 0 24 24">
-      <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-16h0m0 20h0M4.22 4.22h0M19.78 19.78h0M2 12h0m20 0h0M4.22 19.78h0M19.78 4.22h0" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
-    </symbol>
-    <symbol id="i-moon" viewBox="0 0 24 24">
-      <path d="M21 14.5A8.5 8.5 0 0 1 9.5 3 7.5 7.5 0 1 0 21 14.5z" fill="currentColor"/>
-    </symbol>
-    <symbol id="i-print" viewBox="0 0 24 24">
-      <path d="M6 9V3h12v6H6zm12 8v4H6v-4H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2z"/>
-    </symbol>
-    <symbol id="i-search" viewBox="0 0 24 24">
-      <path d="M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm11 3-6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
-    </symbol>
-    <symbol id="i-terminal" viewBox="0 0 24 24">
-      <path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm3 4 3 3-3 3M12 15h6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    </symbol>
-    <symbol id="i-building" viewBox="0 0 24 24">
-      <path d="M3 21V3h12v18H3zm14 0v-8h4v8h-4zM6 6h2v2H6V6zm0 4h2v2H6v-2zm0 4h2v2H6v-2zm4-8h2v2h-2V6zm0 4h2v2h-2v-2zm0 4h2v2h-2v-2z"/>
-    </symbol>
-  </svg>
+  <header>
+    <div class="terminal-bar" aria-label="terminal header">
+      <div class="dots" aria-hidden="true">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+      <div class="path">nicolas@matrix:~/curriculo$ <span class="cursor">cat cv.txt</span></div>
+    </div>
 
-  <!-- ATS-friendly keywords (mantido) -->
-  <div class="sr-only">
-    Nicolas Mesquita Fernandes. Analista de Suporte, NOC/Datacenter, Infraestrutura e Segurança da Informação.
-    Ferramentas: SolarWinds, BMC Remedy, IBM Tivoli Netcool/Omnibus, HP SiteScope, Control-M, Symantec NetBackup, HP Data Protector, Jira, GLPI, MDM, Zebra.
-    Experiência: Randstad/Mercado Livre, Telefónica Ingeniería de Seguridad, Tech Mahindra, SONDA Brasil, Stefanini, end-to-end technology, Lojas Marabraz, XMM.
-    Tecnologias: Windows, DNS, Firewalls, Roteamento, Switches, Access Points, Cisco Meraki. ITIL, SLA, incident management, escalation, monitoring, troubleshooting.
-  </div>
+    <h1>Nicolas Mesquita Fernandes</h1>
+    <p class="role">Analista de Suporte & Infraestrutura • Segurança da Informação • Automação</p>
 
-  <div class="container">
-    <div class="shell">
-      <!-- SIDEBAR -->
-      <aside class="sidebar" aria-label="Perfil e navegação">
-        <div class="side-top">
-          <div class="avatar" aria-hidden="true"></div>
-          <div class="name">Nicolas Mesquita Fernandes</div>
-          <p class="role" id="sideRole">NOC / Datacenter • Suporte N2/N3 • Monitoramento • Automação • Segurança</p>
+    <div class="contact">
+      <a class="pill" href="mailto:seuemail@exemplo.com">📧 <span class="mono">seuemail@exemplo.com</span></a>
+      <a class="pill" href="tel:+5500000000000">📱 <span class="mono">+55 (00) 00000-0000</span></a>
+      <a class="pill" href="#" target="_blank" rel="noreferrer">🔗 <span class="mono">LinkedIn</span></a>
+      <a class="pill" href="#" target="_blank" rel="noreferrer">💻 <span class="mono">GitHub/Portfólio</span></a>
+      <span class="pill">📍 <span class="mono">Brasil</span></span>
+    </div>
+  </header>
 
-          <div class="status">
-            <span class="pill neon" id="pillAvail">✅ Disponível</span>
-            <span class="pill" id="pillTZ">🕒 America/Sao_Paulo</span>
-            <span class="pill" id="pillATS">🧾 ATS-ready</span>
-          </div>
+  <main class="wrap">
+    <div class="grid">
+
+      <!-- Coluna esquerda -->
+      <aside class="card">
+        <div class="title">
+          <h2>Resumo</h2>
+          <span class="tag">perfil</span>
+        </div>
+        <div class="inner section">
+          <p>
+            Profissional de TI com experiência desde 2014 em suporte e infraestrutura, com foco em
+            segurança da informação, gerenciamento de sistemas e automação. Atuação preventiva,
+            criação de boas práticas e colaboração com fornecedores.
+          </p>
         </div>
 
-        <div class="side-actions">
-          <a class="btn primary" href="https://filebin.net/xpgp6e24vbrugdyo/curr%C3%ADculo-nicolas-novo.pdf" target="_blank" rel="noreferrer" id="cvBtn">
-            <span class="leftpack"><svg class="ico lg"><use href="#i-file"/></svg> 📄 <span id="cvLabel">Currículo (PDF)</span></span>
-            <span class="sub" id="cvSub">download</span>
-          </a>
-          <a class="btn" href="https://www.linkedin.com/in/nicolasmesquita/" target="_blank" rel="noreferrer">
-            <span class="leftpack"><svg class="ico lg"><use href="#i-linkedin"/></svg> 💼 <span>LinkedIn</span></span>
-            <span class="sub">/in/nicolasmesquita</span>
-          </a>
-          <a class="btn" href="https://github.com/omfgnick" target="_blank" rel="noreferrer">
-            <span class="leftpack"><svg class="ico lg"><use href="#i-github"/></svg> 🧬 <span>GitHub</span></span>
-            <span class="sub">@omfgnick</span>
-          </a>
+        <div class="title">
+          <h2>Competências</h2>
+          <span class="tag">skills</span>
+        </div>
+        <div class="inner">
+          <span class="kbd">Windows</span>
+          <span class="kbd">Redes</span>
+          <span class="kbd">Segurança</span>
+          <span class="kbd">Hardening</span>
+          <span class="kbd">Monitoramento</span>
+          <span class="kbd">Automação</span>
+          <span class="kbd">ITIL</span>
+          <span class="kbd">Cloud (AWS)</span>
+          <span class="kbd">Meraki</span>
         </div>
 
-        <nav class="side-nav" aria-label="Seções">
-          <a class="side-link" href="#overview" id="navOverview"><span class="leftpack"><svg class="ico sm"><use href="#i-terminal"/></svg> 🧭 <span>Overview</span></span><span class="kbd">1</span></a>
-          <a class="side-link" href="#stack" id="navStack"><span class="leftpack"><svg class="ico sm"><use href="#i-terminal"/></svg> 🧱 <span>Stack Matrix</span></span><span class="kbd">2</span></a>
-          <a class="side-link" href="#impact" id="navImpact"><span class="leftpack"><svg class="ico sm"><use href="#i-terminal"/></svg> <span data-i18n="navImpact">Impact</span></span><span class="kbd">I</span></a>
-          <a class="side-link" href="#security" id="navSecurity"><span class="leftpack"><svg class="ico sm"><use href="#i-terminal"/></svg> <span data-i18n="navSecurity">Security</span></span><span class="kbd">S</span></a>
-          <a class="side-link" href="#cases" id="navCases"><span class="leftpack"><svg class="ico sm"><use href="#i-terminal"/></svg> 🧪 <span>Case Studies</span></span><span class="kbd">3</span></a>
-          <a class="side-link" href="#experience" id="navExp"><span class="leftpack"><svg class="ico sm"><use href="#i-building"/></svg> 🏢 <span>Experiência</span></span><span class="kbd">4</span></a>
-          <a class="side-link" href="#education" id="navEdu"><span class="leftpack"><svg class="ico sm"><use href="#i-building"/></svg> 🎓 <span>Formação</span></span><span class="kbd">5</span></a>
-          <a class="side-link" href="#certs" id="navCerts"><span class="leftpack"><svg class="ico sm"><use href="#i-terminal"/></svg> 🏅 <span>Certificações</span></span><span class="kbd">6</span></a>
-          <a class="side-link" href="#contact" id="navContact"><span class="leftpack"><svg class="ico sm"><use href="#i-terminal"/></svg> 📡 <span>Contato</span></span><span class="kbd">7</span></a>
-          <a class="side-link" href="#" id="openCmdk"><span class="leftpack"><svg class="ico sm"><use href="#i-terminal"/></svg> ⌘ <span>Command Palette</span></span><span class="kbd">Ctrl K</span></a>
-        </nav>
+        <div class="title">
+          <h2>Certificações</h2>
+          <span class="tag">credenciais</span>
+        </div>
+        <div class="inner section">
+          <ul class="list">
+            <li>Pentest (ex.: certificação X)</li>
+            <li>Cisco Meraki (ex.: certificação Y)</li>
+            <li>Cibersegurança (ex.: certificação Z)</li>
+            <li>AWS Cloud Practitioner Essentials (abr/2024)</li>
+          </ul>
+        </div>
+
+        <div class="title">
+          <h2>Formação</h2>
+          <span class="tag">acadêmico</span>
+        </div>
+        <div class="inner section">
+          <ul class="list">
+            <li>Defesa Cibernética</li>
+            <li>Bacharelado em Sistemas de Informação</li>
+            <li>Primeiro curso em TI: dez/2006</li>
+          </ul>
+        </div>
+
+        <div class="title">
+          <h2>Idiomas</h2>
+          <span class="tag">languages</span>
+        </div>
+        <div class="inner section">
+          <ul class="list">
+            <li>Português (nativo)</li>
+            <li>Inglês (adicione nível)</li>
+          </ul>
+        </div>
       </aside>
 
-      <!-- MAIN -->
-      <main class="main">
-        <div class="topbar" aria-label="Controles">
-          <div class="left">
-            <span class="dot" aria-hidden="true"></span>
-            <span id="topStatus">status: online • incident_response: enabled • uptime_mindset: true</span>
+      <!-- Coluna direita -->
+      <section class="card">
+        <div class="title">
+          <h2>Experiência</h2>
+          <span class="tag">histórico</span>
+        </div>
+        <div class="inner section">
+
+          <div class="xp-item">
+            <div class="xp-top">
+              <div class="xp-role">Técnico de Suporte • Mercado Livre (via Randstad)</div>
+              <div class="xp-meta">nov/2024 — jan/2026</div>
+            </div>
+            <div class="xp-company">Ambiente corporativo • Suporte e Infraestrutura</div>
+            <ul class="list">
+              <li>Atuação preventiva para evitar indisponibilidade de equipamentos.</li>
+              <li>Monitoramento proativo para identificação antecipada de incidentes.</li>
+              <li>Criação de guias de boas práticas reduzindo falhas operacionais.</li>
+              <li>Suporte técnico e gerenciamento de sistemas com foco em segurança.</li>
+            </ul>
           </div>
 
-          <div class="toggles">
-            <button class="toggle on" id="btnPT" type="button" aria-pressed="true">PT</button>
-            <button class="toggle" id="btnEN" type="button" aria-pressed="false">EN</button>
-
-            <button class="toggle" id="themeToggle" type="button" aria-label="Theme mode">
-              <svg class="ico sm" style="margin-right:8px;"><use href="#i-sun"/></svg>
-              <span id="themeLabel" class="tiny">AUTO</span>
-            </button>
-
-            <button class="toggle" id="printToggle" type="button" aria-label="Toggle print mode">
-              <svg class="ico sm" style="margin-right:8px;"><use href="#i-print"/></svg> ⎙
-            </button>
-
-            <button class="toggle" id="recruiterToggle" type="button" aria-label="Recruiter mode">
-              <svg class="ico sm" style="margin-right:8px;"><use href="#i-search"/></svg>
-              <span id="recruiterLabel" class="tiny">MODE</span>
-            </button>
+          <div class="xp-item">
+            <div class="xp-top">
+              <div class="xp-role">Analista de Suporte e Infraestrutura</div>
+              <div class="xp-meta">2014 — atual</div>
+            </div>
+            <div class="xp-company">Resumo das funções</div>
+            <ul class="list">
+              <li>Gestão de ambientes Windows, redes e ferramentas de monitoramento.</li>
+              <li>Automação de tarefas, documentação e treinamentos internos.</li>
+              <li>Interação com fornecedores e melhoria contínua de processos.</li>
+            </ul>
           </div>
+
         </div>
 
-        <!-- HERO (id único, sem duplicar #overview) -->
-        <div class="hero" id="overview-hero">
-          <div class="sec-head" style="margin-bottom:10px;">
-            <div>
-              <h1 id="heroTitle">IT Support / NOC — foco em estabilidade, resposta e padronização</h1>
-              <p class="lead" id="heroLead">
-                10+ anos em operação real: suporte avançado (N2/N3), monitoramento, incidentes e continuidade.
-                Mentalidade de segurança + automação para reduzir reincidência e tornar a operação previsível.
-              </p>
-            </div>
-          </div>
-
-          <div class="tags" aria-label="destaques">
-            <span class="tag neon">SolarWinds • Remedy • Netcool</span>
-            <span class="tag">SiteScope • Control-M • NetBackup</span>
-            <span class="tag">Meraki • DNS • Switch/AP</span>
-            <span class="tag">Windows • Jira • GLPI • MDM • Zebra</span>
-          </div>
+        <div class="title">
+          <h2>Projetos & Destaques</h2>
+          <span class="tag">impacto</span>
+        </div>
+        <div class="inner section">
+          <ul class="list">
+            <li>Automatizações que reduziram retrabalho e aumentaram padronização.</li>
+            <li>Implantação de boas práticas que diminuíram falhas operacionais.</li>
+            <li>Iniciativas de segurança: hardening, revisão de acessos, etc.</li>
+          </ul>
         </div>
 
-        <!-- SOBRE -->
-        <section id="overview">
-          <div class="section-title">
-            <h2 data-i18n="overviewTitle">Sobre</h2>
-            <span class="pill" data-i18n="overviewPill">Support • Infra • Cyber</span>
-          </div>
+        <div class="title">
+          <h2>Downloads</h2>
+          <span class="tag">export</span>
+        </div>
+        <div class="inner section">
+          <p>
+            Dica: use <span class="kbd">Ctrl</span> + <span class="kbd">P</span> e escolha “Salvar como PDF”.
+            O modo de impressão remove o fundo Matrix automaticamente.
+          </p>
+        </div>
 
-          <div class="card">
-            <div class="mini" style="justify-content:space-between;gap:10px;flex-wrap:wrap;">
-              <span class="badge2 neon" id="otwBadge"><span aria-hidden="true">🟢</span> <span data-i18n="otw">Open to work</span></span>
-              <span class="badge2"><span aria-hidden="true">📍</span> <span data-i18n="region">São Paulo (SP)</span> • <span data-i18n="availability">Disponibilidade imediata</span></span>
-              <span class="badge2"><span aria-hidden="true">🧭</span> <span data-i18n="model">Híbrido / Presencial / Remoto</span></span>
-            </div>
-
-            <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
-              <a class="btn primary" href="mailto:omfg_nick@hotmail.com" id="emailBtn" style="flex:1 1 240px;">
-                <span class="leftpack"><svg class="ico lg"><use href="#i-terminal"/></svg> <span data-i18n="ctaEmail">Enviar e-mail</span></span>
-                <span class="sub" style="display:block;margin-top:2px;">omfg_nick@hotmail.com</span>
-              </a>
-              <a class="btn" href="https://www.linkedin.com/in/nicolasmesquita/" target="_blank" rel="noreferrer" style="flex:1 1 200px;">
-                <span class="leftpack"><svg class="ico lg"><use href="#i-linkedin"/></svg> <span data-i18n="ctaLinkedIn">Mensagem no LinkedIn</span></span>
-              </a>
-              <a class="btn" href="https://github.com/omfgnick" target="_blank" rel="noreferrer" style="flex:1 1 170px;">
-                <span class="leftpack"><svg class="ico lg"><use href="#i-github"/></svg> <span data-i18n="ctaGit">Ver GitHub</span></span>
-              </a>
-            </div>
-
-            <p style="margin-top:12px;color:var(--muted);line-height:1.6;">
-              <span class="tiny" data-i18n="pitchLabel">One-liner</span><br/>
-              <span id="pitchText">
-                Operação de NOC/Infra + suporte avançado (L2/L3) com mentalidade de segurança e automação para reduzir reincidência e deixar a rotina previsível.
-              </span>
-            </p>
-          </div>
-
-          <div class="grid" style="margin-top:14px;">
-            <div class="card">
-              <h3 style="margin:0 0 8px 0;" data-i18n="overviewCard1Title">Resumo</h3>
-              <p style="margin:0;color:var(--muted);line-height:1.65;" data-i18n="overviewCard1Text">
-                Analista/Técnico de Suporte com experiência em operação (NOC/Infra) e foco em confiabilidade, padronização e automação.
-              </p>
-            </div>
-            <div class="card">
-              <h3 style="margin:0 0 8px 0;" data-i18n="overviewCard2Title">Diferenciais</h3>
-              <div class="mini" style="flex-wrap:wrap;">
-                <span class="badge2 neon"><svg class="ico sm"><use href="#i-terminal"/></svg> L2/L3</span>
-                <span class="badge2"><svg class="ico sm"><use href="#i-terminal"/></svg> ITIL</span>
-                <span class="badge2"><svg class="ico sm"><use href="#i-terminal"/></svg> Runbooks</span>
-                <span class="badge2"><svg class="ico sm"><use href="#i-terminal"/></svg> Automation</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- STACK -->
-        <section id="stack">
-          <div class="sec-head">
-            <div>
-              <h2 class="sec-title" id="stackTitle">Stack Matrix</h2>
-              <p class="sec-desc" id="stackDesc">Visão enterprise: ferramenta → domínio → aplicação em produção.</p>
-            </div>
-          </div>
-
-          <div class="grid three">
-            <div class="card">
-              <h3>Monitoring & NOC</h3>
-              <p>Triagem de alarmes, dashboards, incident response e escalonamento.</p>
-              <div class="mini">
-                <span class="tag neon">SolarWinds</span><span class="tag">Netcool/Omnibus</span><span class="tag">SiteScope</span>
-              </div>
-            </div>
-            <div class="card">
-              <h3>ITSM / Workflow</h3>
-              <p>Rastreabilidade, SLA, comunicação e gestão de chamados.</p>
-              <div class="mini">
-                <span class="tag neon">BMC Remedy</span><span class="tag">Jira</span><span class="tag">GLPI</span><span class="tag">ITIL</span>
-              </div>
-            </div>
-            <div class="card">
-              <h3>Production & Continuity</h3>
-              <p>Schedules, restore, monitoramento de políticas e continuidade operacional.</p>
-              <div class="mini">
-                <span class="tag neon">Control-M</span><span class="tag">NetBackup</span><span class="tag">Data Protector</span>
-              </div>
-            </div>
-            <div class="card">
-              <h3>Network (Field)</h3>
-              <p>Diagnóstico de conectividade interna, ISP handoff e troubleshooting.</p>
-              <div class="mini">
-                <span class="tag neon">Cisco Meraki</span><span class="tag">Switch/AP</span><span class="tag">DNS</span>
-              </div>
-            </div>
-            <div class="card">
-              <h3>Endpoint & Ops</h3>
-              <p>Disponibilidade de equipamentos, MDM e periféricos críticos de operação.</p>
-              <div class="mini">
-                <span class="tag neon">Windows</span><span class="tag">MDM</span><span class="tag">Zebra</span><span class="tag">Inventário</span>
-              </div>
-            </div>
-            <div class="card">
-              <h3>Security Layer</h3>
-              <p>Rotinas, políticas, backups e awareness com foco em integridade e disponibilidade.</p>
-              <div class="mini">
-                <span class="tag neon">Security mindset</span><span class="tag">Backups</span><span class="tag">Policies</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- CASE STUDIES (enterprise) -->
-        <section id="cases">
-          <div class="sec-head">
-            <div>
-              <h2 class="sec-title" id="casesTitle">Case Studies</h2>
-              <p class="sec-desc" id="casesDesc">Formato enterprise (Context → Action → Outcome), sem KPI inventado.</p>
-            </div>
-          </div>
-
-          <div class="grid two">
-            <div class="card">
-              <h3>Playbook de Incidentes NOC</h3>
-              <p><b>Contexto:</b> alto ruído em incidentes e escalonamentos. <br/>
-                 <b>Ação:</b> padronização de fluxo (abertura, atualização, escalonamento e comunicação). <br/>
-                 <b>Outcome:</b> resposta mais consistente e menos retrabalho.</p>
-              <div class="mini"><span class="tag neon">ITIL</span><span class="tag">Remedy</span><span class="tag">SolarWinds</span></div>
-            </div>
-
-            <div class="card">
-              <h3>Checklist de conectividade em loja</h3>
-              <p><b>Contexto:</b> indisponibilidade de link e dúvidas no diagnóstico local. <br/>
-                 <b>Ação:</b> validação via ping (switch/AP/POS/SAT/KVS/quiosque/Meraki) + ISP handoff. <br/>
-                 <b>Outcome:</b> triagem mais rápida e acionamentos mais precisos.</p>
-              <div class="mini"><span class="tag neon">Meraki</span><span class="tag">Links</span><span class="tag">Operadoras</span></div>
-            </div>
-
-            <div class="card">
-              <h3>Manutenção preventiva Zebra + guias</h3>
-              <p><b>Contexto:</b> falhas recorrentes em impressão/etiquetas na operação. <br/>
-                 <b>Ação:</b> rotinas preventivas (cabeça de impressão, ajuste de etiquetas) + guias de boas práticas. <br/>
-                 <b>Outcome:</b> menos interrupções e operação mais padronizada.</p>
-              <div class="mini"><span class="tag neon">Zebra</span><span class="tag">Jira</span><span class="tag">5S</span><span class="tag">MDM</span></div>
-            </div>
-
-            <div class="card">
-              <h3>Operação de produção + backups</h3>
-              <p><b>Contexto:</b> necessidade de continuidade sob pressão em produção. <br/>
-                 <b>Ação:</b> ações no Control-M + restore/monitoramento de políticas no NetBackup. <br/>
-                 <b>Outcome:</b> operação mais previsível e recuperação estruturada.</p>
-              <div class="mini"><span class="tag neon">Control-M</span><span class="tag">NetBackup</span><span class="tag">Remedy</span></div>
-            </div>
-          </div>
-        </section>
-
-        <!-- TOOL MATRIX (scan) -->
-        <section id="matrix">
-          <div class="section-title">
-            <h2 data-i18n="matrixTitle">Matriz de ferramentas (visão rápida)</h2>
-            <span class="pill" data-i18n="matrixPill">Scan-friendly • Recruiter Mode</span>
-          </div>
-
-          <div class="card">
-            <table class="matrix" role="table" aria-label="Stack matrix">
-              <thead>
-                <tr>
-                  <th data-i18n="matrixCol1">Domínio</th>
-                  <th data-i18n="matrixCol2">Ferramentas / Tecnologias</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><b data-i18n="m1">Monitoração</b></td>
-                  <td>
-                    <div class="chips">
-                      <span class="tag neon">SolarWinds</span><span class="tag">IBM Tivoli Netcool/Omnibus</span><span class="tag">HP SiteScope</span>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><b data-i18n="m2">ITSM / Tickets</b></td>
-                  <td><div class="chips"><span class="tag neon">BMC Remedy</span><span class="tag">Jira</span><span class="tag">GLPI</span></div></td>
-                </tr>
-                <tr>
-                  <td><b data-i18n="m3">Redes</b></td>
-                  <td><div class="chips"><span class="tag neon">Cisco Meraki</span><span class="tag">Ping/triagem</span><span class="tag">Switch/AP</span></div></td>
-                </tr>
-                <tr>
-                  <td><b data-i18n="m4">Sistema / Endpoint</b></td>
-                  <td><div class="chips"><span class="tag neon">Windows</span><span class="tag">MDM</span><span class="tag">Zebra</span><span class="tag">Handhelds</span></div></td>
-                </tr>
-                <tr>
-                  <td><b data-i18n="m5">Backup / Jobs</b></td>
-                  <td><div class="chips"><span class="tag neon">Symantec NetBackup</span><span class="tag">HP Data Protector</span><span class="tag">Control-M</span></div></td>
-                </tr>
-                <tr>
-                  <td><b data-i18n="m6">Cloud (fundamentos)</b></td>
-                  <td><div class="chips"><span class="tag neon">AWS (fundamentos)</span></div></td>
-                </tr>
-                <tr>
-                  <td><b data-i18n="m7">Automação</b></td>
-                  <td><div class="chips"><span class="tag neon">PowerShell</span><span class="tag">Bash</span></div></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <!-- WAR STORIES (mantido, id único) -->
-        <section id="cases-warstories">
-          <div class="section-title">
-            <h2 data-i18n="casesTitle">Casos reais (Incident “war stories”)</h2>
-            <span class="pill" data-i18n="casesPill">Contexto → Ação → Resultado</span>
-          </div>
-
-          <div class="casegrid">
-            <div class="card case">
-              <h3 style="margin:0 0 10px 0;" data-i18n="case1Title">Link indisponível (NOC / lojas)</h3>
-              <div class="k" data-i18n="ctx">Contexto</div>
-              <div class="v" data-i18n="case1Ctx">Alerta de indisponibilidade e impacto em operação de loja (rede / POS / periféricos).</div>
-              <div class="k" style="margin-top:10px;" data-i18n="act">Ação</div>
-              <div class="v" data-i18n="case1Act">Validação de conectividade (ping), checklist local (modem/energia), contato com unidade e escalonamento para operadora via Remedy.</div>
-              <div class="k" style="margin-top:10px;" data-i18n="out">Resultado</div>
-              <div class="v" data-i18n="case1Out">Serviço restabelecido com evidência registrada, handoff limpo e documentação do ocorrido.</div>
-            </div>
-
-            <div class="card case">
-              <h3 style="margin:0 0 10px 0;" data-i18n="case2Title">Falhas recorrentes em impressão/etiquetas (operação)</h3>
-              <div class="k" data-i18n="ctx">Contexto</div>
-              <div class="v" data-i18n="case2Ctx">Intermitência em impressoras Zebra e etiquetas causando paradas na bancada.</div>
-              <div class="k" style="margin-top:10px;" data-i18n="act">Ação</div>
-              <div class="v" data-i18n="case2Act">Manutenção preventiva (limpeza/ajustes), padronização de uso e criação de guia rápido de boas práticas para operadores.</div>
-              <div class="k" style="margin-top:10px;" data-i18n="out">Resultado</div>
-              <div class="v" data-i18n="case2Out">Menos retrabalho e retomada rápida quando ocorria falha, com procedimento claro e replicável.</div>
-            </div>
-
-            <div class="card case">
-              <h3 style="margin:0 0 10px 0;" data-i18n="case3Title">Incidente de infra com múltiplos alarmes</h3>
-              <div class="k" data-i18n="ctx">Contexto</div>
-              <div class="v" data-i18n="case3Ctx">Alarmes críticos em servidores/sistemas (Netcool/Omnibus + SiteScope) com necessidade de comunicação contínua.</div>
-              <div class="k" style="margin-top:10px;" data-i18n="act">Ação</div>
-              <div class="v" data-i18n="case3Act">Triagem, abertura e acompanhamento via Remedy, acionamento de equipes técnicas e updates com cadência para gestão.</div>
-              <div class="k" style="margin-top:10px;" data-i18n="out">Resultado</div>
-              <div class="v" data-i18n="case3Out">Estabilização com rastreabilidade, handoffs claros e registro para evitar repetição (RCA simples).</div>
-            </div>
-
-            <div class="card case">
-              <h3 style="margin:0 0 10px 0;" data-i18n="case4Title">Automação de rotina operacional</h3>
-              <div class="k" data-i18n="ctx">Contexto</div>
-              <div class="v" data-i18n="case4Ctx">Tarefas repetitivas e checks manuais aumentando tempo de resposta.</div>
-              <div class="k" style="margin-top:10px;" data-i18n="act">Ação</div>
-              <div class="v" data-i18n="case4Act">Scripts e rotinas (Bash/PowerShell) para padronizar verificação, alertas e reduzir erro humano.</div>
-              <div class="k" style="margin-top:10px;" data-i18n="out">Resultado</div>
-              <div class="v" data-i18n="case4Out">Operação mais previsível, com processo repetível e fácil de repassar para o time.</div>
-            </div>
-          </div>
-        </section>
-
-        <!-- IMPACT -->
-        <section id="impact">
-          <div class="section-title">
-            <h2 data-i18n="impactTitle">Impacto (sem KPI inventado)</h2>
-            <span class="pill" data-i18n="impactPill">Outcome-oriented • ATS-friendly</span>
-          </div>
-
-          <div class="grid timeline">
-            <div class="card node">
-              <h3 style="margin:0 0 6px 0;" data-i18n="impactOpsTitle">Operação e estabilidade</h3>
-              <ul class="clean">
-                <li data-i18n="impactOps1">Padronização de triagem e escalonamento: contexto → ação → evidência → handoff.</li>
-                <li data-i18n="impactOps2">Rotina preventiva: disponibilidade de equipamentos, checklist e boas práticas para reduzir falhas operacionais.</li>
-                <li data-i18n="impactOps3">Comunicação clara em incidentes: updates com cadência e alinhamento com operação/gestão.</li>
-              </ul>
-            </div>
-
-            <div class="card node">
-              <h3 style="margin:0 0 6px 0;" data-i18n="impactAutoTitle">Automação e eficiência</h3>
-              <ul class="clean">
-                <li data-i18n="impactAuto1">Scripts e rotinas para reduzir trabalho manual (Bash/PowerShell) e aumentar previsibilidade.</li>
-                <li data-i18n="impactAuto2">Backups/restore e alertas: foco em recuperação e continuidade de operação.</li>
-                <li data-i18n="impactAuto3">Documentação “pronta pra escala”: guias rápidos e runbooks de incidentes.</li>
-              </ul>
-            </div>
-
-            <div class="card node">
-              <h3 style="margin:0 0 6px 0;" data-i18n="impactPeopleTitle">Pessoas e processo</h3>
-              <ul class="clean">
-                <li data-i18n="impactPeople1">Treinamento e suporte a times: repasse de boas práticas e padronização de atendimento.</li>
-                <li data-i18n="impactPeople2">Interface com fornecedores: abertura/acompanhamento de chamados e alinhamento de SLA.</li>
-                <li data-i18n="impactPeople3">Mentalidade ITIL: incidente/problema/mudança com registro e evidência.</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <!-- SECURITY -->
-        <section id="security">
-          <div class="section-title">
-            <h2 data-i18n="secTitle">Security & Reliability mindset</h2>
-            <span class="pill" data-i18n="secPill">Least privilege • Backup-first • Runbooks</span>
-          </div>
-
-          <div class="grid">
-            <div class="card">
-              <h3 style="margin:0 0 8px 0;" data-i18n="secPracticesTitle">Práticas que eu aplico na vida real</h3>
-              <div class="mini" style="flex-wrap:wrap;">
-                <span class="badge2 neon"><svg class="ico sm"><use href="#i-terminal"/></svg> <span data-i18n="secB1">Least privilege</span></span>
-                <span class="badge2"><svg class="ico sm"><use href="#i-terminal"/></svg> <span data-i18n="secB2">Backup/restore testado</span></span>
-                <span class="badge2"><svg class="ico sm"><use href="#i-terminal"/></svg> <span data-i18n="secB3">Hardening básico</span></span>
-                <span class="badge2"><svg class="ico sm"><use href="#i-terminal"/></svg> <span data-i18n="secB4">Auditoria/awareness</span></span>
-              </div>
-              <ul class="clean" style="margin-top:10px;">
-                <li data-i18n="sec1">Acesso mínimo necessário + revisão de permissões quando possível.</li>
-                <li data-i18n="sec2">Backups com foco em restore: validar recuperação, não só “job verde”.</li>
-                <li data-i18n="sec3">Runbooks e post-mortem simples (RCA) para reduzir repetição de incidentes.</li>
-              </ul>
-            </div>
-
-            <div class="card">
-              <h3 style="margin:0 0 8px 0;" data-i18n="secStackTitle">Stack que conversa com isso</h3>
-              <p style="color:var(--muted);line-height:1.6;margin:0 0 10px 0;" data-i18n="secStackTxt">
-                NOC/Infra com visão de segurança: monitoração, evidência, resposta a incidentes e automação para reduzir risco operacional.
-              </p>
-              <div class="mini" style="flex-wrap:wrap;">
-                <span class="tag neon">SolarWinds</span><span class="tag">BMC Remedy</span><span class="tag">Netcool/Omnibus</span><span class="tag">SiteScope</span>
-                <span class="tag">Meraki</span><span class="tag">MDM</span><span class="tag">Windows</span><span class="tag">Backups</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- EXPERIENCE -->
-        <section id="experience">
-          <div class="sec-head">
-            <div>
-              <h2 class="sec-title" id="expTitle">Experiência</h2>
-              <p class="sec-desc" id="expDesc">Busca rápida por ferramentas/keywords. Ex.: SolarWinds, Remedy, Netcool, Control-M, Meraki, Zebra.</p>
-            </div>
-            <div class="search" role="search" aria-label="Buscar na experiência">
-              <span aria-hidden="true"><svg class="ico sm"><use href="#i-search"/></svg> 🔎</span>
-              <input id="q" type="search"
-  placeholder="Buscar na experiência…"
-  data-i18n-placeholder="expSearchPlaceholder"
-  autocomplete="off"/>
-            </div>
-          </div>
-
-          <div class="grid" id="jobs">
-            <div class="card job job-item" data-text="randstad brasil mercado livre técnico suporte presencial windows jira mdm zebra handhelds 5s inventário senhas leitores 3d manutenção preventiva etiquetas cabeça impressão">
-              <div>
-                <div class="meta">
-                  <div>
-                    <div style="display:flex; align-items:center; gap:10px;">
-                      <span class="company-logo">
-                        <img src="https://www.randstad.com.br/themes/custom/bluex/src/assets/img/logo-bluex.png" alt="Randstad logo" loading="lazy" referrerpolicy="no-referrer"/>
-                      </span>
-                      <div><h3 style="margin:0;">Técnico de Suporte — Mercado Livre</h3></div>
-                    </div>
-                    <div style="color:var(--muted2);font-size:13px;margin-top:4px;"><b>Randstad Brasil</b> • Tempo integral • Presencial</div>
-                  </div>
-                  <div class="when">nov/2024 — jan/2026</div>
-                </div>
-                <div class="mini">
-                  <span class="tag neon">Windows</span><span class="tag">Jira</span><span class="tag">MDM</span><span class="tag">Zebra</span><span class="tag">5S</span>
-                </div>
-                <ul class="clean">
-                  <li>Disponibilidade de equipamentos de bancada (PCs, impressoras, handhelds e periféricos).</li>
-                  <li>Manutenção preventiva em Zebra (cabeça de impressão, ajuste de etiquetas).</li>
-                  <li>Tickets no Jira + suporte operacional ao usuário; guias de boas práticas.</li>
-                </ul>
-              </div>
-              <div>
-                <div class="mini">
-                  <span class="tag">Inventário</span><span class="tag">Senhas</span><span class="tag">Leitores 3D</span>
-                </div>
-                <p style="margin-top:10px;color:var(--muted);font-size:13px;line-height:1.55;">
-                  Foco em estabilidade operacional, padronização e prevenção — sem “parar a esteira”.
-                </p>
-              </div>
-            </div>
-
-            <div class="card job job-item" data-text="telefonica ingenieria de seguridad operador suporte datacenter noc mcdonalds solarwinds bmc remedy links ping switches access point meraki pos sat kvs quiosque cis modem reinicializacao operadoras">
-              <div>
-                <div class="meta">
-                  <div>
-                    <div style="display:flex; align-items:center; gap:10px;">
-                      <span class="company-logo">
-                        <img src="https://s3-symbol-logo.tradingview.com/telefonica--600.png" alt="Telefónica logo" loading="lazy" referrerpolicy="no-referrer"/>
-                      </span>
-                      <div><h3 style="margin:0;">Operador de Suporte Datacenter — NOC McDonald’s</h3></div>
-                    </div>
-                    <div style="color:var(--muted2);font-size:13px;margin-top:4px;"><b>Telefónica Ingeniería de Seguridad</b></div>
-                  </div>
-                  <div class="when">out/2019 — abr/2022</div>
-                </div>
-                <div class="mini">
-                  <span class="tag neon">SolarWinds</span><span class="tag">BMC Remedy</span><span class="tag">Meraki</span><span class="tag">Links</span>
-                </div>
-                <ul class="clean">
-                  <li>Monitoração de links; incidentes via Remedy.</li>
-                  <li>Validação interna via ping (switch/AP/POS/SAT/KVS/quiosque/Meraki).</li>
-                  <li>Acionamento de operadoras e acompanhamento até normalização.</li>
-                </ul>
-              </div>
-              <div>
-                <div class="mini">
-                  <span class="tag">ISP handoff</span><span class="tag">Escalonamento</span>
-                </div>
-                <p style="margin-top:10px;color:var(--muted);font-size:13px;line-height:1.55;">
-                  Rotina de NOC: triagem, clareza de evidência e comunicação objetiva.
-                </p>
-              </div>
-            </div>
-
-            <div class="card job job-item" data-text="tech mahindra analista suporte projeto tdata telefonica vivo noc incidentes primeiro nivel sla emails relatorios feedback monitoracao servidores virtuais fisicos infraestrutura redes acionamentos escalonamentos solarwinds dashboard remedy">
-              <div>
-                <div class="meta">
-                  <div>
-                    <div style="display:flex; align-items:center; gap:10px;">
-                      <span class="company-logo">
-                        <img src="https://download.logo.wine/logo/Tech_Mahindra/Tech_Mahindra-Logo.wine.png" alt="Tech Mahindra logo" loading="lazy" referrerpolicy="no-referrer"/>
-                      </span>
-                      <div><h3 style="margin:0;">Analista de Suporte — Projeto TDATA (Telefônica | VIVO)</h3></div>
-                    </div>
-                    <div style="color:var(--muted2);font-size:13px;margin-top:4px;"><b>Tech Mahindra - Brasil</b></div>
-                  </div>
-                  <div class="when">mai/2019 — set/2019</div>
-                </div>
-                <div class="mini">
-                  <span class="tag neon">NOC</span><span class="tag">SLA</span><span class="tag">SolarWinds</span><span class="tag">Remedy</span>
-                </div>
-                <ul class="clean">
-                  <li>Monitoramento de incidentes; atendimento 1º nível; atualização e resolução de chamados.</li>
-                  <li>Acompanhamento de SLA; relatórios e feedback ao cliente.</li>
-                </ul>
-              </div>
-              <div>
-                <div class="mini">
-                  <span class="tag">Dashboards</span><span class="tag">Escalonamento</span>
-                </div>
-                <p style="margin-top:10px;color:var(--muted);font-size:13px;line-height:1.55;">
-                  Operação orientada a evidência: timeline, impacto e próximos passos.
-                </p>
-              </div>
-            </div>
-
-            <div class="card job job-item" data-text="tech mahindra brasil analista suporte projeto noc mcdonalds telefonica vivo solarwinds bmc remedy links ping switches access point pos sat kvs quiosque incidentes sla escalonamento">
-              <div>
-                <div class="meta">
-                  <div>
-                    <div style="display:flex; align-items:center; gap:10px;">
-                      <span class="company-logo">
-                        <img src="https://download.logo.wine/logo/Tech_Mahindra/Tech_Mahindra-Logo.wine.png" alt="Tech Mahindra logo" loading="lazy" referrerpolicy="no-referrer"/>
-                      </span>
-                      <div><h3 style="margin:0;">Analista de Suporte — Projeto NOC McDonald’s (Telefônica | VIVO)</h3></div>
-                    </div>
-                    <div style="color:var(--muted2);font-size:13px;margin-top:4px;"><b>Tech Mahindra - Brasil</b></div>
-                  </div>
-                  <div class="when">nov/2017 — set/2019</div>
-                </div>
-                <div class="mini">
-                  <span class="tag neon">SolarWinds</span><span class="tag">BMC Remedy</span><span class="tag">Links</span><span class="tag">NOC</span>
-                </div>
-                <ul class="clean">
-                  <li>Monitoração de links via SolarWinds e abertura/acompanhamento de incidentes via Remedy.</li>
-                  <li>Validação de conectividade interna (ping: switch/AP/micro gerência/POS/SAT/KVS/quiosque).</li>
-                  <li>Tratativa de indisponibilidade (contato local, modem, reinicialização) e acionamento de operadoras.</li>
-                </ul>
-              </div>
-              <div>
-                <div class="mini">
-                  <span class="tag">SLA</span><span class="tag">Escalonamento</span><span class="tag">Comunicação</span>
-                </div>
-                <p style="margin-top:10px;color:var(--muted);font-size:13px;line-height:1.55;">
-                  Base forte de NOC: evidência, triagem precisa e handoff limpo para o próximo nível.
-                </p>
-              </div>
-            </div>
-
-            <div class="card job job-item" data-text="sonda brasil analista suporte projeto noc mcdonalds telefonica vivo solarwinds bmc remedy links ping switches access point micro gerencia sala break ponto consultor pos sat kvs quiosque operadoras escalonamento incidentes">
-              <div>
-                <div class="meta">
-                  <div>
-                    <div style="display:flex; align-items:center; gap:10px;">
-                      <span class="company-logo">
-                        <img src="https://tibahia.com/wp-content/uploads/2022/05/sonda-nova-marca-azul.png" alt="SONDA logo" loading="lazy" referrerpolicy="no-referrer"/>
-                      </span>
-                      <div><h3 style="margin:0;">Analista de Suporte — Projeto NOC McDonald’s (Telefônica | VIVO)</h3></div>
-                    </div>
-                    <div style="color:var(--muted2);font-size:13px;margin-top:4px;"><b>SONDA Brasil</b></div>
-                  </div>
-                  <div class="when">fev/2017 — out/2017</div>
-                </div>
-                <div class="mini">
-                  <span class="tag neon">SolarWinds</span><span class="tag">BMC Remedy</span><span class="tag">Links</span><span class="tag">Troubleshooting</span>
-                </div>
-                <ul class="clean">
-                  <li>Monitoração de links via SolarWinds e abertura/acompanhamento de incidentes via Remedy.</li>
-                  <li>Validação de conectividade interna (ping: switches, AP, micro gerência, sala de break, POS, SAT, KVS, quiosque).</li>
-                  <li>Validação de indisponibilidade do link (contato local, sinalização de modem, reinicialização) e acionamento de operadoras.</li>
-                </ul>
-              </div>
-              <div>
-                <div class="mini">
-                  <span class="tag">Escalonamento</span><span class="tag">Evidências</span><span class="tag">ITIL</span>
-                </div>
-                <p style="margin-top:10px;color:var(--muted);font-size:13px;line-height:1.55;">
-                  Rotina NOC com foco em triagem precisa, comunicação e encaminhamento eficiente para operadoras/equipes responsáveis.
-                </p>
-              </div>
-            </div>
-
-            <div class="card job job-item" data-text="end-to-end technology analista monitoracao ponto focal projeto ndc telefonica vivo ibm tivoli netcool omnibus hp sitescope infraestrutura servidores alarmes bmc remedy comunicacao diretoria gestores">
-              <div>
-                <div class="meta">
-                  <div>
-                    <div style="display:flex; align-items:center; gap:10px;">
-                      <span class="company-badge" title="end-to-end">⚡ E2E</span>
-                      <div><h3 style="margin:0;">Analista de Monitoração / Ponto Focal — Projeto NDC (Telefônica | VIVO)</h3></div>
-                    </div>
-                    <div style="color:var(--muted2);font-size:13px;margin-top:4px;"><b>end-to-end technology</b></div>
-                  </div>
-                  <div class="when">abr/2016 — set/2016</div>
-                </div>
-                <div class="mini">
-                  <span class="tag neon">Netcool/Omnibus</span><span class="tag">SiteScope</span><span class="tag">Remedy</span><span class="tag">Infra</span>
-                </div>
-                <ul class="clean">
-                  <li>Monitoração de infraestrutura e análise de alarmes de sistemas/servidores críticos (Netcool/Omnibus + SiteScope).</li>
-                  <li>Abertura de incidentes e acionamento técnico via BMC Remedy.</li>
-                  <li>Acompanhamento de times técnicos e comunicação com gestores/diretoria conforme plano de comunicação.</li>
-                </ul>
-              </div>
-              <div>
-                <div class="mini">
-                  <span class="tag">Incidentes</span><span class="tag">Comunicação</span><span class="tag">Escalonamento</span>
-                </div>
-                <p style="margin-top:10px;color:var(--muted);font-size:13px;line-height:1.55;">
-                  Ponto focal em incidentes críticos: clareza, cadência e condução até estabilizar.
-                </p>
-              </div>
-            </div>
-
-            <div class="card job job-item" data-text="end-to-end technology analista producao projeto ndc telefonica vivo bmc control-m rerun hold free force ok kill run now confirm ordenacao remedy restore backup symantec netbackup">
-              <div>
-                <div class="meta">
-                  <div>
-                    <div style="display:flex; align-items:center; gap:10px;">
-                      <span class="company-badge" title="end-to-end">⚙️ E2E</span>
-                      <div><h3 style="margin:0;">Analista de Produção — Projeto NDC (Telefônica | VIVO)</h3></div>
-                    </div>
-                    <div style="color:var(--muted2);font-size:13px;margin-top:4px;"><b>end-to-end technology</b></div>
-                  </div>
-                  <div class="when">jun/2016 — set/2016</div>
-                </div>
-                <div class="mini">
-                  <span class="tag neon">Control-M</span><span class="tag">Remedy</span><span class="tag">NetBackup</span>
-                </div>
-                <ul class="clean">
-                  <li>Ações no Control-M (rerun/hold/free/force ok/kill/run now/confirm/ordenação).</li>
-                  <li>Restore e monitoramento de políticas de backup (NetBackup).</li>
-                </ul>
-              </div>
-              <div>
-                <div class="mini"><span class="tag">Schedules</span><span class="tag">Restore</span></div>
-                <p style="margin-top:10px;color:var(--muted);font-size:13px;line-height:1.55;">
-                  Foco em continuidade e execução disciplinada (runbooks).
-                </p>
-              </div>
-            </div>
-
-            <div class="card job job-item" data-text="stefanini analista monitoracao ponto focal projeto ndc telefonica vivo netcool omnibus sitescope remedy infraestrutura servidores alarmes incidentes comunicacao">
-              <div>
-                <div class="meta">
-                  <div>
-                    <div style="display:flex; align-items:center; gap:10px;">
-                      <span class="company-logo">
-                        <img src="https://media.glassdoor.com/sqll/716148/stefanini-squareLogo-1691684101747.png" alt="Stefanini logo" loading="lazy" referrerpolicy="no-referrer"/>
-                      </span>
-                      <div><h3 style="margin:0;">Analista de Monitoração / Ponto Focal — Projeto NDC (Telefônica | VIVO)</h3></div>
-                    </div>
-                    <div style="color:var(--muted2);font-size:13px;margin-top:4px;"><b>Stefanini</b></div>
-                  </div>
-                  <div class="when">nov/2014 — mar/2016</div>
-                </div>
-                <div class="mini">
-                  <span class="tag neon">Netcool/Omnibus</span><span class="tag">SiteScope</span><span class="tag">Remedy</span><span class="tag">Infra</span>
-                </div>
-                <ul class="clean">
-                  <li>Monitoração de infraestrutura e análise de alarmes de sistemas críticos (Netcool/Omnibus + SiteScope).</li>
-                  <li>Abertura de incidentes e acionamento técnico; acompanhamento de resolução.</li>
-                  <li>Comunicação com times técnicos e gestores conforme plano de comunicação.</li>
-                </ul>
-              </div>
-              <div>
-                <div class="mini">
-                  <span class="tag">NOC</span><span class="tag">Runbooks</span><span class="tag">Escalonamento</span>
-                </div>
-                <p style="margin-top:10px;color:var(--muted);font-size:13px;line-height:1.55;">
-                  Operação focada em estabilidade: visão do ambiente, cadência de updates e handoff claro.
-                </p>
-              </div>
-            </div>
-
-            <div class="card job job-item" data-text="lojas marabraz tecnico informatica senior monitoramento open-source mapas scripts bash powershell hp data protector backup vmware infraestrutura">
-              <div>
-                <div class="meta">
-                  <div>
-                    <div style="display:flex; align-items:center; gap:10px;">
-                      <span class="company-logo">
-                        <img src="https://img.offers-cdn.net/assets/uploads/stores/br/logos/200x72/marabraz.png" alt="Marabraz logo" loading="lazy" referrerpolicy="no-referrer"/>
-                      </span>
-                      <div><h3 style="margin:0;">Técnico de Informática Sênior</h3></div>
-                    </div>
-                    <div style="color:var(--muted2);font-size:13px;margin-top:4px;"><b>Lojas Marabraz</b></div>
-                  </div>
-                  <div class="when">ago/2013 — mai/2014</div>
-                </div>
-                <div class="mini">
-                  <span class="tag neon">Monitoramento</span><span class="tag">Bash</span><span class="tag">PowerShell</span><span class="tag">Backup</span>
-                </div>
-                <ul class="clean">
-                  <li>Análise e implementação de monitoramento com ferramentas open-source + mapas para visualização do ambiente.</li>
-                  <li>Criação de scripts em Bash e PowerShell para monitoramento e automação conforme necessidade.</li>
-                  <li>Criação/acompanhamento de jobs de backup com HP Data Protector, mantendo pools e restores disponíveis.</li>
-                </ul>
-              </div>
-              <div>
-                <div class="mini">
-                  <span class="tag">Infra</span><span class="tag">Automação</span><span class="tag">Operação</span>
-                </div>
-                <p style="margin-top:10px;color:var(--muted);font-size:13px;line-height:1.55;">
-                  Base de infraestrutura: monitoração, automação e disciplina de backup/restore.
-                </p>
-              </div>
-            </div>
-
-            <div class="card job job-item" data-text="xmm tecnologia estagiario suporte usuarios servicedesk glpi redes servidores microinformatica cabeamento routers switches atendimento chamados">
-              <div>
-                <div class="meta">
-                  <div>
-                    <div style="display:flex; align-items:center; gap:10px;">
-                      <span class="company-badge" title="XMM">🧰 XMM</span>
-                      <div><h3 style="margin:0;">Estagiário (Suporte / Redes)</h3></div>
-                    </div>
-                    <div style="color:var(--muted2);font-size:13px;margin-top:4px;"><b>XMM Tecnologia da Informação</b></div>
-                  </div>
-                  <div class="when">mar/2012 — mai/2013</div>
-                </div>
-                <div class="mini">
-                  <span class="tag neon">GLPI</span><span class="tag">Redes</span><span class="tag">Servidores</span><span class="tag">Suporte</span>
-                </div>
-                <ul class="clean">
-                  <li>Suporte a usuários e atendimento de chamados via ServiceDesk (GLPI).</li>
-                  <li>Vivência com redes e servidores; microinformática e troubleshooting.</li>
-                  <li>Atendimento em clientes pequeno/médio/grande porte (cabeamento, routers, switches).</li>
-                </ul>
-              </div>
-              <div>
-                <div class="mini">
-                  <span class="tag">Atendimento</span><span class="tag">Field</span><span class="tag">Base técnica</span>
-                </div>
-                <p style="margin-top:10px;color:var(--muted);font-size:13px;line-height:1.55;">
-                  Onde começou a pegada: atendimento, rede na veia e resolver com calma sob pressão.
-                </p>
-              </div>
-            </div>
-
-            <div class="card" id="empty" style="display:none;">
-              <h3 style="margin:0 0 8px;">Nada encontrado</h3>
-              <p style="margin:0;color:var(--muted);">Tente outro termo (ex.: SolarWinds, Remedy, Netcool, Control-M, Meraki, Zebra).</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- EDUCATION -->
-        <section id="education">
-          <div class="sec-head">
-            <div>
-              <h2 class="sec-title" id="eduTitle">Formação</h2>
-              <p class="sec-desc" id="eduDesc">Base em Sistemas + foco recente em Defesa Cibernética.</p>
-            </div>
-          </div>
-          <div class="grid three">
-            <div class="card">
-              <h3>Defesa Cibernética</h3>
-              <p><b>Estácio</b> • jan/2024</p>
-              <div class="mini"><span class="tag neon">Segurança</span></div>
-            </div>
-            <div class="card">
-              <h3>Bacharelado — Sistemas de Informação</h3>
-              <p><b>FACCAMP</b> • 2011 — 2015</p>
-              <div class="mini"><span class="tag">Sistemas</span><span class="tag">Infra</span></div>
-            </div>
-            <div class="card">
-              <h3>ETEC Gino Rezaghi</h3>
-              <p><b>ETEC</b> • 2009 — 2010</p>
-              <div class="mini"><span class="tag">Base técnica</span></div>
-            </div>
-          </div>
-        </section>
-
-        <!-- CERTS -->
-        <section id="certs">
-          <div class="sec-head">
-            <div>
-              <h2 class="sec-title" id="certTitle">Certificações</h2>
-              <p class="sec-desc" id="certDesc">Ordenadas automaticamente por data (mais recente primeiro).</p>
-            </div>
-          </div>
-
-          <div class="grid two" id="certGrid">
-            <div class="card cert-card" data-date="2025-07-01">
-              <h3>Programação para Internet</h3>
-              <p><b>Estácio</b> • emitido em jul/2025</p>
-              <div class="mini"><span class="tag neon">ID: db67f5df491f166a9630ba5</span><span class="tag">Web</span></div>
-            </div>
-
-            <div class="card cert-card" data-date="2024-12-01">
-              <h3>Desenvolvimento de Aplicações em Python</h3>
-              <p><b>Estácio</b> • emitido em dez/2024</p>
-              <div class="mini"><span class="tag neon">ID: 8641f2465a0d1ac13b5067f</span><span class="tag">Python</span><span class="tag">Automação</span></div>
-            </div>
-
-            <div class="card cert-card" data-date="2024-04-01">
-              <h3>AWS Cloud Practitioner Essentials</h3>
-              <p><b>Estácio</b> • emitido em abr/2024</p>
-              <div class="mini"><span class="tag">AWS</span><span class="tag">Cloud Fundamentals</span></div>
-            </div>
-
-            <div class="card cert-card" data-date="2024-04-01">
-              <h3>Fase 2 | Capacitação — Computação em Nuvem</h3>
-              <p><b>Ka Solution</b> • emitido em abr/2024</p>
-              <div class="mini"><span class="tag">Cloud</span><span class="tag">AWS (trilha)</span></div>
-            </div>
-
-            <div class="card cert-card" data-date="2024-03-01">
-              <h3>Computação em Nuvem | AWS Discovery Day</h3>
-              <p><b>Ka Solution</b> • emitido em mar/2024</p>
-              <div class="mini"><span class="tag">AWS</span><span class="tag">Cloud</span></div>
-            </div>
-
-            <div class="card cert-card" data-date="2024-01-01">
-              <h3>Introdução ao Pentest na Prática</h3>
-              <p><b>Desec Security</b> • emitido em jan/2024</p>
-              <div class="mini"><span class="tag neon">ID: RWXO-JGIXJ-LYLF</span><span class="tag">Pentest</span><span class="tag">Segurança</span></div>
-            </div>
-
-            <div class="card cert-card" data-date="2024-01-01">
-              <h3>Introdução à Cibersegurança</h3>
-              <p><b>Cisco</b> • emitido em jan/2024</p>
-              <div class="mini"><span class="tag">Cybersecurity</span><span class="tag">Fundamentos</span></div>
-            </div>
-
-            <div class="card cert-card" data-date="2021-06-01">
-              <h3>ECMS1 (Engineering Cisco Meraki Solutions 1)</h3>
-              <p><b>Cisco Meraki</b> • emitido em jun/2021</p>
-              <div class="mini"><span class="tag">Meraki</span><span class="tag">Networking</span></div>
-            </div>
-
-            <div class="card cert-card" data-date="2020-04-01">
-              <h3>Bootcamp Cisco — Meraki</h3>
-              <p><b>FASTPATH University</b> • emitido em abr/2020</p>
-              <div class="mini"><span class="tag">Meraki</span><span class="tag">Capacitação</span></div>
-            </div>
-          </div>
-        </section>
-
-        <!-- CONTACT -->
-        <section id="contact">
-          <div class="sec-head">
-            <div>
-              <h2 class="sec-title" id="contactTitle">Contato</h2>
-              <p class="sec-desc" id="contactDesc">Me chama no LinkedIn e eu envio um resumo “stack + casos reais”.</p>
-            </div>
-          </div>
-
-          <div class="grid two">
-            <div class="card">
-              <h3 id="contactCardTitle">Links</h3>
-              <p style="color:var(--muted);" id="contactCardDesc">Portfolio pronto para recrutador técnico: claro, escaneável e com palavras-chave.</p>
-              <div class="mini" style="margin-top:10px;">
-                <a class="btn" href="https://www.linkedin.com/in/nicolasmesquita/" target="_blank" rel="noreferrer" style="width:100%;">
-                  <span class="leftpack"><svg class="ico lg"><use href="#i-linkedin"/></svg> 💼 LinkedIn</span>
-                  <span class="sub">mensagem</span>
-                </a>
-                <a class="btn" href="https://github.com/omfgnick" target="_blank" rel="noreferrer" style="width:100%;">
-                  <span class="leftpack"><svg class="ico lg"><use href="#i-github"/></svg> 🧬 GitHub</span>
-                  <span class="sub">repos</span>
-                </a>
-                <a class="btn primary" href="https://filebin.net/xpgp6e24vbrugdyo/curr%C3%ADculo-nicolas-novo.pdf" target="_blank" rel="noreferrer" style="width:100%;" id="contactCV">
-                  <span class="leftpack"><svg class="ico lg"><use href="#i-file"/></svg> 📄 <span id="cvLabel2">CV (PDF)</span></span>
-                  <span class="sub">download</span>
-                </a>
-              </div>
-            </div>
-
-            <div class="card">
-              <h3 id="contactCard2Title">Mensagem rápida</h3>
-              <p style="color:var(--muted);" id="contactCard2Desc">
-                Manda a vaga e eu devolvo um resumo direcionado (stack + casos reais + palavras-chave). Se preferir, já manda também o “must have”.
-              </p>
-
-              <div class="mini" style="margin-top:10px;">
-                <a class="btn primary" href="mailto:omfg_nick@hotmail.com?subject=Vaga%20-%20NOC%20%2F%20Suporte%20%2F%20Cyber&body=Oi%20Nicolas,%20vi%20seu%20portfolio%20e%20quero%20falar%20sobre%20uma%20vaga.%0A%0AStack%20principal%20da%20vaga:%0ALocal/Modelo:%0AIn%C3%ADcio:%0A" style="width:100%;">
-                  <span class="leftpack"><svg class="ico lg"><use href="#i-terminal"/></svg> ✉️ Enviar e-mail</span>
-                  <span class="sub">template</span>
-                </a>
-
-                <button class="btn" type="button" id="copyPitch" style="width:100%;">
-                  <span class="leftpack"><svg class="ico lg"><use href="#i-terminal"/></svg> 📋 Copiar one-liner</span>
-                  <span class="sub">clipboard</span>
-                </button>
-              </div>
-
-              <p id="copyHint" style="margin-top:10px;color:var(--muted2);font-family:var(--mono);font-size:12px;display:none;">
-                Copiado ✅
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section style="text-align:center; color:var(--muted2); font-size:12px;">
-          © <span id="y"></span> Nicolas Mesquita Fernandes • <span id="footNote">Matrix Enterprise build</span>
-        </section>
-      </main>
+      </section>
     </div>
-  </div>
+  </main>
 
-  <!-- Command Palette -->
-  <div id="cmdkBackdrop" aria-hidden="true"></div>
-  <div id="cmdk" role="dialog" aria-modal="true" aria-label="Command Palette">
-    <div class="cmdk">
-      <div class="cmdk-top">
-        <span style="font-family:var(--mono);font-size:12px;color:var(--muted2);">cmd</span>
-        <input id="cmdkInput" type="text" placeholder="Digite para buscar… (ex.: experience, cert, linkedin)" autocomplete="off"/>
-        <span class="kbd">ESC</span>
-      </div>
-      <div id="cmdkList" class="cmdk-list"></div>
-    </div>
-  </div>
+  <footer>
+    <span>status: <span class="mono" style="color:var(--green)">ONLINE</span></span>
+    <span class="mono">build: v1.0 • tema: matrix</span>
+  </footer>
 
-  <div class="sr-only" aria-hidden="true" id="atsKeywords">
-    IT Support; Suporte de TI; Técnico de Suporte; Analista de Suporte; Service Desk; Help Desk; Field Support; NOC; IT Operations; Incident Management; Problem Management; Change Management; ITIL;
-    Windows; Active Directory; GPO; Password Reset; Endpoint; Hardware; Troubleshooting; Printers; Zebra; Handhelds; MDM; Inventory;
-    SolarWinds; Netcool/Omnibus; SiteScope; BMC Remedy; Jira; GLPI; Cisco Meraki; Networking; Switch; Access Point; DNS; Routing; Firewall;
-    Backup; Restore; Symantec NetBackup; HP Data Protector; Control-M; AWS Fundamentals; Cybersecurity fundamentals.
-  </div>
+  <script>
+    // ====== Matrix rain (leve e responsivo) ======
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d", { alpha: true });
 
-  <script type="module">
-    // ========= Utilities =========
-    const $ = (sel, root=document) => root.querySelector(sel);
-    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+    const chars = "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズヅブプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%*+-/<>=";
+    let fontSize = 16;
+    let columns = 0;
+    let drops = [];
 
-    const safeStorage = (() => {
-      try {
-        const k="__t"; localStorage.setItem(k,"1"); localStorage.removeItem(k);
-        return {
-          get: (k) => localStorage.getItem(k),
-          set: (k,v) => localStorage.setItem(k, v),
-          del: (k) => localStorage.removeItem(k),
-        };
-      } catch {
-        const mem = new Map();
-        return {
-          get: (k) => mem.get(k) ?? null,
-          set: (k,v) => mem.set(k, String(v)),
-          del: (k) => mem.delete(k),
-        };
-      }
-    })();
+    function resize(){
+      const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+      canvas.width = Math.floor(window.innerWidth * dpr);
+      canvas.height = Math.floor(window.innerHeight * dpr);
+      canvas.style.width = window.innerWidth + "px";
+      canvas.style.height = window.innerHeight + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    const KEYS = {
-      lang: "site.lang",          // pt | en
-      themeMode: "site.themeMode",// auto | dark | light
-      recruiter: "site.recruiter" // 0 | 1
-      ,
-      print: "site.print"         // 0 | 1
-    };
-
-    // ========= I18N (aplica data-i18n de verdade) =========
-const I18N = (() => {
-  const dict = {
-    pt: {
-      // UI geral
-      navImpact: "Impacto",
-      navSecurity: "Segurança",
-
-      overviewTitle: "Sobre",
-      overviewPill: "Suporte • Infra • Cyber",
-
-      otw: "Open to work",
-      region: "São Paulo (SP)",
-      availability: "Disponibilidade imediata",
-      model: "Híbrido / Presencial / Remoto",
-
-      ctaEmail: "Enviar e-mail",
-      ctaLinkedIn: "Mensagem no LinkedIn",
-      ctaGit: "Ver GitHub",
-
-      pitchLabel: "One-liner",
-
-      overviewCard1Title: "Resumo",
-      overviewCard1Text:
-        "Analista/Técnico de Suporte com experiência em operação (NOC/Infra) e foco em confiabilidade, padronização e automação.",
-      overviewCard2Title: "Diferenciais",
-
-      matrixTitle: "Matriz de ferramentas (visão rápida)",
-      matrixPill: "Scan-friendly • Recruiter Mode",
-      matrixCol1: "Domínio",
-      matrixCol2: "Ferramentas / Tecnologias",
-      m1: "Monitoração",
-      m2: "ITSM / Tickets",
-      m3: "Redes",
-      m4: "Sistema / Endpoint",
-      m5: "Backup / Jobs",
-      m6: "Cloud (fundamentos)",
-      m7: "Automação",
-
-      casesTitle: "Casos reais (Incident “war stories”)",
-      casesPill: "Contexto → Ação → Resultado",
-      ctx: "Contexto",
-      act: "Ação",
-      out: "Resultado",
-
-      case1Title: "Link indisponível (NOC / lojas)",
-      case1Ctx:
-        "Alerta de indisponibilidade e impacto em operação de loja (rede / POS / periféricos).",
-      case1Act:
-        "Validação de conectividade (ping), checklist local (modem/energia), contato com unidade e escalonamento para operadora via Remedy.",
-      case1Out:
-        "Serviço restabelecido com evidência registrada, handoff limpo e documentação do ocorrido.",
-
-      case2Title: "Falhas recorrentes em impressão/etiquetas (operação)",
-      case2Ctx:
-        "Intermitência em impressoras Zebra e etiquetas causando paradas na bancada.",
-      case2Act:
-        "Manutenção preventiva (limpeza/ajustes), padronização de uso e criação de guia rápido de boas práticas para operadores.",
-      case2Out:
-        "Menos retrabalho e retomada rápida quando ocorria falha, com procedimento claro e replicável.",
-
-      case3Title: "Incidente de infra com múltiplos alarmes",
-      case3Ctx:
-        "Alarmes críticos em servidores/sistemas (Netcool/Omnibus + SiteScope) com necessidade de comunicação contínua.",
-      case3Act:
-        "Triagem, abertura e acompanhamento via Remedy, acionamento de equipes técnicas e updates com cadência para gestão.",
-      case3Out:
-        "Estabilização com rastreabilidade, handoffs claros e registro para evitar repetição (RCA simples).",
-
-      case4Title: "Automação de rotina operacional",
-      case4Ctx:
-        "Tarefas repetitivas e checks manuais aumentando tempo de resposta.",
-      case4Act:
-        "Scripts e rotinas (Bash/PowerShell) para padronizar verificação, alertas e reduzir erro humano.",
-      case4Out:
-        "Operação mais previsível, com processo repetível e fácil de repassar para o time.",
-
-      impactTitle: "Impacto (sem KPI inventado)",
-      impactPill: "Outcome-oriented • ATS-friendly",
-      impactOpsTitle: "Operação e estabilidade",
-      impactOps1:
-        "Padronização de triagem e escalonamento: contexto → ação → evidência → handoff.",
-      impactOps2:
-        "Rotina preventiva: disponibilidade de equipamentos, checklist e boas práticas para reduzir falhas operacionais.",
-      impactOps3:
-        "Comunicação clara em incidentes: updates com cadência e alinhamento com operação/gestão.",
-      impactAutoTitle: "Automação e eficiência",
-      impactAuto1:
-        "Scripts e rotinas para reduzir trabalho manual (Bash/PowerShell) e aumentar previsibilidade.",
-      impactAuto2:
-        "Backups/restore e alertas: foco em recuperação e continuidade de operação.",
-      impactAuto3:
-        "Documentação “pronta pra escala”: guias rápidos e runbooks de incidentes.",
-      impactPeopleTitle: "Pessoas e processo",
-      impactPeople1:
-        "Treinamento e suporte a times: repasse de boas práticas e padronização de atendimento.",
-      impactPeople2:
-        "Interface com fornecedores: abertura/acompanhamento de chamados e alinhamento de SLA.",
-      impactPeople3:
-        "Mentalidade ITIL: incidente/problema/mudança com registro e evidência.",
-
-      secTitle: "Mentalidade de Segurança & Confiabilidade",
-      secPill: "Menor privilégio • Backup-first • Runbooks",
-      secPracticesTitle: "Práticas que eu aplico na vida real",
-      secB1: "Menor privilégio",
-      secB2: "Backup/restore testado",
-      secB3: "Hardening básico",
-      secB4: "Auditoria/awareness",
-      sec1: "Acesso mínimo necessário + revisão de permissões quando possível.",
-      sec2: "Backups com foco em restore: validar recuperação, não só “job verde”.",
-      sec3: "Runbooks e post-mortem simples (RCA) para reduzir repetição de incidentes.",
-      secStackTitle: "Stack que conversa com isso",
-      secStackTxt:
-        "NOC/Infra com visão de segurança: monitoração, evidência, resposta a incidentes e automação para reduzir risco operacional.",
-
-      // Pequenas labels que você já usa
-      cv: "Currículo (PDF)",
-      cv2: "CV (PDF)",
-      cmdPlaceholder: "Digite para buscar… (ex.: experience, cert, linkedin)"
-    },
-
-    en: {
-      navImpact: "Impact",
-      navSecurity: "Security",
-
-      overviewTitle: "About",
-      overviewPill: "Support • Infra • Cyber",
-
-      otw: "Open to work",
-      region: "São Paulo (SP)",
-      availability: "Available now",
-      model: "Hybrid / On-site / Remote",
-
-      ctaEmail: "Send email",
-      ctaLinkedIn: "Message on LinkedIn",
-      ctaGit: "View GitHub",
-
-      pitchLabel: "One-liner",
-
-      overviewCard1Title: "Summary",
-      overviewCard1Text:
-        "IT Support professional with operations experience (NOC/Infra) focused on reliability, standardization, and automation.",
-      overviewCard2Title: "Highlights",
-
-      matrixTitle: "Tools matrix (quick view)",
-      matrixPill: "Scan-friendly • Recruiter Mode",
-      matrixCol1: "Domain",
-      matrixCol2: "Tools / Technologies",
-      m1: "Monitoring",
-      m2: "ITSM / Ticketing",
-      m3: "Networking",
-      m4: "Systems / Endpoint",
-      m5: "Backup / Jobs",
-      m6: "Cloud (basics)",
-      m7: "Automation",
-
-      casesTitle: "Real cases (Incident “war stories”)",
-      casesPill: "Context → Action → Outcome",
-      ctx: "Context",
-      act: "Action",
-      out: "Outcome",
-
-      case1Title: "Link outage (NOC / stores)",
-      case1Ctx:
-        "Availability alert impacting store operations (network / POS / peripherals).",
-      case1Act:
-        "Connectivity validation (ping), on-site checklist (modem/power), contact with the store and escalation to ISP via Remedy.",
-      case1Out:
-        "Service restored with evidence logged, clean handoff, and documented incident.",
-
-      case2Title: "Recurring printing/label issues (operations)",
-      case2Ctx:
-        "Intermittent Zebra printer/labels causing workstation downtime.",
-      case2Act:
-        "Preventive maintenance (cleaning/adjustments), usage standardization, and quick best-practice guide for operators.",
-      case2Out:
-        "Less rework and faster recovery with a clear, repeatable procedure.",
-
-      case3Title: "Infra incident with multiple alarms",
-      case3Ctx:
-        "Critical alerts on servers/systems (Netcool/Omnibus + SiteScope) requiring continuous communication.",
-      case3Act:
-        "Triage, ticketing and follow-up via Remedy, engaging technical teams and providing cadence-based updates.",
-      case3Out:
-        "Stabilization with traceability, clear handoffs, and simple RCA notes to reduce recurrence.",
-
-      case4Title: "Operational routine automation",
-      case4Ctx:
-        "Repetitive tasks and manual checks increasing response time.",
-      case4Act:
-        "Scripts and routines (Bash/PowerShell) to standardize checks, alerts, and reduce human error.",
-      case4Out:
-        "More predictable operations with repeatable processes that are easy to hand over.",
-
-      impactTitle: "Impact (no made-up KPIs)",
-      impactPill: "Outcome-oriented • ATS-friendly",
-      impactOpsTitle: "Operations & stability",
-      impactOps1:
-        "Standardized triage and escalation: context → action → evidence → handoff.",
-      impactOps2:
-        "Preventive routines: equipment availability, checklists, and best practices to reduce operational failures.",
-      impactOps3:
-        "Clear incident communication: cadence updates and alignment with ops/management.",
-      impactAutoTitle: "Automation & efficiency",
-      impactAuto1:
-        "Scripts and routines to reduce manual work (Bash/PowerShell) and increase predictability.",
-      impactAuto2:
-        "Backup/restore and alerts: focus on recovery and continuity.",
-      impactAuto3:
-        "Scale-ready documentation: quick guides and incident runbooks.",
-      impactPeopleTitle: "People & process",
-      impactPeople1:
-        "Training and team support: sharing best practices and standardizing support.",
-      impactPeople2:
-        "Vendor interface: ticket follow-up and SLA alignment.",
-      impactPeople3:
-        "ITIL mindset: incident/problem/change with logging and evidence.",
-
-      secTitle: "Security & reliability mindset",
-      secPill: "Least privilege • Backup-first • Runbooks",
-      secPracticesTitle: "Practices I apply in real ops",
-      secB1: "Least privilege",
-      secB2: "Tested backup/restore",
-      secB3: "Baseline hardening",
-      secB4: "Auditing/awareness",
-      sec1: "Minimum required access + permission reviews whenever possible.",
-      sec2: "Backup with restore focus: validate recovery, not just “green jobs”.",
-      sec3: "Runbooks and simple post-mortems (RCA) to reduce recurrence.",
-      secStackTitle: "Stack aligned with this",
-      secStackTxt:
-        "NOC/Infra with a security lens: monitoring, evidence, incident response, and automation to reduce operational risk.",
-
-      cv: "Resume (PDF)",
-      cv2: "Resume (PDF)",
-      cmdPlaceholder: "Type to search… (e.g.: experience, cert, linkedin)"
+      fontSize = window.innerWidth < 520 ? 14 : 16;
+      columns = Math.floor(window.innerWidth / fontSize);
+      drops = new Array(columns).fill(0).map(() => Math.random() * window.innerHeight / fontSize);
     }
-  };
 
-  const fallback = "pt";
+    function draw(){
+      // fade suave
+      ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+      ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
 
-  const get = () => safeStorage.get(KEYS.lang) || fallback;
-  const set = (lang) => safeStorage.set(KEYS.lang, lang);
+      ctx.font = fontSize + "px ui-monospace, monospace";
 
-  const t = (lang, key, originalText = "") => {
-    const pack = dict[lang] || dict[fallback] || {};
-    return pack[key] ?? originalText;
-  };
+      for(let i = 0; i < drops.length; i++){
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
 
-  const apply = (lang) => {
-    // lang attr
-    document.documentElement.setAttribute("lang", lang === "en" ? "en" : "pt-BR");
+        // brilho principal
+        ctx.fillStyle = "rgba(57, 255, 20, 0.85)";
+        ctx.fillText(text, x, y);
 
-    // aplica data-i18n
-    $$("[data-i18n]").forEach(el => {
-      const key = el.getAttribute("data-i18n");
-      if (!key) return;
-      const original = el.getAttribute("data-i18n-original") ?? el.textContent;
-      if (!el.hasAttribute("data-i18n-original")) {
-        el.setAttribute("data-i18n-original", original);
+        // reset/queda com variação
+        if (y > window.innerHeight && Math.random() > 0.975) drops[i] = 0;
+        drops[i] += 0.65 + Math.random() * 0.8;
       }
-      el.textContent = t(lang, key, original);
-    });
 
-    // aplica placeholders (opcional)
-    $$("[data-i18n-placeholder]").forEach(el => {
-      const key = el.getAttribute("data-i18n-placeholder");
-      if (!key) return;
-      const original = el.getAttribute("data-i18n-ph-original") ?? (el.getAttribute("placeholder") || "");
-      if (!el.hasAttribute("data-i18n-ph-original")) {
-        el.setAttribute("data-i18n-ph-original", original);
-      }
-      el.setAttribute("placeholder", t(lang, key, original));
-    });
-
-    // Atualiza labels específicas que você já tinha
-    const cvLabel = $("#cvLabel");
-    const cvLabel2 = $("#cvLabel2");
-    if (cvLabel) cvLabel.textContent = t(lang, "cv", cvLabel.textContent);
-    if (cvLabel2) cvLabel2.textContent = t(lang, "cv2", cvLabel2.textContent);
-
-    const cmdInput = $("#cmdkInput");
-    if (cmdInput) cmdInput.setAttribute("placeholder", t(lang, "cmdPlaceholder", cmdInput.getAttribute("placeholder") || ""));
-  };
-
-  return { get, set, apply };
-})();
-
-
-    // ========= Theme =========
-    const Theme = (() => {
-      const media = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
-
-      const getMode = () => safeStorage.get(KEYS.themeMode) || "auto"; // auto|dark|light
-      const setMode = (mode) => safeStorage.set(KEYS.themeMode, mode);
-
-      const apply = (mode) => {
-        const root = document.documentElement;
-        if (mode === "auto") {
-          const isDark = media ? media.matches : true;
-          root.setAttribute("data-theme", isDark ? "dark" : "light");
-        } else {
-          root.setAttribute("data-theme", mode);
-        }
-
-        const label = $("#themeLabel");
-        if (label) label.textContent = mode.toUpperCase();
-
-        const iconUse = $("#themeToggle use");
-        if (iconUse){
-          iconUse.setAttribute("href", root.getAttribute("data-theme") === "light" ? "#i-sun" : "#i-moon");
-        }
-      };
-
-      const cycle = () => {
-        const cur = getMode();
-        const next = cur === "auto" ? "dark" : (cur === "dark" ? "light" : "auto");
-        setMode(next);
-        apply(next);
-        return next;
-      };
-
-      const bindAutoListener = () => {
-        if (!media) return;
-        const onChange = () => { if (getMode() === "auto") apply("auto"); };
-        try { media.addEventListener("change", onChange); } catch { media.addListener(onChange); }
-      };
-
-      return { getMode, setMode, apply, cycle, bindAutoListener };
-    })();
-
-    // ========= Recruiter / Print =========
-    const Modes = (() => {
-      const getRecruiter = () => safeStorage.get(KEYS.recruiter) === "1";
-      const setRecruiter = (on) => safeStorage.set(KEYS.recruiter, on ? "1" : "0");
-
-      const getPrint = () => safeStorage.get(KEYS.print) === "1";
-      const setPrint = (on) => safeStorage.set(KEYS.print, on ? "1" : "0");
-
-      const applyRecruiter = (on) => {
-        document.documentElement.setAttribute("data-mode", on ? "recruiter" : "default");
-        const btn = $("#recruiterToggle");
-        if (btn) btn.classList.toggle("on", on);
-        const label = $("#recruiterLabel");
-        if (label) label.textContent = on ? "RECRUITER" : "MODE";
-      };
-
-      const applyPrint = (on) => {
-        document.body.classList.toggle("print-mode", on);
-        const btn = $("#printToggle");
-        if (btn) btn.classList.toggle("on", on);
-      };
-
-      return { getRecruiter, setRecruiter, applyRecruiter, getPrint, setPrint, applyPrint };
-    })();
-
-    // ========= Smooth scroll (hash) =========
-    const smoothAnchors = () => {
-      $$('a[href^="#"]').forEach(a => {
-        a.addEventListener("click", (e) => {
-          const id = a.getAttribute("href");
-          if (!id || id === "#") return;
-          const target = $(id);
-          if (!target) return;
-          e.preventDefault();
-          target.scrollIntoView({ behavior: "smooth", block: "start" });
-          history.replaceState(null, "", id);
-        });
-      });
-    };
-
-    // ========= Experience search =========
-    const bindExperienceSearch = () => {
-      const input = $("#q");
-      const items = $$(".job-item");
-      const empty = $("#empty");
-      if (!input || items.length === 0) return;
-
-      const run = () => {
-        const q = (input.value || "").trim().toLowerCase();
-        let visible = 0;
-
-        items.forEach(el => {
-          const hay = (el.getAttribute("data-text") || "").toLowerCase();
-          const ok = q === "" || hay.includes(q);
-          el.style.display = ok ? "" : "none";
-          if (ok) visible++;
-        });
-
-        if (empty) empty.style.display = visible === 0 ? "" : "none";
-      };
-
-      input.addEventListener("input", run);
-      run();
-    };
-
-    // ========= Cert sort =========
-    const sortCerts = () => {
-      const grid = $("#certGrid");
-      if (!grid) return;
-
-      const cards = $$(".cert-card", grid);
-      if (cards.length === 0) return;
-
-      cards
-        .sort((a,b) => {
-          const da = new Date(a.getAttribute("data-date") || "1970-01-01").getTime();
-          const db = new Date(b.getAttribute("data-date") || "1970-01-01").getTime();
-          return db - da; // desc
-        })
-        .forEach(c => grid.appendChild(c));
-    };
-
-    // ========= Command Palette =========
-    const Cmdk = (() => {
-      const backdrop = $("#cmdkBackdrop");
-      const modal = $("#cmdk");
-      const input = $("#cmdkInput");
-      const list = $("#cmdkList");
-      const openBtn = $("#openCmdk");
-
-      const items = [
-        { label: "Overview", hint: "1", action: () => go("#overview") },
-        { label: "Stack Matrix", hint: "2", action: () => go("#stack") },
-        { label: "Impact", hint: "I", action: () => go("#impact") },
-        { label: "Security", hint: "S", action: () => go("#security") },
-        { label: "Case Studies", hint: "3", action: () => go("#cases") },
-        { label: "Experiência", hint: "4", action: () => go("#experience") },
-        { label: "Formação", hint: "5", action: () => go("#education") },
-        { label: "Certificações", hint: "6", action: () => go("#certs") },
-        { label: "Contato", hint: "7", action: () => go("#contact") },
-
-        { label: "Abrir CV (PDF)", hint: "↗", action: () => window.open($("#cvBtn")?.href, "_blank", "noreferrer") },
-        { label: "LinkedIn", hint: "↗", action: () => window.open("https://www.linkedin.com/in/nicolasmesquita/", "_blank", "noreferrer") },
-        { label: "GitHub", hint: "↗", action: () => window.open("https://github.com/omfgnick", "_blank", "noreferrer") },
-
-        { label: "Toggle Recruiter mode", hint: "R", action: () => toggleRecruiter() },
-        { label: "Cycle Theme (AUTO/DARK/LIGHT)", hint: "T", action: () => $("#themeToggle")?.click() },
-        { label: "Print", hint: "P", action: () => window.print() },
-      ];
-
-      let selected = 0;
-
-      const go = (hash) => {
-        close();
-        const el = $(hash);
-        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-        history.replaceState(null, "", hash);
-      };
-
-      const toggleRecruiter = () => {
-        const on = !Modes.getRecruiter();
-        Modes.setRecruiter(on);
-        Modes.applyRecruiter(on);
-        close();
-      };
-
-      const render = (q="") => {
-        if (!list) return;
-        const query = q.trim().toLowerCase();
-        const filtered = items.filter(i => i.label.toLowerCase().includes(query));
-
-        selected = 0;
-        list.innerHTML = "";
-
-        filtered.forEach((it, idx) => {
-          const row = document.createElement("div");
-          row.className = "cmdk-item";
-          row.setAttribute("role","option");
-          row.setAttribute("aria-selected", idx === selected ? "true" : "false");
-          row.innerHTML = `<span>${escapeHtml(it.label)}</span><span class="badge">${escapeHtml(it.hint || "")}</span>`;
-          row.addEventListener("mouseenter", () => setSelected(filtered, idx));
-          row.addEventListener("click", () => it.action());
-          list.appendChild(row);
-        });
-
-        // store current filtered set
-        list._filtered = filtered;
-        syncSelected();
-      };
-
-      const setSelected = (filtered, idx) => {
-        selected = Math.max(0, Math.min(idx, filtered.length - 1));
-        syncSelected();
-      };
-
-      const syncSelected = () => {
-        const rows = $$(".cmdk-item", list);
-        rows.forEach((r, idx) => r.setAttribute("aria-selected", idx === selected ? "true" : "false"));
-      };
-
-      const onKey = (e) => {
-        if (e.key === "Escape") return close();
-
-        const filtered = list?._filtered || [];
-        if (filtered.length === 0) return;
-
-        if (e.key === "ArrowDown") { e.preventDefault(); selected = Math.min(selected + 1, filtered.length - 1); syncSelected(); }
-        if (e.key === "ArrowUp")   { e.preventDefault(); selected = Math.max(selected - 1, 0); syncSelected(); }
-        if (e.key === "Enter")     { e.preventDefault(); filtered[selected]?.action?.(); }
-      };
-
-      const open = () => {
-        if (!backdrop || !modal || !input) return;
-        backdrop.style.display = "block";
-        modal.style.display = "block";
-        render(input.value || "");
-        setTimeout(() => input.focus(), 0);
-        document.addEventListener("keydown", onKey, true);
-      };
-
-      const close = () => {
-        if (!backdrop || !modal) return;
-        backdrop.style.display = "none";
-        modal.style.display = "none";
-        document.removeEventListener("keydown", onKey, true);
-      };
-
-      const bind = () => {
-        if (openBtn) openBtn.addEventListener("click", (e) => { e.preventDefault(); open(); });
-        if (backdrop) backdrop.addEventListener("click", close);
-        if (input) input.addEventListener("input", () => render(input.value || ""));
-
-        document.addEventListener("keydown", (e) => {
-          const isMac = /Mac|iPhone|iPad/.test(navigator.platform);
-          const mod = isMac ? e.metaKey : e.ctrlKey;
-          if (mod && e.key.toLowerCase() === "k") { e.preventDefault(); open(); }
-          if (!modal || modal.style.display !== "block") return;
-          if (e.key === "Escape") close();
-        }, true);
-      };
-
-      const escapeHtml = (s) =>
-        String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;");
-
-      return { bind, open, close };
-    })();
-
-    // ========= Progress bar =========
-    const bindProgress = () => {
-      const bar = $("#progressBar");
-      if (!bar) return;
-
-      const onScroll = () => {
-        const doc = document.documentElement;
-        const max = doc.scrollHeight - doc.clientHeight;
-        const pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
-        bar.style.width = pct.toFixed(2) + "%";
-      };
-      window.addEventListener("scroll", onScroll, { passive:true });
-      onScroll();
-    };
-
-    // ========= Copy pitch =========
-    const bindCopy = () => {
-      const btn = $("#copyPitch");
-      const hint = $("#copyHint");
-      const pitch = $("#pitchText");
-      if (!btn || !pitch) return;
-
-      btn.addEventListener("click", async () => {
-        const txt = pitch.textContent.trim();
-        try {
-          await navigator.clipboard.writeText(txt);
-          if (hint){
-            hint.style.display = "";
-            setTimeout(() => hint.style.display = "none", 1200);
-          }
-        } catch {
-          // fallback
-          const ta = document.createElement("textarea");
-          ta.value = txt;
-          document.body.appendChild(ta);
-          ta.select();
-          document.execCommand("copy");
-          document.body.removeChild(ta);
-          if (hint){
-            hint.style.display = "";
-            setTimeout(() => hint.style.display = "none", 1200);
-          }
-        }
-      });
-    };
-
-    // ========= Init =========
-    const init = () => {
-      // year
-      const y = $("#y");
-      if (y) y.textContent = String(new Date().getFullYear());
-
-      // persisted lang
-      const lang = I18N.get();
-      I18N.apply(lang);
-      $("#btnPT")?.classList.toggle("on", lang === "pt");
-      $("#btnEN")?.classList.toggle("on", lang === "en");
-      $("#btnPT")?.setAttribute("aria-pressed", lang === "pt" ? "true" : "false");
-      $("#btnEN")?.setAttribute("aria-pressed", lang === "en" ? "true" : "false");
-
-      // theme
-      const mode = Theme.getMode();
-      Theme.apply(mode);
-      Theme.bindAutoListener();
-
-      // recruiter/print persisted
-      const rec = Modes.getRecruiter();
-      Modes.applyRecruiter(rec);
-
-      const pr = Modes.getPrint();
-      Modes.applyPrint(pr);
-
-      // binds
-      smoothAnchors();
-      bindExperienceSearch();
-      sortCerts();
-      Cmdk.bind();
-      bindProgress();
-      bindCopy();
-
-      // UI buttons
-      $("#btnPT")?.addEventListener("click", () => {
-        I18N.set("pt"); I18N.apply("pt");
-        $("#btnPT")?.classList.add("on"); $("#btnEN")?.classList.remove("on");
-        $("#btnPT")?.setAttribute("aria-pressed","true"); $("#btnEN")?.setAttribute("aria-pressed","false");
-      });
-      $("#btnEN")?.addEventListener("click", () => {
-        I18N.set("en"); I18N.apply("en");
-        $("#btnEN")?.classList.add("on"); $("#btnPT")?.classList.remove("on");
-        $("#btnEN")?.setAttribute("aria-pressed","true"); $("#btnPT")?.setAttribute("aria-pressed","false");
-      });
-
-      $("#themeToggle")?.addEventListener("click", () => {
-        const next = Theme.cycle();
-        safeStorage.set(KEYS.themeMode, next);
-      });
-
-      $("#printToggle")?.addEventListener("click", () => {
-        const on = !Modes.getPrint();
-        Modes.setPrint(on);
-        Modes.applyPrint(on);
-        // se ligar print-mode, abre print do browser (opcional)
-        // window.print();
-      });
-
-      $("#recruiterToggle")?.addEventListener("click", () => {
-        const on = !Modes.getRecruiter();
-        Modes.setRecruiter(on);
-        Modes.applyRecruiter(on);
-      });
-    };
-
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", init, { once:true });
-    } else {
-      init();
+      requestAnimationFrame(draw);
     }
+
+    // Pausar animação ao imprimir
+    window.addEventListener("beforeprint", () => ctx.clearRect(0,0,window.innerWidth,window.innerHeight));
+
+    window.addEventListener("resize", resize);
+    resize();
+    draw();
   </script>
 </body>
 </html>

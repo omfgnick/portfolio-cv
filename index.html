@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Nicolas Mesquita Fernandes — Enterprise NOC / Support / Cyber</title>
-  <meta name="description" content="Portfolio enterprise matrix de Nicolas Mesquita Fernandes — 10+ anos em TI. NOC/Datacenter, Suporte N2/N3, Monitoramento, Automação e Segurança. SolarWinds, Remedy, Netcool, SiteScope, Control-M, NetBackup, Meraki, Jira, GLPI, Windows."/>
+  <meta name="description" content="Portfolio enterprise matrix de Nicolas Mesquita Fernandes — 10+ anos em TI. NOC/Datacenter, Suporte N1/N2/N3, Monitoramento, Automação e Segurança. SolarWinds, Remedy, Netcool, SiteScope, Control-M, NetBackup, Meraki, Jira, GLPI, Windows."/>
   <meta name="theme-color" content="#060907"/>
 
   <meta property="og:title" content="Nicolas Mesquita Fernandes — Enterprise NOC / Support / Cyber"/>
@@ -1139,7 +1139,10 @@
             </div>
             <div class="search" role="search" aria-label="Buscar na experiência">
               <span aria-hidden="true"><svg class="ico sm"><use href="#i-search"/></svg> 🔎</span>
-              <input id="q" type="search" placeholder="Buscar na experiência…" autocomplete="off"/>
+              <input id="q" type="search"
+  placeholder="Buscar na experiência…"
+  data-i18n-placeholder="expSearchPlaceholder"
+  autocomplete="off"/>
             </div>
           </div>
 
@@ -1676,42 +1679,293 @@
       print: "site.print"         // 0 | 1
     };
 
-    // ========= I18N (minimal, sem apagar o que já existe) =========
-    const I18N = (() => {
-      const dict = {
-        pt: {
-          cv: "Currículo (PDF)",
-          cv2: "CV (PDF)",
-          cmdPlaceholder: "Digite para buscar… (ex.: experience, cert, linkedin)"
-        },
-        en: {
-          cv: "Resume (PDF)",
-          cv2: "Resume (PDF)",
-          cmdPlaceholder: "Type to search… (e.g.: experience, cert, linkedin)"
-        }
-      };
+    // ========= I18N (aplica data-i18n de verdade) =========
+const I18N = (() => {
+  const dict = {
+    pt: {
+      // UI geral
+      navImpact: "Impacto",
+      navSecurity: "Segurança",
 
-      const get = () => safeStorage.get(KEYS.lang) || "pt";
-      const set = (lang) => safeStorage.set(KEYS.lang, lang);
+      overviewTitle: "Sobre",
+      overviewPill: "Suporte • Infra • Cyber",
 
-      const apply = (lang) => {
-        const pack = dict[lang] || dict.pt;
+      otw: "Open to work",
+      region: "São Paulo (SP)",
+      availability: "Disponibilidade imediata",
+      model: "Híbrido / Presencial / Remoto",
 
-        // Não força tradução global (porque você já tem data-i18n e textos mistos).
-        // Só atualiza labels “de UI” que ajudam recrutador.
-        const cvLabel = $("#cvLabel");
-        const cvLabel2 = $("#cvLabel2");
-        if (cvLabel) cvLabel.textContent = pack.cv;
-        if (cvLabel2) cvLabel2.textContent = pack.cv2;
+      ctaEmail: "Enviar e-mail",
+      ctaLinkedIn: "Mensagem no LinkedIn",
+      ctaGit: "Ver GitHub",
 
-        const cmdInput = $("#cmdkInput");
-        if (cmdInput) cmdInput.setAttribute("placeholder", pack.cmdPlaceholder);
+      pitchLabel: "One-liner",
 
-        document.documentElement.setAttribute("lang", lang === "en" ? "en" : "pt-BR");
-      };
+      overviewCard1Title: "Resumo",
+      overviewCard1Text:
+        "Analista/Técnico de Suporte com experiência em operação (NOC/Infra) e foco em confiabilidade, padronização e automação.",
+      overviewCard2Title: "Diferenciais",
 
-      return { get, set, apply };
-    })();
+      matrixTitle: "Matriz de ferramentas (visão rápida)",
+      matrixPill: "Scan-friendly • Recruiter Mode",
+      matrixCol1: "Domínio",
+      matrixCol2: "Ferramentas / Tecnologias",
+      m1: "Monitoração",
+      m2: "ITSM / Tickets",
+      m3: "Redes",
+      m4: "Sistema / Endpoint",
+      m5: "Backup / Jobs",
+      m6: "Cloud (fundamentos)",
+      m7: "Automação",
+
+      casesTitle: "Casos reais (Incident “war stories”)",
+      casesPill: "Contexto → Ação → Resultado",
+      ctx: "Contexto",
+      act: "Ação",
+      out: "Resultado",
+
+      case1Title: "Link indisponível (NOC / lojas)",
+      case1Ctx:
+        "Alerta de indisponibilidade e impacto em operação de loja (rede / POS / periféricos).",
+      case1Act:
+        "Validação de conectividade (ping), checklist local (modem/energia), contato com unidade e escalonamento para operadora via Remedy.",
+      case1Out:
+        "Serviço restabelecido com evidência registrada, handoff limpo e documentação do ocorrido.",
+
+      case2Title: "Falhas recorrentes em impressão/etiquetas (operação)",
+      case2Ctx:
+        "Intermitência em impressoras Zebra e etiquetas causando paradas na bancada.",
+      case2Act:
+        "Manutenção preventiva (limpeza/ajustes), padronização de uso e criação de guia rápido de boas práticas para operadores.",
+      case2Out:
+        "Menos retrabalho e retomada rápida quando ocorria falha, com procedimento claro e replicável.",
+
+      case3Title: "Incidente de infra com múltiplos alarmes",
+      case3Ctx:
+        "Alarmes críticos em servidores/sistemas (Netcool/Omnibus + SiteScope) com necessidade de comunicação contínua.",
+      case3Act:
+        "Triagem, abertura e acompanhamento via Remedy, acionamento de equipes técnicas e updates com cadência para gestão.",
+      case3Out:
+        "Estabilização com rastreabilidade, handoffs claros e registro para evitar repetição (RCA simples).",
+
+      case4Title: "Automação de rotina operacional",
+      case4Ctx:
+        "Tarefas repetitivas e checks manuais aumentando tempo de resposta.",
+      case4Act:
+        "Scripts e rotinas (Bash/PowerShell) para padronizar verificação, alertas e reduzir erro humano.",
+      case4Out:
+        "Operação mais previsível, com processo repetível e fácil de repassar para o time.",
+
+      impactTitle: "Impacto (sem KPI inventado)",
+      impactPill: "Outcome-oriented • ATS-friendly",
+      impactOpsTitle: "Operação e estabilidade",
+      impactOps1:
+        "Padronização de triagem e escalonamento: contexto → ação → evidência → handoff.",
+      impactOps2:
+        "Rotina preventiva: disponibilidade de equipamentos, checklist e boas práticas para reduzir falhas operacionais.",
+      impactOps3:
+        "Comunicação clara em incidentes: updates com cadência e alinhamento com operação/gestão.",
+      impactAutoTitle: "Automação e eficiência",
+      impactAuto1:
+        "Scripts e rotinas para reduzir trabalho manual (Bash/PowerShell) e aumentar previsibilidade.",
+      impactAuto2:
+        "Backups/restore e alertas: foco em recuperação e continuidade de operação.",
+      impactAuto3:
+        "Documentação “pronta pra escala”: guias rápidos e runbooks de incidentes.",
+      impactPeopleTitle: "Pessoas e processo",
+      impactPeople1:
+        "Treinamento e suporte a times: repasse de boas práticas e padronização de atendimento.",
+      impactPeople2:
+        "Interface com fornecedores: abertura/acompanhamento de chamados e alinhamento de SLA.",
+      impactPeople3:
+        "Mentalidade ITIL: incidente/problema/mudança com registro e evidência.",
+
+      secTitle: "Mentalidade de Segurança & Confiabilidade",
+      secPill: "Menor privilégio • Backup-first • Runbooks",
+      secPracticesTitle: "Práticas que eu aplico na vida real",
+      secB1: "Menor privilégio",
+      secB2: "Backup/restore testado",
+      secB3: "Hardening básico",
+      secB4: "Auditoria/awareness",
+      sec1: "Acesso mínimo necessário + revisão de permissões quando possível.",
+      sec2: "Backups com foco em restore: validar recuperação, não só “job verde”.",
+      sec3: "Runbooks e post-mortem simples (RCA) para reduzir repetição de incidentes.",
+      secStackTitle: "Stack que conversa com isso",
+      secStackTxt:
+        "NOC/Infra com visão de segurança: monitoração, evidência, resposta a incidentes e automação para reduzir risco operacional.",
+
+      // Pequenas labels que você já usa
+      cv: "Currículo (PDF)",
+      cv2: "CV (PDF)",
+      cmdPlaceholder: "Digite para buscar… (ex.: experience, cert, linkedin)"
+    },
+
+    en: {
+      navImpact: "Impact",
+      navSecurity: "Security",
+
+      overviewTitle: "About",
+      overviewPill: "Support • Infra • Cyber",
+
+      otw: "Open to work",
+      region: "São Paulo (SP)",
+      availability: "Available now",
+      model: "Hybrid / On-site / Remote",
+
+      ctaEmail: "Send email",
+      ctaLinkedIn: "Message on LinkedIn",
+      ctaGit: "View GitHub",
+
+      pitchLabel: "One-liner",
+
+      overviewCard1Title: "Summary",
+      overviewCard1Text:
+        "IT Support professional with operations experience (NOC/Infra) focused on reliability, standardization, and automation.",
+      overviewCard2Title: "Highlights",
+
+      matrixTitle: "Tools matrix (quick view)",
+      matrixPill: "Scan-friendly • Recruiter Mode",
+      matrixCol1: "Domain",
+      matrixCol2: "Tools / Technologies",
+      m1: "Monitoring",
+      m2: "ITSM / Ticketing",
+      m3: "Networking",
+      m4: "Systems / Endpoint",
+      m5: "Backup / Jobs",
+      m6: "Cloud (basics)",
+      m7: "Automation",
+
+      casesTitle: "Real cases (Incident “war stories”)",
+      casesPill: "Context → Action → Outcome",
+      ctx: "Context",
+      act: "Action",
+      out: "Outcome",
+
+      case1Title: "Link outage (NOC / stores)",
+      case1Ctx:
+        "Availability alert impacting store operations (network / POS / peripherals).",
+      case1Act:
+        "Connectivity validation (ping), on-site checklist (modem/power), contact with the store and escalation to ISP via Remedy.",
+      case1Out:
+        "Service restored with evidence logged, clean handoff, and documented incident.",
+
+      case2Title: "Recurring printing/label issues (operations)",
+      case2Ctx:
+        "Intermittent Zebra printer/labels causing workstation downtime.",
+      case2Act:
+        "Preventive maintenance (cleaning/adjustments), usage standardization, and quick best-practice guide for operators.",
+      case2Out:
+        "Less rework and faster recovery with a clear, repeatable procedure.",
+
+      case3Title: "Infra incident with multiple alarms",
+      case3Ctx:
+        "Critical alerts on servers/systems (Netcool/Omnibus + SiteScope) requiring continuous communication.",
+      case3Act:
+        "Triage, ticketing and follow-up via Remedy, engaging technical teams and providing cadence-based updates.",
+      case3Out:
+        "Stabilization with traceability, clear handoffs, and simple RCA notes to reduce recurrence.",
+
+      case4Title: "Operational routine automation",
+      case4Ctx:
+        "Repetitive tasks and manual checks increasing response time.",
+      case4Act:
+        "Scripts and routines (Bash/PowerShell) to standardize checks, alerts, and reduce human error.",
+      case4Out:
+        "More predictable operations with repeatable processes that are easy to hand over.",
+
+      impactTitle: "Impact (no made-up KPIs)",
+      impactPill: "Outcome-oriented • ATS-friendly",
+      impactOpsTitle: "Operations & stability",
+      impactOps1:
+        "Standardized triage and escalation: context → action → evidence → handoff.",
+      impactOps2:
+        "Preventive routines: equipment availability, checklists, and best practices to reduce operational failures.",
+      impactOps3:
+        "Clear incident communication: cadence updates and alignment with ops/management.",
+      impactAutoTitle: "Automation & efficiency",
+      impactAuto1:
+        "Scripts and routines to reduce manual work (Bash/PowerShell) and increase predictability.",
+      impactAuto2:
+        "Backup/restore and alerts: focus on recovery and continuity.",
+      impactAuto3:
+        "Scale-ready documentation: quick guides and incident runbooks.",
+      impactPeopleTitle: "People & process",
+      impactPeople1:
+        "Training and team support: sharing best practices and standardizing support.",
+      impactPeople2:
+        "Vendor interface: ticket follow-up and SLA alignment.",
+      impactPeople3:
+        "ITIL mindset: incident/problem/change with logging and evidence.",
+
+      secTitle: "Security & reliability mindset",
+      secPill: "Least privilege • Backup-first • Runbooks",
+      secPracticesTitle: "Practices I apply in real ops",
+      secB1: "Least privilege",
+      secB2: "Tested backup/restore",
+      secB3: "Baseline hardening",
+      secB4: "Auditing/awareness",
+      sec1: "Minimum required access + permission reviews whenever possible.",
+      sec2: "Backup with restore focus: validate recovery, not just “green jobs”.",
+      sec3: "Runbooks and simple post-mortems (RCA) to reduce recurrence.",
+      secStackTitle: "Stack aligned with this",
+      secStackTxt:
+        "NOC/Infra with a security lens: monitoring, evidence, incident response, and automation to reduce operational risk.",
+
+      cv: "Resume (PDF)",
+      cv2: "Resume (PDF)",
+      cmdPlaceholder: "Type to search… (e.g.: experience, cert, linkedin)"
+    }
+  };
+
+  const fallback = "pt";
+
+  const get = () => safeStorage.get(KEYS.lang) || fallback;
+  const set = (lang) => safeStorage.set(KEYS.lang, lang);
+
+  const t = (lang, key, originalText = "") => {
+    const pack = dict[lang] || dict[fallback] || {};
+    return pack[key] ?? originalText;
+  };
+
+  const apply = (lang) => {
+    // lang attr
+    document.documentElement.setAttribute("lang", lang === "en" ? "en" : "pt-BR");
+
+    // aplica data-i18n
+    $$("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (!key) return;
+      const original = el.getAttribute("data-i18n-original") ?? el.textContent;
+      if (!el.hasAttribute("data-i18n-original")) {
+        el.setAttribute("data-i18n-original", original);
+      }
+      el.textContent = t(lang, key, original);
+    });
+
+    // aplica placeholders (opcional)
+    $$("[data-i18n-placeholder]").forEach(el => {
+      const key = el.getAttribute("data-i18n-placeholder");
+      if (!key) return;
+      const original = el.getAttribute("data-i18n-ph-original") ?? (el.getAttribute("placeholder") || "");
+      if (!el.hasAttribute("data-i18n-ph-original")) {
+        el.setAttribute("data-i18n-ph-original", original);
+      }
+      el.setAttribute("placeholder", t(lang, key, original));
+    });
+
+    // Atualiza labels específicas que você já tinha
+    const cvLabel = $("#cvLabel");
+    const cvLabel2 = $("#cvLabel2");
+    if (cvLabel) cvLabel.textContent = t(lang, "cv", cvLabel.textContent);
+    if (cvLabel2) cvLabel2.textContent = t(lang, "cv2", cvLabel2.textContent);
+
+    const cmdInput = $("#cmdkInput");
+    if (cmdInput) cmdInput.setAttribute("placeholder", t(lang, "cmdPlaceholder", cmdInput.getAttribute("placeholder") || ""));
+  };
+
+  return { get, set, apply };
+})();
+
 
     // ========= Theme =========
     const Theme = (() => {

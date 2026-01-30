@@ -1,604 +1,297 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Currículo | Nicolas Mesquita Fernandes</title>
-  <meta name="description" content="Currículo - tema Matrix" />
-  <style>
-    :root{
-      --bg:#050a06;
-      --panel:rgba(6, 16, 10, 0.74);
-      --panel2:rgba(6, 16, 10, 0.48);
-      --green:#39ff14;
-      --muted:#86c992;
-      --text:#d7ffe0;
-      --border:rgba(57,255,20,0.25);
-      --shadow: 0 0 22px rgba(57,255,20,0.18);
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-      --sans: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Currículo | Nicolas Mesquita Fernandes</title>
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--mono);
-      overflow-x:hidden;
-    }
+<style>
+:root{
+  --bg:#050a06;
+  --panel:rgba(6, 16, 10, 0.74);
+  --panel2:rgba(6, 16, 10, 0.48);
+  --green:#39ff14;
+  --muted:#86c992;
+  --text:#d7ffe0;
+  --border:rgba(57,255,20,0.25);
+  --shadow: 0 0 22px rgba(57,255,20,0.18);
+  --mono: ui-monospace, Consolas, monospace;
+  --sans: system-ui, Segoe UI, Roboto, Arial, sans-serif;
+}
 
-    #matrix{
-      position:fixed;
-      inset:0;
-      width:100%;
-      height:100%;
-      z-index:-2;
-      display:block;
-    }
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--mono);
+  overflow-x:hidden;
+}
 
-    .vignette{
-      position:fixed;
-      inset:0;
-      z-index:-1;
-      pointer-events:none;
-      background:
-        radial-gradient(1200px 700px at 20% 10%, rgba(57,255,20,0.12), transparent 60%),
-        radial-gradient(900px 500px at 80% 80%, rgba(57,255,20,0.08), transparent 60%),
-        radial-gradient(900px 900px at 50% 50%, transparent 40%, rgba(0,0,0,0.65) 85%);
-      mix-blend-mode:screen;
-    }
+/* MATRIX BACKGROUND */
+#matrix{position:fixed;inset:0;z-index:-2;}
+.vignette{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(circle at center,transparent 40%,black 95%);
+}
 
-    header{
-      padding: 22px 18px 10px;
-      max-width: 1160px;
-      margin: 0 auto;
-    }
+/* HEADER */
+header{max-width:1200px;margin:auto;padding:20px;}
+h1{font-family:var(--sans);font-size:30px;margin:10px 0;}
+.headline{color:var(--muted);font-size:14px;}
 
-    .terminal-bar{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding:10px 12px;
-      border:1px solid var(--border);
-      background: rgba(0,0,0,0.35);
-      box-shadow: var(--shadow);
-      border-radius: 14px;
-      backdrop-filter: blur(6px);
-    }
-    .dots{ display:flex; gap:7px; margin-right:6px; }
-    .dot{ width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.15); }
-    .dot:nth-child(1){ background: rgba(255,90,90,0.85); }
-    .dot:nth-child(2){ background: rgba(255,200,80,0.85); }
-    .dot:nth-child(3){ background: rgba(80,255,140,0.85); }
-    .path{
-      color: var(--muted);
-      font-size: 13px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow: ellipsis;
-    }
+.contact{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;}
+.pill{
+  padding:8px 12px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  background:rgba(0,0,0,.3);
+  color:var(--text);
+  text-decoration:none;
+  cursor:pointer;
+}
+.pill:hover{border-color:var(--green);}
 
-    .wrap{
-      max-width:1160px;
-      margin: 0 auto;
-      padding: 10px 18px 38px;
-    }
+/* LAYOUT */
+.wrap{max-width:1200px;margin:auto;padding:10px 20px;}
+.grid{display:grid;grid-template-columns:380px 1fr;gap:14px;}
+@media(max-width:900px){.grid{grid-template-columns:1fr;}}
 
-    .grid{
-      display:grid;
-      grid-template-columns: 380px 1fr;
-      gap: 14px;
-      align-items:start;
-    }
-    @media (max-width: 980px){ .grid{ grid-template-columns: 1fr; } }
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.title{
+  padding:10px 14px;
+  background:rgba(57,255,20,.1);
+  border-bottom:1px solid var(--border);
+  font-size:14px;
+  color:var(--green);
+  letter-spacing:1px;
+}
+.inner{padding:14px;font-size:13.5px;line-height:1.6;}
 
-    .card{
-      border:1px solid var(--border);
-      background: var(--panel);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(8px);
-      overflow:hidden;
-    }
-    .card .inner{ padding: 16px 16px 14px; }
+ul{padding-left:16px;margin:0;}
+li{margin:5px 0;}
 
-    .card .title{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding: 12px 16px;
-      border-bottom: 1px solid rgba(57,255,20,0.16);
-      background: linear-gradient(180deg, rgba(57,255,20,0.10), transparent);
-    }
-    .card h2{
-      margin:0;
-      font-size: 14px;
-      color: var(--green);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .tag{
-      font-size: 12px;
-      color: var(--muted);
-      opacity:0.9;
-    }
+.xp{
+  border:1px dashed var(--border);
+  border-radius:12px;
+  padding:10px;
+  margin-bottom:10px;
+  background:var(--panel2);
+}
+.xp h3{margin:0;font-family:var(--sans);font-size:14px;}
+.xp span{font-size:12px;color:var(--muted);}
 
-    h1{
-      margin: 10px 0 2px;
-      font-family: var(--sans);
-      font-size: 30px;
-      letter-spacing: -0.02em;
-      text-shadow: 0 0 18px rgba(57,255,20,0.18);
-    }
-    .headline{
-      margin:0 0 8px;
-      color: var(--muted);
-      font-size: 13.8px;
-      line-height:1.35;
-    }
+/* CLEAN MODE */
+body.clean #matrix, body.clean .vignette{display:none;}
+body.clean{background:#0a0f0b;}
+body.clean .card{background:#0f1c12;}
+body.clean .pill{background:#111;}
 
-    .contact{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px 12px;
-      margin-top:10px;
-      font-size: 13px;
-      color: var(--text);
-    }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding: 8px 10px;
-      border:1px solid rgba(57,255,20,0.22);
-      background: rgba(0,0,0,0.22);
-      border-radius: 999px;
-      text-decoration:none;
-      color: var(--text);
-      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
-    }
-    .pill:hover{
-      transform: translateY(-1px);
-      border-color: rgba(57,255,20,0.45);
-      box-shadow: 0 0 16px rgba(57,255,20,0.16);
-    }
-    .mono{ font-family: var(--mono); opacity:0.95; }
-
-    .section p{
-      margin: 0 0 10px;
-      color: rgba(215,255,224,0.92);
-      font-size: 13.5px;
-      line-height: 1.6;
-    }
-    .list{
-      margin:0;
-      padding-left: 16px;
-      color: rgba(215,255,224,0.92);
-      font-size: 13.5px;
-      line-height: 1.6;
-    }
-    .list li{ margin: 6px 0; }
-
-    .kbd{
-      display:inline-block;
-      padding: 2px 6px;
-      border:1px solid rgba(57,255,20,0.25);
-      border-bottom-color: rgba(57,255,20,0.45);
-      border-radius: 8px;
-      background: rgba(0,0,0,0.25);
-      font-size: 12px;
-      color: rgba(215,255,224,0.95);
-      margin-right:6px;
-      margin-bottom:6px;
-      white-space:nowrap;
-    }
-
-    .xp-item{
-      border: 1px dashed rgba(57,255,20,0.22);
-      background: var(--panel2);
-      border-radius: 16px;
-      padding: 12px 12px 10px;
-      margin: 0 0 12px;
-    }
-    .xp-top{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-bottom:6px;
-    }
-    .xp-role{
-      font-family: var(--sans);
-      font-weight: 750;
-      font-size: 14px;
-      color: var(--text);
-    }
-    .xp-meta{
-      font-size: 12px;
-      color: var(--muted);
-      white-space:nowrap;
-    }
-    .xp-company{
-      font-size: 13px;
-      color: rgba(215,255,224,0.85);
-      margin-bottom:8px;
-    }
-
-    .cursor::after{
-      content:"█";
-      margin-left:6px;
-      animation: blink 1.1s steps(1,end) infinite;
-      color: var(--green);
-    }
-    @keyframes blink{ 50%{ opacity:0; } }
-
-    footer{
-      max-width:1160px;
-      margin: 14px auto 28px;
-      padding: 0 18px;
-      color: rgba(134,201,146,0.9);
-      font-size: 12px;
-      display:flex;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-
-    @media print{
-      #matrix, .vignette { display:none !important; }
-      body{ background:#fff; color:#111; }
-      .card{ box-shadow:none; background:#fff; border:1px solid #ddd; }
-      .card .title{ background:#f6f6f6; border-bottom:1px solid #ddd; }
-      .pill{ border:1px solid #ddd; color:#111; background:#fff; }
-      .tag, .xp-meta, .headline{ color:#444; }
-      h2{ color:#111; }
-      .kbd{ border:1px solid #ddd; background:#fff; color:#111; }
-    }
-  </style>
+/* PRINT */
+@media print{
+  #matrix,.vignette,.contact button{display:none;}
+  body{background:white;color:black;}
+  .card{background:white;border:1px solid #ddd;box-shadow:none;}
+  .title{background:#eee;color:black;}
+}
+</style>
 </head>
 
 <body>
-  <canvas id="matrix"></canvas>
-  <div class="vignette"></div>
+<canvas id="matrix"></canvas>
+<div class="vignette"></div>
 
-  <header>
-    <div class="terminal-bar" aria-label="terminal header">
-      <div class="dots" aria-hidden="true">
-        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-      </div>
-      <div class="path">nicolas@matrix:~/curriculo$ <span class="cursor">cat cv_nicolas.txt</span></div>
-    </div>
+<header>
+<h1>Nicolas Mesquita Fernandes</h1>
+<p class="headline">
+Analista de Suporte & Infraestrutura | NOC | Segurança da Informação | Automação (PowerShell/Bash)
+</p>
 
-    <h1>Nicolas Mesquita Fernandes</h1>
-    <p class="headline">
-      Analista de Suporte e Infraestrutura | Segurança da Informação | Automação de Processos | Especialista em TI | Gestão de Infraestrutura e Suporte
-    </p>
+<div class="contact">
+  <span class="pill">📧 seuemail@exemplo.com</span>
+  <span class="pill">📱 +55 00 00000-0000</span>
+  <span class="pill">🔗 LinkedIn</span>
+  <span class="pill">💻 GitHub</span>
+  <button class="pill" id="toggleClean">🕶️ Modo Recrutador</button>
+  <button class="pill" id="btnPdf">🧾 Baixar PDF</button>
+</div>
+</header>
 
-    <div class="contact">
-      <!-- Troque pelos seus dados -->
-      <a class="pill" href="mailto:seuemail@exemplo.com">📧 <span class="mono">seuemail@exemplo.com</span></a>
-      <a class="pill" href="tel:+5500000000000">📱 <span class="mono">+55 (00) 00000-0000</span></a>
-      <a class="pill" href="#" target="_blank" rel="noreferrer">🔗 <span class="mono">LinkedIn</span></a>
-      <a class="pill" href="#" target="_blank" rel="noreferrer">💻 <span class="mono">GitHub/Portfólio</span></a>
-      <span class="pill">📍 <span class="mono">São Paulo, Brasil</span></span>
-    </div>
-  </header>
+<div class="wrap">
+<div class="grid">
 
-  <main class="wrap">
-    <div class="grid">
+<!-- LEFT -->
+<div class="card">
+<div class="title">SOBRE</div>
+<div class="inner">
+Analista de Suporte e Infraestrutura com 10+ anos de experiência em ambientes corporativos e operações críticas (NOC/field), atuando em disponibilidade, monitoração, gestão de incidentes e segurança da informação. Forte em troubleshooting, padronização e automação de processos.
 
-      <!-- ESQUERDA -->
-      <aside class="card">
-        <div class="title">
-          <h2>Sobre</h2>
-          <span class="tag">perfil</span>
-        </div>
-        <div class="inner section">
-          <p>
-            Analista de Suporte e Infraestrutura com ~10 anos de experiência, atuando em ambientes corporativos e operações críticas.
-            Forte em suporte nível 2/3, monitoração (NOC), gestão de incidentes/SLA, segurança da informação e automação de processos.
-          </p>
+<ul>
+<li>Suporte N2/N3 e atuação em incidentes críticos com foco em SLA e continuidade.</li>
+<li>Monitoração ponta a ponta (triagem → escalonamento → normalização).</li>
+<li>Padronização operacional (5S, inventário, documentação técnica).</li>
+<li>Automação com PowerShell/Bash para reduzir erro manual.</li>
+</ul>
+</div>
 
-          <ul class="list">
-            <li><b>Suporte Técnico Avançado:</b> troubleshooting de hardware/software, rede, incidentes críticos e demandas de segurança.</li>
-            <li><b>Implementação/Operação:</b> monitoramento de rede/servidores, migrações/atualizações e atuação proativa.</li>
-            <li><b>Segurança da Informação:</b> políticas, firewall, backups, auditorias e conscientização de usuários.</li>
-            <li><b>Automação:</b> scripts e rotinas para reduzir trabalho manual (alertas, backups, padronizações).</li>
-            <li><b>Treinamento:</b> orientação de equipe e produção de guias de boas práticas.</li>
-            <li><b>Fornecedores:</b> interface com parceiros e contratos de suporte.</li>
-          </ul>
-        </div>
+<div class="title">STACK TÉCNICA</div>
+<div class="inner">
+<b>Sistemas:</b> Windows, Linux (básico)<br>
+<b>NOC:</b> SolarWinds, Netcool/Omnibus, HP SiteScope<br>
+<b>ITSM:</b> BMC Remedy, Jira, GLPI<br>
+<b>Redes:</b> DNS, LAN/WAN, Cisco Meraki, troubleshooting<br>
+<b>Backup:</b> Symantec NetBackup, HP Data Protector<br>
+<b>Automação:</b> PowerShell, Bash<br>
+<b>Cloud:</b> AWS (fundamentos)<br>
+<b>Outros:</b> ITIL, Inventário, Documentação, Fornecedores
+</div>
 
-        <div class="title">
-          <h2>Ferramentas & Tecnologias</h2>
-          <span class="tag">stack</span>
-        </div>
-        <div class="inner">
-          <span class="kbd">Windows</span>
-          <span class="kbd">PowerShell</span>
-          <span class="kbd">Bash</span>
-          <span class="kbd">Jira</span>
-          <span class="kbd">SolarWinds</span>
-          <span class="kbd">BMC Remedy</span>
-          <span class="kbd">Netcool/Omnibus</span>
-          <span class="kbd">HP SiteScope</span>
-          <span class="kbd">MDM</span>
-          <span class="kbd">Cisco Meraki</span>
-          <span class="kbd">VMware</span>
-          <span class="kbd">DNS</span>
-          <span class="kbd">Firewalls</span>
-          <span class="kbd">Backup</span>
-          <span class="kbd">Symantec NetBackup</span>
-          <span class="kbd">HP Data Protector</span>
-          <span class="kbd">SQL / SQL Server</span>
-          <span class="kbd">ITIL</span>
-        </div>
+<div class="title">FORMAÇÃO</div>
+<div class="inner">
+<ul>
+<li>Defesa Cibernética — Estácio (2024)</li>
+<li>Bacharel em Sistemas de Informação — FACCAMP (2011–2015)</li>
+<li>ETEC Gino Rezaghi (2009–2010)</li>
+</ul>
+</div>
 
-        <div class="title">
-          <h2>Formação</h2>
-          <span class="tag">acadêmico</span>
-        </div>
-        <div class="inner section">
-          <ul class="list">
-            <li><b>Estácio</b> — Defesa Cibernética (jan/2024)</li>
-            <li><b>FACCAMP</b> — Bacharel em Sistemas de Informação (2011–2015)</li>
-            <li><b>ETEC Gino Rezaghi</b> — (2009–2010)</li>
-          </ul>
-        </div>
+<div class="title">CERTIFICAÇÕES</div>
+<div class="inner">
+<ul>
+<li>Cisco Meraki ECMS1</li>
+<li>Introdução ao Pentest — Desec</li>
+<li>Introdução à Cibersegurança — Cisco</li>
+<li>AWS Cloud Practitioner Essentials</li>
+<li>Python & Programação para Internet — Estácio</li>
+</ul>
+</div>
+</div>
 
-        <div class="title">
-          <h2>Certificações</h2>
-          <span class="tag">credenciais</span>
-        </div>
-        <div class="inner section">
-          <ul class="list">
-            <li><b>Estácio</b> — Programação para Internet (jul/2025) • credencial: db67f5df491f166a9630ba5</li>
-            <li><b>Estácio</b> — Desenvolvimento de Aplicações em Python (dez/2024) • credencial: 8641f2465a0d1ac13b5067f</li>
-            <li><b>Estácio</b> — AWS Cloud Practitioner Essentials (abr/2024)</li>
-            <li><b>Ka Solution</b> — Fase 2 | Capacitação - Computação em Nuvem (abr/2024)</li>
-            <li><b>Ka Solution</b> — Computação em Nuvem | AWS Discovery Day (mar/2024)</li>
-            <li><b>Desec Security</b> — Introdução ao Pentest na Prática (jan/2024) • credencial: RWXO-JGIXJ-LYLFC</li>
-            <li><b>Cisco</b> — Introdução à Cibersegurança (jan/2024)</li>
-            <li><b>Cisco Meraki</b> — ECMS1 (jun/2021)</li>
-            <li><b>FASTPATH University</b> — Bootcamp Cisco - Meraki (abr/2020)</li>
-          </ul>
-        </div>
+<!-- RIGHT -->
+<div class="card">
+<div class="title">EXPERIÊNCIA PROFISSIONAL</div>
+<div class="inner">
 
-        <div class="title">
-          <h2>Idiomas</h2>
-          <span class="tag">languages</span>
-        </div>
-        <div class="inner section">
-          <ul class="list">
-            <li>Português — nativo</li>
-            <li>Inglês — <i>Technical English</i> (adicione nível: básico / intermediário / avançado)</li>
-          </ul>
-        </div>
-      </aside>
+<div class="xp">
+<h3>Técnico de Suporte — Mercado Livre (Randstad)</h3>
+<span>nov/2024 – jan/2026</span>
+<ul>
+<li>Disponibilidade de equipamentos críticos (PCs, Zebra, handhelds, leitores 3D).</li>
+<li>Manutenção preventiva e configuração de hardware.</li>
+<li>Gestão de tickets no Jira e suporte Windows.</li>
+<li>Gestão de MDM e inventário de ativos.</li>
+<li>Padronização 5S e guias de boas práticas.</li>
+</ul>
+</div>
 
-      <!-- DIREITA -->
-      <section class="card">
-        <div class="title">
-          <h2>Experiência</h2>
-          <span class="tag">histórico</span>
-        </div>
-        <div class="inner section">
+<div class="xp">
+<h3>Operador NOC — Telefónica Ingeniería de Seguridad</h3>
+<span>out/2019 – abr/2022</span>
+<ul>
+<li>Monitoração via SolarWinds e incidentes via Remedy.</li>
+<li>Validação de conectividade (switch/AP/POS/KVS/quiosques).</li>
+<li>Acionamento e acompanhamento de operadoras.</li>
+<li>Ambiente Cisco Meraki.</li>
+</ul>
+</div>
 
-          <div class="xp-item">
-            <div class="xp-top">
-              <div class="xp-role">Técnico de Suporte — Mercado Livre (via Randstad Brasil)</div>
-              <div class="xp-meta">nov/2024 — jan/2026 • Presencial</div>
-            </div>
-            <div class="xp-company">Suporte operacional e infraestrutura em ambiente de alta demanda</div>
-            <ul class="list">
-              <li>Suporte presencial para garantir disponibilidade de equipamentos de bancada (PCs, impressoras Zebra, handhelds, leitores 3D e baterias).</li>
-              <li>Manutenção preventiva em impressoras (limpeza de cabeça de impressão, ajustes de etiquetas) e configuração de hardware.</li>
-              <li>Abertura e acompanhamento de tickets (Jira) e suporte a gestão de senhas.</li>
-              <li>Interação com MDM para gestão de dispositivos móveis.</li>
-              <li>Implementação e manutenção de ações de 5S e padronização dos postos.</li>
-              <li>Criação e apresentação de guias básicos de boas práticas para reduzir falhas operacionais.</li>
-              <li>Controle de inventário e organização de ativos.</li>
-            </ul>
-          </div>
+<div class="xp">
+<h3>Analista de Suporte NOC — Tech Mahindra</h3>
+<span>mai/2019 – set/2019</span>
+<ul>
+<li>Atendimento N1, escalonamento e SLA.</li>
+<li>Monitoramento de infraestrutura e servidores.</li>
+<li>Relatórios e feedback ao cliente.</li>
+</ul>
+</div>
 
-          <div class="xp-item">
-            <div class="xp-top">
-              <div class="xp-role">Operador de Suporte Datacenter — NOC McDonald’s</div>
-              <div class="xp-meta">out/2019 — abr/2022 • Telefónica Ingeniería de Seguridad</div>
-            </div>
-            <div class="xp-company">Monitoração de links, incidentes e conectividade em lojas</div>
-            <ul class="list">
-              <li>Monitoração via SolarWinds e gestão de incidentes/chamados via BMC Remedy.</li>
-              <li>Validação de conectividade interna (ping em switches, AP, POS, SAT, KVS, quiosques, etc.).</li>
-              <li>Diagnóstico de indisponibilidade (contato local, modem, reinícios e validações).</li>
-              <li>Abertura e encaminhamento de chamados a operadoras, com acompanhamento até normalização.</li>
-              <li>Atuação com Cisco Meraki e rotinas de operação NOC.</li>
-            </ul>
-          </div>
+<div class="xp">
+<h3>Analista NOC — SONDA</h3>
+<span>fev/2017 – out/2017</span>
+<ul>
+<li>Monitoração, incidentes e operadoras.</li>
+<li>Troubleshooting de conectividade.</li>
+</ul>
+</div>
 
-          <div class="xp-item">
-            <div class="xp-top">
-              <div class="xp-role">Analista de Suporte — Projeto TDATA Telefônica | VIVO (NOC)</div>
-              <div class="xp-meta">mai/2019 — set/2019 • Tech Mahindra</div>
-            </div>
-            <div class="xp-company">Monitoramento e atendimento N1, escalonamento e SLA</div>
-            <ul class="list">
-              <li>Monitoramento de incidentes, atendimento primeiro nível e acompanhamento de SLA.</li>
-              <li>Atualização e resolução de chamados com relatórios e feedback ao cliente (e-mail).</li>
-              <li>Apoio à equipe TDATA em infraestrutura, redes e monitoramento de servidores virtuais/físicos.</li>
-              <li>Acionamentos e escalonamentos com foco em disponibilidade do serviço.</li>
-            </ul>
-          </div>
+<div class="xp">
+<h3>Analista de Produção — end-to-end technology</h3>
+<span>2016</span>
+<ul>
+<li>BMC Control-M (batch/schedules).</li>
+<li>Backup/restore com NetBackup.</li>
+</ul>
+</div>
 
-          <div class="xp-item">
-            <div class="xp-top">
-              <div class="xp-role">Analista de Suporte — Projeto NOC McDonald’s Telefônica | VIVO</div>
-              <div class="xp-meta">nov/2017 — set/2019 • Tech Mahindra</div>
-            </div>
-            <div class="xp-company">Operação NOC com SolarWinds/Remedy e validações de conectividade</div>
-            <ul class="list">
-              <li>Monitoração de links via SolarWinds e incidentes via BMC Remedy.</li>
-              <li>Validação de conectividade em equipamentos de loja (switches/AP/POS/SAT/KVS/quiosques).</li>
-              <li>Diagnóstico de indisponibilidade de link e abertura de chamados para operadoras.</li>
-            </ul>
-          </div>
+<div class="xp">
+<h3>Analista de Monitoração — Stefanini</h3>
+<span>2014–2016</span>
+<ul>
+<li>Netcool/Omnibus + HP SiteScope.</li>
+<li>Gestão de incidentes e comunicação executiva.</li>
+</ul>
+</div>
 
-          <div class="xp-item">
-            <div class="xp-top">
-              <div class="xp-role">Analista de Suporte — Projeto NOC McDonald’s Telefônica | VIVO</div>
-              <div class="xp-meta">fev/2017 — out/2017 • SONDA Brasil</div>
-            </div>
-            <div class="xp-company">Rotina NOC: monitoração, incidentes e tratativas com operadoras</div>
-            <ul class="list">
-              <li>Monitoração de links via SolarWinds e abertura/acompanhamento de incidentes via BMC Remedy.</li>
-              <li>Testes de conectividade e validações operacionais em lojas.</li>
-              <li>Encaminhamento e acompanhamento de chamados com operadoras.</li>
-            </ul>
-          </div>
+<div class="xp">
+<h3>Técnico de Informática Sênior — Lojas Marabraz</h3>
+<span>2013–2014</span>
+<ul>
+<li>Monitoramento open-source e scripts Bash/PowerShell.</li>
+<li>Backup HP Data Protector e VMware.</li>
+</ul>
+</div>
 
-          <div class="xp-item">
-            <div class="xp-top">
-              <div class="xp-role">Analista de Produção — Projeto NDC Telefônica | VIVO</div>
-              <div class="xp-meta">jun/2016 — set/2016 • end-to-end technology</div>
-            </div>
-            <div class="xp-company">Operação de batch/schedules e backup</div>
-            <ul class="list">
-              <li>Execução de uploads e ações no BMC Control-M (rerun, hold, free, force ok, kill, run now, confirm, ordenação).</li>
-              <li>Análise, escalonamento e acompanhamento de schedules em produção.</li>
-              <li>Chamados via BMC Remedy e rotinas de restore/monitoramento de backups (Symantec NetBackup).</li>
-            </ul>
-          </div>
+<div class="xp">
+<h3>Estagiário de TI — XMM TI</h3>
+<span>2012–2013</span>
+<ul>
+<li>ServiceDesk GLPI, redes e suporte usuários.</li>
+</ul>
+</div>
 
-          <div class="xp-item">
-            <div class="xp-top">
-              <div class="xp-role">Analista de Monitoração / Ponto Focal — Projeto NDC Telefônica | VIVO</div>
-              <div class="xp-meta">abr/2016 — set/2016 • end-to-end technology</div>
-            </div>
-            <div class="xp-company">Monitoração de infraestrutura, alarmes e comunicação executiva</div>
-            <ul class="list">
-              <li>Monitoração e análise de alarmes em sistemas/servidores críticos via IBM Tivoli Netcool/Omnibus e HP SiteScope.</li>
-              <li>Abertura de incidentes no BMC Remedy e acionamento técnico com equipes responsáveis.</li>
-              <li>Acompanhamento de resolução e comunicação com gestores/diretoria conforme plano de comunicação.</li>
-            </ul>
-          </div>
+</div>
+</div>
 
-          <div class="xp-item">
-            <div class="xp-top">
-              <div class="xp-role">Analista de Monitoração / Ponto Focal — Projeto NDC Telefônica | VIVO</div>
-              <div class="xp-meta">nov/2014 — mar/2016 • Stefanini</div>
-            </div>
-            <div class="xp-company">NOC/monitoramento com foco em incidentes e disponibilidade</div>
-            <ul class="list">
-              <li>Monitoração de infraestrutura e análise de alarmes (Netcool/Omnibus + HP SiteScope).</li>
-              <li>Abertura de incidentes no BMC Remedy e acompanhamento até normalização.</li>
-              <li>Comunicação com times técnicos e liderança com tempos definidos.</li>
-            </ul>
-          </div>
+</div>
+</div>
 
-          <div class="xp-item">
-            <div class="xp-top">
-              <div class="xp-role">Técnico de Informática Sênior</div>
-              <div class="xp-meta">ago/2013 — mai/2014 • Lojas Marabraz</div>
-            </div>
-            <div class="xp-company">Monitoramento, automação e rotinas de backup</div>
-            <ul class="list">
-              <li>Implementação de monitoramento com ferramentas open-source e mapas para visualização da saúde do ambiente.</li>
-              <li>Criação de scripts em Bash e PowerShell para monitoramento conforme necessidade.</li>
-              <li>Gestão de jobs de backup no HP Data Protector (pools e disponibilidade de backups).</li>
-              <li>Vivência com infraestrutura de VMware.</li>
-            </ul>
-          </div>
+<script>
+// MATRIX EFFECT
+const c=document.getElementById("matrix"),ctx=c.getContext("2d");
+const chars="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%*+-/";
+let font=16,cols,drops;
 
-          <div class="xp-item">
-            <div class="xp-top">
-              <div class="xp-role">Estagiário — TI</div>
-              <div class="xp-meta">mar/2012 — mai/2013 • XMM Tecnologia da Informação</div>
-            </div>
-            <div class="xp-company">Service Desk, redes e suporte a usuários</div>
-            <ul class="list">
-              <li>Atendimento de chamados via ServiceDesk (GLPI) e suporte a usuários.</li>
-              <li>Vivência em redes, servidores e microinformática (cabeamento, roteadores e switches).</li>
-              <li>Atuação com clientes de pequeno, médio e grande porte.</li>
-            </ul>
-          </div>
+function resize(){
+  c.width=window.innerWidth;c.height=window.innerHeight;
+  cols=Math.floor(window.innerWidth/font);
+  drops=new Array(cols).fill(0);
+}
+function draw(){
+  ctx.fillStyle="rgba(0,0,0,0.08)";
+  ctx.fillRect(0,0,c.width,c.height);
+  ctx.fillStyle="#39ff14";
+  ctx.font=font+"px monospace";
+  for(let i=0;i<drops.length;i++){
+    const text=chars[Math.random()*chars.length|0];
+    ctx.fillText(text,i*font,drops[i]*font);
+    if(drops[i]*font>c.height&&Math.random()>0.975)drops[i]=0;
+    drops[i]++;
+  }
+  requestAnimationFrame(draw);
+}
+resize();draw();window.onresize=resize;
 
-        </div>
+// TOGGLES
+document.getElementById("toggleClean").onclick=()=>document.body.classList.toggle("clean");
+document.getElementById("btnPdf").onclick=()=>window.print();
+</script>
 
-        <div class="title">
-          <h2>Dica pra PDF</h2>
-          <span class="tag">export</span>
-        </div>
-        <div class="inner section">
-          <p>
-            Use <span class="kbd">Ctrl</span> + <span class="kbd">P</span> → “Salvar como PDF”.
-            O modo de impressão remove o fundo Matrix automaticamente.
-          </p>
-        </div>
-
-      </section>
-    </div>
-  </main>
-
-  <footer>
-    <span>status: <span class="mono" style="color:var(--green)">ONLINE</span></span>
-    <span class="mono">build: v1.1 • tema: matrix • cv_nicolas</span>
-  </footer>
-
-  <script>
-    // ====== Matrix rain (leve e responsivo) ======
-    const canvas = document.getElementById("matrix");
-    const ctx = canvas.getContext("2d", { alpha: true });
-
-    const chars =
-      "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピ" +
-      "ウゥクスツヌフムユュルグズヅブプエェケセテネヘメレヱゲゼデベペ" +
-      "オォコソトノホモヨョロヲゴゾドボポヴン" +
-      "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%*+-/<>=";
-
-    let fontSize = 16;
-    let columns = 0;
-    let drops = [];
-
-    function resize(){
-      const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-      canvas.width = Math.floor(window.innerWidth * dpr);
-      canvas.height = Math.floor(window.innerHeight * dpr);
-      canvas.style.width = window.innerWidth + "px";
-      canvas.style.height = window.innerHeight + "px";
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-      fontSize = window.innerWidth < 520 ? 14 : 16;
-      columns = Math.floor(window.innerWidth / fontSize);
-      drops = new Array(columns).fill(0).map(() => Math.random() * window.innerHeight / fontSize);
-    }
-
-    function draw(){
-      ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
-      ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
-
-      ctx.font = fontSize + "px ui-monospace, monospace";
-
-      for(let i = 0; i < drops.length; i++){
-        const text = chars[Math.floor(Math.random() * chars.length)];
-        const x = i * fontSize;
-        const y = drops[i] * fontSize;
-
-        ctx.fillStyle = "rgba(57, 255, 20, 0.85)";
-        ctx.fillText(text, x, y);
-
-        if (y > window.innerHeight && Math.random() > 0.975) drops[i] = 0;
-        drops[i] += 0.65 + Math.random() * 0.8;
-      }
-      requestAnimationFrame(draw);
-    }
-
-    window.addEventListener("beforeprint", () => ctx.clearRect(0,0,window.innerWidth,window.innerHeight));
-    window.addEventListener("resize", resize);
-    resize();
-    draw();
-  </script>
 </body>
 </html>

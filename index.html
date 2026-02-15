@@ -22,31 +22,39 @@
     *{box-sizing:border-box}
     body{
       margin:0;
-      background: radial-gradient(900px 500px at 20% 10%, rgba(0,255,102,.10), transparent 60%),
-                  linear-gradient(180deg, #070a08, #0b0f0c 35%, #070a08);
+      background:
+        radial-gradient(1100px 600px at 20% 10%, rgba(0,255,102,.10), transparent 60%),
+        linear-gradient(180deg, #070a08, #0b0f0c 35%, #070a08);
       color:var(--text);
       font-family:var(--sans);
     }
     a{color:var(--accent); text-decoration:none}
     a:hover{text-decoration:underline}
-    .wrap{max-width:960px;margin:0 auto;padding:28px 16px 56px}
+
+    /* maximizado */
+    .wrap{max-width:1400px;margin:0 auto;padding:28px 18px 48px}
     header{
       display:flex; gap:14px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;
       margin-bottom:16px;
     }
     .id{
-      display:flex; gap:12px; align-items:flex-start; min-width:min(640px,100%);
+      display:flex; gap:12px; align-items:flex-start; min-width:min(820px,100%);
     }
     .mark{
       width:44px;height:44px;border-radius:14px;
-      background: radial-gradient(18px 18px at 30% 30%, rgba(0,255,102,.55), transparent 65%),
-                  linear-gradient(145deg, rgba(0,255,102,.18), rgba(0,0,0,.35));
+      background:
+        radial-gradient(18px 18px at 30% 30%, rgba(0,255,102,.55), transparent 65%),
+        linear-gradient(145deg, rgba(0,255,102,.18), rgba(0,0,0,.35));
       border:1px solid rgba(0,255,102,.18);
       box-shadow:0 0 0 1px rgba(0,255,102,.06), 0 14px 35px rgba(0,0,0,.5);
       flex:0 0 auto;
     }
-    h1{margin:0;font-size:22px;line-height:1.2}
+    h1{margin:0;font-size:24px;line-height:1.15}
     .headline{margin-top:6px;color:var(--muted);font-size:13px;line-height:1.35}
+
+    .actions{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+    }
     .btn{
       display:inline-flex;align-items:center;gap:8px;
       border:1px solid var(--line);
@@ -56,15 +64,19 @@
       box-shadow:var(--shadow);
       font-family:var(--mono);font-size:12px;
       cursor:pointer;
+      user-select:none;
     }
     .btn:hover{border-color:rgba(0,255,102,.22)}
+    .btn:active{transform:translateY(1px)}
+
     .grid{
       display:grid;
       grid-template-columns: 1.25fr .75fr;
       gap:14px;
       align-items:start;
     }
-    @media (max-width: 900px){ .grid{grid-template-columns:1fr} }
+    @media (max-width: 980px){ .grid{grid-template-columns:1fr} }
+
     .card{
       background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.20));
       border:1px solid var(--line);
@@ -82,6 +94,7 @@
       font-family:var(--mono);
     }
     .pad{padding:14px}
+
     .lead{
       font-size:14px;
       line-height:1.55;
@@ -90,9 +103,8 @@
     .muted{color:var(--muted)}
     .list{margin:10px 0 0;padding-left:18px}
     .list li{margin:6px 0;line-height:1.5}
-    .kvs{
-      display:grid; gap:10px;
-    }
+
+    .kvs{display:grid; gap:10px}
     .kv{
       border:1px solid rgba(255,255,255,.08);
       background: rgba(0,0,0,.18);
@@ -113,9 +125,8 @@
       line-height:1.35;
       word-break:break-word;
     }
-    details{
-      border-top:1px solid rgba(255,255,255,.07);
-    }
+
+    details{border-top:1px solid rgba(255,255,255,.07)}
     summary{
       cursor:pointer;
       padding:12px 14px;
@@ -127,6 +138,7 @@
     summary::-webkit-details-marker{display:none}
     .meta{color:rgba(167,201,179,.75);font-size:11px}
     .section{padding:0 14px 14px}
+
     .job{
       border:1px solid rgba(255,255,255,.08);
       background: rgba(0,0,0,.18);
@@ -141,6 +153,7 @@
     .job .top b{font-weight:700}
     .job .top .p{color:rgba(167,201,179,.75);font-size:11px}
     .job .sum{margin-top:8px;color:var(--muted);font-size:12px;line-height:1.45;font-family:var(--mono)}
+
     .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
     .chip{
       font-family:var(--mono);
@@ -151,6 +164,7 @@
       border-radius:999px;
       white-space:nowrap;
     }
+
     footer{
       margin-top:14px;
       color:rgba(167,201,179,.70);
@@ -159,11 +173,10 @@
       display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
       opacity:.9;
     }
-    @media print{
-      body{background:#fff;color:#111}
-      a{color:#111}
-      .btn{display:none}
-      .card{box-shadow:none}
+
+    @media (max-width: 520px){
+      h1{font-size:20px}
+      .wrap{padding:22px 14px 40px}
     }
   </style>
 </head>
@@ -178,10 +191,10 @@
         </div>
       </div>
 
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <button class="btn" onclick="window.print()">Imprimir / PDF</button>
+      <div class="actions">
         <a class="btn" href="mailto:omfg_nick@hotmail.com">Email</a>
         <a class="btn" href="https://www.linkedin.com/in/nicolasmesquita/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a class="btn" href="https://github.com/omfgnick" target="_blank" rel="noreferrer">GitHub</a>
       </div>
     </header>
 
@@ -191,27 +204,27 @@
         <h2>Apresentação</h2>
         <div class="pad">
           <p class="lead">
-            Sou o <b>Nicolas Mesquita Fernandes</b>, profissional de TI com <b>10+ anos</b> atuando em <b>suporte e infraestrutura</b>,
-            com experiência forte em <b>NOC/monitoramento</b>, <b>gestão de incidentes</b> e <b>padronização operacional</b>.
-            Meu foco é manter ambientes estáveis, reduzir indisponibilidades e acelerar a resolução de incidentes com processos claros e automação.
+            Sou o <b>Nicolas Mesquita Fernandes</b>, profissional de TI com <b>10+ anos</b> em <b>suporte e infraestrutura</b>,
+            com atuação em <b>suporte N1/N2/N3</b>, <b>NOC/monitoramento</b>, <b>gestão de incidentes</b> e <b>padronização operacional</b>.
+            Meu foco é manter ambientes estáveis, reduzir indisponibilidades e acelerar a resolução com processos claros e automação.
           </p>
 
           <ul class="list">
-            <li><b>Suporte N2/N3:</b> troubleshooting de hardware/software, rede e incidentes críticos.</li>
+            <li><b>Suporte N1/N2/N3:</b> troubleshooting de hardware/software, rede e incidentes críticos.</li>
             <li><b>NOC/SLA:</b> triagem, escalonamento, acompanhamento até normalização e comunicação objetiva.</li>
-            <li><b>Automação:</b> scripts (PowerShell/Bash) e criação de guias/boas práticas para reduzir erro manual.</li>
+            <li><b>Automação:</b> scripts e rotinas com <b>PowerShell</b>, <b>Bash</b> e <b>Python</b> para reduzir erro manual e tempo de resposta.</li>
             <li><b>Backup & continuidade:</b> NetBackup / HP Data Protector e rotinas de confiabilidade.</li>
             <li><b>Segurança:</b> boas práticas, auditorias e conscientização de usuários.</li>
           </ul>
 
           <div class="chips" aria-label="Destaques rápidos">
-            <span class="chip">N2/N3</span>
+            <span class="chip">N1/N2/N3</span>
             <span class="chip">NOC / Monitoramento</span>
             <span class="chip">Remedy / Jira</span>
             <span class="chip">SolarWinds</span>
             <span class="chip">NetBackup / Data Protector</span>
             <span class="chip">Meraki</span>
-            <span class="chip">PowerShell / Bash</span>
+            <span class="chip">PowerShell / Bash / Python</span>
           </div>
         </div>
 
@@ -244,10 +257,6 @@
               </div>
               <div class="sum">Netcool/Omnibus + SiteScope, incidentes Remedy, acionamentos e comunicação com liderança em infraestrutura crítica.</div>
             </div>
-
-            <div class="small muted" style="margin-top:10px">
-              (A experiência completa pode ser adicionada em uma seção “Detalhada” se você quiser, mas deixei esta versão enxuta para apresentação.)
-            </div>
           </div>
         </details>
 
@@ -262,7 +271,7 @@
               <span class="chip">SolarWinds</span><span class="chip">Netcool/Omnibus</span><span class="chip">HP SiteScope</span>
               <span class="chip">BMC Remedy</span><span class="chip">Jira</span><span class="chip">GLPI</span><span class="chip">ITIL</span>
               <span class="chip">DNS</span><span class="chip">Roteamento/LAN</span><span class="chip">Cisco Meraki</span><span class="chip">Firewalls</span>
-              <span class="chip">PowerShell</span><span class="chip">Bash</span>
+              <span class="chip">PowerShell</span><span class="chip">Bash</span><span class="chip">Python</span>
               <span class="chip">NetBackup</span><span class="chip">HP Data Protector</span>
               <span class="chip">Cibersegurança</span><span class="chip">Pentest</span><span class="chip">Auditoria</span>
               <span class="chip">Technical English</span>
@@ -329,18 +338,12 @@
               <div class="v"><a href="https://github.com/omfgnick" target="_blank" rel="noreferrer">github.com/omfgnick</a></div>
             </div>
           </div>
-
-          <div class="small" style="margin-top:12px">
-            Se quiser, eu adapto essa página em 2 cliques:
-            <br/>• versão “1 página” (super enxuta) • versão “detalhada” (toda a experiência).
-          </div>
         </div>
       </aside>
     </div>
 
     <footer>
       <div>© <span id="y"></span> — Nicolas Mesquita Fernandes</div>
-      <div>Pronto pra imprimir/salvar em PDF</div>
     </footer>
   </div>
 

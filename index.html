@@ -1,505 +1,312 @@
 <!doctype html>
-<html lang="pt-BR" data-theme="matrix">
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Nicolas Mesquita Fernandes — Currículo</title>
-  <meta name="description" content="Currículo online — Nicolas Mesquita Fernandes | Suporte & Infra | Segurança da Informação | Automação | NOC | Suporte Sênior" />
-  <meta name="theme-color" content="#050a06" />
-
+  <meta name="description" content="Currículo — Nicolas Mesquita Fernandes | Suporte & Infra | Segurança da Informação | Automação | NOC | Suporte Sênior" />
+  <meta name="theme-color" content="#0b0f0c" />
   <style>
     :root{
-      --bg:#050a06;
-      --panel:#07120a;
-      --panel2:#061008;
-      --text:#d9ffe3;
-      --muted:#89c89d;
-      --dim:#4f8c62;
+      --bg:#0b0f0c;
+      --card:#101612;
+      --text:#e9fff0;
+      --muted:#a7c9b3;
+      --line:rgba(255,255,255,.08);
       --accent:#00ff66;
-      --accent2:#00c853;
-      --warn:#ffd166;
-      --danger:#ff4d6d;
-      --line:rgba(0,255,102,.18);
-      --glow:rgba(0,255,102,.35);
-      --shadow: 0 10px 30px rgba(0,0,0,.45);
+      --shadow:0 12px 30px rgba(0,0,0,.35);
       --radius:16px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
-
     *{box-sizing:border-box}
-    html,body{height:100%}
     body{
       margin:0;
-      background:
-        radial-gradient(1200px 800px at 20% 10%, rgba(0,255,102,.10), transparent 60%),
-        radial-gradient(900px 600px at 90% 40%, rgba(0,200,83,.08), transparent 55%),
-        linear-gradient(180deg, #030603, #050a06 35%, #030603);
+      background: radial-gradient(900px 500px at 20% 10%, rgba(0,255,102,.10), transparent 60%),
+                  linear-gradient(180deg, #070a08, #0b0f0c 35%, #070a08);
       color:var(--text);
       font-family:var(--sans);
-      overflow-x:hidden;
     }
-
-    /* subtle scanlines */
-    body::before{
-      content:"";
-      position:fixed; inset:0;
-      pointer-events:none;
-      background:
-        repeating-linear-gradient(180deg,
-          rgba(0,0,0,0) 0px,
-          rgba(0,0,0,0) 2px,
-          rgba(0,0,0,.18) 3px);
-      opacity:.25;
-      mix-blend-mode:overlay;
-      z-index:0;
-    }
-
-    .wrap{
-      position:relative;
-      z-index:1;
-      max-width:1200px;
-      margin:0 auto;
-      padding:28px 18px 56px;
-    }
-
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:960px;margin:0 auto;padding:28px 16px 56px}
     header{
-      display:flex;
-      gap:14px;
-      align-items:flex-start;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      margin-bottom:14px;
+      display:flex; gap:14px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;
+      margin-bottom:16px;
     }
-
-    .brand{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      min-width:min(620px,100%);
+    .id{
+      display:flex; gap:12px; align-items:flex-start; min-width:min(640px,100%);
     }
-
-    .sig{
-      width:46px; height:46px;
-      border-radius:14px;
-      background:
-        radial-gradient(20px 20px at 30% 30%, rgba(0,255,102,.55), transparent 65%),
-        linear-gradient(145deg, rgba(0,255,102,.22), rgba(0,0,0,.35));
-      border:1px solid var(--line);
-      box-shadow: 0 0 0 1px rgba(0,255,102,.08), 0 12px 35px rgba(0,0,0,.5);
-      position:relative;
+    .mark{
+      width:44px;height:44px;border-radius:14px;
+      background: radial-gradient(18px 18px at 30% 30%, rgba(0,255,102,.55), transparent 65%),
+                  linear-gradient(145deg, rgba(0,255,102,.18), rgba(0,0,0,.35));
+      border:1px solid rgba(0,255,102,.18);
+      box-shadow:0 0 0 1px rgba(0,255,102,.06), 0 14px 35px rgba(0,0,0,.5);
       flex:0 0 auto;
     }
-    .sig::after{
-      content:"";
-      position:absolute; inset:7px;
-      border-radius:12px;
-      border:1px dashed rgba(0,255,102,.35);
-      opacity:.7;
-    }
-
-    .title h1{
-      margin:0;
-      font-size:20px;
-      letter-spacing:.2px;
-      line-height:1.25;
-      font-family:var(--mono);
-      text-shadow:0 0 14px rgba(0,255,102,.12);
-    }
-    .title .role{
-      margin-top:6px;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.35;
-      font-family:var(--mono);
-    }
-
-    .actions{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-
+    h1{margin:0;font-size:22px;line-height:1.2}
+    .headline{margin-top:6px;color:var(--muted);font-size:13px;line-height:1.35}
     .btn{
-      appearance:none;
+      display:inline-flex;align-items:center;gap:8px;
       border:1px solid var(--line);
-      background: linear-gradient(180deg, rgba(0,255,102,.10), rgba(0,0,0,.18));
+      background: rgba(255,255,255,.03);
       color:var(--text);
-      padding:10px 12px;
-      border-radius:14px;
-      font-family:var(--mono);
-      font-size:12px;
+      padding:10px 12px;border-radius:14px;
+      box-shadow:var(--shadow);
+      font-family:var(--mono);font-size:12px;
       cursor:pointer;
-      box-shadow: var(--shadow);
-      transition: transform .08s ease, border-color .15s ease, box-shadow .15s ease;
-      user-select:none;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      text-decoration:none;
     }
-    .btn:hover{border-color:rgba(0,255,102,.35); box-shadow: 0 12px 34px rgba(0,0,0,.55), 0 0 0 1px rgba(0,255,102,.10)}
-    .btn:active{transform: translateY(1px)}
-    .btn .dot{
-      width:8px; height:8px; border-radius:999px;
-      background:var(--accent);
-      box-shadow:0 0 14px var(--glow);
-      opacity:.9;
-    }
-
+    .btn:hover{border-color:rgba(0,255,102,.22)}
     .grid{
       display:grid;
-      grid-template-columns: 1.25fr .85fr;
+      grid-template-columns: 1.25fr .75fr;
       gap:14px;
       align-items:start;
     }
-    @media (max-width: 980px){
-      .grid{grid-template-columns: 1fr}
-    }
-
-    .panel{
-      background: linear-gradient(180deg, rgba(0,255,102,.06), rgba(0,0,0,.28));
+    @media (max-width: 900px){ .grid{grid-template-columns:1fr} }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.20));
       border:1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
       overflow:hidden;
     }
-
-    .panel-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding:12px 14px;
-      border-bottom:1px solid rgba(0,255,102,.12);
-      background:
-        radial-gradient(120px 60px at 12% 50%, rgba(0,255,102,.12), transparent 70%),
-        linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.25));
-    }
-
-    .panel-title{
-      font-family:var(--mono);
-      font-size:12px;
+    .card h2{
+      margin:0;
+      padding:14px 14px 0;
+      font-size:13px;
       letter-spacing:.6px;
       color:var(--muted);
       text-transform:uppercase;
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      border:1px solid rgba(0,255,102,.22);
-      background: rgba(0,255,102,.06);
-      padding:6px 10px;
-      border-radius:999px;
       font-family:var(--mono);
-      font-size:12px;
+    }
+    .pad{padding:14px}
+    .lead{
+      font-size:14px;
+      line-height:1.55;
       color:var(--text);
     }
-
-    .content{
-      padding:14px;
-    }
-
+    .muted{color:var(--muted)}
+    .list{margin:10px 0 0;padding-left:18px}
+    .list li{margin:6px 0;line-height:1.5}
     .kvs{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
+      display:grid; gap:10px;
     }
-    @media (max-width: 520px){
-      .kvs{grid-template-columns:1fr}
-    }
-
     .kv{
-      border:1px solid rgba(0,255,102,.12);
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.18);
       border-radius:14px;
-      background: linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.35));
       padding:10px 12px;
-      min-height:56px;
     }
-    .kv .k{
+    .k{
       font-family:var(--mono);
       font-size:11px;
-      color:var(--dim);
+      color:rgba(167,201,179,.75);
       text-transform:uppercase;
       letter-spacing:.6px;
       margin-bottom:6px;
     }
-    .kv .v{
+    .v{
       font-family:var(--mono);
       font-size:12px;
       line-height:1.35;
-      color:var(--text);
       word-break:break-word;
     }
-    .kv a{color:var(--accent); text-decoration:none}
-    .kv a:hover{text-decoration:underline}
-
-    .term{
-      font-family:var(--mono);
-      background: rgba(0,0,0,.30);
-      border:1px solid rgba(0,255,102,.12);
-      border-radius: 14px;
-      overflow:hidden;
-    }
-    .term-top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding:10px 12px;
-      border-bottom:1px solid rgba(0,255,102,.10);
-      background: linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.28));
-    }
-    .term-top .hint{
-      font-size:12px;
-      color:var(--muted);
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .badge{
-      font-size:11px;
-      color:var(--dim);
-      border:1px solid rgba(0,255,102,.14);
-      border-radius:999px;
-      padding:4px 8px;
-      background: rgba(0,255,102,.04);
-    }
-
-    .cmdbar{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      padding:10px 12px;
-      border-top:1px solid rgba(0,255,102,.10);
-      background: linear-gradient(180deg, rgba(0,0,0,.22), rgba(0,0,0,.30));
-    }
-    .prompt{color:var(--accent); opacity:.95}
-    .cmdbar input{
-      width:100%;
-      border:none;
-      outline:none;
-      background:transparent;
-      color:var(--text);
-      font-family:var(--mono);
-      font-size:12px;
-    }
-    .cmdbar input::placeholder{color:rgba(137,200,157,.55)}
-
-    .log{
-      padding:12px;
-      max-height:440px;
-      overflow:auto;
-      scrollbar-width:thin;
-      scrollbar-color: rgba(0,255,102,.25) rgba(0,0,0,.2);
-    }
-    .log::-webkit-scrollbar{height:10px; width:10px}
-    .log::-webkit-scrollbar-thumb{background:rgba(0,255,102,.25); border-radius:999px}
-    .log::-webkit-scrollbar-track{background:rgba(0,0,0,.2); border-radius:999px}
-
-    .line{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      padding:6px 0;
-      border-bottom:1px dashed rgba(0,255,102,.08);
-    }
-    .line:last-child{border-bottom:none}
-    .ts{
-      flex:0 0 auto;
-      font-size:11px;
-      color:rgba(137,200,157,.55);
-      min-width:78px;
-      text-align:right;
-      padding-top:1px;
-    }
-    .msg{
-      font-size:12px;
-      line-height:1.45;
-      color:var(--text);
-      white-space:pre-wrap;
-    }
-    .msg .ok{color:var(--accent)}
-    .msg .muted{color:var(--muted)}
-    .msg .dim{color:var(--dim)}
-    .msg .warn{color:var(--warn)}
-    .msg .danger{color:var(--danger)}
-    .msg a{color:var(--accent); text-decoration:none}
-    .msg a:hover{text-decoration:underline}
-
     details{
-      border:1px solid rgba(0,255,102,.12);
-      border-radius:16px;
-      background: linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.35));
-      overflow:hidden;
-      margin:10px 0;
+      border-top:1px solid rgba(255,255,255,.07);
     }
     summary{
       cursor:pointer;
+      padding:12px 14px;
       list-style:none;
-      padding:12px 12px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
       font-family:var(--mono);
       font-size:12px;
-      color:var(--text);
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
     }
     summary::-webkit-details-marker{display:none}
-    summary .meta{
-      color:var(--muted);
-      font-size:11px;
-      opacity:.9;
-    }
-    .details-body{
-      padding:0 12px 12px;
-      border-top:1px solid rgba(0,255,102,.10);
-      color:var(--text);
-      font-family:var(--mono);
-      font-size:12px;
-      line-height:1.5;
-    }
-    .details-body ul{
-      margin:10px 0 0;
-      padding-left:16px;
-    }
-    .details-body li{margin:6px 0}
-
-    .chips{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
+    .meta{color:rgba(167,201,179,.75);font-size:11px}
+    .section{padding:0 14px 14px}
+    .job{
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.18);
+      border-radius:14px;
+      padding:12px;
       margin-top:10px;
     }
+    .job .top{
+      display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
+      font-family:var(--mono);
+    }
+    .job .top b{font-weight:700}
+    .job .top .p{color:rgba(167,201,179,.75);font-size:11px}
+    .job .sum{margin-top:8px;color:var(--muted);font-size:12px;line-height:1.45;font-family:var(--mono)}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
     .chip{
       font-family:var(--mono);
       font-size:11px;
-      color:var(--text);
       border:1px solid rgba(0,255,102,.16);
       background: rgba(0,255,102,.05);
       padding:6px 10px;
       border-radius:999px;
       white-space:nowrap;
     }
-
-    .search{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      margin:10px 0 0;
-    }
-    .search input{
-      width:100%;
-      border:1px solid rgba(0,255,102,.14);
-      background: rgba(0,0,0,.28);
-      color:var(--text);
-      outline:none;
-      border-radius:14px;
-      padding:10px 12px;
-      font-family:var(--mono);
-      font-size:12px;
-    }
-    .search input:focus{border-color:rgba(0,255,102,.30); box-shadow: 0 0 0 3px rgba(0,255,102,.10)}
-    .small{
-      font-family:var(--mono);
-      font-size:11px;
-      color:rgba(137,200,157,.65);
-      margin-top:10px;
-      line-height:1.4;
-    }
-
     footer{
       margin-top:14px;
-      color:rgba(137,200,157,.65);
+      color:rgba(167,201,179,.70);
       font-family:var(--mono);
       font-size:11px;
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
+      display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
       opacity:.9;
     }
-
-    .kbd{
-      border:1px solid rgba(0,255,102,.18);
-      background: rgba(0,255,102,.05);
-      padding:2px 6px;
-      border-radius:8px;
-      font-size:11px;
-      font-family:var(--mono);
-      color:var(--text);
+    @media print{
+      body{background:#fff;color:#111}
+      a{color:#111}
+      .btn{display:none}
+      .card{box-shadow:none}
     }
-
-    .toast{
-      position:fixed;
-      bottom:18px;
-      left:50%;
-      transform:translateX(-50%);
-      background: rgba(7,18,10,.92);
-      border:1px solid rgba(0,255,102,.22);
-      border-radius:999px;
-      padding:10px 12px;
-      color:var(--text);
-      font-family:var(--mono);
-      font-size:12px;
-      box-shadow: var(--shadow);
-      opacity:0;
-      pointer-events:none;
-      transition: opacity .18s ease, transform .18s ease;
-      z-index:50;
-      display:flex;
-      gap:10px;
-      align-items:center;
-    }
-    .toast.show{opacity:1; transform:translateX(-50%) translateY(-2px)}
-    .toast .okdot{width:8px;height:8px;border-radius:999px;background:var(--accent); box-shadow:0 0 14px var(--glow)}
   </style>
 </head>
-
 <body>
-  <div class="wrap" id="app">
+  <div class="wrap">
     <header>
-      <div class="brand">
-        <div class="sig" aria-hidden="true"></div>
-        <div class="title">
+      <div class="id">
+        <div class="mark" aria-hidden="true"></div>
+        <div>
           <h1>Nicolas Mesquita Fernandes</h1>
-          <div class="role">Analista de Suporte e Infraestrutura | Segurança da Informação | Automação de Processos | NOC | Suporte Sênior</div>
+          <div class="headline">Analista de Suporte e Infraestrutura | Segurança da Informação | Automação de Processos | NOC | Suporte Sênior</div>
         </div>
       </div>
 
-      <div class="actions">
-        <button class="btn" data-action="print" title="Imprimir / Salvar em PDF"><span class="dot"></span>print/pdf</button>
-        <button class="btn" data-action="copy-contact" title="Copiar contato completo"><span class="dot"></span>copy_contact</button>
-        <a class="btn" href="mailto:omfg_nick@hotmail.com" title="Enviar email"><span class="dot"></span>mail</a>
-        <a class="btn" href="https://www.linkedin.com/in/nicolasmesquita/" target="_blank" rel="noreferrer" title="Abrir LinkedIn"><span class="dot"></span>linkedin</a>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn" onclick="window.print()">Imprimir / PDF</button>
+        <a class="btn" href="mailto:omfg_nick@hotmail.com">Email</a>
+        <a class="btn" href="https://www.linkedin.com/in/nicolasmesquita/" target="_blank" rel="noreferrer">LinkedIn</a>
       </div>
     </header>
 
     <div class="grid">
-      <!-- LEFT: main -->
-      <section class="panel" aria-label="Currículo">
-        <div class="panel-head">
-          <div class="panel-title">
-            <span class="pill"><span class="dot" aria-hidden="true"></span> /cv/main</span>
-            <span class="badge">matrix-corp</span>
-          </div>
-          <div class="panel-title">
-            <span class="badge">N2/N3</span>
-            <span class="badge">NOC</span>
-            <span class="badge">Automação</span>
-            <span class="badge">Segurança</span>
+      <!-- MAIN -->
+      <main class="card">
+        <h2>Apresentação</h2>
+        <div class="pad">
+          <p class="lead">
+            Sou o <b>Nicolas Mesquita Fernandes</b>, profissional de TI com <b>10+ anos</b> atuando em <b>suporte e infraestrutura</b>,
+            com experiência forte em <b>NOC/monitoramento</b>, <b>gestão de incidentes</b> e <b>padronização operacional</b>.
+            Meu foco é manter ambientes estáveis, reduzir indisponibilidades e acelerar a resolução de incidentes com processos claros e automação.
+          </p>
+
+          <ul class="list">
+            <li><b>Suporte N2/N3:</b> troubleshooting de hardware/software, rede e incidentes críticos.</li>
+            <li><b>NOC/SLA:</b> triagem, escalonamento, acompanhamento até normalização e comunicação objetiva.</li>
+            <li><b>Automação:</b> scripts (PowerShell/Bash) e criação de guias/boas práticas para reduzir erro manual.</li>
+            <li><b>Backup & continuidade:</b> NetBackup / HP Data Protector e rotinas de confiabilidade.</li>
+            <li><b>Segurança:</b> boas práticas, auditorias e conscientização de usuários.</li>
+          </ul>
+
+          <div class="chips" aria-label="Destaques rápidos">
+            <span class="chip">N2/N3</span>
+            <span class="chip">NOC / Monitoramento</span>
+            <span class="chip">Remedy / Jira</span>
+            <span class="chip">SolarWinds</span>
+            <span class="chip">NetBackup / Data Protector</span>
+            <span class="chip">Meraki</span>
+            <span class="chip">PowerShell / Bash</span>
           </div>
         </div>
 
-        <div class="content">
-          <!-- Identity / Contact -->
+        <details open>
+          <summary>
+            <span>Experiência (resumo)</span>
+            <span class="meta">últimas + relevantes</span>
+          </summary>
+          <div class="section">
+            <div class="job">
+              <div class="top">
+                <div><b>Técnico de Suporte — Mercado Livre</b> <span class="muted">| Randstad Brasil</span></div>
+                <div class="p">nov/2024 – jan/2026</div>
+              </div>
+              <div class="sum">Suporte presencial, manutenção preventiva, tickets (Jira), MDM, 5S, inventário e padronização por guias.</div>
+            </div>
+
+            <div class="job">
+              <div class="top">
+                <div><b>Operador de Suporte Datacenter — NOC Mc Donalds</b> <span class="muted">| Telefónica Ingeniería de Seguridad</span></div>
+                <div class="p">out/2019 – abr/2022</div>
+              </div>
+              <div class="sum">Monitoramento SolarWinds, incidentes no Remedy, validação de conectividade e acionamento de operadoras; ambiente com Meraki.</div>
+            </div>
+
+            <div class="job">
+              <div class="top">
+                <div><b>Analista de Monitoração / Ponto Focal — NDC</b> <span class="muted">| Stefanini / end-to-end</span></div>
+                <div class="p">nov/2014 – set/2016</div>
+              </div>
+              <div class="sum">Netcool/Omnibus + SiteScope, incidentes Remedy, acionamentos e comunicação com liderança em infraestrutura crítica.</div>
+            </div>
+
+            <div class="small muted" style="margin-top:10px">
+              (A experiência completa pode ser adicionada em uma seção “Detalhada” se você quiser, mas deixei esta versão enxuta para apresentação.)
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span>Competências</span>
+            <span class="meta">stack</span>
+          </summary>
+          <div class="section">
+            <div class="chips">
+              <span class="chip">Windows</span><span class="chip">Linux</span><span class="chip">SQL/SQL Server</span>
+              <span class="chip">SolarWinds</span><span class="chip">Netcool/Omnibus</span><span class="chip">HP SiteScope</span>
+              <span class="chip">BMC Remedy</span><span class="chip">Jira</span><span class="chip">GLPI</span><span class="chip">ITIL</span>
+              <span class="chip">DNS</span><span class="chip">Roteamento/LAN</span><span class="chip">Cisco Meraki</span><span class="chip">Firewalls</span>
+              <span class="chip">PowerShell</span><span class="chip">Bash</span>
+              <span class="chip">NetBackup</span><span class="chip">HP Data Protector</span>
+              <span class="chip">Cibersegurança</span><span class="chip">Pentest</span><span class="chip">Auditoria</span>
+              <span class="chip">Technical English</span>
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span>Formação & Certificações</span>
+            <span class="meta">acadêmico + cursos</span>
+          </summary>
+          <div class="section">
+            <div class="job">
+              <div class="top"><div><b>Formação</b></div></div>
+              <ul class="list">
+                <li>Estácio — <b>Defesa Cibernética</b> (jan/2024)</li>
+                <li>FACCAMP — <b>Bacharelado em Sistemas de Informação</b> (2011–2015)</li>
+                <li>ETEC Gino Rezaghi — <b>Formação</b> (2009–2010)</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <div class="top"><div><b>Certificações / Cursos</b></div></div>
+              <ul class="list">
+                <li>Estácio — PROGRAMAÇÃO PARA INTERNET (jul/2025) • credencial: db67f5df491f166a9630ba5</li>
+                <li>Estácio — DESENVOLVIMENTO DE APLICAÇÕES EM PYTHON (dez/2024) • credencial: 8641f2465a0d1ac13b5067f</li>
+                <li>Estácio — AWS Cloud Practitioner Essentials (abr/2024)</li>
+                <li>Ka Solution — Fase 2 | Capacitação - Computação em Nuvem (abr/2024)</li>
+                <li>Ka Solution — Computação em Nuvem | AWS Discovery Day (mar/2024)</li>
+                <li>Desec Security — Introdução ao Pentest na Prática (jan/2024) • credencial: RWXO-JGIXJ-LYLFC</li>
+                <li>Cisco — Introdução à Cibersegurança (jan/2024)</li>
+                <li>Cisco Meraki — ECMS1 (jun/2021)</li>
+                <li>FASTPATH University — BOOTCAMP Cisco - Meraki (abr/2020)</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+      </main>
+
+      <!-- SIDE -->
+      <aside class="card">
+        <h2>Contato</h2>
+        <div class="pad">
           <div class="kvs">
             <div class="kv">
               <div class="k">Local</div>
@@ -511,7 +318,11 @@
             </div>
             <div class="kv">
               <div class="k">Telefone</div>
-              <div class="v"><a href="#" data-action="copy" data-copy="+55 11 94232-7967">+55 11 94232-7967</a></div>
+              <div class="v"><a href="tel:+5511942327967">+55 11 94232-7967</a></div>
+            </div>
+            <div class="kv">
+              <div class="k">LinkedIn</div>
+              <div class="v"><a href="https://www.linkedin.com/in/nicolasmesquita/" target="_blank" rel="noreferrer">linkedin.com/in/nicolasmesquita</a></div>
             </div>
             <div class="kv">
               <div class="k">GitHub</div>
@@ -519,642 +330,22 @@
             </div>
           </div>
 
-          <!-- About -->
-          <details open>
-            <summary>
-              <span>==&gt; SOBRE</span>
-              <span class="meta">perfil • foco em disponibilidade, SLA e padronização</span>
-            </summary>
-            <div class="details-body">
-              <div>
-                Como Analista de Suporte com uma década de experiência, fui responsável por gerenciar e otimizar a infraestrutura de TI de diversas organizações, garantindo que sistemas e redes funcionassem de maneira eficiente e ininterrupta.
-              </div>
-              <ul>
-                <li><span class="ok">Suporte Técnico Avançado (N2/N3):</span> solução de problemas complexos de hardware e software, falhas de rede, incidentes críticos e segurança de dados.</li>
-                <li><span class="ok">Implementação e Gerenciamento de Sistemas:</span> monitoramento de rede/servidores com detecção proativa; participação em migrações e atualizações com continuidade operacional.</li>
-                <li><span class="ok">Segurança da Informação:</span> políticas de segurança, firewalls e backups; auditorias regulares e treinamento de funcionários em boas práticas.</li>
-                <li><span class="ok">Automatização de Tarefas:</span> scripts e automações para eficiência operacional, redução de erros manuais e economia de tempo (rotinas de backup/alertas).</li>
-                <li><span class="ok">Treinamento e Desenvolvimento:</span> supervisão/treinamento de equipe, compartilhando conhecimento e boas práticas.</li>
-                <li><span class="ok">Colaboração com Fornecedores:</span> relacionamento com fornecedores para resolução rápida e manutenção de contratos de suporte.</li>
-              </ul>
-            </div>
-          </details>
-
-          <!-- Highlights -->
-          <details open>
-            <summary>
-              <span>==&gt; DESTAQUES</span>
-              <span class="meta">resultado • rotina • consistência</span>
-            </summary>
-            <div class="details-body">
-              <ul>
-                <li>Suporte técnico avançado <span class="ok">N2/N3</span> em ambientes de alta demanda.</li>
-                <li><span class="ok">NOC/Monitoração:</span> triagem, escalonamento, acompanhamento e normalização com foco em SLA.</li>
-                <li><span class="ok">Automação</span> e padronização operacional (scripts, guias, boas práticas, 5S).</li>
-                <li><span class="ok">Backup</span> e continuidade (NetBackup / HP Data Protector) + gestão de incidentes (Remedy/Jira).</li>
-              </ul>
-            </div>
-          </details>
-
-          <!-- Stack -->
-          <details open>
-            <summary>
-              <span>==&gt; STACK / COMPETÊNCIAS</span>
-              <span class="meta">tags • filtros rápidos</span>
-            </summary>
-            <div class="details-body">
-              <div class="chips" id="chips"></div>
-              <div class="search">
-                <input id="filter" type="text" placeholder="filtrar experiência/certificações... (ex: SolarWinds, Remedy, NetBackup, Meraki)" autocomplete="off" />
-              </div>
-              <div class="small">
-                Dica: use o filtro pra destacar palavras nas experiências e na lista de certificações.
-              </div>
-            </div>
-          </details>
-
-          <!-- Experience -->
-          <details open>
-            <summary>
-              <span>==&gt; EXPERIÊNCIA (COMPLETA)</span>
-              <span class="meta">10 posições • 2012 → 2026</span>
-            </summary>
-            <div class="details-body" id="experience"></div>
-          </details>
-
-          <!-- Education -->
-          <details>
-            <summary>
-              <span>==&gt; FORMAÇÃO ACADÊMICA</span>
-              <span class="meta">base • graduação • tecnólogo</span>
-            </summary>
-            <div class="details-body" id="education"></div>
-          </details>
-
-          <!-- Certs -->
-          <details>
-            <summary>
-              <span>==&gt; LICENÇAS E CERTIFICAÇÕES</span>
-              <span class="meta">ciber • cloud • meraki</span>
-            </summary>
-            <div class="details-body" id="certs"></div>
-          </details>
-
-          <div class="small">
-            Sugestão de uso: <span class="kbd">Ctrl</span> + <span class="kbd">P</span> para salvar em PDF com layout limpo.
-          </div>
-        </div>
-      </section>
-
-      <!-- RIGHT: timeline (mirror) -->
-      <aside class="panel" aria-label="Timeline (Log Mode)">
-        <div class="panel-head">
-          <div class="panel-title">
-            <span class="pill"><span class="dot" aria-hidden="true"></span> /cv/timeline</span>
-            <span class="badge">log mode</span>
-          </div>
-          <div class="panel-title">
-            <span class="badge">digite: timeline</span>
-          </div>
-        </div>
-
-        <div class="content">
-          <div class="term" role="region" aria-label="Console de timeline">
-            <div class="term-top">
-              <div class="hint">
-                <span class="badge">Espelho da timeline à direita</span>
-                <span class="badge">comandos: <span class="kbd">timeline</span>, <span class="kbd">help</span>, <span class="kbd">clear</span></span>
-              </div>
-              <div class="badge" id="logStatus">ready</div>
-            </div>
-
-            <div class="log" id="log" aria-live="polite"></div>
-
-            <div class="cmdbar">
-              <span class="prompt">&gt;</span>
-              <input id="cmd" type="text" placeholder="digite um comando e pressione Enter..." autocomplete="off" />
-            </div>
-          </div>
-
-          <div class="small">
-            Dica: a timeline é gerada a partir das experiências e formação.  
-            Ela é útil para “contar a história” de forma rápida em entrevistas.
+          <div class="small" style="margin-top:12px">
+            Se quiser, eu adapto essa página em 2 cliques:
+            <br/>• versão “1 página” (super enxuta) • versão “detalhada” (toda a experiência).
           </div>
         </div>
       </aside>
     </div>
 
     <footer>
-      <div>© <span id="year"></span> — Nicolas Mesquita Fernandes</div>
-      <div>layout: matrix-corp • single-file • sem dependências</div>
+      <div>© <span id="y"></span> — Nicolas Mesquita Fernandes</div>
+      <div>Pronto pra imprimir/salvar em PDF</div>
     </footer>
   </div>
 
-  <div class="toast" id="toast" role="status" aria-live="polite">
-    <span class="okdot" aria-hidden="true"></span>
-    <span id="toastMsg">ok</span>
-  </div>
-
-  <script type="module">
-    (() => {
-      "use strict";
-
-      const data = {
-        identity: {
-          name: "Nicolas Mesquita Fernandes",
-          headline: "Analista de Suporte e Infraestrutura | Segurança da Informação | Automação de Processos | NOC | Suporte Sênior",
-          location: "São Paulo, Brasil",
-          email: "omfg_nick@hotmail.com",
-          phone: "+55 11 94232-7967",
-          linkedin: "https://www.linkedin.com/in/nicolasmesquita/",
-          github: "https://github.com/omfgnick"
-        },
-        stack: [
-          "Windows", "Linux", "Microsoft Office", "SQL", "SQL Server",
-          "SolarWinds", "IBM Tivoli Netcool/Omnibus", "HP SiteScope",
-          "BMC Remedy", "Jira", "GLPI", "ITIL", "Gestão de Incidentes", "SLA",
-          "DNS", "Roteamento", "LAN", "Cisco Meraki", "Firewalls",
-          "PowerShell", "Bash", "Automação", "Scripting",
-          "Symantec NetBackup", "HP Data Protector",
-          "Segurança da informação", "Cibersegurança", "Pentest", "Auditoria",
-          "Comunicação", "Trabalho em equipe", "Atendimento ao cliente",
-          "Technical English"
-        ],
-        experience: [
-          {
-            id: "01",
-            title: "Técnico De Suporte - Mercado Livre",
-            company: "Randstad Brasil",
-            mode: "Tempo integral • Presencial",
-            period: "nov/2024 - jan/2026 (1 ano 3 meses)",
-            summary: "Assistência presencial e suporte na disponibilidade de equipamentos; manutenção preventiva; tickets; MDM; 5S; inventário; Jira.",
-            bullets: [
-              "Assistência presencial e suporte na disponibilidade de equipamentos das bancadas; organização dos postos de bateria e handhelds.",
-              "Manutenção preventiva em impressoras, incluindo limpeza da cabeça de impressão e ajuste de etiquetas; suporte em impressoras Zebra.",
-              "Suporte operacional aos usuários para resolução de dúvidas técnicas; suporte em PCs e gerenciamento de senhas.",
-              "Abertura e acompanhamento de tickets para equipamentos das bancadas; utilização do Jira para administração e acompanhamento de chamados.",
-              "Interação direta com MDM para gestão de dispositivos móveis; ajuste e configuração de equipamentos de hardware (ex.: leitores 3D).",
-              "Implementação e manutenção das ações de 5S, assegurando funcionalidade e padronização dos postos de trabalho.",
-              "Elaboração e apresentação de guias básicos de boas práticas para uso correto de equipamentos na operação.",
-              "Gestão e controle de inventário."
-            ],
-            tags: ["Suporte presencial", "Jira", "MDM", "5S", "Inventário", "Zebra"]
-          },
-          {
-            id: "02",
-            title: "Operador de Suporte Datacenter - NOC Mc Donalds",
-            company: "Telefónica Ingeniería de Seguridad",
-            mode: "",
-            period: "out/2019 - abr/2022 (2 anos 7 meses)",
-            summary: "Monitoração de links via SolarWinds; incidentes via BMC Remedy; validação de conectividade; acionamento de operadoras; Cisco Meraki.",
-            bullets: [
-              "Monitoração de links via SolarWinds e abertura/acompanhamento de incidentes pela ferramenta BMC Remedy.",
-              "Validação de conectividade interna nas lojas (Ping) — Switches, Access-Point, Micro Gerência, POS, SAT, KVS, Quiosque e Cisco Meraki.",
-              "Validação de indisponibilidade do link (contato local, sinalização do modem, reinicialização de equipamentos).",
-              "Abertura e encaminhamento de chamados a operadoras; acompanhamento até normalização."
-            ],
-            tags: ["NOC", "SolarWinds", "Remedy", "Meraki", "SLA", "Operadoras"]
-          },
-          {
-            id: "03",
-            title: "Analista de Suporte - Projeto TDATA Telefonica | VIVO",
-            company: "Tech Mahindra - Brasil",
-            mode: "",
-            period: "mai/2019 - set/2019 (5 meses)",
-            summary: "Atuação no NOC Telefônica (Tdata): monitoramento de incidentes, N1, SLA, relatórios, acionamentos e escalonamentos.",
-            bullets: [
-              "Monitoramento de incidentes, atendimento primeiro nível, atualização, acompanhamento e resolução de chamados.",
-              "Acompanhamento de SLA; relatórios e feedback ao cliente via e-mails.",
-              "Ponto de apoio para equipe Tdata; monitoração de servidores virtuais e físicos, infraestrutura e redes.",
-              "Acionamentos, escalonamentos e acompanhamento de disponibilidade do serviço ao cliente.",
-              "Atuação com SolarWinds, Dashboard, Remedy e outras ferramentas."
-            ],
-            tags: ["NOC", "SLA", "SolarWinds", "Remedy", "Relatórios"]
-          },
-          {
-            id: "04",
-            title: "Analista de Suporte - Projeto NOC Mc Donalds Telefonica | VIVO",
-            company: "Tech Mahindra - Brasil",
-            mode: "",
-            period: "nov/2017 - set/2019 (1 ano 11 meses)",
-            summary: "Monitoração de links via SolarWinds; incidentes via BMC Remedy; validação de conectividade e indisponibilidade; operadoras.",
-            bullets: [
-              "Monitoração de links via SolarWinds e abertura/acompanhamento de incidentes pela ferramenta BMC Remedy.",
-              "Validação de conectividade interna nas lojas (Ping) — Switches, Access-Point, Micro Gerencia, POS, SAT, KVS, Quiosque.",
-              "Validação de indisponibilidade do Link (contato local, sinalização modem, reinicialização de equipamentos).",
-              "Abertura e encaminhamento de chamados a operadoras."
-            ],
-            tags: ["NOC", "SolarWinds", "Remedy", "Operadoras", "Conectividade"]
-          },
-          {
-            id: "05",
-            title: "Analista de Suporte - Projeto NOC MC Donalds Telefonica | VIVO",
-            company: "SONDA Brasil",
-            mode: "",
-            period: "fev/2017 - out/2017 (9 meses)",
-            summary: "Monitoração de links via SolarWinds; incidentes via BMC Remedy; validação e acionamento de operadoras.",
-            bullets: [
-              "Monitoração de links via Solarwinds e abertura/acompanhamento de incidentes pela ferramenta BMC Remedy.",
-              "Validação de conectividade interna nas lojas (Ping).",
-              "Validação de indisponibilidade do Link (contato local, sinalização modem, reinicialização).",
-              "Abertura e encaminhamento de chamados a operadoras."
-            ],
-            tags: ["NOC", "SolarWinds", "Remedy", "Operadoras"]
-          },
-          {
-            id: "06",
-            title: "Analista de Produção - Projeto NDC Telefonica | VIVO",
-            company: "end-to-end technology",
-            mode: "",
-            period: "jun/2016 - set/2016 (4 meses)",
-            summary: "Control-M (rerun/hold/free/force ok/kill/run now/confirm/ordenação), schedules, Remedy, restores e NetBackup.",
-            bullets: [
-              "Execução de upload de draft e ações básicas no BMC Control-M (rerun, hold, free, force ok, kill, run now, confirm e ordenação).",
-              "Analisar, escalonar e acompanhar a execução dos schedules em produção.",
-              "Abertura e acompanhamento de chamados pela ferramenta BMC Remedy.",
-              "Restore de políticas de backup; monitoramento de execução via SYMANTEC NetBackup."
-            ],
-            tags: ["Control-M", "Remedy", "NetBackup", "Produção", "Schedules"]
-          },
-          {
-            id: "07",
-            title: "Analista de Monitoração/Ponto Focal - Projeto NDC Telefonica | VIVO",
-            company: "end-to-end technology",
-            mode: "",
-            period: "abr/2016 - set/2016 (6 meses)",
-            summary: "Netcool/Omnibus + SiteScope; incidentes Remedy; acionamento técnico; acompanhamento; comunicação com diretoria/gestores.",
-            bullets: [
-              "Monitoração de infraestrutura e análise de alarmes via IBM Tivoli Netcool/Omnibus em conjunto com HP SiteScope.",
-              "Acionamento técnico e abertura de incidentes na ferramenta BMC Remedy; acompanhamento de equipes técnicas e PCPs.",
-              "Comunicação à alta diretoria e gestores conforme plano de comunicação com tempos definidos."
-            ],
-            tags: ["Netcool/Omnibus", "SiteScope", "Remedy", "Comunicação", "Ponto Focal"]
-          },
-          {
-            id: "08",
-            title: "Analista de Monitoração/Ponto Focal - Projeto NDC Telefonica | VIVO",
-            company: "Stefanini (São Paulo e Região, Brasil)",
-            mode: "",
-            period: "nov/2014 - mar/2016 (1 ano 5 meses)",
-            summary: "Monitoração de infraestrutura crítica; alarmes; Remedy; acionamentos; acompanhamento e comunicação com liderança.",
-            bullets: [
-              "Monitoração de infraestrutura e análise de alarmes em sistemas/servidores críticos via Netcool/Omnibus + HP SiteScope.",
-              "Acionamento técnico, abertura de incidentes no BMC Remedy e acompanhamento de resolução.",
-              "Comunicação com alta diretoria e gestores conforme plano de comunicação."
-            ],
-            tags: ["Netcool/Omnibus", "SiteScope", "Remedy", "Infra crítica", "Comunicação"]
-          },
-          {
-            id: "09",
-            title: "Técnico de Informática Sênior",
-            company: "Lojas Marabraz (São Paulo e Região, Brasil)",
-            mode: "",
-            period: "ago/2013 - mai/2014 (10 meses)",
-            summary: "Monitoramento open-source + mapas; scripts Bash/PowerShell; jobs de backup HP Data Protector; VMware.",
-            bullets: [
-              "Análise e implementação de monitoramento com ferramentas open-source e mapas para visualização.",
-              "Desenvolvimento de scripts em Bash e PowerShell para monitoramento conforme necessidade.",
-              "Acompanhamento e criação de Jobs de Backup via HP Data Protector, mantendo pools e backups disponíveis."
-            ],
-            tags: ["Bash", "PowerShell", "HP Data Protector", "Monitoramento", "VMware"]
-          },
-          {
-            id: "10",
-            title: "Estagiário",
-            company: "XMM Tecnologia da Informação (Cajamar - SP)",
-            mode: "",
-            period: "mar/2012 - mai/2013 (1 ano 3 meses)",
-            summary: "ServiceDesk GLPI; suporte a usuários; redes e servidores; microinformática; cabeamento; roteadores/switches.",
-            bullets: [
-              "Suporte a usuários e atendimento de chamados via ServiceDesk (GLPI).",
-              "Experiência em redes de computadores e servidores.",
-              "Conhecimentos em microinformática e redes (cabeamento, configuração de roteadores e switches)."
-            ],
-            tags: ["GLPI", "Redes", "Suporte", "Cabeamento", "Switch/Roteador"]
-          }
-        ],
-        education: [
-          { school: "Estácio", course: "Defesa Cibernética", period: "jan/2024" },
-          { school: "FACCAMP", course: "Bacharelado em Sistemas de Informação", period: "2011 - 2015" },
-          { school: "ETEC Gino Rezaghi", course: "Formação", period: "2009 - 2010" }
-        ],
-        certs: [
-          { org: "Estácio", name: "PROGRAMAÇÃO PARA INTERNET", date: "jul/2025", cred: "db67f5df491f166a9630ba5" },
-          { org: "Estácio", name: "DESENVOLVIMENTO DE APLICAÇÕES EM PYTHON", date: "dez/2024", cred: "8641f2465a0d1ac13b5067f" },
-          { org: "Estácio", name: "AWS Cloud Practitioner Essentials", date: "abr/2024", cred: "" },
-          { org: "Ka Solution", name: "Fase 2 | Capacitação - Computação em Nuvem", date: "abr/2024", cred: "" },
-          { org: "Ka Solution", name: "Computação em Nuvem | AWS Discovery Day", date: "mar/2024", cred: "" },
-          { org: "Desec Security", name: "Introdução ao Pentest na Prática", date: "jan/2024", cred: "RWXO-JGIXJ-LYLFC" },
-          { org: "Cisco", name: "Introdução à Cibersegurança", date: "jan/2024", cred: "" },
-          { org: "Cisco Meraki", name: "ECMS1 (Engineering Cisco Meraki Solutions 1)", date: "jun/2021", cred: "" },
-          { org: "FASTPATH University", name: "BOOTCAMP Cisco - Meraki", date: "abr/2020", cred: "" }
-        ]
-      };
-
-      const $ = (sel, root=document) => root.querySelector(sel);
-
-      const els = {
-        year: $("#year"),
-        exp: $("#experience"),
-        edu: $("#education"),
-        certs: $("#certs"),
-        chips: $("#chips"),
-        filter: $("#filter"),
-        log: $("#log"),
-        cmd: $("#cmd"),
-        toast: $("#toast"),
-        toastMsg: $("#toastMsg"),
-        logStatus: $("#logStatus")
-      };
-
-      const state = {
-        filter: "",
-        logLines: []
-      };
-
-      function nowStamp(){
-        const d = new Date();
-        const hh = String(d.getHours()).padStart(2,"0");
-        const mm = String(d.getMinutes()).padStart(2,"0");
-        const ss = String(d.getSeconds()).padStart(2,"0");
-        return `${hh}:${mm}:${ss}`;
-      }
-
-      function escapeHtml(s){
-        return String(s)
-          .replaceAll("&","&amp;")
-          .replaceAll("<","&lt;")
-          .replaceAll(">","&gt;")
-          .replaceAll('"',"&quot;")
-          .replaceAll("'","&#039;");
-      }
-
-      function highlight(text, q){
-        if(!q) return escapeHtml(text);
-        const safe = escapeHtml(text);
-        const re = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "ig");
-        return safe.replace(re, `<span class="ok">$1</span>`);
-      }
-
-      function toast(msg){
-        els.toastMsg.textContent = msg;
-        els.toast.classList.add("show");
-        setTimeout(() => els.toast.classList.remove("show"), 1300);
-      }
-
-      async function copyToClipboard(value){
-        try{
-          await navigator.clipboard.writeText(value);
-          toast("copiado");
-        }catch{
-          // fallback
-          const ta = document.createElement("textarea");
-          ta.value = value;
-          ta.style.position = "fixed";
-          ta.style.opacity = "0";
-          document.body.appendChild(ta);
-          ta.select();
-          document.execCommand("copy");
-          ta.remove();
-          toast("copiado");
-        }
-      }
-
-      function renderChips(){
-        const uniq = Array.from(new Set(data.stack));
-        els.chips.innerHTML = uniq.map(t => `<span class="chip" data-chip="${escapeHtml(t)}">${escapeHtml(t)}</span>`).join("");
-        els.chips.addEventListener("click", (e) => {
-          const chip = e.target.closest("[data-chip]");
-          if(!chip) return;
-          const term = chip.getAttribute("data-chip");
-          els.filter.value = term;
-          state.filter = term;
-          renderAll();
-          toast(`filtro: ${term}`);
-        });
-      }
-
-      function renderExperience(){
-        const q = state.filter.trim();
-        const blocks = data.experience.map(job => {
-          const header = `[${job.id}] ${job.title} — ${job.company}${job.mode ? ` (${job.mode})` : ""}\nPeríodo: ${job.period}\nResumo: ${job.summary}`;
-          const match = !q || (
-            header.toLowerCase().includes(q.toLowerCase()) ||
-            job.bullets.some(b => b.toLowerCase().includes(q.toLowerCase())) ||
-            job.tags.some(t => t.toLowerCase().includes(q.toLowerCase()))
-          );
-          if(!match) return "";
-
-          const tags = job.tags?.length
-            ? `<div class="chips">${job.tags.map(t => `<span class="chip">${highlight(t,q)}</span>`).join("")}</div>`
-            : "";
-
-          return `
-            <details open data-job="${job.id}">
-              <summary>
-                <span>[${job.id}] ${highlight(job.title,q)} — ${highlight(job.company,q)} ${job.mode ? `<span class="meta">• ${highlight(job.mode,q)}</span>` : ""}</span>
-                <span class="meta">${highlight(job.period,q)}</span>
-              </summary>
-              <div class="details-body">
-                <div><span class="dim">Resumo:</span> ${highlight(job.summary,q)}</div>
-                <ul>
-                  ${job.bullets.map(b => `<li>${highlight(b,q)}</li>`).join("")}
-                </ul>
-                ${tags}
-              </div>
-            </details>
-          `;
-        }).join("");
-
-        els.exp.innerHTML = blocks || `<div class="small"><span class="warn">Nenhum resultado</span> para o filtro: <span class="kbd">${escapeHtml(q)}</span></div>`;
-      }
-
-      function renderEducation(){
-        const q = state.filter.trim();
-        els.edu.innerHTML = `
-          <ul>
-            ${data.education
-              .filter(e => !q || `${e.school} ${e.course} ${e.period}`.toLowerCase().includes(q.toLowerCase()))
-              .map(e => `<li><span class="ok">${highlight(e.school,q)}</span> — ${highlight(e.course,q)} <span class="dim">(${highlight(e.period,q)})</span></li>`)
-              .join("")}
-          </ul>
-        `;
-      }
-
-      function renderCerts(){
-        const q = state.filter.trim();
-        const items = data.certs
-          .filter(c => !q || `${c.org} ${c.name} ${c.date} ${c.cred}`.toLowerCase().includes(q.toLowerCase()))
-          .map(c => {
-            const cred = c.cred ? ` • <span class="dim">credencial:</span> <span class="ok">${highlight(c.cred,q)}</span>` : "";
-            return `<li><span class="ok">${highlight(c.org,q)}</span> — ${highlight(c.name,q)} <span class="dim">(${highlight(c.date,q)})</span>${cred}</li>`;
-          })
-          .join("");
-
-        els.certs.innerHTML = `<ul>${items || `<li><span class="warn">Nenhum resultado</span></li>`}</ul>`;
-      }
-
-      function timelineEvents(){
-        // Simplificado: mapeia por ordem cronológica (mais antigo -> mais recente) com base no array.
-        // Como os períodos estão em texto, exibimos “as-is” com ordem manual.
-        const jobsOldToNew = [...data.experience].reverse();
-        const eduOldToNew = [...data.education].slice().reverse();
-
-        const events = [];
-
-        // Educação primeiro (base)
-        for(const e of eduOldToNew){
-          events.push({
-            when: e.period,
-            what: `Educação — ${e.school}: ${e.course}`
-          });
-        }
-
-        // Experiência
-        for(const j of jobsOldToNew){
-          events.push({
-            when: j.period,
-            what: `Experiência — [${j.id}] ${j.title} — ${j.company}`
-          });
-        }
-
-        return events;
-      }
-
-      function logPush(message, tone=""){
-        const line = {
-          ts: nowStamp(),
-          msg: message,
-          tone
-        };
-        state.logLines.push(line);
-        renderLog();
-      }
-
-      function renderLog(){
-        const q = state.filter.trim();
-        const html = state.logLines
-          .slice(-220)
-          .map(l => `
-            <div class="line">
-              <div class="ts">${escapeHtml(l.ts)}</div>
-              <div class="msg ${escapeHtml(l.tone)}">${highlight(l.msg, q)}</div>
-            </div>
-          `)
-          .join("");
-        els.log.innerHTML = html;
-        els.log.scrollTop = els.log.scrollHeight;
-      }
-
-      function printTimeline(){
-        const events = timelineEvents();
-        logPush(`<span class="muted">timeline:</span> ${events.length} eventos carregados`, "");
-        for(const e of events){
-          logPush(`<span class="dim">•</span> <span class="ok">${escapeHtml(e.when)}</span> — ${escapeHtml(e.what)}`);
-        }
-      }
-
-      function help(){
-        logPush(`<span class="muted">help:</span> comandos disponíveis: <span class="ok">timeline</span>, <span class="ok">clear</span>, <span class="ok">help</span>`, "");
-        logPush(`dica: clique em chips da stack para aplicar filtro.`, "");
-      }
-
-      function clearLog(){
-        state.logLines = [];
-        renderLog();
-        logPush(`<span class="muted">log:</span> limpo.`, "");
-      }
-
-      function setStatus(text){
-        els.logStatus.textContent = text;
-      }
-
-      function renderAll(){
-        renderExperience();
-        renderEducation();
-        renderCerts();
-        renderLog();
-      }
-
-      function bindUI(){
-        document.addEventListener("click", (e) => {
-          const t = e.target.closest("[data-action]");
-          if(!t) return;
-
-          const action = t.getAttribute("data-action");
-          if(action === "print"){
-            window.print();
-            return;
-          }
-
-          if(action === "copy"){
-            const val = t.getAttribute("data-copy") || "";
-            if(val) copyToClipboard(val);
-            return;
-          }
-
-          if(action === "copy-contact"){
-            const text =
-`Nicolas Mesquita Fernandes
-Analista de Suporte e Infraestrutura | Segurança da Informação | Automação de Processos | NOC | Suporte Sênior
-Local: São Paulo, Brasil
-Email: omfg_nick@hotmail.com
-Telefone: +55 11 94232-7967
-LinkedIn: https://www.linkedin.com/in/nicolasmesquita/
-GitHub: https://github.com/omfgnick`;
-            copyToClipboard(text);
-            return;
-          }
-        });
-
-        els.filter.addEventListener("input", () => {
-          state.filter = els.filter.value;
-          setStatus(state.filter.trim() ? "filtered" : "ready");
-          renderAll();
-        });
-
-        els.cmd.addEventListener("keydown", (e) => {
-          if(e.key !== "Enter") return;
-          const raw = els.cmd.value.trim();
-          if(!raw) return;
-          els.cmd.value = "";
-
-          const cmd = raw.toLowerCase();
-          logPush(`<span class="muted">&gt;</span> ${escapeHtml(raw)}`, "");
-
-          if(cmd === "timeline"){
-            printTimeline();
-          }else if(cmd === "help"){
-            help();
-          }else if(cmd === "clear"){
-            clearLog();
-          }else if(cmd.startsWith("filter ")){
-            const term = raw.slice(7).trim();
-            els.filter.value = term;
-            state.filter = term;
-            setStatus(term ? "filtered" : "ready");
-            renderAll();
-            logPush(`<span class="muted">filter:</span> ${escapeHtml(term || "(vazio)")}`, "");
-          }else{
-            logPush(`<span class="warn">comando desconhecido:</span> ${escapeHtml(raw)} — digite <span class="ok">help</span>`, "");
-          }
-        });
-      }
-
-      function boot(){
-        els.year.textContent = String(new Date().getFullYear());
-        renderChips();
-        bindUI();
-
-        // banner inicial
-        logPush(`<span class="muted">boot:</span> perfil carregado: <span class="ok">${escapeHtml(data.identity.name)}</span>`, "");
-        logPush(`<span class="muted">hint:</span> digite <span class="ok">timeline</span> para reimprimir o espelho aqui.`, "");
-        logPush(`<span class="muted">hint:</span> digite <span class="ok">help</span> para comandos.`, "");
-        renderAll();
-      }
-
-      boot();
-    })();
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>

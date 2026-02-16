@@ -4,169 +4,301 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Nicolas Mesquita Fernandes — Currículo</title>
-  <meta name="description" content="Currículo — Nicolas Mesquita Fernandes | Suporte N1/N2/N3 | Infra | Segurança | Automação | NOC" />
-  <meta name="theme-color" content="#0b0f0c" />
+  <meta name="description" content="Suporte N1/N2/N3 • NOC/SLA • Infra • Segurança • Automação (PowerShell/Bash/Python) — São Paulo, Brasil." />
+  <meta name="theme-color" content="#070b12" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Nicolas Mesquita Fernandes — Currículo" />
+  <meta property="og:description" content="Suporte N1/N2/N3 • NOC/SLA • Infra • Segurança • Automação (PowerShell/Bash/Python) — São Paulo, Brasil." />
+  <!-- Dica: coloque um arquivo og.png no mesmo repo para ficar bonito ao compartilhar -->
+  <meta property="og:image" content="og.png" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <style>
     :root{
-      --bg:#0b0f0c;
-      --card:#101612;
-      --text:#e9fff0;
-      --muted:#a7c9b3;
-      --line:rgba(255,255,255,.08);
-      --accent:#00ff66;
-      --shadow:0 12px 30px rgba(0,0,0,.35);
-      --radius:16px;
+      --bg0:#05060a;
+      --bg1:#070b12;
+      --card:rgba(255,255,255,.06);
+      --card2:rgba(0,0,0,.28);
+      --text:#eaf2ff;
+      --muted:rgba(195,215,255,.78);
+      --line:rgba(255,255,255,.10);
+      --accent:#58d6ff;
+      --accent2:#7c5cff;
+      --ok:#62ffb4;
+
+      --shadow:0 18px 55px rgba(0,0,0,.55);
+      --radius:18px;
+
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
+
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
-      background:
-        radial-gradient(1200px 650px at 20% 10%, rgba(0,255,102,.10), transparent 60%),
-        linear-gradient(180deg, #070a08, #0b0f0c 35%, #070a08);
       color:var(--text);
       font-family:var(--sans);
+      background:
+        radial-gradient(900px 520px at 18% 8%, rgba(88,214,255,.14), transparent 60%),
+        radial-gradient(780px 520px at 82% 10%, rgba(124,92,255,.14), transparent 60%),
+        radial-gradient(650px 520px at 55% 86%, rgba(98,255,180,.10), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1) 40%, var(--bg0));
     }
     a{color:var(--accent); text-decoration:none}
     a:hover{text-decoration:underline}
+    b{font-weight:750}
 
-    .wrap{max-width:1600px;margin:0 auto;padding:28px 18px 48px}
+    .wrap{max-width:1320px;margin:0 auto;padding:18px 16px 54px}
 
-    header{
-      display:flex; gap:14px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;
-      margin-bottom:16px;
+    /* Top Nav */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(5,6,10,.82), rgba(5,6,10,.55));
+      border-bottom: 1px solid rgba(255,255,255,.08);
     }
-    .id{
-      display:flex; gap:12px; align-items:flex-start; min-width:min(980px,100%);
+    .topbar-inner{
+      max-width:1320px;margin:0 auto;padding:10px 16px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
     }
-    .avatar{
-      width:52px;height:52px;border-radius:16px;
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-family:var(--mono);
+      font-size:12px;
+      color:rgba(195,215,255,.82);
+    }
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.95), rgba(88,214,255,.55));
+      box-shadow: 0 0 0 1px rgba(88,214,255,.18), 0 0 22px rgba(88,214,255,.24);
+    }
+    .nav{
+      display:flex; gap:8px; flex-wrap:wrap; align-items:center;
+    }
+    .nav a{
+      font-family:var(--mono);
+      font-size:11px;
+      color:rgba(234,242,255,.92);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:8px 10px;
+      border-radius:999px;
+      text-decoration:none;
+    }
+    .nav a:hover{border-color:rgba(88,214,255,.24)}
+    .nav .pill{
+      border-color: rgba(98,255,180,.18);
+      background: rgba(98,255,180,.06);
+      color: rgba(234,242,255,.96);
+    }
+
+    /* Hero */
+    header.hero{
+      margin-top:14px;
+      display:flex; gap:14px; align-items:stretch; justify-content:space-between; flex-wrap:wrap;
+    }
+    .hero-left{
+      flex: 1 1 660px;
+      min-width: min(660px, 100%);
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, var(--card), var(--card2));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:16px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-left:before{
+      content:"";
+      position:absolute; inset:-2px;
       background:
-        radial-gradient(18px 18px at 30% 30%, rgba(0,255,102,.55), transparent 65%),
-        linear-gradient(145deg, rgba(0,255,102,.18), rgba(0,0,0,.35));
-      border:1px solid rgba(0,255,102,.18);
-      box-shadow:0 0 0 1px rgba(0,255,102,.06), 0 14px 35px rgba(0,0,0,.5);
+        radial-gradient(380px 140px at 15% 0%, rgba(88,214,255,.18), transparent 60%),
+        radial-gradient(420px 160px at 70% -10%, rgba(124,92,255,.18), transparent 60%),
+        radial-gradient(360px 160px at 70% 110%, rgba(98,255,180,.10), transparent 65%);
+      pointer-events:none;
+      opacity:.9;
+    }
+    .hero-left > *{position:relative}
+
+    .idrow{display:flex; gap:12px; align-items:flex-start}
+    .avatar{
+      width:58px;height:58px;border-radius:18px;
       display:grid; place-items:center;
-      font-size:22px;
+      font-size:24px;
+      background:
+        radial-gradient(16px 16px at 30% 30%, rgba(255,255,255,.85), transparent 60%),
+        linear-gradient(135deg, rgba(88,214,255,.18), rgba(124,92,255,.18));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: 0 0 0 1px rgba(88,214,255,.08), 0 18px 55px rgba(0,0,0,.55);
       flex:0 0 auto;
     }
-
     h1{margin:0;font-size:24px;line-height:1.15}
     .headline{margin-top:6px;color:var(--muted);font-size:13px;line-height:1.35}
 
-    .ribbon{
-      display:flex; gap:10px; flex-wrap:wrap;
-      margin-top:10px;
-    }
-    .rb{
-      border:1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.03);
-      border-radius:999px;
-      padding:8px 10px;
+    .badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .badge{
       font-family:var(--mono);
       font-size:11px;
-      color:var(--text);
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:7px 10px;
+      border-radius:999px;
+      display:inline-flex; align-items:center; gap:8px;
+      color:rgba(234,242,255,.95);
+      white-space:nowrap;
+    }
+    .badge.ok{border-color: rgba(98,255,180,.16); background: rgba(98,255,180,.06)}
+    .badge.a{border-color: rgba(88,214,255,.18); background: rgba(88,214,255,.06)}
+    .badge.b{border-color: rgba(124,92,255,.18); background: rgba(124,92,255,.06)}
+
+    .impact{
+      margin-top:12px;
+      border-top:1px solid rgba(255,255,255,.08);
+      padding-top:12px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+    }
+    .impact .one-liner{
+      font-family:var(--mono);
+      font-size:12px;
+      color:rgba(195,215,255,.85);
+    }
+    .impact ul{margin:0; padding-left:18px}
+    .impact li{
+      margin:6px 0;
+      line-height:1.5;
+      color:rgba(234,242,255,.92);
+      font-family:var(--mono);
+      font-size:12px;
     }
 
-    .actions{
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-    }
-    .btn{
-      display:inline-flex;align-items:center;gap:8px;
+    /* Right card */
+    .hero-right{
+      flex: 1 1 360px;
+      min-width: min(360px, 100%);
       border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      color:var(--text);
-      padding:10px 12px;border-radius:14px;
-      box-shadow:var(--shadow);
-      font-family:var(--mono);font-size:12px;
-      user-select:none;
-      cursor:pointer;
+      background: linear-gradient(180deg, var(--card), var(--card2));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:16px;
     }
-    .btn:hover{border-color:rgba(0,255,102,.22)}
-    .ico{filter: drop-shadow(0 0 10px rgba(0,255,102,.14));}
 
     .grid{
+      margin-top:14px;
       display:grid;
-      grid-template-columns: 1.25fr .75fr;
+      grid-template-columns: 1.35fr .65fr;
       gap:14px;
       align-items:start;
     }
     @media (max-width: 1100px){ .grid{grid-template-columns:1fr} }
 
     .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.20));
       border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
+      background: linear-gradient(180deg, var(--card), var(--card2));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
       overflow:hidden;
     }
     .card h2{
       margin:0;
       padding:14px 14px 0;
-      font-size:13px;
-      letter-spacing:.6px;
-      color:var(--muted);
+      font-size:12px;
+      letter-spacing:.7px;
+      color:rgba(195,215,255,.74);
       text-transform:uppercase;
       font-family:var(--mono);
       display:flex;
       align-items:center;
       gap:10px;
     }
-    .h2emoji{font-size:16px}
     .pad{padding:14px}
 
-    .lead{font-size:14px;line-height:1.55;color:var(--text)}
-    .muted{color:var(--muted)}
+    .lead{font-size:14px;line-height:1.6;color:rgba(234,242,255,.95)}
     .list{margin:10px 0 0;padding-left:18px}
-    .list li{margin:6px 0;line-height:1.5}
+    .list li{margin:6px 0;line-height:1.55}
 
     .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
     .chip{
       font-family:var(--mono);
       font-size:11px;
-      border:1px solid rgba(0,255,102,.16);
-      background: rgba(0,255,102,.05);
+      border:1px solid rgba(88,214,255,.18);
+      background: rgba(88,214,255,.06);
       padding:6px 10px;
       border-radius:999px;
+      display:inline-flex; gap:8px; align-items:center;
       white-space:nowrap;
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
     }
+    .chip.alt{border-color: rgba(124,92,255,.18); background: rgba(124,92,255,.06)}
+    .chip.ok{border-color: rgba(98,255,180,.16); background: rgba(98,255,180,.06)}
     .chip .e{opacity:.95}
 
     .kvs{display:grid; gap:10px}
     .kv{
       border:1px solid rgba(255,255,255,.08);
-      background: rgba(0,0,0,.18);
+      background: rgba(0,0,0,.22);
       border-radius:14px;
       padding:10px 12px;
     }
     .k{
       font-family:var(--mono);
       font-size:11px;
-      color:rgba(167,201,179,.75);
+      color:rgba(195,215,255,.70);
       text-transform:uppercase;
       letter-spacing:.6px;
       margin-bottom:6px;
-      display:flex; align-items:center; gap:8px;
+      display:flex; align-items:center; justify-content:space-between; gap:8px;
     }
-    .k .kico{opacity:.9}
     .v{
       font-family:var(--mono);
       font-size:12px;
       line-height:1.35;
       word-break:break-word;
+      color:rgba(234,242,255,.95);
     }
 
+    .copybtn{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: rgba(234,242,255,.92);
+      border-radius:999px;
+      padding:5px 8px;
+      font-family:var(--mono);
+      font-size:10px;
+      cursor:pointer;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .copybtn:hover{border-color: rgba(88,214,255,.26)}
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:18px;
+      transform:translateX(-50%);
+      background: rgba(0,0,0,.72);
+      border:1px solid rgba(255,255,255,.12);
+      color: rgba(234,242,255,.95);
+      padding:10px 12px;
+      border-radius: 12px;
+      font-family: var(--mono);
+      font-size: 11px;
+      box-shadow: var(--shadow);
+      opacity:0;
+      pointer-events:none;
+      transition: opacity .18s ease, transform .18s ease;
+      z-index:99;
+    }
+    .toast.show{opacity:1; transform:translateX(-50%) translateY(-2px)}
+
     .section{padding:14px}
+
     .job{
       border:1px solid rgba(255,255,255,.08);
-      background: rgba(0,0,0,.18);
+      background: rgba(0,0,0,.22);
       border-radius:14px;
       padding:14px;
       margin-top:12px;
@@ -177,251 +309,372 @@
       font-family:var(--mono);
       align-items:baseline;
     }
-    .job .top b{font-weight:700}
-    .job .top .p{color:rgba(167,201,179,.75);font-size:11px}
-    .job .loc{margin-top:6px;color:rgba(167,201,179,.80);font-size:11px;font-family:var(--mono)}
+    .job .top b{font-weight:750}
+    .job .top .p{color:rgba(195,215,255,.72);font-size:11px}
+    .job .loc{margin-top:6px;color:rgba(195,215,255,.78);font-size:11px;font-family:var(--mono)}
     .job .desc{
-      margin-top:10px;color:var(--muted);font-size:12px;line-height:1.55;font-family:var(--mono);
+      margin-top:10px;color:rgba(195,215,255,.82);font-size:12px;line-height:1.6;font-family:var(--mono);
       white-space:pre-wrap
     }
     .job .points{margin:10px 0 0;padding-left:18px}
     .job .points li{
-      margin:6px 0;line-height:1.5;color:var(--text);
+      margin:6px 0;line-height:1.55;color:rgba(234,242,255,.95);
       font-family:var(--mono);font-size:12px
+    }
+
+    .divider{
+      margin-top:14px;
+      border-top:1px dashed rgba(255,255,255,.12);
     }
 
     footer{
       margin-top:14px;
-      color:rgba(167,201,179,.70);
+      color:rgba(195,215,255,.70);
       font-family:var(--mono);
       font-size:11px;
       display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
-      opacity:.9;
+      opacity:.95;
       padding:0 6px;
     }
 
-    @media (max-width: 520px){
-      h1{font-size:20px}
-      .wrap{padding:22px 14px 40px}
-      .avatar{width:46px;height:46px;font-size:20px}
+    /* Back to top */
+    .topbtn{
+      position:fixed;
+      right:16px;
+      bottom:16px;
+      z-index:80;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.60);
+      color: rgba(234,242,255,.95);
+      padding:10px 12px;
+      border-radius:999px;
+      font-family:var(--mono);
+      font-size:11px;
+      cursor:pointer;
+      box-shadow: var(--shadow);
+      opacity:0;
+      transform: translateY(8px);
+      pointer-events:none;
+      transition: opacity .18s ease, transform .18s ease;
+    }
+    .topbtn.show{opacity:1; transform: translateY(0); pointer-events:auto}
+    .topbtn:hover{border-color: rgba(88,214,255,.28)}
+
+    /* Print-friendly */
+    @media print{
+      :root{
+        --text:#111827;
+        --muted:#374151;
+      }
+      html{scroll-behavior:auto}
+      body{
+        background:#ffffff !important;
+        color:#111827 !important;
+      }
+      .topbar, .topbtn, .toast{display:none !important}
+      .hero-left, .hero-right, .card, .job, .kv{
+        box-shadow:none !important;
+        background:#ffffff !important;
+        border:1px solid #e5e7eb !important;
+      }
+      a{color:#111827 !important; text-decoration:none !important}
+      .chip, .badge{
+        border:1px solid #e5e7eb !important;
+        background:#f9fafb !important;
+        color:#111827 !important;
+      }
+      .job{break-inside:avoid-page}
+      .section{padding:12px}
+      .wrap{padding:0}
+      footer{color:#6b7280 !important}
     }
   </style>
 </head>
+
 <body>
+  <!-- Sticky nav -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Nicolas Mesquita Fernandes • CV</span>
+        <span style="opacity:.65">—</span>
+        <span style="opacity:.85">Suporte / NOC / Infra / Segurança / Automação</span>
+      </div>
+      <nav class="nav" aria-label="Navegação">
+        <a class="pill" href="#sobre">👋 Sobre</a>
+        <a href="#destaques">⚡ Destaques</a>
+        <a href="#experiencia">🧩 Experiência</a>
+        <a href="#skills">🧰 Skills</a>
+        <a href="#formacao">🎓 Formação</a>
+        <a href="#certs">🏅 Certificações</a>
+        <a href="#contato">📇 Contato</a>
+      </nav>
+    </div>
+  </div>
+
   <div class="wrap">
-    <header>
-      <div class="id">
-        <div class="avatar" aria-hidden="true">🧑‍💻</div>
-        <div>
-          <h1>Nicolas Mesquita Fernandes</h1>
-          <div class="headline">Analista de Suporte e Infraestrutura | Segurança da Informação | Automação de Processos | NOC | Suporte Sênior</div>
-          <div class="ribbon">
-            <span class="rb">📍 São Paulo, Brasil</span>
-            <span class="rb">🧰 Suporte N1/N2/N3</span>
-            <span class="rb">📡 NOC</span>
-            <span class="rb">⚙️ Automação</span>
-            <span class="rb">🛡️ Segurança</span>
+    <!-- HERO -->
+    <header class="hero" id="top">
+      <div class="hero-left">
+        <div class="idrow">
+          <div class="avatar" aria-hidden="true">🧑‍💻</div>
+          <div>
+            <h1>Nicolas Mesquita Fernandes</h1>
+            <div class="headline">Analista de Suporte e Infraestrutura | Segurança da Informação | Automação de Processos | NOC | Suporte Sênior</div>
+
+            <div class="badges" id="destaques">
+              <span class="badge ok">📍 São Paulo, Brasil</span>
+              <span class="badge a">🧰 Suporte N1/N2/N3</span>
+              <span class="badge a">📡 NOC / SLA</span>
+              <span class="badge b">⚙️ Automação (PowerShell/Bash/Python)</span>
+              <span class="badge ok">🗄️ Backup (NetBackup / Data Protector)</span>
+              <span class="badge b">🛡️ Segurança / Boas práticas</span>
+            </div>
+
+            <div class="impact">
+              <div class="one-liner">📌 <b>Resumo em 1 linha:</b> Suporte <b>N1/N2/N3</b> + <b>NOC/SLA</b> + automação para reduzir falhas, acelerar resposta e manter continuidade operacional.</div>
+              <ul>
+                <li>⚡ Triagem, escalonamento e acompanhamento até normalização (foco em SLA e comunicação objetiva).</li>
+                <li>🧪 Padronização operacional (guias/boas práticas/5S) + prevenção para reduzir indisponibilidade.</li>
+                <li>🤖 Automação com PowerShell/Bash/Python para rotinas (alertas, manutenção, tarefas repetitivas).</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="actions">
-        <a class="btn" href="mailto:omfg_nick@hotmail.com"><span class="ico">✉️</span> Email</a>
-        <a class="btn" href="https://www.linkedin.com/in/nicolasmesquita/" target="_blank" rel="noreferrer"><span class="ico">💼</span> LinkedIn</a>
-        <a class="btn" href="https://github.com/omfgnick" target="_blank" rel="noreferrer"><span class="ico">🐙</span> GitHub</a>
+      <div class="hero-right" id="contato">
+        <div class="kvs">
+          <div class="kv">
+            <div class="k">✉️ Email <button class="copybtn" data-copy="omfg_nick@hotmail.com" type="button">copiar</button></div>
+            <div class="v"><a href="mailto:omfg_nick@hotmail.com">omfg_nick@hotmail.com</a></div>
+          </div>
+
+          <div class="kv">
+            <div class="k">📞 Telefone <button class="copybtn" data-copy="+5511942327967" type="button">copiar</button></div>
+            <div class="v"><a href="tel:+5511942327967">+55 11 94232-7967</a></div>
+          </div>
+
+          <div class="kv">
+            <div class="k">💼 LinkedIn <button class="copybtn" data-copy="https://www.linkedin.com/in/nicolasmesquita/" type="button">copiar</button></div>
+            <div class="v"><a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/nicolasmesquita/">linkedin.com/in/nicolasmesquita</a></div>
+          </div>
+
+          <div class="kv">
+            <div class="k">🐙 GitHub <button class="copybtn" data-copy="https://github.com/omfgnick" type="button">copiar</button></div>
+            <div class="v"><a target="_blank" rel="noreferrer" href="https://github.com/omfgnick">github.com/omfgnick</a></div>
+          </div>
+
+          <div class="kv">
+            <div class="k">📌 Local</div>
+            <div class="v">São Paulo, Brasil</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="badges" style="margin-top:12px">
+          <a class="badge a" href="mailto:omfg_nick@hotmail.com">✉️ Email</a>
+          <a class="badge b" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/nicolasmesquita/">💼 LinkedIn</a>
+          <a class="badge ok" target="_blank" rel="noreferrer" href="https://github.com/omfgnick">🐙 GitHub</a>
+        </div>
       </div>
     </header>
 
     <div class="grid">
+      <!-- MAIN -->
       <main class="card">
-        <h2><span class="h2emoji">👋</span> Apresentação</h2>
+        <h2 id="sobre">👋 Sobre</h2>
         <div class="pad">
           <p class="lead">
-            Sou o <b>Nicolas Mesquita Fernandes</b>, profissional de TI com <b>10+ anos</b> em <b>suporte e infraestrutura</b>,
-            com atuação em <b>suporte N1/N2/N3</b>, <b>NOC/monitoramento</b>, <b>gestão de incidentes</b> e <b>padronização operacional</b>.
-            Meu foco é manter ambientes estáveis, reduzir indisponibilidades e acelerar a resolução com processos claros e automação.
+            Como Analista de Suporte com uma década de experiência, fui responsável por gerenciar e otimizar a infraestrutura de TI de diversas organizações,
+            garantindo que sistemas e redes funcionassem de maneira eficiente e ininterrupta.
           </p>
 
           <ul class="list">
-            <li>🧰 <b>Suporte N1/N2/N3:</b> troubleshooting de hardware/software, rede e incidentes críticos.</li>
-            <li>📡 <b>NOC/SLA:</b> triagem, escalonamento, acompanhamento até normalização e comunicação objetiva.</li>
-            <li>⚙️ <b>Automação:</b> rotinas e scripts com <b>PowerShell</b>, <b>Bash</b> e <b>Python</b> para reduzir erro manual e tempo de resposta.</li>
-            <li>🗄️ <b>Backup & continuidade:</b> NetBackup / HP Data Protector e rotinas de confiabilidade.</li>
-            <li>🛡️ <b>Segurança:</b> boas práticas, auditorias e conscientização de usuários.</li>
+            <li>🧰 <b>Suporte Técnico Avançado (N1/N2/N3):</b> solução de problemas complexos de hardware/software, falhas de rede, incidentes críticos e segurança de dados.</li>
+            <li>🛰️ <b>Implementação e Gerenciamento de Sistemas:</b> monitoramento de rede/servidores com detecção proativa; participação em migrações e atualizações com continuidade operacional.</li>
+            <li>🛡️ <b>Segurança da Informação:</b> políticas de segurança, firewalls e backups; auditorias regulares e treinamento de funcionários em boas práticas.</li>
+            <li>⚙️ <b>Automatização de Tarefas:</b> scripts e automações para eficiência operacional, redução de erros manuais e economia de tempo (rotinas de backup/alertas).</li>
+            <li>📚 <b>Treinamento e Desenvolvimento:</b> supervisão/treinamento de equipe, compartilhando conhecimento e boas práticas.</li>
+            <li>🤝 <b>Colaboração com Fornecedores:</b> relacionamento com fornecedores para resolução rápida e manutenção de contratos de suporte.</li>
           </ul>
-
-          <div class="chips" aria-label="Destaques rápidos">
-            <span class="chip"><span class="e">🧰</span> N1/N2/N3</span>
-            <span class="chip"><span class="e">📡</span> NOC / Monitoramento</span>
-            <span class="chip"><span class="e">🧾</span> Remedy / Jira</span>
-            <span class="chip"><span class="e">🛰️</span> SolarWinds</span>
-            <span class="chip"><span class="e">🗄️</span> NetBackup / Data Protector</span>
-            <span class="chip"><span class="e">📶</span> Meraki</span>
-            <span class="chip"><span class="e">🐍</span> PowerShell / Bash / Python</span>
-          </div>
         </div>
 
-        <h2><span class="h2emoji">🧩</span> Experiência (completa)</h2>
+        <h2 id="experiencia">🧩 Experiência (completa)</h2>
         <div class="section">
-
+          <!-- [01] -->
           <article class="job">
             <div class="top">
-              <div><b>🧰 Técnico De Suporte - Mercado Livre</b> <span class="muted">| Randstad Brasil · Tempo integral</span></div>
+              <div><b>🧰 Técnico De Suporte - Mercado Livre</b> <span style="opacity:.85">| Randstad Brasil · Tempo integral</span></div>
               <div class="p">📅 nov/2024 – jan/2026 · 1 ano 3 meses</div>
             </div>
             <div class="loc">🏢 Presencial</div>
-            <div class="desc">Assistência presencial e suporte na disponibilidade de equipamentos das bancadas, organização dos postos de bateria e handhelds, manutenção preventiva em impressoras, incluindo limpeza da cabeça de impressão e ajuste de etiquetas, suporte operacional aos usuários para resolução de dúvidas técnicas, abertura e acompanhamento de tickets para equipamentos das bancadas, implementação e manutenção das ações de 5S, assegurando funcionalidade dos equipamentos e padronização dos postos de trabalho, elaboração e apresentação de guias básicos de boas práticas para uso correto de equipamentos na operação, suporte aos usuários em PCs, impressoras Zebra, handhelds e gerenciamento de senhas, com interação direta com MDM para gestão de dispositivos móveis, ajuste e configuração de equipamentos de hardware, como leitores 3D, e suporte técnico com foco em Windows, gestão e controle de inventário, utilização do Jira para administração e acompanhamento de chamados.</div>
+            <div class="desc">Assistência presencial e suporte na disponibilidade de equipamentos; manutenção preventiva; tickets; MDM; 5S; inventário; Jira.</div>
             <ul class="points">
-              <li>🧩 Assistência presencial e suporte na disponibilidade de equipamentos das bancadas; organização dos postos de bateria e handhelds.</li>
-              <li>🖨️ Manutenção preventiva em impressoras; limpeza da cabeça de impressão e ajuste de etiquetas; suporte em impressoras Zebra.</li>
-              <li>👥 Suporte operacional aos usuários; resolução de dúvidas técnicas; suporte em PCs e gerenciamento de senhas.</li>
-              <li>🧾 Abertura e acompanhamento de tickets; utilização do Jira para administração e acompanhamento de chamados.</li>
-              <li>📱 Interação com MDM para gestão de dispositivos móveis; ajuste/configuração de hardware (ex.: leitores 3D).</li>
-              <li>🧹 Implementação e manutenção das ações de 5S, assegurando funcionalidade e padronização dos postos de trabalho.</li>
-              <li>📚 Elaboração e apresentação de guias básicos de boas práticas para uso correto de equipamentos na operação.</li>
-              <li>📦 Gestão e controle de inventário.</li>
+              <li>Assistência presencial e suporte na disponibilidade de equipamentos das bancadas; organização dos postos de bateria e handhelds.</li>
+              <li>Manutenção preventiva em impressoras, incluindo limpeza da cabeça de impressão e ajuste de etiquetas; suporte em impressoras Zebra.</li>
+              <li>Suporte operacional aos usuários para resolução de dúvidas técnicas; suporte em PCs e gerenciamento de senhas.</li>
+              <li>Abertura e acompanhamento de tickets para equipamentos das bancadas; utilização do Jira para administração e acompanhamento de chamados.</li>
+              <li>Interação direta com MDM para gestão de dispositivos móveis; ajuste e configuração de equipamentos de hardware (ex.: leitores 3D).</li>
+              <li>Implementação e manutenção das ações de 5S, assegurando funcionalidade e padronização dos postos de trabalho.</li>
+              <li>Elaboração e apresentação de guias básicos de boas práticas para uso correto de equipamentos na operação.</li>
+              <li>Gestão e controle de inventário.</li>
             </ul>
           </article>
 
+          <!-- [02] -->
           <article class="job">
             <div class="top">
-              <div><b>📡 Operador de Suporte Datacenter - NOC Mc Donalds</b> <span class="muted">| Telefónica Ingeniería de Seguridad</span></div>
+              <div><b>📡 Operador de Suporte Datacenter - NOC Mc Donalds</b> <span style="opacity:.85">| Telefónica Ingeniería de Seguridad</span></div>
               <div class="p">📅 out/2019 – abr/2022 · 2 anos 7 meses</div>
             </div>
-            <div class="desc">Monitoração de links via Solarwinds e abertura/acompanhamento de incidentes pela ferramenta BMC Remedy. Validação de conectividade interna nas lojas - Ping (Switches, Access-Point, Micro Gerencia, Sala de Break, Ponto Consultor POS, SAT, KVS, Quiosque, CISCO Meraki). Validação de indisponibilidade do Link (contato local, sinalização modem, reinicialização de equipamentos). Abertura e encaminhamento de chamados a operadoras.</div>
+            <div class="desc">Monitoração de links via SolarWinds; incidentes via BMC Remedy; validação de conectividade; acionamento de operadoras; Cisco Meraki.</div>
             <ul class="points">
-              <li>🛰️ Monitoração de links via SolarWinds e incidentes no BMC Remedy.</li>
-              <li>📶 Validação de conectividade (Ping) — switches, AP, POS, SAT, KVS, quiosque e Cisco Meraki.</li>
-              <li>🔌 Validação de indisponibilidade do link e procedimentos de normalização.</li>
-              <li>📞 Abertura/encaminhamento de chamados para operadoras e acompanhamento.</li>
+              <li>Monitoração de links via SolarWinds e abertura/acompanhamento de incidentes pela ferramenta BMC Remedy.</li>
+              <li>Validação de conectividade interna nas lojas (Ping) — Switches, Access-Point, Micro Gerência, POS, SAT, KVS, Quiosque e Cisco Meraki.</li>
+              <li>Validação de indisponibilidade do link (contato local, sinalização do modem, reinicialização de equipamentos).</li>
+              <li>Abertura e encaminhamento de chamados a operadoras; acompanhamento até normalização.</li>
             </ul>
           </article>
 
+          <!-- [03] -->
           <article class="job">
             <div class="top">
-              <div><b>🧭 Analista de Suporte - Projeto TDATA Telefonica | VIVO</b> <span class="muted">| Tech Mahindra - Brasil</span></div>
+              <div><b>🧭 Analista de Suporte - Projeto TDATA Telefonica | VIVO</b> <span style="opacity:.85">| Tech Mahindra - Brasil</span></div>
               <div class="p">📅 mai/2019 – set/2019 · 5 meses</div>
             </div>
-            <div class="desc">Atuação no NOC Telefônica (Tdata), realizando monitoramento de incidentes, atendimento primeiro nível, atualização, acompanhamento e resolução de chamados, acompanhamento de SLA, atuação com Emails elaborando relatórios e feedback ao cliente. Ponto de apoio para a equipe de Tdata, parte de monitoração de servidores virtuais e físicos, infraestrutura, redes, realizando acionamentos, escalonamentos e acompanhamento de disponibilidade do serviço ao cliente. Atuação com SolarWinds, Dashboard, Remedy, entre outras ferramentas.</div>
+            <div class="desc">Atuação no NOC Telefônica (Tdata): monitoramento de incidentes, N1, SLA, relatórios, acionamentos e escalonamentos.</div>
             <ul class="points">
-              <li>📌 Monitoramento e atendimento de primeiro nível (N1) com atualização e acompanhamento.</li>
-              <li>📈 Acompanhamento de SLA, relatórios e feedback ao cliente via e-mail.</li>
-              <li>🧩 Apoio à equipe: monitoração de servidores virtuais e físicos, infraestrutura e redes.</li>
-              <li>📣 Acionamentos, escalonamentos e acompanhamento de disponibilidade do serviço.</li>
+              <li>Monitoramento de incidentes, atendimento primeiro nível, atualização, acompanhamento e resolução de chamados.</li>
+              <li>Acompanhamento de SLA; relatórios e feedback ao cliente via e-mails.</li>
+              <li>Ponto de apoio para equipe Tdata; monitoração de servidores virtuais e físicos, infraestrutura e redes.</li>
+              <li>Acionamentos, escalonamentos e acompanhamento de disponibilidade do serviço ao cliente.</li>
+              <li>Atuação com SolarWinds, Dashboard, Remedy e outras ferramentas.</li>
             </ul>
           </article>
 
+          <!-- [04] -->
           <article class="job">
             <div class="top">
-              <div><b>📡 Analista de Suporte - Projeto NOC Mc Donalds Telefonica | VIVO</b> <span class="muted">| Tech Mahindra - Brasil</span></div>
+              <div><b>📡 Analista de Suporte - Projeto NOC Mc Donalds Telefonica | VIVO</b> <span style="opacity:.85">| Tech Mahindra - Brasil</span></div>
               <div class="p">📅 nov/2017 – set/2019 · 1 ano 11 meses</div>
             </div>
-            <div class="desc">Monitoração de links via Solarwinds e abertura/acompanhamento de incidentes pela ferramenta BMC Remedy. Validação de conectividade interna nas lojas - Ping (Switches, Access-Point, Micro Gerencia, Sala de Break, Ponto Consultor POS, SAT, KVS, Quiosque). Validação de indisponibilidade do Link (contato local, sinalização modem, reinicialização de equipamentos). Abertura e encaminhamento de chamados a operadoras.</div>
+            <div class="desc">Monitoração de links via SolarWinds; incidentes via BMC Remedy; validação de conectividade e indisponibilidade; operadoras.</div>
             <ul class="points">
-              <li>🛰️ Monitoração de links via SolarWinds e incidentes no Remedy.</li>
-              <li>📶 Validação de conectividade interna (Ping) e checagem de equipamentos.</li>
-              <li>🔌 Diagnóstico de indisponibilidade e procedimentos de normalização.</li>
-              <li>📞 Abertura/encaminhamento de chamados a operadoras.</li>
+              <li>Monitoração de links via SolarWinds e abertura/acompanhamento de incidentes pela ferramenta BMC Remedy.</li>
+              <li>Validação de conectividade interna nas lojas (Ping) — Switches, Access-Point, Micro Gerencia, POS, SAT, KVS, Quiosque.</li>
+              <li>Validação de indisponibilidade do Link (contato local, sinalização modem, reinicialização de equipamentos).</li>
+              <li>Abertura e encaminhamento de chamados a operadoras.</li>
             </ul>
           </article>
 
+          <!-- [05] -->
           <article class="job">
             <div class="top">
-              <div><b>📡 Analista de Suporte - Projeto NOC MC Donalds Telefonica | VIVO</b> <span class="muted">| SONDA Brasil</span></div>
+              <div><b>📡 Analista de Suporte - Projeto NOC MC Donalds Telefonica | VIVO</b> <span style="opacity:.85">| SONDA Brasil</span></div>
               <div class="p">📅 fev/2017 – out/2017 · 9 meses</div>
             </div>
-            <div class="desc">Monitoração de links via Solarwinds e abertura/acompanhamento de incidentes pela ferramenta BMC Remedy. Validação de conectividade interna nas lojas - Ping (Switches, Access-Point, Micro Gerencia, Sala de Break, Ponto Consultor POS, SAT, KVS, Quiosque). Validação de indisponibilidade do Link (contato local, sinalização modem, reinicialização de equipamentos). Abertura e encaminhamento de chamados a operadoras.</div>
+            <div class="desc">Monitoração de links via SolarWinds; incidentes via BMC Remedy; validação e acionamento de operadoras.</div>
             <ul class="points">
-              <li>🛰️ Monitoramento e abertura/acompanhamento de incidentes.</li>
-              <li>📶 Validações de conectividade e suporte à normalização.</li>
-              <li>📞 Acionamento de operadoras e acompanhamento até normalização.</li>
+              <li>Monitoração de links via SolarWinds e abertura/acompanhamento de incidentes pela ferramenta BMC Remedy.</li>
+              <li>Validação de conectividade interna nas lojas (Ping).</li>
+              <li>Validação de indisponibilidade do Link (contato local, sinalização modem, reinicialização).</li>
+              <li>Abertura e encaminhamento de chamados a operadoras.</li>
             </ul>
           </article>
 
+          <!-- [06] -->
           <article class="job">
             <div class="top">
-              <div><b>⚙️ Analista de Produção - Projeto NDC Telefonica | VIVO</b> <span class="muted">| end-to-end technology</span></div>
+              <div><b>⚙️ Analista de Produção - Projeto NDC Telefonica | VIVO</b> <span style="opacity:.85">| end-to-end technology</span></div>
               <div class="p">📅 jun/2016 – set/2016 · 4 meses</div>
             </div>
-            <div class="desc">Execução de upload de draft e ações básicas no BMC Control-M (rerun, hold, free, force ok, kill, run now, confirm e ordenação). Analisar, escalonar e acompanhar a execução dos schedules em produção. Abertura e acompanhamento de chamados pela ferramenta BMC Remedy, restore de políticas de backup, monitoramento de execução de políticas via SYMANTEC NetBackup.</div>
+            <div class="desc">Control-M (rerun/hold/free/force ok/kill/run now/confirm/ordenação), schedules, Remedy, restores e NetBackup.</div>
             <ul class="points">
-              <li>🧾 Operação de rotinas no Control-M (rerun/hold/free/force ok/kill/run now/confirm/ordenação).</li>
-              <li>📋 Acompanhamento de schedules em produção e escalonamento.</li>
-              <li>🗄️ Restore e monitoramento de backups via Symantec NetBackup.</li>
+              <li>Execução de upload de draft e ações básicas no BMC Control-M (rerun, hold, free, force ok, kill, run now, confirm e ordenação).</li>
+              <li>Analisar, escalonar e acompanhar a execução dos schedules em produção.</li>
+              <li>Abertura e acompanhamento de chamados pela ferramenta BMC Remedy.</li>
+              <li>Restore de políticas de backup; monitoramento de execução via Symantec NetBackup.</li>
             </ul>
           </article>
 
+          <!-- [07] -->
           <article class="job">
             <div class="top">
-              <div><b>🧠 Analista de Monitoração/Ponto Focal - Projeto NDC Telefonica | VIVO</b> <span class="muted">| end-to-end technology</span></div>
+              <div><b>🧠 Analista de Monitoração/Ponto Focal - Projeto NDC Telefonica | VIVO</b> <span style="opacity:.85">| end-to-end technology</span></div>
               <div class="p">📅 abr/2016 – set/2016 · 6 meses</div>
             </div>
-            <div class="desc">Monitoração de infraestrutura e análise de alarmes de diversos sistemas/servidores críticos através da ferramenta IBM Tivoli Netcool/Omnibus em conjunto com HP SiteScope, efetuando acionamento técnico, abertura de incidentes na ferramenta BMC Remedy e também acompanhamento de equipes técnicas e PCPs responsáveis na resolução dos incidentes, comunicando a alta diretoria e gestores com tempos definidos através do plano de comunicação da empresa.</div>
+            <div class="desc">Netcool/Omnibus + SiteScope; incidentes Remedy; acionamento técnico; acompanhamento; comunicação com diretoria/gestores.</div>
             <ul class="points">
-              <li>📊 Monitoração e análise de alarmes via Netcool/Omnibus + HP SiteScope.</li>
-              <li>📣 Acionamento técnico e gestão de incidentes no BMC Remedy.</li>
-              <li>🏛️ Comunicação com diretoria/gestores conforme plano de comunicação.</li>
+              <li>Monitoração de infraestrutura e análise de alarmes via IBM Tivoli Netcool/Omnibus em conjunto com HP SiteScope.</li>
+              <li>Acionamento técnico e abertura de incidentes na ferramenta BMC Remedy; acompanhamento de equipes técnicas e PCPs.</li>
+              <li>Comunicação à alta diretoria e gestores conforme plano de comunicação com tempos definidos.</li>
             </ul>
           </article>
 
+          <!-- [08] -->
           <article class="job">
             <div class="top">
-              <div><b>🧠 Analista de Monitoração/Ponto Focal - Projeto NDC Telefonica | VIVO</b> <span class="muted">| Stefanini</span></div>
+              <div><b>🧠 Analista de Monitoração/Ponto Focal - Projeto NDC Telefonica | VIVO</b> <span style="opacity:.85">| Stefanini</span></div>
               <div class="p">📅 nov/2014 – mar/2016 · 1 ano 5 meses</div>
             </div>
             <div class="loc">📍 São Paulo e Região, Brasil</div>
-            <div class="desc">Monitoração de infraestrutura e análise de alarmes de diversos sistemas/servidores críticos através da ferramenta IBM Tivoli Netcool/Omnibus em conjunto com HP SiteScope, efetuando acionamento técnico, abertura de incidentes na ferramenta BMC Remedy e também acompanhamento de equipes técnicas e PCPs responsáveis na resolução dos incidentes, comunicando a alta diretoria e gestores com tempos definidos através do plano de comunicação da empresa.</div>
+            <div class="desc">Monitoração de infraestrutura crítica; alarmes; Remedy; acionamentos; acompanhamento e comunicação com liderança.</div>
             <ul class="points">
-              <li>📊 Monitoração de infraestrutura crítica e análise de alarmes.</li>
-              <li>📌 Abertura/acompanhamento de incidentes (Remedy) e acionamentos.</li>
-              <li>🏛️ Comunicação com liderança conforme plano de comunicação.</li>
+              <li>Monitoração de infraestrutura e análise de alarmes em sistemas/servidores críticos via Netcool/Omnibus + HP SiteScope.</li>
+              <li>Acionamento técnico, abertura de incidentes no BMC Remedy e acompanhamento de resolução.</li>
+              <li>Comunicação com alta diretoria e gestores conforme plano de comunicação.</li>
             </ul>
           </article>
 
+          <!-- [09] -->
           <article class="job">
             <div class="top">
-              <div><b>🛠️ Técnico de Informática Sênior</b> <span class="muted">| Lojas Marabraz</span></div>
+              <div><b>🛠️ Técnico de Informática Sênior</b> <span style="opacity:.85">| Lojas Marabraz</span></div>
               <div class="p">📅 ago/2013 – mai/2014 · 10 meses</div>
             </div>
             <div class="loc">📍 São Paulo e Região, Brasil</div>
-            <div class="desc">Analise e implementação de monitoramento para ambientes informatizados, utilizando ferramentas Open-Source, juntamente com mapas para visualização dos mesmos, visando facilidade do acompanhamento das equipes sobre a saúde do ambiente. Junto a isso, desenvolvendo scripts em Bash e PowerShell para monitoramento dos sistemas, de acordo com a necessidade. Também acompanhando e criando Jobs de Backup através da ferramenta HP Data Protector, mantendo os pools e backups sempre disponíveis.</div>
+            <div class="desc">Monitoramento open-source + mapas; scripts Bash/PowerShell; jobs de backup HP Data Protector; VMware.</div>
             <ul class="points">
-              <li>🗺️ Monitoramento com ferramentas open-source e mapas de visualização.</li>
-              <li>🐚 Scripts Bash/PowerShell para monitoramento sob demanda.</li>
-              <li>🗄️ Jobs de backup via HP Data Protector (pools/backups disponíveis).</li>
+              <li>Análise e implementação de monitoramento com ferramentas open-source e mapas para visualização.</li>
+              <li>Desenvolvimento de scripts em Bash e PowerShell para monitoramento conforme necessidade.</li>
+              <li>Acompanhamento e criação de Jobs de Backup via HP Data Protector, mantendo pools e backups disponíveis.</li>
             </ul>
           </article>
 
+          <!-- [10] -->
           <article class="job">
             <div class="top">
-              <div><b>🎓 Estagiário</b> <span class="muted">| XMM Tecnologia da Informação</span></div>
+              <div><b>🎓 Estagiário</b> <span style="opacity:.85">| XMM Tecnologia da Informação</span></div>
               <div class="p">📅 mar/2012 – mai/2013 · 1 ano 3 meses</div>
             </div>
             <div class="loc">📍 Cajamar - SP</div>
-            <div class="desc">Suporte à usuários e atendimento de chamados via ServiceDesk (GLPI). Experiência em redes de computadores e servidores. Amplos conhecimentos em microinformática e redes (cabeamento, configuração de routers e switches), atendendo chamados de colaboradores em clientes de pequeno, médio e grande porte.</div>
+            <div class="desc">ServiceDesk GLPI; suporte a usuários; redes e servidores; microinformática; cabeamento; roteadores/switches.</div>
             <ul class="points">
-              <li>🧾 Atendimento de chamados via GLPI e suporte a usuários.</li>
-              <li>🌐 Vivência com redes e servidores.</li>
-              <li>🔧 Cabeamento, roteadores e switches; microinformática.</li>
+              <li>Suporte a usuários e atendimento de chamados via ServiceDesk (GLPI).</li>
+              <li>Experiência em redes de computadores e servidores.</li>
+              <li>Conhecimentos em microinformática e redes (cabeamento, configuração de roteadores e switches).</li>
             </ul>
           </article>
-
         </div>
 
-        <h2><span class="h2emoji">🎓</span> Formação & Certificações</h2>
+        <h2 id="formacao">🎓 Formação Acadêmica</h2>
         <div class="section">
           <div class="job">
-            <div class="top"><div><b>🎓 Formação</b></div></div>
-            <ul class="list">
+            <ul class="list" style="margin-top:0">
               <li>Estácio — <b>Defesa Cibernética</b> (jan/2024)</li>
-              <li>FACCAMP — <b>Bacharelado em Sistemas de Informação</b> (2011–2015)</li>
-              <li>ETEC Gino Rezaghi — <b>Formação</b> (2009–2010)</li>
+              <li>FACCAMP — <b>Bacharelado em Sistemas de Informação</b> (2011 – 2015)</li>
+              <li>ETEC Gino Rezaghi — <b>Formação</b> (2009 – 2010)</li>
             </ul>
           </div>
+        </div>
 
+        <h2 id="certs">🏅 Licenças e Certificações</h2>
+        <div class="section">
           <div class="job">
-            <div class="top"><div><b>🏅 Certificações / Cursos</b></div></div>
-            <ul class="list">
+            <ul class="list" style="margin-top:0">
               <li>Estácio — PROGRAMAÇÃO PARA INTERNET (jul/2025) • credencial: db67f5df491f166a9630ba5</li>
               <li>Estácio — DESENVOLVIMENTO DE APLICAÇÕES EM PYTHON (dez/2024) • credencial: 8641f2465a0d1ac13b5067f</li>
               <li>Estácio — AWS Cloud Practitioner Essentials (abr/2024)</li>
@@ -429,62 +682,128 @@
               <li>Ka Solution — Computação em Nuvem | AWS Discovery Day (mar/2024)</li>
               <li>Desec Security — Introdução ao Pentest na Prática (jan/2024) • credencial: RWXO-JGIXJ-LYLFC</li>
               <li>Cisco — Introdução à Cibersegurança (jan/2024)</li>
-              <li>Cisco Meraki — ECMS1 (jun/2021)</li>
+              <li>Cisco Meraki — ECMS1 (Engineering Cisco Meraki Solutions 1) (jun/2021)</li>
               <li>FASTPATH University — BOOTCAMP Cisco - Meraki (abr/2020)</li>
             </ul>
           </div>
         </div>
       </main>
 
-      <aside class="card">
-        <h2><span class="h2emoji">📇</span> Contato</h2>
+      <!-- SIDE -->
+      <aside class="card" id="skills">
+        <h2>🧰 Stack / Competências</h2>
         <div class="pad">
-          <div class="kvs">
-            <div class="kv">
-              <div class="k"><span class="kico">📍</span> Local</div>
-              <div class="v">São Paulo, Brasil</div>
-            </div>
-            <div class="kv">
-              <div class="k"><span class="kico">✉️</span> Email</div>
-              <div class="v"><a href="mailto:omfg_nick@hotmail.com">omfg_nick@hotmail.com</a></div>
-            </div>
-            <div class="kv">
-              <div class="k"><span class="kico">📞</span> Telefone</div>
-              <div class="v"><a href="tel:+5511942327967">+55 11 94232-7967</a></div>
-            </div>
-            <div class="kv">
-              <div class="k"><span class="kico">💼</span> LinkedIn</div>
-              <div class="v"><a href="https://www.linkedin.com/in/nicolasmesquita/" target="_blank" rel="noreferrer">linkedin.com/in/nicolasmesquita</a></div>
-            </div>
-            <div class="kv">
-              <div class="k"><span class="kico">🐙</span> GitHub</div>
-              <div class="v"><a href="https://github.com/omfgnick" target="_blank" rel="noreferrer">github.com/omfgnick</a></div>
-            </div>
+          <div class="chips" aria-label="Stack em grupos">
+            <span class="chip"><span class="e">🪟</span> Windows</span>
+            <span class="chip"><span class="e">🐧</span> Linux</span>
+            <span class="chip alt"><span class="e">🧮</span> SQL / SQL Server</span>
+            <span class="chip"><span class="e">🛰️</span> SolarWinds</span>
+            <span class="chip alt"><span class="e">📟</span> Netcool/Omnibus</span>
+            <span class="chip"><span class="e">📊</span> HP SiteScope</span>
+            <span class="chip"><span class="e">🧾</span> BMC Remedy</span>
+            <span class="chip alt"><span class="e">🗂️</span> Jira</span>
+            <span class="chip"><span class="e">🧰</span> GLPI</span>
+            <span class="chip alt"><span class="e">📘</span> ITIL</span>
+            <span class="chip"><span class="e">🌐</span> DNS</span>
+            <span class="chip alt"><span class="e">🛣️</span> Roteamento / LAN</span>
+            <span class="chip"><span class="e">📶</span> Cisco Meraki</span>
+            <span class="chip alt"><span class="e">🧱</span> Firewalls</span>
+            <span class="chip"><span class="e">🐚</span> PowerShell</span>
+            <span class="chip alt"><span class="e">🧪</span> Bash</span>
+            <span class="chip ok"><span class="e">🐍</span> Python</span>
+            <span class="chip"><span class="e">🗄️</span> NetBackup</span>
+            <span class="chip alt"><span class="e">💾</span> HP Data Protector</span>
+            <span class="chip ok"><span class="e">🛡️</span> Segurança</span>
+            <span class="chip alt"><span class="e">🕵️</span> Pentest</span>
+            <span class="chip"><span class="e">🗣️</span> Comunicação</span>
+            <span class="chip alt"><span class="e">🤝</span> Trabalho em equipe</span>
+            <span class="chip"><span class="e">🙋</span> Atendimento</span>
+            <span class="chip alt"><span class="e">🇬🇧</span> Technical English</span>
           </div>
-        </div>
 
-        <h2><span class="h2emoji">⚡</span> Resumo rápido</h2>
-        <div class="pad">
-          <ul class="list" style="margin-top:0">
-            <li>🧰 Suporte <b>N1/N2/N3</b> e ambientes críticos.</li>
-            <li>📡 NOC: <b>SolarWinds</b>, <b>Netcool/Omnibus</b>, <b>SiteScope</b>.</li>
-            <li>🧾 ITSM: <b>Remedy</b>, <b>Jira</b>, <b>GLPI</b> (SLA/Incidentes).</li>
-            <li>🗄️ Backup: <b>NetBackup</b> / <b>HP Data Protector</b>.</li>
-            <li>⚙️ Automação: <b>PowerShell</b>, <b>Bash</b>, <b>Python</b>.</li>
-            <li>🇬🇧 Idioma: <b>Technical English</b>.</li>
-          </ul>
+          <div class="divider"></div>
+
+          <h2 style="padding-top:14px">⚡ Destaques</h2>
+          <div class="pad" style="padding-top:10px">
+            <ul class="list" style="margin-top:0">
+              <li>🧰 Suporte técnico avançado <b>N1/N2/N3</b> em ambientes de alta demanda.</li>
+              <li>📡 NOC/Monitoração: triagem, escalonamento, acompanhamento e normalização com foco em <b>SLA</b>.</li>
+              <li>🧹 Automação e padronização operacional (scripts, guias, boas práticas, 5S).</li>
+              <li>🗄️ Backup e continuidade (NetBackup / HP Data Protector) + gestão de incidentes (Remedy/Jira).</li>
+            </ul>
+          </div>
         </div>
       </aside>
     </div>
 
     <footer>
       <div>© <span id="y"></span> — Nicolas Mesquita Fernandes</div>
-      <div class="muted">📍 São Paulo, Brasil</div>
+      <div style="opacity:.85">Gerado para GitHub Pages • pronto pra compartilhar • print-friendly</div>
     </footer>
   </div>
 
+  <button class="topbtn" id="topBtn" type="button">⬆️ topo</button>
+  <div class="toast" id="toast" role="status" aria-live="polite">Copiado.</div>
+
   <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
+    (function(){
+      const $ = (s, r=document) => r.querySelector(s);
+
+      // Year
+      const y = $("#y");
+      if (y) y.textContent = new Date().getFullYear();
+
+      // Copy buttons
+      const toast = $("#toast");
+      let toastT = null;
+
+      function showToast(msg){
+        if (!toast) return;
+        toast.textContent = msg;
+        toast.classList.add("show");
+        clearTimeout(toastT);
+        toastT = setTimeout(() => toast.classList.remove("show"), 1200);
+      }
+
+      async function copyText(t){
+        try{
+          await navigator.clipboard.writeText(t);
+          showToast("✅ Copiado: " + t);
+        }catch(e){
+          // fallback
+          const ta = document.createElement("textarea");
+          ta.value = t;
+          ta.style.position = "fixed";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          ta.remove();
+          showToast("✅ Copiado: " + t);
+        }
+      }
+
+      document.addEventListener("click", (ev) => {
+        const btn = ev.target.closest(".copybtn");
+        if (!btn) return;
+        const text = btn.getAttribute("data-copy") || "";
+        if (text) copyText(text);
+      });
+
+      // Back to top
+      const topBtn = $("#topBtn");
+      function onScroll(){
+        if (!topBtn) return;
+        const show = window.scrollY > 600;
+        topBtn.classList.toggle("show", show);
+      }
+      window.addEventListener("scroll", onScroll, { passive:true });
+      onScroll();
+
+      if (topBtn){
+        topBtn.addEventListener("click", () => window.scrollTo({ top:0, behavior:"smooth" }));
+      }
+    })();
   </script>
 </body>
 </html>

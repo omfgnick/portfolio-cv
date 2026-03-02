@@ -7,26 +7,34 @@
   <meta name="description" content="Infrastructure & Incident Operations • Suporte N1/N2/N3 • NOC/SLA • Segurança • Automação (PowerShell/Bash/Python) — São Paulo, Brasil." />
   <meta name="theme-color" content="#0a66c2" />
 
-  <!-- Favicon simples (sem marca) -->
+  <!-- Favicon simples (sem marca externa) -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Crect width='64' height='64' rx='14' fill='%230a66c2'/%3E%3Cpath d='M18 46V26h8v20h-8zm4-29a4 4 0 110-8 4 4 0 010 8zm14 29V35c0-6 3-10 9-10 5 0 8 3 8 9v12h-8V35c0-2-1-4-3-4-2 0-4 2-4 5v10h-8z' fill='white'/%3E%3C/svg%3E" />
 
   <style>
     :root{
       --bg: #f3f2ef;
       --card: #ffffff;
-      --text: #111827;
-      --muted: rgba(17,24,39,.72);
-      --muted2: rgba(17,24,39,.56);
-      --border: rgba(17,24,39,.10);
-      --shadow: 0 10px 28px rgba(17,24,39,.10);
-      --radius: 16px;
+      --text: #0f172a;
+      --muted: rgba(15,23,42,.70);
+      --muted2: rgba(15,23,42,.55);
+      --border: rgba(15,23,42,.10);
+      --shadow: 0 12px 28px rgba(15,23,42,.10);
+      --shadow2: 0 18px 44px rgba(15,23,42,.14);
+      --radius: 18px;
 
       --primary: #0a66c2;
       --primary2: #0b5cad;
+      --primarySoft: rgba(10,102,194,.10);
+
       --ok: #0f9d58;
+      --okSoft: rgba(15,157,88,.10);
 
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+
+      /* focus ring premium */
+      --focus: 0 0 0 3px rgba(10,102,194,.22);
+      --focusBorder: rgba(10,102,194,.55);
     }
 
     *{box-sizing:border-box}
@@ -42,7 +50,14 @@
     a{color:var(--primary); text-decoration:none}
     a:hover{text-decoration:underline}
 
-    /* Top bar (estilo “rede profissional”) */
+    /* ===== Acessibilidade: foco premium ===== */
+    :focus-visible{
+      outline: none;
+      box-shadow: var(--focus);
+      border-color: var(--focusBorder) !important;
+    }
+
+    /* ===== Top bar ===== */
     .topbar{
       position: sticky;
       top: 0;
@@ -84,7 +99,7 @@
     }
     .brandText{display:grid; gap: 1px;}
     .brandTitle{
-      font-weight: 760;
+      font-weight: 780;
       font-size: 13px;
       letter-spacing: .2px;
     }
@@ -108,7 +123,7 @@
     .search .k{
       font-family: var(--mono);
       font-size: 11px;
-      color: rgba(17,24,39,.55);
+      color: rgba(15,23,42,.55);
       white-space: nowrap;
     }
     .search input{
@@ -121,12 +136,13 @@
     .search .hint{
       font-family: var(--mono);
       font-size: 11px;
-      color: rgba(17,24,39,.55);
+      color: rgba(15,23,42,.55);
       border: 1px solid var(--border);
       background: white;
       padding: 3px 8px;
       border-radius: 999px;
       white-space: nowrap;
+      user-select:none;
     }
 
     .actions{
@@ -136,11 +152,13 @@
       flex-wrap: wrap;
       justify-content: flex-end;
     }
+
+    /* ===== Botões premium + micro-animações ===== */
     .btn{
       border: 1px solid var(--border);
       background: white;
       color: var(--text);
-      padding: 8px 10px;
+      padding: 8px 12px;
       border-radius: 999px;
       font-size: 12px;
       cursor:pointer;
@@ -148,12 +166,24 @@
       align-items:center;
       gap: 8px;
       user-select:none;
+      transition: transform .10s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
+      line-height: 1;
     }
-    .btn:hover{ border-color: rgba(10,102,194,.35); }
-    .btn.primary{
+    .btn:hover{
       border-color: rgba(10,102,194,.35);
-      background: rgba(10,102,194,.08);
+      box-shadow: 0 10px 18px rgba(15,23,42,.08);
+      transform: translateY(-1px);
+    }
+    .btn:active{ transform: translateY(0px); box-shadow: none; }
+
+    .btn.primary{
+      border-color: rgba(10,102,194,.40);
+      background: rgba(10,102,194,.10);
       color: #0b3b73;
+    }
+
+    .btn.ghost{
+      background: rgba(15,23,42,.02);
     }
 
     /* Layout */
@@ -182,21 +212,30 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow:hidden;
+      transition: transform .12s ease, box-shadow .14s ease, border-color .12s ease;
     }
+    /* micro “lift” premium */
+    .card:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 18px 44px rgba(15,23,42,.12);
+      border-color: rgba(15,23,42,.14);
+    }
+
     .cardHead{
       padding: 16px 18px;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(15,23,42,.08);
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
       gap: 12px;
       flex-wrap: wrap;
+      background: linear-gradient(180deg, rgba(15,23,42,.02), transparent);
     }
     .cardTitle{
       margin:0;
       font-size: 14px;
       letter-spacing: .2px;
-      font-weight: 760;
+      font-weight: 800;
     }
     .cardMeta{
       font-size: 12px;
@@ -213,38 +252,85 @@
       align-items:stretch;
       flex-wrap: wrap;
     }
-    .heroLeft{ flex: 1 1 660px; min-width: min(660px, 100%); }
+    .heroLeft{ flex: 1 1 660px; min-width: min(660px, 100%); position:relative; overflow:hidden; }
     .heroRight{ flex: 1 1 340px; min-width: min(340px, 100%); }
 
-    .idrow{ display:flex; gap: 14px; align-items:flex-start; flex-wrap: wrap; }
-
-    .avatar{
-      width: 120px;
-      height: 120px;
-      border-radius: 18px;
-      border: 1px solid var(--border);
+    /* ===== HERO cover premium ===== */
+    .heroLeft::before{
+      content:"";
+      position:absolute; left:0; right:0; top:0;
+      height: 78px;
       background:
-        radial-gradient(60px 60px at 35% 30%, rgba(10,102,194,.22), transparent 60%),
-        linear-gradient(135deg, rgba(17,24,39,.06), rgba(17,24,39,.02));
+        radial-gradient(420px 160px at 16% 0%, rgba(10,102,194,.26), transparent 60%),
+        linear-gradient(90deg, rgba(10,102,194,.16), rgba(10,102,194,.06), rgba(255,255,255,0)),
+        linear-gradient(180deg, rgba(10,102,194,.10), rgba(255,255,255,0));
+      pointer-events:none;
+    }
+    .heroLeft .cardBody{ padding: 18px 18px 20px; }
+
+    .idrow{ display:flex; gap: 16px; align-items:flex-start; flex-wrap: wrap; }
+
+    /* Avatar premium com iniciais */
+    .avatar{
+      width: 112px;
+      height: 112px;
+      border-radius: 22px;
+      border: 1px solid rgba(15,23,42,.12);
+      background:
+        radial-gradient(80px 80px at 35% 30%, rgba(10,102,194,.26), transparent 62%),
+        linear-gradient(135deg, rgba(15,23,42,.08), rgba(15,23,42,.02));
+      box-shadow: var(--shadow2);
+      position: relative;
+      overflow:hidden;
+      flex: 0 0 auto;
       display:grid;
       place-items:center;
-      flex: 0 0 auto;
-      overflow:hidden;
+      user-select:none;
     }
-    .avatar svg{ width: 84px; height: 84px; opacity: .85; }
+    .avatar::after{
+      content:"";
+      position:absolute; inset:0;
+      border-radius: 22px;
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,.78);
+      opacity:.38;
+      pointer-events:none;
+    }
+    .avatar .initials{
+      width: 76px;
+      height: 76px;
+      border-radius: 999px;
+      display:grid;
+      place-items:center;
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(15,23,42,.10);
+      box-shadow: 0 12px 22px rgba(15,23,42,.10);
+      font-family: var(--mono);
+      font-weight: 900;
+      letter-spacing: .6px;
+      color: rgba(15,23,42,.82);
+    }
 
     h1{
       margin:0;
-      font-size: 22px;
-      letter-spacing: .2px;
-      font-weight: 820;
+      font-size: 24px;
       line-height: 1.15;
+      letter-spacing: .1px;
+      font-weight: 860;
     }
     .headline{
       margin-top: 6px;
       color: var(--muted);
-      font-size: 13px;
-      line-height: 1.4;
+      font-size: 13.5px;
+      line-height: 1.45;
+      max-width: 860px;
+    }
+
+    /* CTA dentro do hero */
+    .ctaRow{
+      display:flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
     }
 
     .badges{
@@ -255,21 +341,30 @@
     }
     .badge{
       font-size: 12px;
-      padding: 7px 10px;
+      padding: 7px 11px;
       border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(17,24,39,.02);
-      color: rgba(17,24,39,.86);
+      border: 1px solid rgba(15,23,42,.10);
+      background: rgba(15,23,42,.02);
+      color: rgba(15,23,42,.88);
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
       white-space: nowrap;
+      transition: transform .10s ease, border-color .12s ease, background .12s ease;
+    }
+    .badge:hover{
+      transform: translateY(-1px);
+      border-color: rgba(10,102,194,.22);
+      background: rgba(10,102,194,.06);
     }
     .badge.primary{
-      border-color: rgba(10,102,194,.32);
-      background: rgba(10,102,194,.08);
+      border-color: rgba(10,102,194,.22);
+      background: var(--primarySoft);
       color: #0b3b73;
     }
     .badge.ok{
-      border-color: rgba(15,157,88,.25);
-      background: rgba(15,157,88,.08);
+      border-color: rgba(15,157,88,.18);
+      background: var(--okSoft);
       color: #0b5a3b;
     }
 
@@ -279,46 +374,50 @@
       flex-wrap: wrap;
       gap: 8px;
       padding: 12px 18px;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(15,23,42,.08);
       background: #fbfbfb;
     }
     .tab{
       border: 1px solid var(--border);
       background: white;
       color: var(--text);
-      padding: 8px 10px;
+      padding: 8px 12px;
       border-radius: 999px;
       font-size: 12px;
       cursor:pointer;
       user-select:none;
+      transition: transform .10s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
     }
-    .tab:hover{ border-color: rgba(10,102,194,.35); }
+    .tab:hover{
+      border-color: rgba(10,102,194,.35);
+      box-shadow: 0 10px 18px rgba(15,23,42,.08);
+      transform: translateY(-1px);
+    }
     .tab.active{
       border-color: rgba(10,102,194,.45);
       background: rgba(10,102,194,.10);
       color: #0b3b73;
+      box-shadow: 0 10px 18px rgba(10,102,194,.10);
     }
 
     /* Sections */
-    .section{
-      padding: 14px 18px 18px;
-    }
+    .section{ padding: 14px 18px 18px; }
     .section h2{
       margin: 0 0 10px;
       font-size: 14px;
-      font-weight: 780;
+      font-weight: 820;
       letter-spacing: .2px;
     }
     .lead{
       margin:0;
       font-size: 13.5px;
       line-height: 1.7;
-      color: rgba(17,24,39,.88);
+      color: rgba(15,23,42,.88);
     }
     .list{
       margin: 10px 0 0;
       padding-left: 18px;
-      color: rgba(17,24,39,.88);
+      color: rgba(15,23,42,.88);
       line-height: 1.7;
       font-size: 13.5px;
     }
@@ -326,11 +425,17 @@
 
     /* Experience */
     .job{
-      border: 1px solid var(--border);
+      border: 1px solid rgba(15,23,42,.10);
       border-radius: 14px;
       padding: 14px;
       margin-top: 12px;
       background: white;
+      transition: transform .12s ease, box-shadow .14s ease, border-color .12s ease;
+    }
+    .job:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(15,23,42,.10);
+      border-color: rgba(15,23,42,.14);
     }
     .job:first-child{ margin-top: 0; }
     .jobTop{
@@ -341,7 +446,7 @@
       align-items: baseline;
     }
     .jobTitle{
-      font-weight: 800;
+      font-weight: 860;
       font-size: 13px;
       letter-spacing: .1px;
     }
@@ -349,7 +454,7 @@
       color: var(--muted);
       font-size: 12px;
       margin-left: 6px;
-      font-weight: 650;
+      font-weight: 680;
     }
     .jobPeriod{
       font-size: 12px;
@@ -364,7 +469,7 @@
     .jobDesc{
       margin-top: 10px;
       font-size: 13px;
-      color: rgba(17,24,39,.88);
+      color: rgba(15,23,42,.88);
       line-height: 1.65;
       white-space: pre-wrap;
     }
@@ -372,49 +477,141 @@
       margin: 10px 0 0;
       padding-left: 18px;
       font-size: 13px;
-      color: rgba(17,24,39,.88);
+      color: rgba(15,23,42,.88);
       line-height: 1.65;
     }
     .points li{ margin: 6px 0; }
 
     [data-filter-item].hidden{ display:none !important; }
 
-    /* Side */
+    /* ===== CONTATOS: menos “quadradão” + cor por tipo ===== */
     .kvs{ display:grid; gap: 10px; }
+
     .kv{
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 12px;
-      background: white;
+      border: 1px solid rgba(15,23,42,.10);
+      background: #fff;
+      border-radius: 16px;
+      padding: 12px 12px;
+      box-shadow: 0 10px 20px rgba(15,23,42,.06);
+      position: relative;
+      overflow: hidden;
+      transition: transform .12s ease, box-shadow .14s ease, border-color .12s ease;
     }
+    .kv:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 16px 34px rgba(15,23,42,.10);
+      border-color: rgba(15,23,42,.14);
+    }
+    .kv::before{
+      content:"";
+      position:absolute;
+      left:0; top:0; bottom:0;
+      width: 4px;
+      background: linear-gradient(180deg, rgba(10,102,194,.55), rgba(10,102,194,.12));
+      opacity: .95;
+    }
+
+    /* cores por tipo (mantém informação intacta; só estilo) */
+    .kv[data-type="email"]::before{
+      background: linear-gradient(180deg, rgba(10,102,194,.70), rgba(10,102,194,.14));
+    }
+    .kv[data-type="phone"]::before{
+      background: linear-gradient(180deg, rgba(15,157,88,.70), rgba(15,157,88,.14));
+    }
+    .kv[data-type="linkedin"]::before{
+      background: linear-gradient(180deg, rgba(10,102,194,.70), rgba(10,102,194,.14));
+    }
+    .kv[data-type="github"]::before{
+      background: linear-gradient(180deg, rgba(15,23,42,.55), rgba(15,23,42,.10));
+    }
+    .kv[data-type="location"]::before{
+      background: linear-gradient(180deg, rgba(245,158,11,.65), rgba(245,158,11,.14));
+    }
+
     .k{
       display:flex;
       align-items:center;
       justify-content: space-between;
       gap: 10px;
-      color: var(--muted);
+      color: rgba(15,23,42,.78);
       font-size: 12px;
-      font-weight: 760;
+      font-weight: 800;
       letter-spacing: .1px;
+      padding-left: 6px; /* compensa a barra esquerda */
     }
+    .k .left{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width: 0;
+    }
+    .ico{
+      width: 30px;
+      height: 30px;
+      border-radius: 12px;
+      border: 1px solid rgba(15,23,42,.10);
+      background: rgba(15,23,42,.03);
+      display:grid;
+      place-items:center;
+      flex: 0 0 auto;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.55);
+      user-select:none;
+    }
+    .ico.primary{
+      border-color: rgba(10,102,194,.18);
+      background: rgba(10,102,194,.08);
+    }
+    .ico.ok{
+      border-color: rgba(15,157,88,.16);
+      background: rgba(15,157,88,.08);
+    }
+    .ico.warn{
+      border-color: rgba(245,158,11,.20);
+      background: rgba(245,158,11,.10);
+    }
+
     .v{
       margin-top: 8px;
       font-size: 13px;
-      color: rgba(17,24,39,.88);
+      color: rgba(15,23,42,.92);
+      line-height: 1.45;
       word-break: break-word;
-      line-height: 1.55;
+      padding-left: 42px; /* alinha com texto após ícone */
     }
+    .v a{
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* Copy com estado ✅ Copiado (1s) */
     .copybtn{
-      border: 1px solid var(--border);
-      background: #f7f7f7;
-      padding: 5px 9px;
+      border: 1px solid rgba(15,23,42,.12);
+      background: rgba(15,23,42,.02);
+      padding: 6px 10px;
       border-radius: 999px;
       font-size: 11px;
-      cursor:pointer;
-      color: rgba(17,24,39,.80);
+      cursor: pointer;
+      color: rgba(15,23,42,.75);
+      transition: transform .08s ease, border-color .12s ease, background .12s ease, box-shadow .12s ease;
       white-space: nowrap;
+      display:inline-flex;
+      align-items:center;
+      gap: 6px;
+      user-select:none;
     }
-    .copybtn:hover{ border-color: rgba(10,102,194,.35); }
+    .copybtn:hover{
+      border-color: rgba(10,102,194,.25);
+      background: rgba(10,102,194,.06);
+      box-shadow: 0 10px 18px rgba(15,23,42,.08);
+      transform: translateY(-1px);
+    }
+    .copybtn:active{ transform: translateY(0px); box-shadow: none; }
+    .copybtn.copied{
+      border-color: rgba(15,157,88,.28);
+      background: rgba(15,157,88,.10);
+      color: rgba(11,90,59,.95);
+      box-shadow: 0 10px 18px rgba(15,157,88,.10);
+    }
 
     /* Toast + Top button */
     .toast{
@@ -424,7 +621,7 @@
       transform: translateX(-50%) translateY(8px);
       opacity: 0;
       pointer-events: none;
-      background: rgba(17,24,39,.92);
+      background: rgba(15,23,42,.92);
       color: white;
       padding: 10px 12px;
       border-radius: 12px;
@@ -432,6 +629,8 @@
       box-shadow: var(--shadow);
       transition: opacity .18s ease, transform .18s ease;
       z-index: 80;
+      max-width: min(92vw, 520px);
+      text-align:center;
     }
     .toast.show{
       opacity: 1;
@@ -471,6 +670,35 @@
       flex-wrap: wrap;
       padding: 8px 2px 0;
     }
+
+    /* ===== Mobile polish ===== */
+    @media (max-width: 520px){
+      .wrap{ padding: 12px 12px 42px; }
+      .topbar-inner{ padding: 10px 12px; }
+      .mark{ width: 32px; height: 32px; border-radius: 10px; }
+      .search{ padding: 8px 10px; }
+      .actions{ width:100%; justify-content:flex-start; }
+      .btn{ padding: 8px 10px; }
+      .avatar{ width: 96px; height: 96px; border-radius: 18px; }
+      .avatar::after{ border-radius: 18px; }
+      .avatar .initials{ width: 66px; height: 66px; }
+      h1{ font-size: 20px; }
+      .headline{ font-size: 13px; }
+      .heroLeft::before{ height: 70px; }
+      .cardHead{ padding: 14px 14px; }
+      .cardBody{ padding: 14px 14px 16px; }
+      .tabs{ padding: 12px 14px; }
+      .section{ padding: 14px 14px 16px; }
+      .v{ padding-left: 40px; }
+      .topbtn{ right: 12px; bottom: 14px; }
+      .toast{ bottom: 14px; }
+    }
+
+    /* Reduz movimento se usuário preferir */
+    @media (prefers-reduced-motion: reduce){
+      .card, .job, .kv, .btn, .tab, .badge, .copybtn { transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
   </style>
 </head>
 
@@ -506,24 +734,22 @@
       <section class="card heroLeft">
         <div class="cardBody">
           <div class="idrow">
-            <div class="avatar" aria-label="Foto (placeholder)">
-              <!-- placeholder neutro -->
-              <svg viewBox="0 0 120 120" role="img" aria-label="Avatar">
-                <defs>
-                  <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stop-color="rgba(10,102,194,.35)"/>
-                    <stop offset="1" stop-color="rgba(17,24,39,.10)"/>
-                  </linearGradient>
-                </defs>
-                <circle cx="60" cy="48" r="22" fill="url(#g)" />
-                <path d="M20 108c6-22 22-34 40-34s34 12 40 34" fill="url(#g)" />
-              </svg>
+            <div class="avatar" aria-label="Avatar (iniciais)">
+              <div class="initials" aria-hidden="true">NM</div>
             </div>
 
             <div style="flex:1 1 520px">
               <h1>Nicolas Mesquita Fernandes</h1>
               <div class="headline">
                 <b>Infrastructure & Incident Operations Specialist</b> • Suporte N1/N2/N3 • NOC/SLA • Segurança da Informação • Automação (PowerShell/Bash/Python)
+              </div>
+
+              <!-- CTA Premium (não remove info; só adiciona ações) -->
+              <div class="ctaRow" aria-label="Ações do perfil">
+                <a class="btn primary" href="https://www.linkedin.com/in/nicolasmesquita/" target="_blank" rel="noreferrer">💼 Abrir LinkedIn</a>
+                <a class="btn ghost" href="https://github.com/omfgnick" target="_blank" rel="noreferrer">🐙 Abrir GitHub</a>
+                <button class="btn ghost copybtn" data-copy="omfg_nick@hotmail.com" type="button" aria-label="Copiar email">✉️ Copiar Email</button>
+                <button class="btn ghost copybtn" data-copy="+5511942327967" type="button" aria-label="Copiar telefone">📞 Copiar Telefone</button>
               </div>
 
               <div class="badges" aria-label="Destaques rápidos">
@@ -550,28 +776,57 @@
 
         <div class="cardBody">
           <div class="kvs">
-            <div class="kv" data-filter-item data-filter-text="email omfg_nick@hotmail.com contato">
-              <div class="k">✉️ Email <button class="copybtn" data-copy="omfg_nick@hotmail.com" type="button">copiar</button></div>
+            <div class="kv" data-type="email" data-filter-item data-filter-text="email omfg_nick@hotmail.com contato">
+              <div class="k">
+                <div class="left">
+                  <span class="ico primary" aria-hidden="true">✉️</span>
+                  <span>Email</span>
+                </div>
+                <button class="copybtn" data-copy="omfg_nick@hotmail.com" type="button">copiar</button>
+              </div>
               <div class="v"><a href="mailto:omfg_nick@hotmail.com" id="emailLink">omfg_nick@hotmail.com</a></div>
             </div>
 
-            <div class="kv" data-filter-item data-filter-text="telefone phone +55 11 94232-7967 contato">
-              <div class="k">📞 Telefone <button class="copybtn" data-copy="+5511942327967" type="button">copiar</button></div>
+            <div class="kv" data-type="phone" data-filter-item data-filter-text="telefone phone +55 11 94232-7967 contato">
+              <div class="k">
+                <div class="left">
+                  <span class="ico ok" aria-hidden="true">📞</span>
+                  <span>Telefone</span>
+                </div>
+                <button class="copybtn" data-copy="+5511942327967" type="button">copiar</button>
+              </div>
               <div class="v"><a href="tel:+5511942327967" id="phoneLink">+55 11 94232-7967</a></div>
             </div>
 
-            <div class="kv" data-filter-item data-filter-text="linkedin redes social contato nicolasmesquita">
-              <div class="k">💼 LinkedIn <button class="copybtn" data-copy="https://www.linkedin.com/in/nicolasmesquita/" type="button">copiar</button></div>
+            <div class="kv" data-type="linkedin" data-filter-item data-filter-text="linkedin redes social contato nicolasmesquita">
+              <div class="k">
+                <div class="left">
+                  <span class="ico primary" aria-hidden="true">💼</span>
+                  <span>LinkedIn</span>
+                </div>
+                <button class="copybtn" data-copy="https://www.linkedin.com/in/nicolasmesquita/" type="button">copiar</button>
+              </div>
               <div class="v"><a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/nicolasmesquita/" id="lnk">linkedin.com/in/nicolasmesquita</a></div>
             </div>
 
-            <div class="kv" data-filter-item data-filter-text="github redes social contato omfgnick">
-              <div class="k">🐙 GitHub <button class="copybtn" data-copy="https://github.com/omfgnick" type="button">copiar</button></div>
+            <div class="kv" data-type="github" data-filter-item data-filter-text="github redes social contato omfgnick">
+              <div class="k">
+                <div class="left">
+                  <span class="ico" aria-hidden="true">🐙</span>
+                  <span>GitHub</span>
+                </div>
+                <button class="copybtn" data-copy="https://github.com/omfgnick" type="button">copiar</button>
+              </div>
               <div class="v"><a target="_blank" rel="noreferrer" href="https://github.com/omfgnick" id="gh">github.com/omfgnick</a></div>
             </div>
 
-            <div class="kv" data-filter-item data-filter-text="local sao paulo brasil contato">
-              <div class="k">📌 Local</div>
+            <div class="kv" data-type="location" data-filter-item data-filter-text="local sao paulo brasil contato">
+              <div class="k">
+                <div class="left">
+                  <span class="ico warn" aria-hidden="true">📍</span>
+                  <span>Local</span>
+                </div>
+              </div>
               <div class="v">São Paulo, Brasil</div>
             </div>
           </div>
@@ -812,37 +1067,84 @@
 
         <div class="cardBody" data-filter-item data-filter-text="skills competencias windows linux sql sql server solarwinds netcool omnibus sitescope remedy jira glpi itil dns roteamento lan meraki firewalls powershell bash python netbackup data protector seguranca pentest comunicacao atendimento english">
           <div class="kvs">
-            <div class="kv">
-              <div class="k">🛰 Monitoramento / NOC</div>
-              <div class="v">SolarWinds • Netcool/Omnibus • HP SiteScope</div>
+            <div class="kv" data-type="linkedin">
+              <div class="k" style="padding-left:0">
+                <div class="left">
+                  <span class="ico" aria-hidden="true">🛰</span>
+                  <span>Monitoramento / NOC</span>
+                </div>
+              </div>
+              <div class="v" style="padding-left:0">SolarWinds • Netcool/Omnibus • HP SiteScope</div>
             </div>
-            <div class="kv">
-              <div class="k">🧾 ITSM / Incidentes</div>
-              <div class="v">BMC Remedy • Jira • GLPI • ITIL • SLA</div>
+
+            <div class="kv" data-type="email">
+              <div class="k" style="padding-left:0">
+                <div class="left">
+                  <span class="ico" aria-hidden="true">🧾</span>
+                  <span>ITSM / Incidentes</span>
+                </div>
+              </div>
+              <div class="v" style="padding-left:0">BMC Remedy • Jira • GLPI • ITIL • SLA</div>
             </div>
-            <div class="kv">
-              <div class="k">🧱 Redes</div>
-              <div class="v">DNS • Roteamento • LAN • Cisco Meraki • Firewalls</div>
+
+            <div class="kv" data-type="github">
+              <div class="k" style="padding-left:0">
+                <div class="left">
+                  <span class="ico" aria-hidden="true">🧱</span>
+                  <span>Redes</span>
+                </div>
+              </div>
+              <div class="v" style="padding-left:0">DNS • Roteamento • LAN • Cisco Meraki • Firewalls</div>
             </div>
-            <div class="kv">
-              <div class="k">⚙️ Automação</div>
-              <div class="v">PowerShell • Bash • Python</div>
+
+            <div class="kv" data-type="linkedin">
+              <div class="k" style="padding-left:0">
+                <div class="left">
+                  <span class="ico primary" aria-hidden="true">⚙️</span>
+                  <span>Automação</span>
+                </div>
+              </div>
+              <div class="v" style="padding-left:0">PowerShell • Bash • Python</div>
             </div>
-            <div class="kv">
-              <div class="k">🗄 Backup</div>
-              <div class="v">Symantec NetBackup • HP Data Protector</div>
+
+            <div class="kv" data-type="github">
+              <div class="k" style="padding-left:0">
+                <div class="left">
+                  <span class="ico" aria-hidden="true">🗄</span>
+                  <span>Backup</span>
+                </div>
+              </div>
+              <div class="v" style="padding-left:0">Symantec NetBackup • HP Data Protector</div>
             </div>
-            <div class="kv">
-              <div class="k">🛡 Segurança</div>
-              <div class="v">Segurança da Informação • Cibersegurança • Pentest • Auditoria</div>
+
+            <div class="kv" data-type="phone">
+              <div class="k" style="padding-left:0">
+                <div class="left">
+                  <span class="ico ok" aria-hidden="true">🛡</span>
+                  <span>Segurança</span>
+                </div>
+              </div>
+              <div class="v" style="padding-left:0">Segurança da Informação • Cibersegurança • Pentest • Auditoria</div>
             </div>
-            <div class="kv">
-              <div class="k">💻 Sistemas</div>
-              <div class="v">Windows • Linux • SQL/SQL Server • Microsoft Office</div>
+
+            <div class="kv" data-type="email">
+              <div class="k" style="padding-left:0">
+                <div class="left">
+                  <span class="ico" aria-hidden="true">💻</span>
+                  <span>Sistemas</span>
+                </div>
+              </div>
+              <div class="v" style="padding-left:0">Windows • Linux • SQL/SQL Server • Microsoft Office</div>
             </div>
-            <div class="kv">
-              <div class="k">🧠 Soft Skills</div>
-              <div class="v">Comunicação • Trabalho em equipe • Atendimento • Technical English</div>
+
+            <div class="kv" data-type="location">
+              <div class="k" style="padding-left:0">
+                <div class="left">
+                  <span class="ico" aria-hidden="true">🧠</span>
+                  <span>Soft Skills</span>
+                </div>
+              </div>
+              <div class="v" style="padding-left:0">Comunicação • Trabalho em equipe • Atendimento • Technical English</div>
             </div>
           </div>
 
@@ -869,7 +1171,8 @@
       const pad2 = (n)=> String(n).padStart(2,"0");
 
       // Ano
-      $("#y").textContent = new Date().getFullYear();
+      const y = $("#y");
+      if (y) y.textContent = new Date().getFullYear();
 
       // Last update (exibição)
       const d = new Date();
@@ -892,28 +1195,54 @@
         toastT = setTimeout(() => toast.classList.remove("show"), 1300);
       }
 
+      // Estado "✅ Copiado" no botão por 1s (sem remover texto original)
+      function setCopiedState(btn){
+        if (!btn) return;
+        const originalText = btn.textContent;
+        btn.classList.add("copied");
+        btn.textContent = "✅ Copiado";
+        clearTimeout(btn._copiedTimer);
+        btn._copiedTimer = setTimeout(() => {
+          btn.classList.remove("copied");
+          btn.textContent = originalText;
+        }, 1000);
+      }
+
       // Copy buttons
       async function copyText(t){
         try{
           await navigator.clipboard.writeText(t);
-          showToast("Copiado: " + t);
+          return true;
         }catch(e){
-          const ta = document.createElement("textarea");
-          ta.value = t;
-          ta.style.position = "fixed";
-          ta.style.left = "-9999px";
-          document.body.appendChild(ta);
-          ta.select();
-          document.execCommand("copy");
-          ta.remove();
-          showToast("Copiado: " + t);
+          try{
+            const ta = document.createElement("textarea");
+            ta.value = t;
+            ta.style.position = "fixed";
+            ta.style.left = "-9999px";
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand("copy");
+            ta.remove();
+            return true;
+          }catch(err){
+            return false;
+          }
         }
       }
-      document.addEventListener("click", (ev) => {
+
+      document.addEventListener("click", async (ev) => {
         const btn = ev.target.closest(".copybtn");
         if (!btn) return;
         const text = btn.getAttribute("data-copy") || "";
-        if (text) copyText(text);
+        if (!text) return;
+
+        const ok = await copyText(text);
+        if (ok){
+          setCopiedState(btn);
+          showToast("Copiado: " + text);
+        }else{
+          showToast("Não foi possível copiar.");
+        }
       });
 
       // Back to top

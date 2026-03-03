@@ -511,7 +511,7 @@
       opacity: .95;
     }
 
-    /* cores por tipo (mantém informação intacta; só estilo) */
+    /* cores por tipo */
     .kv[data-type="email"]::before{
       background: linear-gradient(180deg, rgba(10,102,194,.70), rgba(10,102,194,.14));
     }
@@ -527,6 +527,9 @@
     .kv[data-type="location"]::before{
       background: linear-gradient(180deg, rgba(245,158,11,.65), rgba(245,158,11,.14));
     }
+    .kv[data-type="tools"]::before{
+      background: linear-gradient(180deg, rgba(99,102,241,.55), rgba(99,102,241,.12));
+    }
 
     .k{
       display:flex;
@@ -537,7 +540,7 @@
       font-size: 12px;
       font-weight: 800;
       letter-spacing: .1px;
-      padding-left: 6px; /* compensa a barra esquerda */
+      padding-left: 6px;
     }
     .k .left{
       display:flex;
@@ -569,6 +572,10 @@
       border-color: rgba(245,158,11,.20);
       background: rgba(245,158,11,.10);
     }
+    .ico.purple{
+      border-color: rgba(99,102,241,.18);
+      background: rgba(99,102,241,.10);
+    }
 
     .v{
       margin-top: 8px;
@@ -576,7 +583,7 @@
       color: rgba(15,23,42,.92);
       line-height: 1.45;
       word-break: break-word;
-      padding-left: 42px; /* alinha com texto após ícone */
+      padding-left: 42px;
     }
     .v a{
       color: var(--primary);
@@ -744,7 +751,7 @@
                 <b>Infrastructure & Incident Operations Specialist</b> • Suporte N1/N2/N3 • NOC/SLA • Segurança da Informação • Automação (PowerShell/Bash/Python)
               </div>
 
-              <!-- CTA Premium (não remove info; só adiciona ações) -->
+              <!-- CTA Premium -->
               <div class="ctaRow" aria-label="Ações do perfil">
                 <a class="btn primary" href="https://www.linkedin.com/in/nicolasmesquita/" target="_blank" rel="noreferrer">💼 Abrir LinkedIn</a>
                 <a class="btn ghost" href="https://github.com/omfgnick" target="_blank" rel="noreferrer">🐙 Abrir GitHub</a>
@@ -752,12 +759,15 @@
                 <button class="btn ghost copybtn" data-copy="+5511942327967" type="button" aria-label="Copiar telefone">📞 Copiar Telefone</button>
               </div>
 
+              <!-- Badges (inclui novas ferramentas + skills sugeridas, sem remover nada) -->
               <div class="badges" aria-label="Destaques rápidos">
                 <span class="badge ok">📍 São Paulo, Brasil</span>
                 <span class="badge primary">⚙️ Automação</span>
                 <span class="badge">📡 NOC / SLA</span>
                 <span class="badge">🧾 ITSM (Remedy/Jira/GLPI)</span>
                 <span class="badge">🛰 Monitoramento (SolarWinds/Netcool/SiteScope)</span>
+                <span class="badge">📊 Observabilidade (Grafana/Zabbix/Nagios)</span>
+                <span class="badge">📱 MDM (Workspace ONE)</span>
                 <span class="badge">🗄 Backup (NetBackup/Data Protector)</span>
               </div>
             </div>
@@ -829,6 +839,17 @@
               </div>
               <div class="v">São Paulo, Brasil</div>
             </div>
+
+            <!-- Extra: Ferramentas que você citou (exposição rápida, sem tirar nada) -->
+            <div class="kv" data-type="tools" data-filter-item data-filter-text="workspace one grafana zabbix nagios ferramentas monitoramento mdm">
+              <div class="k">
+                <div class="left">
+                  <span class="ico purple" aria-hidden="true">🧩</span>
+                  <span>Ferramentas (stack)</span>
+                </div>
+              </div>
+              <div class="v">Workspace ONE • Grafana • Zabbix • Nagios</div>
+            </div>
           </div>
         </div>
       </aside>
@@ -845,7 +866,8 @@
           <button class="tab" data-tab="academic_record" type="button">Formação</button>
         </div>
 
-        <section class="section" id="profile_summary" data-filter-item data-filter-text="sobre resumo suporte n1 n2 n3 noc sla infraestrutura seguranca automacao powershell bash python">
+        <section class="section" id="profile_summary" data-filter-item
+          data-filter-text="sobre resumo suporte n1 n2 n3 noc sla infraestrutura seguranca automacao powershell bash python incident management incident response trouble shooting troubleshooting escalation sla sro runbook documentation rca problem management change management">
           <h2>Sobre</h2>
           <p class="lead">
             Analista de TI com experiência em operação, suporte e monitoração de ambientes críticos, atuando em incidentes, escalonamento e continuidade do serviço.
@@ -855,9 +877,12 @@
           <ul class="list">
             <li><b>Suporte Técnico (N1/N2/N3):</b> troubleshooting de hardware/software, redes e incidentes críticos.</li>
             <li><b>NOC/Monitoração:</b> triagem, escalonamento e acompanhamento orientado a SLA.</li>
+            <li><b>Gestão de Incidentes:</b> incident response (TI), comunicação objetiva e acompanhamento até normalização.</li>
+            <li><b>Processos ITSM:</b> incident / problem / change (conceitos e rotina operacional).</li>
+            <li><b>Documentação:</b> runbooks, base de conhecimento e padronização.</li>
             <li><b>Segurança:</b> boas práticas, políticas e controles operacionais (incluindo backups e auditoria básica).</li>
             <li><b>Automação:</b> scripts e rotinas (PowerShell/Bash/Python) para ganho de eficiência e consistência.</li>
-            <li><b>Colaboração:</b> comunicação objetiva com times internos e fornecedores.</li>
+            <li><b>Colaboração:</b> comunicação com times internos e fornecedores.</li>
           </ul>
         </section>
 
@@ -963,7 +988,7 @@
             </ul>
           </div>
 
-          <div class="job" data-filter-item data-filter-text="analista monitoracao ponto focal ndc telefonica vivo end-to-end technology netcool omnibus sitescope remedy incidentes acionamento comunicacao diretoria">
+          <div class="job" data-filter-item data-filter-text="analista monitoracao ponto focal ndc telefonica vivo end-to-end technology netcool omnibus sitescope remedy incidentes acionamento comunicacao diretoria grafana zabbix nagios">
             <div class="jobTop">
               <div>
                 <span class="jobTitle">🧠 Analista de Monitoração / Ponto Focal — Projeto NDC Telefônica | VIVO</span>
@@ -974,7 +999,7 @@
             <div class="jobDesc">Netcool/Omnibus + SiteScope; incidentes Remedy; acionamento técnico; acompanhamento; comunicação com diretoria/gestores.</div>
             <ul class="points">
               <li>Monitoração de infraestrutura e análise de alarmes (Netcool/Omnibus + SiteScope).</li>
-              <li>Acionamento técnico, incidentes Remedy e acompanhamento de resolução.</li>
+              <li>Incidentes Remedy, acionamento técnico e acompanhamento de resolução.</li>
               <li>Comunicação com liderança conforme plano e tempos definidos.</li>
             </ul>
           </div>
@@ -996,7 +1021,7 @@
             </ul>
           </div>
 
-          <div class="job" data-filter-item data-filter-text="tecnico informatica senior marabraz monitoramento open-source mapas scripts bash powershell backup hp data protector vmware">
+          <div class="job" data-filter-item data-filter-text="tecnico informatica senior marabraz monitoramento open-source mapas scripts bash powershell backup hp data protector vmware nagios zabbix grafana">
             <div class="jobTop">
               <div>
                 <span class="jobTitle">🛠️ Técnico de Informática Sênior</span>
@@ -1060,21 +1085,30 @@
         <div class="cardHead">
           <div>
             <h3 class="cardTitle">🧰 Skills & Ferramentas</h3>
-            <div class="cardMeta">Resumo por categoria</div>
+            <div class="cardMeta">Resumo por categoria (inclui as ferramentas que você citou)</div>
           </div>
           <div class="cardMeta" id="siteMeta">São Paulo • Brasil</div>
         </div>
 
-        <div class="cardBody" data-filter-item data-filter-text="skills competencias windows linux sql sql server solarwinds netcool omnibus sitescope remedy jira glpi itil dns roteamento lan meraki firewalls powershell bash python netbackup data protector seguranca pentest comunicacao atendimento english">
+        <!-- Aqui entra tudo que comentamos (skills + ferramentas) -->
+        <div class="cardBody" data-filter-item data-filter-text="
+          skills competencias windows linux active directory iam access management tcp ip troubleshooting lan wan dns wifi vpn switching roteamento
+          monitoramento noc observabilidade grafana zabbix nagios solarwinds netcool omnibus sitescope
+          itsm itil incident management incident response problem management change management rca runbook documentation knowledge base
+          automacao scripting powershell bash python git github
+          backup restore disaster recovery netbackup data protector control-m
+          seguranca informacao ciberseguranca pentest vulnerability assessment hardening security awareness
+          meraki mdm workspace one
+        ">
           <div class="kvs">
-            <div class="kv" data-type="linkedin">
+            <div class="kv" data-type="tools">
               <div class="k" style="padding-left:0">
                 <div class="left">
-                  <span class="ico" aria-hidden="true">🛰</span>
+                  <span class="ico purple" aria-hidden="true">🛰</span>
                   <span>Monitoramento / NOC</span>
                 </div>
               </div>
-              <div class="v" style="padding-left:0">SolarWinds • Netcool/Omnibus • HP SiteScope</div>
+              <div class="v" style="padding-left:0">SolarWinds • Netcool/Omnibus • HP SiteScope • Zabbix • Nagios • Grafana</div>
             </div>
 
             <div class="kv" data-type="email">
@@ -1084,7 +1118,9 @@
                   <span>ITSM / Incidentes</span>
                 </div>
               </div>
-              <div class="v" style="padding-left:0">BMC Remedy • Jira • GLPI • ITIL • SLA</div>
+              <div class="v" style="padding-left:0">
+                BMC Remedy • Jira • GLPI • ITIL • SLA • Incident Management • Escalation Management • Problem/Change Management • RCA • Runbooks/Documentação
+              </div>
             </div>
 
             <div class="kv" data-type="github">
@@ -1094,27 +1130,37 @@
                   <span>Redes</span>
                 </div>
               </div>
-              <div class="v" style="padding-left:0">DNS • Roteamento • LAN • Cisco Meraki • Firewalls</div>
+              <div class="v" style="padding-left:0">TCP/IP • LAN/WAN • DNS • Wi-Fi (Troubleshooting) • VPN (conceitos) • Switching/Roteamento (conceitos) • Cisco Meraki</div>
             </div>
 
             <div class="kv" data-type="linkedin">
               <div class="k" style="padding-left:0">
                 <div class="left">
                   <span class="ico primary" aria-hidden="true">⚙️</span>
-                  <span>Automação</span>
+                  <span>Automação / Scripting</span>
                 </div>
               </div>
-              <div class="v" style="padding-left:0">PowerShell • Bash • Python</div>
+              <div class="v" style="padding-left:0">PowerShell • Bash • Python • Automação de rotinas operacionais • Git/GitHub</div>
             </div>
 
             <div class="kv" data-type="github">
               <div class="k" style="padding-left:0">
                 <div class="left">
                   <span class="ico" aria-hidden="true">🗄</span>
-                  <span>Backup</span>
+                  <span>Backup / Continuidade</span>
                 </div>
               </div>
-              <div class="v" style="padding-left:0">Symantec NetBackup • HP Data Protector</div>
+              <div class="v" style="padding-left:0">Symantec NetBackup • HP Data Protector • Backup/Restore • Disaster Recovery (conceitos) • Validação de Restore</div>
+            </div>
+
+            <div class="kv" data-type="tools">
+              <div class="k" style="padding-left:0">
+                <div class="left">
+                  <span class="ico purple" aria-hidden="true">🗓</span>
+                  <span>Produção / Schedules</span>
+                </div>
+              </div>
+              <div class="v" style="padding-left:0">BMC Control-M</div>
             </div>
 
             <div class="kv" data-type="phone">
@@ -1124,7 +1170,17 @@
                   <span>Segurança</span>
                 </div>
               </div>
-              <div class="v" style="padding-left:0">Segurança da Informação • Cibersegurança • Pentest • Auditoria</div>
+              <div class="v" style="padding-left:0">Segurança da Informação • Cibersegurança • Pentest (fundamentos) • Vulnerability Assessment (conceitos) • Hardening (conceitos) • Security Awareness</div>
+            </div>
+
+            <div class="kv" data-type="tools">
+              <div class="k" style="padding-left:0">
+                <div class="left">
+                  <span class="ico purple" aria-hidden="true">📱</span>
+                  <span>Gestão de Dispositivos</span>
+                </div>
+              </div>
+              <div class="v" style="padding-left:0">MDM • Workspace ONE</div>
             </div>
 
             <div class="kv" data-type="email">
@@ -1134,7 +1190,7 @@
                   <span>Sistemas</span>
                 </div>
               </div>
-              <div class="v" style="padding-left:0">Windows • Linux • SQL/SQL Server • Microsoft Office</div>
+              <div class="v" style="padding-left:0">Windows • Linux (operacional) • Active Directory (rotina) • Gestão de Acessos (IAM básico) • SQL/SQL Server • Microsoft Office</div>
             </div>
 
             <div class="kv" data-type="location">
@@ -1144,7 +1200,17 @@
                   <span>Soft Skills</span>
                 </div>
               </div>
-              <div class="v" style="padding-left:0">Comunicação • Trabalho em equipe • Atendimento • Technical English</div>
+              <div class="v" style="padding-left:0">Comunicação • Trabalho em equipe • Atendimento • Documentação técnica • Treinamento • Technical English</div>
+            </div>
+
+            <div class="kv" data-type="linkedin">
+              <div class="k" style="padding-left:0">
+                <div class="left">
+                  <span class="ico primary" aria-hidden="true">☁️</span>
+                  <span>Cloud (fundamentos)</span>
+                </div>
+              </div>
+              <div class="v" style="padding-left:0">AWS (Fundamentos) • Cloud Computing</div>
             </div>
           </div>
 
@@ -1195,7 +1261,7 @@
         toastT = setTimeout(() => toast.classList.remove("show"), 1300);
       }
 
-      // Estado "✅ Copiado" no botão por 1s (sem remover texto original)
+      // Estado "✅ Copiado" no botão por 1s
       function setCopiedState(btn){
         if (!btn) return;
         const originalText = btn.textContent;

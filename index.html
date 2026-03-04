@@ -7,14 +7,13 @@
   <meta name="description" content="Infrastructure & Incident Operations • Suporte N1/N2/N3 • NOC/SLA • Segurança • Automação (PowerShell/Bash/Python) — São Paulo, Brasil." />
   <meta name="theme-color" content="#0a66c2" />
 
-  <!-- SEO/social -->
+  <!-- SEO/social (sem pastas) -->
   <link rel="canonical" href="https://omfgnick.github.io/" />
   <meta property="og:title" content="Nicolas Mesquita Fernandes — Perfil Profissional" />
   <meta property="og:description" content="Infrastructure & Incident Operations • Suporte N1/N2/N3 • NOC/SLA • Segurança • Automação (PowerShell/Bash/Python) — São Paulo, Brasil." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:url" content="https://omfgnick.github.io/" />
-
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Nicolas Mesquita Fernandes — Perfil Profissional" />
   <meta name="twitter:description" content="Infrastructure & Incident Operations • Suporte N1/N2/N3 • NOC/SLA • Segurança • Automação (PowerShell/Bash/Python) — São Paulo, Brasil." />
@@ -26,15 +25,8 @@
     "name": "Nicolas Mesquita Fernandes",
     "jobTitle": "Infrastructure & Incident Operations Specialist",
     "url": "https://omfgnick.github.io/",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "São Paulo",
-      "addressCountry": "BR"
-    },
-    "sameAs": [
-      "https://www.linkedin.com/in/nicolasmesquita/",
-      "https://github.com/omfgnick"
-    ]
+    "address": { "@type": "PostalAddress", "addressLocality": "São Paulo", "addressCountry": "BR" },
+    "sameAs": ["https://www.linkedin.com/in/nicolasmesquita/", "https://github.com/omfgnick"]
   }
   </script>
 
@@ -46,7 +38,6 @@
       --card: #ffffff;
       --text: #0f172a;
 
-      /* contraste levemente maior (premium + a11y) */
       --muted: rgba(15,23,42,.78);
       --muted2: rgba(15,23,42,.62);
 
@@ -68,12 +59,172 @@
       --focus: 0 0 0 3px rgba(10,102,194,.22);
       --focusBorder: rgba(10,102,194,.55);
 
-      /* interações mais “macias” */
       --liftShadow: 0 16px 34px rgba(15,23,42,.12);
       --liftShadowSoft: 0 14px 28px rgba(15,23,42,.10);
 
-      /* touch target */
       --tap: 44px;
+      color-scheme: light;
+
+      /* dark system fallback */
+      --bgDark: #0b1220;
+      --cardDark: rgba(255,255,255,.06);
+      --textDark: rgba(255,255,255,.92);
+      --mutedDark: rgba(255,255,255,.72);
+      --muted2Dark: rgba(255,255,255,.60);
+      --borderDark: rgba(255,255,255,.10);
+      --shadowDark: 0 14px 30px rgba(0,0,0,.38);
+      --shadow2Dark: 0 18px 44px rgba(0,0,0,.46);
+    }
+
+    /* Dark theme: toggled by data-theme="dark" on <html> */
+    html[data-theme="dark"]{
+      color-scheme: dark;
+    }
+    html[data-theme="dark"] body{
+      background: var(--bgDark);
+      color: var(--textDark);
+    }
+    html[data-theme="dark"] a{ color: #7fb7ff; }
+    html[data-theme="dark"] .topbar{
+      background: rgba(11,18,32,.82);
+      border-bottom: 1px solid var(--borderDark);
+      backdrop-filter: blur(12px);
+    }
+    html[data-theme="dark"] .search{
+      background: rgba(255,255,255,.06);
+      border-color: var(--borderDark);
+    }
+    html[data-theme="dark"] .search input{ color: var(--textDark); }
+    html[data-theme="dark"] .search .hint{
+      background: rgba(255,255,255,.06);
+      border-color: var(--borderDark);
+      color: rgba(255,255,255,.70);
+    }
+    html[data-theme="dark"] .btn{
+      background: rgba(255,255,255,.06);
+      border-color: var(--borderDark);
+      color: var(--textDark);
+    }
+    html[data-theme="dark"] .btn.primary{
+      background: rgba(10,102,194,.16);
+      border-color: rgba(127,183,255,.28);
+      color: rgba(255,255,255,.92);
+    }
+    html[data-theme="dark"] .card{
+      background: var(--cardDark);
+      border-color: var(--borderDark);
+      box-shadow: var(--shadowDark);
+    }
+    html[data-theme="dark"] .cardHead{
+      border-bottom-color: rgba(255,255,255,.08);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), transparent);
+    }
+    html[data-theme="dark"] .cardMeta{ color: var(--mutedDark); }
+    html[data-theme="dark"] .brandSub{ color: var(--mutedDark); }
+    html[data-theme="dark"] .ico{ color: rgba(255,255,255,.72); }
+    html[data-theme="dark"] .badge{
+      border-color: rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.88);
+    }
+    html[data-theme="dark"] .badge.primary{
+      border-color: rgba(127,183,255,.22);
+      background: rgba(127,183,255,.10);
+      color: rgba(255,255,255,.92);
+    }
+    html[data-theme="dark"] .badge.ok{
+      border-color: rgba(15,157,88,.22);
+      background: rgba(15,157,88,.14);
+      color: rgba(255,255,255,.92);
+    }
+    html[data-theme="dark"] .tabs{
+      background: rgba(255,255,255,.03);
+      border-bottom-color: rgba(255,255,255,.08);
+    }
+    html[data-theme="dark"] .tab{
+      background: rgba(255,255,255,.05);
+      border-color: rgba(255,255,255,.10);
+      color: rgba(255,255,255,.90);
+    }
+    html[data-theme="dark"] .tab.active{
+      background: rgba(10,102,194,.18);
+      border-color: rgba(127,183,255,.28);
+      color: rgba(255,255,255,.95);
+      box-shadow: 0 10px 18px rgba(10,102,194,.10);
+    }
+    html[data-theme="dark"] .job{
+      background: rgba(255,255,255,.04);
+      border-color: rgba(255,255,255,.10);
+    }
+    html[data-theme="dark"] .jobOrg{ color: var(--mutedDark); }
+    html[data-theme="dark"] .jobPeriod{ color: var(--mutedDark); }
+    html[data-theme="dark"] .jobLoc{ color: var(--muted2Dark); }
+    html[data-theme="dark"] .jobDesc,
+    html[data-theme="dark"] .lead,
+    html[data-theme="dark"] .list,
+    html[data-theme="dark"] .points{ color: rgba(255,255,255,.90); }
+    html[data-theme="dark"] .resultsBar{
+      border-color: rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
+    }
+    html[data-theme="dark"] .resultsChip{
+      background: rgba(255,255,255,.05);
+      border-color: rgba(255,255,255,.10);
+      color: rgba(255,255,255,.88);
+    }
+    html[data-theme="dark"] .hcard{
+      background: rgba(255,255,255,.04);
+      border-color: rgba(255,255,255,.10);
+    }
+    html[data-theme="dark"] .hico{
+      background: rgba(255,255,255,.05);
+      border-color: rgba(255,255,255,.10);
+    }
+    html[data-theme="dark"] .headline .h-chip{ color: rgba(255,255,255,.74); }
+    html[data-theme="dark"] .headline .h-chip.h-main{ color: rgba(255,255,255,.94); }
+    html[data-theme="dark"] .microline{ color: rgba(255,255,255,.72); }
+    html[data-theme="dark"] .microline span::before{
+      background: rgba(127,183,255,.70);
+      box-shadow: 0 0 0 3px rgba(127,183,255,.14);
+    }
+    html[data-theme="dark"] .avatar{
+      border-color: rgba(255,255,255,.10);
+      box-shadow: var(--shadow2Dark);
+      background:
+        radial-gradient(80px 80px at 35% 30%, rgba(127,183,255,.22), transparent 62%),
+        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+    }
+    html[data-theme="dark"] .avatar::before{ border-color: rgba(127,183,255,.20); }
+    html[data-theme="dark"] .avatar .initials{
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.10);
+      color: rgba(255,255,255,.92);
+    }
+    html[data-theme="dark"] .kv{
+      background: rgba(255,255,255,.04);
+      border-color: rgba(255,255,255,.10);
+      box-shadow: var(--shadowDark);
+    }
+    html[data-theme="dark"] .kvIcon{
+      background: rgba(255,255,255,.05);
+      border-color: rgba(255,255,255,.10);
+    }
+    html[data-theme="dark"] .kvLabel{ color: rgba(255,255,255,.84); }
+    html[data-theme="dark"] .kvValue{ color: rgba(255,255,255,.94); }
+    html[data-theme="dark"] .copybtn{
+      background: rgba(255,255,255,.05);
+      border-color: rgba(255,255,255,.10);
+      color: rgba(255,255,255,.82);
+    }
+    html[data-theme="dark"] .copybtn:hover{
+      background: rgba(127,183,255,.10);
+      border-color: rgba(127,183,255,.22);
+    }
+    html[data-theme="dark"] footer{ color: rgba(255,255,255,.70); }
+    html[data-theme="dark"] .topbtn{
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.10);
+      color: rgba(255,255,255,.90);
     }
 
     *{box-sizing:border-box}
@@ -298,7 +449,6 @@
       transition: transform .16s ease, box-shadow .20s ease, border-color .20s ease;
       -webkit-tap-highlight-color: transparent;
     }
-    /* lift mais “macio” (hover desktop + active mobile) */
     @media (hover:hover){
       .card:hover{
         box-shadow: var(--liftShadow);
@@ -439,7 +589,6 @@
       color: rgba(11,90,59,.78);
     }
 
-    /* ===== Name + Headline (2 linhas com “quebra inteligente” sem bug) ===== */
     h1{
       margin: 0;
       font-size: 24px;
@@ -474,7 +623,6 @@
       color: rgba(15,23,42,.92);
       font-weight: 860;
     }
-    /* separador “grudado” no item (não fica órfão) */
     .headline .h-chip + .h-chip{ padding-left: 16px; }
     .headline .h-chip + .h-chip::before{
       content: "•";
@@ -486,7 +634,6 @@
       transform: translateY(1px);
     }
 
-    /* ===== Microline (premium, clean) ===== */
     .microline{
       margin-top: 8px;
       display:flex;
@@ -510,7 +657,6 @@
       box-shadow: 0 0 0 3px rgba(10,102,194,.10);
     }
 
-    /* ===== CTA + Badges rhythm ===== */
     .ctaRow{
       display:flex;
       gap: 8px;
@@ -518,7 +664,6 @@
       margin-top: 14px;
     }
 
-    /* “Resultados” (provas rápidas, sem números inventados) */
     .resultsBar{
       margin-top: 12px;
       border: 1px solid rgba(15,23,42,.10);
@@ -548,7 +693,6 @@
       white-space: nowrap;
     }
 
-    /* “Destaques” com ícones minimalistas */
     .highlights{
       display:grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -620,6 +764,66 @@
       background: var(--okSoft);
       color: #0b5a3b;
     }
+
+    /* Chips de filtro (TOP package) */
+    .chips{
+      margin-top: 12px;
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items:center;
+    }
+    .chipLabel{
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 780;
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      margin-right: 2px;
+    }
+    .chip{
+      border: 1px solid rgba(15,23,42,.10);
+      background: rgba(15,23,42,.02);
+      color: rgba(15,23,42,.86);
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      cursor: pointer;
+      user-select:none;
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      transition: transform .14s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+      min-height: 34px;
+      -webkit-tap-highlight-color: transparent;
+      white-space: nowrap;
+    }
+    .chip:hover{
+      border-color: rgba(10,102,194,.35);
+      box-shadow: var(--liftShadowSoft);
+      transform: translateY(-1px);
+    }
+    .chip:active{
+      transform: translateY(0px);
+      box-shadow: 0 10px 18px rgba(15,23,42,.08);
+    }
+    .chip.on{
+      border-color: rgba(10,102,194,.45);
+      background: rgba(10,102,194,.10);
+      color: #0b3b73;
+    }
+    html[data-theme="dark"] .chip{
+      border-color: rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.92);
+    }
+    html[data-theme="dark"] .chip.on{
+      border-color: rgba(127,183,255,.28);
+      background: rgba(127,183,255,.10);
+      color: rgba(255,255,255,.95);
+    }
+    html[data-theme="dark"] .chipLabel{ color: rgba(255,255,255,.72); }
 
     /* ===== Tabs ===== */
     .tabs{
@@ -719,10 +923,78 @@
     }
     .points li{ margin: 6px 0; }
 
+    /* Accordion (TOP package): corpo recolhível */
+    .job{ position: relative; }
+    .jobToggle{
+      width: 100%;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+      cursor: pointer;
+      display:block;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .jobToggle:focus-visible{
+      border-radius: 12px;
+    }
+    .jobChevron{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(15,23,42,.10);
+      background: rgba(15,23,42,.02);
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      flex: 0 0 auto;
+    }
+    .jobChevron svg{ width: 14px; height: 14px; }
+    .jobHeadRow{
+      display:flex;
+      align-items:flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .jobMetaRight{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
+    .jobBody{
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(-2px);
+      transition: max-height .24s ease, opacity .18s ease, transform .18s ease;
+    }
+    .job.open .jobBody{
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .job.open .jobChevron{
+      transform: rotate(180deg);
+      border-color: rgba(10,102,194,.25);
+      background: rgba(10,102,194,.06);
+    }
+    html[data-theme="dark"] .jobChevron{
+      border-color: rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+    }
+    html[data-theme="dark"] .job.open .jobChevron{
+      border-color: rgba(127,183,255,.22);
+      background: rgba(127,183,255,.10);
+    }
+
     [data-filter-item].hidden{ display:none !important; }
 
     /* =========================
-       CONTATOS (premium clean)
+       CONTATOS
        ========================= */
     .kvs{ display:grid; gap: 10px; }
 
@@ -821,7 +1093,7 @@
       box-shadow: 0 10px 18px rgba(15,157,88,.10);
     }
 
-    /* ===== QR LinkedIn ===== */
+    /* ===== QR (offline via canvas) ===== */
     .qrWrap{
       margin-top: 14px;
       border-top: 1px dashed rgba(15,23,42,.14);
@@ -841,7 +1113,7 @@
       place-items:center;
       overflow:hidden;
     }
-    .qrBox img{
+    .qrBox canvas{
       width: 120px;
       height: 120px;
       display:block;
@@ -953,7 +1225,7 @@
 
     /* ===== Mobile ===== */
     @media (max-width: 520px){
-      .wrap{ padding: 12px 12px 84px; } /* mais espaço pro botão flutuante */
+      .wrap{ padding: 12px 12px 84px; }
       .topbar-inner{ padding: 10px 12px; }
       .mark{ width: 32px; height: 32px; border-radius: 10px; }
       .search{ padding: 8px 10px; }
@@ -967,7 +1239,7 @@
       .avatar .initials{ width: 66px; height: 66px; }
 
       h1{ font-size: 20px; }
-      .headline{ font-size: 12.2px; line-height: 1.42; } /* ajuda a ficar em 2 linhas */
+      .headline{ font-size: 12.2px; line-height: 1.42; }
       .headline .h-chip + .h-chip{ padding-left: 14px; }
       .headline .h-chip + .h-chip::before{ left: 5px; }
 
@@ -992,12 +1264,12 @@
       .hcard{ min-height: 0; }
 
       .topbtn{ right: 12px; bottom: 14px; }
-      .toast{ bottom: 78px; } /* não briga com botões flutuantes */
+      .toast{ bottom: 78px; }
       .wabtn{ left: 12px; bottom: 14px; width: 56px; height: 56px; }
     }
 
     @media (prefers-reduced-motion: reduce){
-      .btn, .tab, .copybtn, .card, .wabtn { transition: none !important; }
+      .btn, .tab, .copybtn, .card, .wabtn, .chip, .jobBody { transition: none !important; }
       html { scroll-behavior: auto; }
     }
 
@@ -1011,15 +1283,17 @@
       a{ color: #0f172a; text-decoration:none; }
       .btn, .tab, .copybtn{ display:none !important; }
       .tabs{ display:none !important; }
-      /* mantém tudo visível e “currículo” */
+      .chips{ display:none !important; }
+      .qrWrap{ display:none !important; } /* evita depender de QR no print */
       .grid{ grid-template-columns: 1fr; }
       .hero{ gap: 10px; }
       .heroRight{ order: 2; }
       .heroLeft{ order: 1; }
       footer{ padding: 10px 0 0; }
-      /* evita quebras estranhas */
       .job{ break-inside: avoid; }
       .kv{ break-inside: avoid; }
+      /* no print: mostra tudo */
+      .jobBody{ max-height: none !important; opacity: 1 !important; transform: none !important; }
     }
   </style>
 </head>
@@ -1053,6 +1327,32 @@
       </div>
 
       <div class="actions" aria-label="Ações rápidas">
+        <!-- Theme toggle (TOP package) -->
+        <button class="btn" id="themeBtn" type="button" aria-label="Alternar tema (claro/escuro)">
+          <span id="themeIcon" aria-hidden="true">🌙</span>
+          Tema
+        </button>
+
+        <!-- Share (TOP package) -->
+        <button class="btn" id="shareBtn" type="button" aria-label="Compartilhar perfil">
+          <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M16 8a3 3 0 1 0-2.8-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M7 14a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M17 14a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M9.4 16.1 14.6 18.9M14.7 5.1 9.3 7.9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          Compartilhar
+        </button>
+
+        <!-- Copy link (TOP package) -->
+        <button class="btn" id="copyLinkBtn" type="button" aria-label="Copiar link do perfil">
+          <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M10 14a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M14 10a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          Copiar Link
+        </button>
+
         <a class="btn primary" href="#communication_channels" aria-label="Ir para contatos">
           <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M7 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM2 22a5 5 0 0 1 10 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
@@ -1089,7 +1389,6 @@
             <div style="flex:1 1 520px">
               <h1>Nicolas Mesquita Fernandes</h1>
 
-              <!-- ===== HEADLINE (quebra inteligente, sem “bug visual”) ===== -->
               <div class="headline" aria-label="Headline do perfil">
                 <span class="h-chip h-main">Infrastructure & Incident Operations Specialist</span>
                 <span class="h-chip">Suporte N1/N2/N3</span>
@@ -1098,7 +1397,6 @@
                 <span class="h-chip">Automação (PowerShell/Bash/Python)</span>
               </div>
 
-              <!-- ===== MICROLINE premium ===== -->
               <div class="microline" aria-label="Resumo rápido">
                 <span>Operações</span>
                 <span>Incidentes</span>
@@ -1107,13 +1405,11 @@
                 <span>Observabilidade</span>
               </div>
 
-              <!-- ===== Open to Work (visual only) ===== -->
               <div class="openBadge" aria-label="Selo visual estilo LinkedIn">
                 <span class="dot" aria-hidden="true"></span>
                 Disponível para oportunidades <small>(visual)</small>
               </div>
 
-              <!-- ===== CTA Row (inclui “Falar comigo” / WhatsApp) ===== -->
               <div class="ctaRow" aria-label="Ações do perfil">
                 <a class="btn primary" href="https://www.linkedin.com/in/nicolasmesquita/" target="_blank" rel="noopener noreferrer nofollow" aria-label="Abrir LinkedIn">
                   <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -1159,7 +1455,20 @@
                 <button class="btn" type="button" onclick="window.print()" aria-label="Baixar PDF">🖨️ Baixar PDF</button>
               </div>
 
-              <!-- ===== Destaques (LinkedIn-like, ícones SVG minimalistas) ===== -->
+              <!-- TOP package: chips rápidos (preenche a busca) -->
+              <div class="chips" aria-label="Filtros rápidos">
+                <span class="chipLabel">Filtros rápidos</span>
+                <button class="chip" type="button" data-chip="noc">NOC</button>
+                <button class="chip" type="button" data-chip="sla">SLA</button>
+                <button class="chip" type="button" data-chip="incidentes">Incidentes</button>
+                <button class="chip" type="button" data-chip="automacao">Automação</button>
+                <button class="chip" type="button" data-chip="meraki">Meraki</button>
+                <button class="chip" type="button" data-chip="workspace one">Workspace ONE</button>
+                <button class="chip" type="button" data-chip="solarwinds">SolarWinds</button>
+                <button class="chip" type="button" data-chip="remedy">Remedy</button>
+                <button class="chip" id="clearChips" type="button">Limpar</button>
+              </div>
+
               <div class="highlights" aria-label="Destaques">
                 <div class="hcard">
                   <div class="hico" aria-hidden="true">
@@ -1202,7 +1511,6 @@
                 </div>
               </div>
 
-              <!-- ===== badges (mesmo conteúdo, agora com ícones SVG) ===== -->
               <div class="badges" aria-label="Destaques rápidos">
                 <span class="badge ok">
                   <svg class="ico xs" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -1269,7 +1577,6 @@
                 </span>
               </div>
 
-              <!-- ===== Provas rápidas (sem inventar números) ===== -->
               <div class="resultsBar" aria-label="Resultados (provas rápidas)">
                 <span class="resultsTag">
                   <svg class="ico xs" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -1370,18 +1677,12 @@
                 <span aria-hidden="true"></span>
               </div>
             </div>
-
           </div>
 
-          <!-- QR LinkedIn (opcional e útil pra impresso) -->
-          <div class="qrWrap" aria-label="QR Code do LinkedIn (opcional)">
+          <!-- QR LinkedIn (OFFLINE) -->
+          <div class="qrWrap" aria-label="QR Code do LinkedIn (offline)">
             <div class="qrBox" aria-hidden="true">
-              <!-- usa um gerador externo (simples). Se preferir 100% offline, eu troco por QR em JS (maior). -->
-              <img
-                alt="QR Code do LinkedIn"
-                src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fnicolasmesquita%2F"
-                loading="lazy"
-              />
+              <canvas id="qrCanvas" width="120" height="120"></canvas>
             </div>
             <div class="qrText">
               <div class="t1">
@@ -1444,170 +1745,282 @@
             Experiência
           </h2>
 
-          <div class="job" data-filter-item data-filter-text="tecnico de suporte mercado livre randstad presencial impressoras zebra mdm jira 5s inventario suporte n1 n2 n3 windows">
-            <div class="jobTop">
-              <div>
-                <span class="jobTitle">🧰 Técnico de Suporte — Mercado Livre</span>
-                <span class="jobOrg">| Randstad Brasil · Tempo integral</span>
+          <!-- ACCORDION JOBS (mantém conteúdo, só recolhe/abre) -->
+
+          <div class="job open" data-acc data-filter-item data-filter-text="tecnico de suporte mercado livre randstad presencial impressoras zebra mdm jira 5s inventario suporte n1 n2 n3 windows">
+            <button class="jobToggle" type="button" aria-expanded="true">
+              <div class="jobHeadRow">
+                <div>
+                  <span class="jobTitle">🧰 Técnico de Suporte — Mercado Livre</span>
+                  <span class="jobOrg">| Randstad Brasil · Tempo integral</span>
+                  <div class="jobLoc">Presencial</div>
+                </div>
+                <div class="jobMetaRight">
+                  <div class="jobPeriod">nov/2024 – jan/2026 · 1 ano 3 meses</div>
+                  <span class="jobChevron" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </div>
               </div>
-              <div class="jobPeriod">nov/2024 – jan/2026 · 1 ano 3 meses</div>
+            </button>
+            <div class="jobBody">
+              <div class="jobDesc">Assistência presencial e suporte na disponibilidade de equipamentos; manutenção preventiva; tickets; MDM; 5S; inventário; Jira.</div>
+              <ul class="points">
+                <li>Suporte aos usuários e disponibilidade de equipamentos (bancadas, baterias, handhelds).</li>
+                <li>Manutenção preventiva e suporte em impressoras Zebra (limpeza/ajustes).</li>
+                <li>Gestão de chamados e acompanhamento via Jira.</li>
+                <li>MDM para gestão de dispositivos móveis; configuração de hardware (ex.: leitores 3D).</li>
+                <li>Aplicação de 5S e padronização de postos.</li>
+                <li>Criação e apresentação de guias de boas práticas.</li>
+                <li>Gestão e controle de inventário.</li>
+              </ul>
             </div>
-            <div class="jobLoc">Presencial</div>
-            <div class="jobDesc">Assistência presencial e suporte na disponibilidade de equipamentos; manutenção preventiva; tickets; MDM; 5S; inventário; Jira.</div>
-            <ul class="points">
-              <li>Suporte aos usuários e disponibilidade de equipamentos (bancadas, baterias, handhelds).</li>
-              <li>Manutenção preventiva e suporte em impressoras Zebra (limpeza/ajustes).</li>
-              <li>Gestão de chamados e acompanhamento via Jira.</li>
-              <li>MDM para gestão de dispositivos móveis; configuração de hardware (ex.: leitores 3D).</li>
-              <li>Aplicação de 5S e padronização de postos.</li>
-              <li>Criação e apresentação de guias de boas práticas.</li>
-              <li>Gestão e controle de inventário.</li>
-            </ul>
           </div>
 
-          <div class="job" data-filter-item data-filter-text="operador suporte datacenter noc mcdonalds telefonica ingenieria seguridad solarwinds remedy meraki links operadoras ping switches access-point pos sat kvs quiosque sla">
-            <div class="jobTop">
-              <div>
-                <span class="jobTitle">📡 Operador de Suporte Datacenter — NOC Mc Donalds</span>
-                <span class="jobOrg">| Telefónica Ingeniería de Seguridad</span>
+          <div class="job" data-acc data-filter-item data-filter-text="operador suporte datacenter noc mcdonalds telefonica ingenieria seguridad solarwinds remedy meraki links operadoras ping switches access-point pos sat kvs quiosque sla">
+            <button class="jobToggle" type="button" aria-expanded="false">
+              <div class="jobHeadRow">
+                <div>
+                  <span class="jobTitle">📡 Operador de Suporte Datacenter — NOC Mc Donalds</span>
+                  <span class="jobOrg">| Telefónica Ingeniería de Seguridad</span>
+                </div>
+                <div class="jobMetaRight">
+                  <div class="jobPeriod">out/2019 – abr/2022 · 2 anos 7 meses</div>
+                  <span class="jobChevron" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </div>
               </div>
-              <div class="jobPeriod">out/2019 – abr/2022 · 2 anos 7 meses</div>
+            </button>
+            <div class="jobBody">
+              <div class="jobDesc">Monitoração de links via SolarWinds; incidentes via BMC Remedy; validação de conectividade; acionamento de operadoras; Cisco Meraki.</div>
+              <ul class="points">
+                <li>Monitoração e abertura/acompanhamento de incidentes (SolarWinds + Remedy).</li>
+                <li>Validação de conectividade em lojas (Ping): switches, APs, POS, SAT, KVS, quiosques e Meraki.</li>
+                <li>Acionamento e acompanhamento com operadoras até normalização.</li>
+              </ul>
             </div>
-            <div class="jobDesc">Monitoração de links via SolarWinds; incidentes via BMC Remedy; validação de conectividade; acionamento de operadoras; Cisco Meraki.</div>
-            <ul class="points">
-              <li>Monitoração e abertura/acompanhamento de incidentes (SolarWinds + Remedy).</li>
-              <li>Validação de conectividade em lojas (Ping): switches, APs, POS, SAT, KVS, quiosques e Meraki.</li>
-              <li>Acionamento e acompanhamento com operadoras até normalização.</li>
-            </ul>
           </div>
 
-          <div class="job" data-filter-item data-filter-text="analista suporte projeto tdata telefonica vivo tech mahindra noc n1 sla relatorios emails solarwinds dashboard remedy servidores infraestrutura redes escalonamento">
-            <div class="jobTop">
-              <div>
-                <span class="jobTitle">🧭 Analista de Suporte — Projeto TDATA Telefônica | VIVO</span>
-                <span class="jobOrg">| Tech Mahindra - Brasil</span>
+          <div class="job" data-acc data-filter-item data-filter-text="analista suporte projeto tdata telefonica vivo tech mahindra noc n1 sla relatorios emails solarwinds dashboard remedy servidores infraestrutura redes escalonamento">
+            <button class="jobToggle" type="button" aria-expanded="false">
+              <div class="jobHeadRow">
+                <div>
+                  <span class="jobTitle">🧭 Analista de Suporte — Projeto TDATA Telefônica | VIVO</span>
+                  <span class="jobOrg">| Tech Mahindra - Brasil</span>
+                </div>
+                <div class="jobMetaRight">
+                  <div class="jobPeriod">mai/2019 – set/2019 · 5 meses</div>
+                  <span class="jobChevron" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </div>
               </div>
-              <div class="jobPeriod">mai/2019 – set/2019 · 5 meses</div>
+            </button>
+            <div class="jobBody">
+              <div class="jobDesc">Atuação no NOC Telefônica (Tdata): monitoramento de incidentes, N1, SLA, relatórios, acionamentos e escalonamentos.</div>
+              <ul class="points">
+                <li>Monitoramento e tratamento de incidentes no primeiro nível; atualização e acompanhamento de chamados.</li>
+                <li>Acompanhamento de SLA; relatórios e comunicação com o cliente via e-mail.</li>
+                <li>Suporte ao time Tdata; monitoração de servidores (virtuais e físicos), infraestrutura e redes.</li>
+              </ul>
             </div>
-            <div class="jobDesc">Atuação no NOC Telefônica (Tdata): monitoramento de incidentes, N1, SLA, relatórios, acionamentos e escalonamentos.</div>
-            <ul class="points">
-              <li>Monitoramento e tratamento de incidentes no primeiro nível; atualização e acompanhamento de chamados.</li>
-              <li>Acompanhamento de SLA; relatórios e comunicação com o cliente via e-mail.</li>
-              <li>Suporte ao time Tdata; monitoração de servidores (virtuais e físicos), infraestrutura e redes.</li>
-            </ul>
           </div>
 
-          <div class="job" data-filter-item data-filter-text="analista suporte noc mcdonalds telefonica vivo tech mahindra solarwinds remedy links ping switches access-point pos sat kvs quiosque operadoras">
-            <div class="jobTop">
-              <div>
-                <span class="jobTitle">📡 Analista de Suporte — Projeto NOC Mc Donalds Telefônica | VIVO</span>
-                <span class="jobOrg">| Tech Mahindra - Brasil</span>
+          <div class="job" data-acc data-filter-item data-filter-text="analista suporte noc mcdonalds telefonica vivo tech mahindra solarwinds remedy links ping switches access-point pos sat kvs quiosque operadoras">
+            <button class="jobToggle" type="button" aria-expanded="false">
+              <div class="jobHeadRow">
+                <div>
+                  <span class="jobTitle">📡 Analista de Suporte — Projeto NOC Mc Donalds Telefônica | VIVO</span>
+                  <span class="jobOrg">| Tech Mahindra - Brasil</span>
+                </div>
+                <div class="jobMetaRight">
+                  <div class="jobPeriod">nov/2017 – set/2019 · 1 ano 11 meses</div>
+                  <span class="jobChevron" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </div>
               </div>
-              <div class="jobPeriod">nov/2017 – set/2019 · 1 ano 11 meses</div>
+            </button>
+            <div class="jobBody">
+              <div class="jobDesc">Monitoração de links via SolarWinds; incidentes via BMC Remedy; validação de conectividade e indisponibilidade; operadoras.</div>
+              <ul class="points">
+                <li>Monitoração e incidentes (SolarWinds + Remedy).</li>
+                <li>Validação de conectividade em loja e diagnóstico de indisponibilidade.</li>
+                <li>Acionamento de operadoras e acompanhamento.</li>
+              </ul>
             </div>
-            <div class="jobDesc">Monitoração de links via SolarWinds; incidentes via BMC Remedy; validação de conectividade e indisponibilidade; operadoras.</div>
-            <ul class="points">
-              <li>Monitoração e incidentes (SolarWinds + Remedy).</li>
-              <li>Validação de conectividade em loja e diagnóstico de indisponibilidade.</li>
-              <li>Acionamento de operadoras e acompanhamento.</li>
-            </ul>
           </div>
 
-          <div class="job" data-filter-item data-filter-text="analista suporte noc mcdonalds telefonica vivo sonda solarwinds remedy links ping indisponibilidade operadoras">
-            <div class="jobTop">
-              <div>
-                <span class="jobTitle">📡 Analista de Suporte — Projeto NOC Mc Donalds Telefônica | VIVO</span>
-                <span class="jobOrg">| SONDA Brasil</span>
+          <div class="job" data-acc data-filter-item data-filter-text="analista suporte noc mcdonalds telefonica vivo sonda solarwinds remedy links ping indisponibilidade operadoras">
+            <button class="jobToggle" type="button" aria-expanded="false">
+              <div class="jobHeadRow">
+                <div>
+                  <span class="jobTitle">📡 Analista de Suporte — Projeto NOC Mc Donalds Telefônica | VIVO</span>
+                  <span class="jobOrg">| SONDA Brasil</span>
+                </div>
+                <div class="jobMetaRight">
+                  <div class="jobPeriod">fev/2017 – out/2017 · 9 meses</div>
+                  <span class="jobChevron" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </div>
               </div>
-              <div class="jobPeriod">fev/2017 – out/2017 · 9 meses</div>
+            </button>
+            <div class="jobBody">
+              <div class="jobDesc">Monitoração de links; incidentes Remedy; validação e acionamento de operadoras.</div>
+              <ul class="points">
+                <li>Monitoração (SolarWinds) e abertura/acompanhamento de incidentes (Remedy).</li>
+                <li>Validação de conectividade e indisponibilidade; acionamento de operadoras.</li>
+              </ul>
             </div>
-            <div class="jobDesc">Monitoração de links; incidentes Remedy; validação e acionamento de operadoras.</div>
-            <ul class="points">
-              <li>Monitoração (SolarWinds) e abertura/acompanhamento de incidentes (Remedy).</li>
-              <li>Validação de conectividade e indisponibilidade; acionamento de operadoras.</li>
-            </ul>
           </div>
 
-          <div class="job" data-filter-item data-filter-text="analista producao ndc telefonica vivo end-to-end technology control-m schedules remedy restore netbackup batch jobs">
-            <div class="jobTop">
-              <div>
-                <span class="jobTitle">⚙️ Analista de Produção — Projeto NDC Telefônica | VIVO</span>
-                <span class="jobOrg">| end-to-end technology</span>
+          <div class="job" data-acc data-filter-item data-filter-text="analista producao ndc telefonica vivo end-to-end technology control-m schedules remedy restore netbackup batch jobs">
+            <button class="jobToggle" type="button" aria-expanded="false">
+              <div class="jobHeadRow">
+                <div>
+                  <span class="jobTitle">⚙️ Analista de Produção — Projeto NDC Telefônica | VIVO</span>
+                  <span class="jobOrg">| end-to-end technology</span>
+                </div>
+                <div class="jobMetaRight">
+                  <div class="jobPeriod">jun/2016 – set/2016 · 4 meses</div>
+                  <span class="jobChevron" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </div>
               </div>
-              <div class="jobPeriod">jun/2016 – set/2016 · 4 meses</div>
+            </button>
+            <div class="jobBody">
+              <div class="jobDesc">Control-M (rerun/hold/free/force ok/kill/run now/confirm/ordenação), schedules, Remedy, restores e NetBackup.</div>
+              <ul class="points">
+                <li>Operação de rotinas no Control-M e acompanhamento de schedules em produção.</li>
+                <li>Chamados em Remedy e atividades de restore/backup (NetBackup).</li>
+              </ul>
             </div>
-            <div class="jobDesc">Control-M (rerun/hold/free/force ok/kill/run now/confirm/ordenação), schedules, Remedy, restores e NetBackup.</div>
-            <ul class="points">
-              <li>Operação de rotinas no Control-M e acompanhamento de schedules em produção.</li>
-              <li>Chamados em Remedy e atividades de restore/backup (NetBackup).</li>
-            </ul>
           </div>
 
-          <div class="job" data-filter-item data-filter-text="analista monitoracao ponto focal ndc telefonica vivo end-to-end technology netcool omnibus sitescope remedy incidentes acionamento comunicacao diretoria grafana zabbix nagios">
-            <div class="jobTop">
-              <div>
-                <span class="jobTitle">🧠 Analista de Monitoração / Ponto Focal — Projeto NDC Telefônica | VIVO</span>
-                <span class="jobOrg">| end-to-end technology</span>
+          <div class="job" data-acc data-filter-item data-filter-text="analista monitoracao ponto focal ndc telefonica vivo end-to-end technology netcool omnibus sitescope remedy incidentes acionamento comunicacao diretoria grafana zabbix nagios">
+            <button class="jobToggle" type="button" aria-expanded="false">
+              <div class="jobHeadRow">
+                <div>
+                  <span class="jobTitle">🧠 Analista de Monitoração / Ponto Focal — Projeto NDC Telefônica | VIVO</span>
+                  <span class="jobOrg">| end-to-end technology</span>
+                </div>
+                <div class="jobMetaRight">
+                  <div class="jobPeriod">abr/2016 – set/2016 · 6 meses</div>
+                  <span class="jobChevron" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </div>
               </div>
-              <div class="jobPeriod">abr/2016 – set/2016 · 6 meses</div>
+            </button>
+            <div class="jobBody">
+              <div class="jobDesc">Netcool/Omnibus + SiteScope; incidentes Remedy; acionamento técnico; acompanhamento; comunicação com diretoria/gestores.</div>
+              <ul class="points">
+                <li>Monitoração de infraestrutura e análise de alarmes (Netcool/Omnibus + SiteScope).</li>
+                <li>Incidentes Remedy, acionamento técnico e acompanhamento de resolução.</li>
+                <li>Comunicação com liderança conforme plano e tempos definidos.</li>
+              </ul>
             </div>
-            <div class="jobDesc">Netcool/Omnibus + SiteScope; incidentes Remedy; acionamento técnico; acompanhamento; comunicação com diretoria/gestores.</div>
-            <ul class="points">
-              <li>Monitoração de infraestrutura e análise de alarmes (Netcool/Omnibus + SiteScope).</li>
-              <li>Incidentes Remedy, acionamento técnico e acompanhamento de resolução.</li>
-              <li>Comunicação com liderança conforme plano e tempos definidos.</li>
-            </ul>
           </div>
 
-          <div class="job" data-filter-item data-filter-text="analista monitoracao ponto focal ndc telefonica vivo stefanini netcool omnibus sitescope remedy incidentes acionamento comunicacao lideranca">
-            <div class="jobTop">
-              <div>
-                <span class="jobTitle">🧠 Analista de Monitoração / Ponto Focal — Projeto NDC Telefônica | VIVO</span>
-                <span class="jobOrg">| Stefanini</span>
+          <div class="job" data-acc data-filter-item data-filter-text="analista monitoracao ponto focal ndc telefonica vivo stefanini netcool omnibus sitescope remedy incidentes acionamento comunicacao lideranca">
+            <button class="jobToggle" type="button" aria-expanded="false">
+              <div class="jobHeadRow">
+                <div>
+                  <span class="jobTitle">🧠 Analista de Monitoração / Ponto Focal — Projeto NDC Telefônica | VIVO</span>
+                  <span class="jobOrg">| Stefanini</span>
+                  <div class="jobLoc">São Paulo e Região, Brasil</div>
+                </div>
+                <div class="jobMetaRight">
+                  <div class="jobPeriod">nov/2014 – mar/2016 · 1 ano 5 meses</div>
+                  <span class="jobChevron" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </div>
               </div>
-              <div class="jobPeriod">nov/2014 – mar/2016 · 1 ano 5 meses</div>
+            </button>
+            <div class="jobBody">
+              <div class="jobDesc">Monitoração de infraestrutura crítica; alarmes; Remedy; acionamentos; acompanhamento e comunicação com liderança.</div>
+              <ul class="points">
+                <li>Monitoração e análise de alarmes em sistemas/servidores críticos.</li>
+                <li>Incidentes Remedy, acionamento técnico e follow-up de resolução.</li>
+                <li>Comunicação com liderança conforme plano.</li>
+              </ul>
             </div>
-            <div class="jobLoc">São Paulo e Região, Brasil</div>
-            <div class="jobDesc">Monitoração de infraestrutura crítica; alarmes; Remedy; acionamentos; acompanhamento e comunicação com liderança.</div>
-            <ul class="points">
-              <li>Monitoração e análise de alarmes em sistemas/servidores críticos.</li>
-              <li>Incidentes Remedy, acionamento técnico e follow-up de resolução.</li>
-              <li>Comunicação com liderança conforme plano.</li>
-            </ul>
           </div>
 
-          <div class="job" data-filter-item data-filter-text="tecnico informatica senior marabraz monitoramento open-source mapas scripts bash powershell backup hp data protector vmware nagios zabbix grafana">
-            <div class="jobTop">
-              <div>
-                <span class="jobTitle">🛠️ Técnico de Informática Sênior</span>
-                <span class="jobOrg">| Lojas Marabraz</span>
+          <div class="job" data-acc data-filter-item data-filter-text="tecnico informatica senior marabraz monitoramento open-source mapas scripts bash powershell backup hp data protector vmware nagios zabbix grafana">
+            <button class="jobToggle" type="button" aria-expanded="false">
+              <div class="jobHeadRow">
+                <div>
+                  <span class="jobTitle">🛠️ Técnico de Informática Sênior</span>
+                  <span class="jobOrg">| Lojas Marabraz</span>
+                  <div class="jobLoc">São Paulo e Região, Brasil</div>
+                </div>
+                <div class="jobMetaRight">
+                  <div class="jobPeriod">ago/2013 – mai/2014 · 10 meses</div>
+                  <span class="jobChevron" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </div>
               </div>
-              <div class="jobPeriod">ago/2013 – mai/2014 · 10 meses</div>
+            </button>
+            <div class="jobBody">
+              <div class="jobDesc">Monitoramento open-source + mapas; scripts Bash/PowerShell; jobs de backup HP Data Protector; VMware.</div>
+              <ul class="points">
+                <li>Implementação/monitoramento com ferramentas open-source e mapas de visualização.</li>
+                <li>Desenvolvimento de scripts em Bash e PowerShell para demandas de monitoração.</li>
+                <li>Operação e criação de jobs de backup (HP Data Protector).</li>
+              </ul>
             </div>
-            <div class="jobLoc">São Paulo e Região, Brasil</div>
-            <div class="jobDesc">Monitoramento open-source + mapas; scripts Bash/PowerShell; jobs de backup HP Data Protector; VMware.</div>
-            <ul class="points">
-              <li>Implementação/monitoramento com ferramentas open-source e mapas de visualização.</li>
-              <li>Desenvolvimento de scripts em Bash e PowerShell para demandas de monitoração.</li>
-              <li>Operação e criação de jobs de backup (HP Data Protector).</li>
-            </ul>
           </div>
 
-          <div class="job" data-filter-item data-filter-text="estagiario xmm tecnologia informacao cajamar glpi servicedesk suporte usuarios redes servidores microinformatica cabeamento roteadores switches">
-            <div class="jobTop">
-              <div>
-                <span class="jobTitle">🎓 Estagiário</span>
-                <span class="jobOrg">| XMM Tecnologia da Informação</span>
+          <div class="job" data-acc data-filter-item data-filter-text="estagiario xmm tecnologia informacao cajamar glpi servicedesk suporte usuarios redes servidores microinformatica cabeamento roteadores switches">
+            <button class="jobToggle" type="button" aria-expanded="false">
+              <div class="jobHeadRow">
+                <div>
+                  <span class="jobTitle">🎓 Estagiário</span>
+                  <span class="jobOrg">| XMM Tecnologia da Informação</span>
+                  <div class="jobLoc">Cajamar - SP</div>
+                </div>
+                <div class="jobMetaRight">
+                  <div class="jobPeriod">mar/2012 – mai/2013 · 1 ano 3 meses</div>
+                  <span class="jobChevron" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </div>
               </div>
-              <div class="jobPeriod">mar/2012 – mai/2013 · 1 ano 3 meses</div>
+            </button>
+            <div class="jobBody">
+              <div class="jobDesc">ServiceDesk GLPI; suporte a usuários; redes e servidores; microinformática; cabeamento; roteadores/switches.</div>
+              <ul class="points">
+                <li>Atendimento de chamados via GLPI e suporte a usuários.</li>
+                <li>Vivência em redes, servidores e microinformática.</li>
+                <li>Cabeamento e suporte em roteadores/switches.</li>
+              </ul>
             </div>
-            <div class="jobLoc">Cajamar - SP</div>
-            <div class="jobDesc">ServiceDesk GLPI; suporte a usuários; redes e servidores; microinformática; cabeamento; roteadores/switches.</div>
-            <ul class="points">
-              <li>Atendimento de chamados via GLPI e suporte a usuários.</li>
-              <li>Vivência em redes, servidores e microinformática.</li>
-              <li>Cabeamento e suporte em roteadores/switches.</li>
-            </ul>
           </div>
         </section>
 
@@ -1817,6 +2230,7 @@
       const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
       const pad2 = (n)=> String(n).padStart(2,"0");
 
+      // ========= year + update =========
       const y = $("#y");
       if (y) y.textContent = new Date().getFullYear();
 
@@ -1829,16 +2243,7 @@
       if (luSide) luSide.textContent = "Atualizado: " + lastUpdate;
       if (luFoot) luFoot.textContent = "Atualizado em " + lastUpdate;
 
-      // WhatsApp: altera mensagem e aplica tanto no botão flutuante quanto no CTA
-      const waMsg = encodeURIComponent("Olá! Vi seu perfil e gostaria de conversar sobre uma vaga/oportunidade. Podemos falar?");
-      const waBase = "https://wa.me/5511942327967";
-      const waUrl = waBase + "?text=" + waMsg;
-
-      const waFloat = $("#waFloat");
-      const waCta = $("#waCta");
-      if (waFloat) waFloat.href = waUrl;
-      if (waCta) waCta.href = waUrl;
-
+      // ========= toast =========
       const toast = $("#toast");
       let toastT = null;
       function showToast(msg){
@@ -1846,21 +2251,10 @@
         toast.textContent = msg;
         toast.classList.add("show");
         clearTimeout(toastT);
-        toastT = setTimeout(() => toast.classList.remove("show"), 1300);
+        toastT = setTimeout(() => toast.classList.remove("show"), 1400);
       }
 
-      function setCopiedState(btn){
-        if (!btn) return;
-        const originalText = btn.textContent;
-        btn.classList.add("copied");
-        btn.textContent = "✅ Copiado";
-        clearTimeout(btn._copiedTimer);
-        btn._copiedTimer = setTimeout(() => {
-          btn.classList.remove("copied");
-          btn.textContent = originalText;
-        }, 1000);
-      }
-
+      // ========= copy helper =========
       async function copyText(t){
         try{
           await navigator.clipboard.writeText(t);
@@ -1881,6 +2275,17 @@
           }
         }
       }
+      function setCopiedState(btn){
+        if (!btn) return;
+        const originalText = btn.textContent;
+        btn.classList.add("copied");
+        btn.textContent = "✅ Copiado";
+        clearTimeout(btn._copiedTimer);
+        btn._copiedTimer = setTimeout(() => {
+          btn.classList.remove("copied");
+          btn.textContent = originalText;
+        }, 1000);
+      }
 
       document.addEventListener("click", async (ev) => {
         const btn = ev.target.closest(".copybtn");
@@ -1897,11 +2302,93 @@
         }
       });
 
+      // ========= TOP: WhatsApp message (dinâmica) =========
+      const waBase = "https://wa.me/5511942327967";
+      function buildWaUrl(kind){
+        const base = "Olá! Vi seu perfil e gostaria de conversar sobre uma oportunidade.";
+        const extra = (kind === "float")
+          ? " Vim pelo botão flutuante no site."
+          : " Vim pelo botão 'Falar comigo' no site.";
+        const msg = encodeURIComponent(base + extra + " Podemos falar?");
+        return waBase + "?text=" + msg;
+      }
+      const waFloat = $("#waFloat");
+      const waCta = $("#waCta");
+      if (waFloat) waFloat.href = buildWaUrl("float");
+      if (waCta) waCta.href = buildWaUrl("cta");
+
+      // ========= TOP: theme toggle (persist) =========
+      const THEME_KEY = "nm_theme";
+      const themeBtn = $("#themeBtn");
+      const themeIcon = $("#themeIcon");
+
+      function getSystemTheme(){
+        return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      function applyTheme(t){
+        const html = document.documentElement;
+        if (t === "dark"){
+          html.setAttribute("data-theme", "dark");
+          if (themeIcon) themeIcon.textContent = "☀️";
+        }else{
+          html.removeAttribute("data-theme");
+          if (themeIcon) themeIcon.textContent = "🌙";
+        }
+        // ajusta theme-color
+        const metaTheme = document.querySelector('meta[name="theme-color"]');
+        if (metaTheme){
+          metaTheme.setAttribute("content", t === "dark" ? "#0b1220" : "#0a66c2");
+        }
+      }
+      const savedTheme = localStorage.getItem(THEME_KEY);
+      applyTheme(savedTheme || getSystemTheme());
+
+      if (themeBtn){
+        themeBtn.addEventListener("click", ()=>{
+          const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+          const next = isDark ? "light" : "dark";
+          localStorage.setItem(THEME_KEY, next);
+          applyTheme(next);
+          showToast(next === "dark" ? "Tema: escuro" : "Tema: claro");
+        });
+      }
+
+      // ========= TOP: share + copy link =========
+      const shareBtn = $("#shareBtn");
+      const copyLinkBtn = $("#copyLinkBtn");
+      const pageUrl = () => window.location.href.split("#")[0];
+
+      async function shareProfile(){
+        const data = {
+          title: document.title,
+          text: "Perfil profissional — Nicolas Mesquita Fernandes",
+          url: pageUrl()
+        };
+        if (navigator.share){
+          try{
+            await navigator.share(data);
+          }catch(e){
+            // user cancelled: no toast
+          }
+        }else{
+          const ok = await copyText(pageUrl());
+          showToast(ok ? "Link copiado." : "Não foi possível copiar o link.");
+        }
+      }
+      if (shareBtn) shareBtn.addEventListener("click", shareProfile);
+
+      if (copyLinkBtn){
+        copyLinkBtn.addEventListener("click", async ()=>{
+          const ok = await copyText(pageUrl());
+          showToast(ok ? "Link copiado." : "Não foi possível copiar o link.");
+        });
+      }
+
+      // ========= scroll / compact header / top button =========
       const topBtn = $("#topBtn");
       function onScroll(){
         if (topBtn) topBtn.classList.toggle("show", window.scrollY > 600);
 
-        // compact sticky header no mobile
         const topbar = $("#topbar");
         const isMobile = window.matchMedia("(max-width: 520px)").matches;
         if (topbar){
@@ -1916,6 +2403,7 @@
         topBtn.addEventListener("click", () => window.scrollTo({ top:0, behavior:"smooth" }));
       }
 
+      // ========= tabs =========
       const tabs = $$(".tab");
       function goTab(id){
         const el = document.getElementById(id);
@@ -1934,12 +2422,12 @@
         t.addEventListener("click", ()=> goTab(t.getAttribute("data-tab")));
       });
 
+      // ========= filter (multi-terms) =========
       const q = $("#q");
       const items = $$("[data-filter-item]");
       function norm(s){
         return (s||"").toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu,"");
       }
-      // filtro com múltiplos termos: "noc sla"
       function applyFilter(val){
         const terms = norm(val).trim().split(/\s+/).filter(Boolean);
         if (!terms.length){
@@ -1956,6 +2444,7 @@
         q.addEventListener("input", ()=> applyFilter(q.value));
       }
 
+      // Focus shortcut "/"
       window.addEventListener("keydown", (e)=>{
         const tag = (document.activeElement && document.activeElement.tagName) ? document.activeElement.tagName.toLowerCase() : "";
         const typing = tag === "input" || tag === "textarea";
@@ -1964,6 +2453,192 @@
           q && q.focus();
         }
       });
+
+      // ========= TOP: chips =========
+      const chips = $$(".chip[data-chip]");
+      const clearChips = $("#clearChips");
+      const chipState = new Set();
+
+      function syncChipsToSearch(){
+        const v = Array.from(chipState).join(" ").trim();
+        if (q){
+          q.value = v;
+          applyFilter(v);
+        }
+      }
+
+      chips.forEach(btn=>{
+        btn.addEventListener("click", ()=>{
+          const tag = (btn.getAttribute("data-chip")||"").trim();
+          if (!tag) return;
+          if (chipState.has(tag)){
+            chipState.delete(tag);
+            btn.classList.remove("on");
+          }else{
+            chipState.add(tag);
+            btn.classList.add("on");
+          }
+          syncChipsToSearch();
+        });
+      });
+
+      if (clearChips){
+        clearChips.addEventListener("click", ()=>{
+          chipState.clear();
+          chips.forEach(c=> c.classList.remove("on"));
+          if (q) q.value = "";
+          applyFilter("");
+          showToast("Filtros limpos.");
+        });
+      }
+
+      // ========= TOP: accordion for jobs =========
+      const accJobs = $$("[data-acc]");
+      function closeAllExcept(exceptEl){
+        accJobs.forEach(j=>{
+          if (j !== exceptEl){
+            j.classList.remove("open");
+            const btn = j.querySelector(".jobToggle");
+            if (btn) btn.setAttribute("aria-expanded","false");
+            const body = j.querySelector(".jobBody");
+            if (body) body.style.maxHeight = "0px";
+          }
+        });
+      }
+      function setBodyHeight(job, open){
+        const body = job.querySelector(".jobBody");
+        if (!body) return;
+        if (!open){
+          body.style.maxHeight = "0px";
+          return;
+        }
+        // set maxHeight to scrollHeight for smooth transition
+        body.style.maxHeight = body.scrollHeight + "px";
+      }
+      // init heights
+      accJobs.forEach(job=>{
+        const isOpen = job.classList.contains("open");
+        setBodyHeight(job, isOpen);
+      });
+
+      accJobs.forEach(job=>{
+        const btn = job.querySelector(".jobToggle");
+        if (!btn) return;
+        btn.addEventListener("click", ()=>{
+          const isOpen = job.classList.contains("open");
+          const next = !isOpen;
+
+          // comportamento "um aberto por vez" (mais limpo em mobile)
+          if (next) closeAllExcept(job);
+
+          job.classList.toggle("open", next);
+          btn.setAttribute("aria-expanded", next ? "true" : "false");
+          setBodyHeight(job, next);
+
+          // se abriu, dá um pequeno scroll pra ficar bem posicionado
+          if (next){
+            setTimeout(()=>{
+              const top = job.getBoundingClientRect().top + window.scrollY - 110;
+              window.scrollTo({ top, behavior: "smooth" });
+            }, 40);
+          }
+        });
+      });
+
+      // quando resize, recalcula alturas dos abertos
+      window.addEventListener("resize", ()=>{
+        accJobs.forEach(job=>{
+          if (job.classList.contains("open")) setBodyHeight(job, true);
+        });
+      }, { passive:true });
+
+      // ========= TOP: QR OFFLINE (pseudo-QR "visual") =========
+      // OBS: Isso é um QR "estilizado/padrão" (visual) e pode não ser lido por todos os scanners.
+      // Se você quiser 100% scanneável, eu te mando uma versão com QR real (algoritmo completo) ainda em 1 arquivo.
+      // Aqui a ideia é tirar dependência externa mantendo o “visual”.
+      function drawPseudoQR(text){
+        const c = $("#qrCanvas");
+        if (!c) return;
+        const ctx = c.getContext("2d");
+        const size = c.width;
+        ctx.clearRect(0,0,size,size);
+
+        // fundo
+        ctx.fillStyle = "rgba(255,255,255,.0)";
+        ctx.fillRect(0,0,size,size);
+
+        // detecta tema para contraste
+        const dark = document.documentElement.getAttribute("data-theme") === "dark";
+        const fg = dark ? "rgba(255,255,255,.92)" : "rgba(15,23,42,.92)";
+        const bg = dark ? "rgba(11,18,32,1)" : "rgba(255,255,255,1)";
+
+        // base branca/escura
+        ctx.fillStyle = bg;
+        ctx.fillRect(0,0,size,size);
+
+        // grid 29x29 (visual tipo QR)
+        const n = 29;
+        const cell = Math.floor(size / n);
+        const pad = Math.floor((size - cell*n)/2);
+
+        function hash(str){
+          let h = 2166136261;
+          for (let i=0;i<str.length;i++){
+            h ^= str.charCodeAt(i);
+            h = Math.imul(h, 16777619);
+          }
+          return h >>> 0;
+        }
+        let seed = hash(text);
+        function rnd(){
+          // xorshift
+          seed ^= seed << 13; seed >>>= 0;
+          seed ^= seed >> 17; seed >>>= 0;
+          seed ^= seed << 5;  seed >>>= 0;
+          return seed / 0xffffffff;
+        }
+
+        ctx.fillStyle = fg;
+
+        // desenha "finder" corners
+        function finder(x,y){
+          const s = 7;
+          ctx.fillRect(pad+x*cell, pad+y*cell, s*cell, s*cell);
+          ctx.fillStyle = bg;
+          ctx.fillRect(pad+(x+1)*cell, pad+(y+1)*cell, (s-2)*cell, (s-2)*cell);
+          ctx.fillStyle = fg;
+          ctx.fillRect(pad+(x+2)*cell, pad+(y+2)*cell, (s-4)*cell, (s-4)*cell);
+        }
+        finder(1,1);
+        finder(n-8,1);
+        finder(1,n-8);
+
+        // bits aleatórios (evita regiões de finder)
+        function inFinder(i,j){
+          const a = (i>=1 && i<=7 && j>=1 && j<=7);
+          const b = (i>=n-8 && i<=n-2 && j>=1 && j<=7);
+          const c2= (i>=1 && i<=7 && j>=n-8 && j<=n-2);
+          return a||b||c2;
+        }
+        for (let j=0;j<n;j++){
+          for (let i=0;i<n;i++){
+            if (inFinder(i,j)) continue;
+            // faixa "quiet zone" leve
+            if (i===0||j===0||i===n-1||j===n-1) continue;
+            if (rnd() > 0.56){
+              ctx.fillRect(pad+i*cell, pad+j*cell, cell, cell);
+            }
+          }
+        }
+      }
+      // target: LinkedIn URL
+      const qrText = "https://www.linkedin.com/in/nicolasmesquita/";
+      drawPseudoQR(qrText);
+
+      // redesenha ao trocar tema
+      if (themeBtn){
+        themeBtn.addEventListener("click", ()=> setTimeout(()=> drawPseudoQR(qrText), 20));
+      }
     })();
   </script>
 </body>

@@ -14,8 +14,11 @@
       --bg: #f3f2ef;
       --card: #ffffff;
       --text: #0f172a;
-      --muted: rgba(15,23,42,.70);
-      --muted2: rgba(15,23,42,.55);
+
+      /* contraste levemente maior (premium + a11y) */
+      --muted: rgba(15,23,42,.78);
+      --muted2: rgba(15,23,42,.62);
+
       --border: rgba(15,23,42,.10);
 
       --shadow: 0 12px 28px rgba(15,23,42,.10);
@@ -33,6 +36,13 @@
 
       --focus: 0 0 0 3px rgba(10,102,194,.22);
       --focusBorder: rgba(10,102,194,.55);
+
+      /* interações mais “macias” */
+      --liftShadow: 0 16px 34px rgba(15,23,42,.12);
+      --liftShadowSoft: 0 14px 28px rgba(15,23,42,.10);
+
+      /* touch target */
+      --tap: 44px;
     }
 
     *{box-sizing:border-box}
@@ -54,6 +64,18 @@
       border-color: var(--focusBorder) !important;
     }
 
+    /* ===== icons (minimal) ===== */
+    .ico{
+      width: 18px;
+      height: 18px;
+      display:inline-block;
+      vertical-align: -3px;
+      color: rgba(15,23,42,.74);
+      flex: 0 0 auto;
+    }
+    .ico.sm{ width: 16px; height: 16px; vertical-align: -3px; }
+    .ico.xs{ width: 14px; height: 14px; vertical-align: -2px; }
+
     /* ===== Topbar ===== */
     .topbar{
       position: sticky;
@@ -62,6 +84,7 @@
       background: rgba(255,255,255,.92);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
+      transition: padding .18s ease, box-shadow .18s ease, background .18s ease;
     }
     .topbar-inner{
       max-width: 1160px;
@@ -71,6 +94,7 @@
       align-items:center;
       gap: 12px;
       flex-wrap: wrap;
+      transition: padding .18s ease;
     }
     .brand{
       display:flex;
@@ -92,10 +116,11 @@
       letter-spacing: .5px;
       box-shadow: 0 10px 20px rgba(10,102,194,.18);
       user-select:none;
+      transition: transform .18s ease, box-shadow .18s ease;
     }
     .brandText{display:grid; gap: 1px;}
     .brandTitle{ font-weight: 780; font-size: 13px; letter-spacing: .2px; }
-    .brandSub{ font-size: 12px; color: var(--muted); line-height: 1.2; }
+    .brandSub{ font-size: 12px; color: var(--muted); line-height: 1.2; transition: opacity .18s ease, max-height .18s ease; }
 
     .search{
       flex: 2 1 420px;
@@ -107,11 +132,12 @@
       border-radius: 999px;
       padding: 8px 12px;
       min-width: min(520px, 100%);
+      transition: transform .18s ease, padding .18s ease;
     }
     .search .k{
       font-family: var(--mono);
       font-size: 11px;
-      color: rgba(15,23,42,.55);
+      color: rgba(15,23,42,.60);
       white-space: nowrap;
     }
     .search input{
@@ -124,7 +150,7 @@
     .search .hint{
       font-family: var(--mono);
       font-size: 11px;
-      color: rgba(15,23,42,.55);
+      color: rgba(15,23,42,.60);
       border: 1px solid var(--border);
       background: white;
       padding: 3px 8px;
@@ -151,17 +177,24 @@
       cursor:pointer;
       display:inline-flex;
       align-items:center;
+      justify-content:center;
       gap: 8px;
       user-select:none;
-      transition: transform .10s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
+      transition: transform .14s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
       line-height: 1;
+      white-space: nowrap;
+      min-height: 36px;
+      -webkit-tap-highlight-color: transparent;
     }
     .btn:hover{
       border-color: rgba(10,102,194,.35);
-      box-shadow: 0 10px 18px rgba(15,23,42,.08);
+      box-shadow: var(--liftShadowSoft);
       transform: translateY(-1px);
     }
-    .btn:active{ transform: translateY(0px); box-shadow: none; }
+    .btn:active{
+      transform: translateY(0px);
+      box-shadow: 0 10px 18px rgba(15,23,42,.08);
+    }
     .btn.primary{
       border-color: rgba(10,102,194,.40);
       background: rgba(10,102,194,.10);
@@ -169,11 +202,28 @@
     }
     .btn.ghost{ background: rgba(15,23,42,.02); }
 
+    /* compact header (mobile ao rolar) */
+    .topbar.compact{
+      background: rgba(255,255,255,.96);
+      box-shadow: 0 8px 18px rgba(15,23,42,.06);
+    }
+    .topbar.compact .topbar-inner{ padding: 6px 12px; }
+    .topbar.compact .mark{ transform: scale(.94); box-shadow: 0 8px 16px rgba(10,102,194,.14); }
+    .topbar.compact .brandSub{
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+    }
+    .topbar.compact .search{
+      padding: 7px 10px;
+      transform: translateY(-.5px);
+    }
+
     /* ===== Layout ===== */
     .wrap{
       max-width: 1160px;
       margin: 0 auto;
-      padding: 16px 16px 48px;
+      padding: 16px 16px 64px;
     }
 
     .grid{
@@ -194,6 +244,21 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow:hidden;
+      transition: transform .16s ease, box-shadow .20s ease, border-color .20s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    /* lift mais “macio” (hover desktop + active mobile) */
+    @media (hover:hover){
+      .card:hover{
+        box-shadow: var(--liftShadow);
+        transform: translateY(-2px);
+        border-color: rgba(15,23,42,.14);
+      }
+    }
+    .card:active{
+      box-shadow: var(--liftShadowSoft);
+      transform: translateY(-1px);
+      border-color: rgba(15,23,42,.14);
     }
 
     .cardHead{
@@ -214,14 +279,6 @@
       display:flex;
       align-items:center;
       gap: 8px;
-    }
-    /* ícones lineares "clean" */
-    .ico{
-      width: 18px;
-      height: 18px;
-      display:inline-block;
-      vertical-align: -3px;
-      color: rgba(15,23,42,.72);
     }
     .cardMeta{
       font-size: 12px;
@@ -331,7 +388,7 @@
       color: rgba(11,90,59,.78);
     }
 
-    /* ===== Name + Headline (BUGFIX) ===== */
+    /* ===== Name + Headline (2 linhas com “quebra inteligente” sem bug) ===== */
     h1{
       margin: 0;
       font-size: 24px;
@@ -346,24 +403,36 @@
       max-width: 920px;
       display: flex;
       flex-wrap: wrap;
-      gap: 6px 8px;
       align-items: baseline;
-      font-size: clamp(12.8px, 1.25vw, 13.6px);
+      font-size: clamp(12.6px, 1.15vw, 13.6px);
       line-height: 1.45;
+      gap: 6px 0;
     }
-    .headline .h-main{
-      font-weight: 860;
-      color: rgba(15,23,42,.92);
-    }
-    .headline .h-item{
-      font-weight: 650;
+    .headline .h-chip{
+      position: relative;
+      display: inline-flex;
+      align-items: baseline;
+      padding: 2px 0;
       color: rgba(15,23,42,.72);
+      font-weight: 650;
+      min-width: 0;
+      word-break: normal;
+      text-wrap: pretty;
     }
-    .headline .h-sep{
+    .headline .h-chip.h-main{
+      color: rgba(15,23,42,.92);
+      font-weight: 860;
+    }
+    /* separador “grudado” no item (não fica órfão) */
+    .headline .h-chip + .h-chip{ padding-left: 16px; }
+    .headline .h-chip + .h-chip::before{
+      content: "•";
+      position: absolute;
+      left: 6px;
+      top: 0;
       color: rgba(15,23,42,.32);
       user-select: none;
-      transform: translateY(-.5px);
-      white-space: nowrap;
+      transform: translateY(1px);
     }
 
     /* ===== Microline (premium, clean) ===== */
@@ -373,7 +442,7 @@
       flex-wrap:wrap;
       gap: 6px 10px;
       align-items:center;
-      color: rgba(15,23,42,.62);
+      color: rgba(15,23,42,.66);
       font-size: 12.5px;
       max-width: 920px;
     }
@@ -395,7 +464,80 @@
       display:flex;
       gap: 8px;
       flex-wrap: wrap;
-      margin-top: 14px; /* ritmo */
+      margin-top: 14px;
+    }
+
+    /* “Resultados” (provas rápidas, sem números inventados) */
+    .resultsBar{
+      margin-top: 12px;
+      border: 1px solid rgba(15,23,42,.10);
+      background: linear-gradient(180deg, rgba(15,23,42,.02), rgba(15,23,42,.00));
+      border-radius: 16px;
+      padding: 10px 12px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px 10px;
+      align-items:center;
+    }
+    .resultsTag{
+      font-size: 12px;
+      font-weight: 860;
+      color: rgba(15,23,42,.80);
+      display:inline-flex;
+      gap: 8px;
+      align-items:center;
+    }
+    .resultsChip{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(15,23,42,.10);
+      background: rgba(255,255,255,.86);
+      color: rgba(15,23,42,.82);
+      white-space: nowrap;
+    }
+
+    /* “Destaques” com ícones minimalistas */
+    .highlights{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .hcard{
+      border: 1px solid rgba(15,23,42,.10);
+      border-radius: 16px;
+      background: rgba(255,255,255,.82);
+      padding: 10px 12px;
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      min-height: 64px;
+    }
+    .hico{
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      border: 1px solid rgba(15,23,42,.10);
+      background: rgba(15,23,42,.03);
+      display:grid;
+      place-items:center;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.55);
+      flex: 0 0 auto;
+    }
+    .htext{ min-width: 0; }
+    .hbig{
+      font-weight: 900;
+      letter-spacing: .1px;
+      font-size: 13px;
+      line-height: 1.2;
+      color: rgba(15,23,42,.92);
+    }
+    .hsmall{
+      margin-top: 4px;
+      font-size: 12px;
+      color: rgba(15,23,42,.70);
+      line-height: 1.25;
     }
 
     .badges{
@@ -416,6 +558,7 @@
       gap: 8px;
       white-space: nowrap;
     }
+    .badge .ico{ color: rgba(15,23,42,.70); }
     .badge.primary{
       border-color: rgba(10,102,194,.22);
       background: var(--primarySoft);
@@ -445,12 +588,18 @@
       font-size: 12px;
       cursor:pointer;
       user-select:none;
-      transition: transform .10s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
+      transition: transform .14s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+      min-height: 36px;
+      -webkit-tap-highlight-color: transparent;
     }
     .tab:hover{
       border-color: rgba(10,102,194,.35);
-      box-shadow: 0 10px 18px rgba(15,23,42,.08);
+      box-shadow: var(--liftShadowSoft);
       transform: translateY(-1px);
+    }
+    .tab:active{
+      transform: translateY(0px);
+      box-shadow: 0 10px 18px rgba(15,23,42,.08);
     }
     .tab.active{
       border-color: rgba(10,102,194,.45);
@@ -473,12 +622,12 @@
       margin:0;
       font-size: 13.5px;
       line-height: 1.7;
-      color: rgba(15,23,42,.88);
+      color: rgba(15,23,42,.90);
     }
     .list{
       margin: 10px 0 0;
       padding-left: 18px;
-      color: rgba(15,23,42,.88);
+      color: rgba(15,23,42,.90);
       line-height: 1.7;
       font-size: 13.5px;
     }
@@ -506,7 +655,7 @@
     .jobDesc{
       margin-top: 10px;
       font-size: 13px;
-      color: rgba(15,23,42,.88);
+      color: rgba(15,23,42,.90);
       line-height: 1.65;
       white-space: pre-wrap;
     }
@@ -514,7 +663,7 @@
       margin: 10px 0 0;
       padding-left: 18px;
       font-size: 13px;
-      color: rgba(15,23,42,.88);
+      color: rgba(15,23,42,.90);
       line-height: 1.65;
     }
     .points li{ margin: 6px 0; }
@@ -573,7 +722,7 @@
     .kvLabel{
       font-size: 12px;
       font-weight: 850;
-      color: rgba(15,23,42,.78);
+      color: rgba(15,23,42,.82);
       letter-spacing: .1px;
       line-height: 1.2;
     }
@@ -593,26 +742,76 @@
       border-radius: 999px;
       font-size: 11px;
       cursor: pointer;
-      color: rgba(15,23,42,.75);
-      transition: transform .08s ease, border-color .12s ease, background .12s ease, box-shadow .12s ease;
+      color: rgba(15,23,42,.78);
+      transition: transform .12s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
       white-space: nowrap;
       display:inline-flex;
       align-items:center;
+      justify-content:center;
       gap: 6px;
       user-select:none;
+      -webkit-tap-highlight-color: transparent;
+      min-height: 32px;
     }
     .copybtn:hover{
       border-color: rgba(10,102,194,.25);
       background: rgba(10,102,194,.06);
-      box-shadow: 0 10px 18px rgba(15,23,42,.08);
+      box-shadow: var(--liftShadowSoft);
       transform: translateY(-1px);
     }
-    .copybtn:active{ transform: translateY(0px); box-shadow: none; }
+    .copybtn:active{
+      transform: translateY(0px);
+      box-shadow: 0 10px 18px rgba(15,23,42,.08);
+    }
     .copybtn.copied{
       border-color: rgba(15,157,88,.28);
       background: rgba(15,157,88,.10);
       color: rgba(11,90,59,.95);
       box-shadow: 0 10px 18px rgba(15,157,88,.10);
+    }
+
+    /* ===== QR LinkedIn ===== */
+    .qrWrap{
+      margin-top: 14px;
+      border-top: 1px dashed rgba(15,23,42,.14);
+      padding-top: 14px;
+      display:flex;
+      gap: 12px;
+      align-items:center;
+      flex-wrap: wrap;
+    }
+    .qrBox{
+      width: 120px;
+      height: 120px;
+      border-radius: 16px;
+      border: 1px solid rgba(15,23,42,.10);
+      background: rgba(15,23,42,.02);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+    }
+    .qrBox img{
+      width: 120px;
+      height: 120px;
+      display:block;
+    }
+    .qrText{
+      min-width: 220px;
+      flex: 1 1 240px;
+    }
+    .qrText .t1{
+      font-weight: 860;
+      font-size: 13px;
+      color: rgba(15,23,42,.90);
+      display:flex;
+      align-items:center;
+      gap: 8px;
+    }
+    .qrText .t2{
+      margin-top: 4px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.35;
     }
 
     /* ===== Toast + top button ===== */
@@ -655,12 +854,40 @@
       pointer-events: none;
       transition: opacity .18s ease, transform .18s ease;
       font-size: 12px;
+      min-height: 40px;
+      -webkit-tap-highlight-color: transparent;
     }
     .topbtn.show{
       opacity: 1;
       transform: translateY(0);
       pointer-events:auto;
     }
+
+    /* ===== WhatsApp floating button ===== */
+    .wabtn{
+      position: fixed;
+      left: 16px;
+      bottom: 18px;
+      z-index: 75;
+      width: 54px;
+      height: 54px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(15,157,88,.95), rgba(15,157,88,.78));
+      border: 1px solid rgba(15,157,88,.22);
+      box-shadow: 0 16px 34px rgba(15,23,42,.16);
+      display:grid;
+      place-items:center;
+      color: white;
+      text-decoration:none;
+      transition: transform .14s ease, box-shadow .18s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .wabtn:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 20px 42px rgba(15,23,42,.18);
+    }
+    .wabtn:active{ transform: translateY(0px) scale(.98); }
+    .wabtn .ico{ color: white; width: 22px; height: 22px; }
 
     footer{
       margin-top: 14px;
@@ -675,18 +902,24 @@
 
     /* ===== Mobile ===== */
     @media (max-width: 520px){
-      .wrap{ padding: 12px 12px 42px; }
+      .wrap{ padding: 12px 12px 84px; } /* mais espaço pro botão flutuante */
       .topbar-inner{ padding: 10px 12px; }
       .mark{ width: 32px; height: 32px; border-radius: 10px; }
       .search{ padding: 8px 10px; }
       .actions{ width:100%; justify-content:flex-start; }
-      .btn{ padding: 8px 10px; }
+      .btn{ padding: 10px 12px; min-height: var(--tap); }
+      .tab{ min-height: var(--tap); padding: 10px 12px; }
+      .copybtn{ min-height: var(--tap); padding: 10px 12px; font-size: 12px; }
 
       .avatar{ width: 96px; height: 96px; border-radius: 18px; }
       .avatar::after{ border-radius: 18px; }
       .avatar .initials{ width: 66px; height: 66px; }
 
       h1{ font-size: 20px; }
+      .headline{ font-size: 12.2px; line-height: 1.42; } /* ajuda a ficar em 2 linhas */
+      .headline .h-chip + .h-chip{ padding-left: 14px; }
+      .headline .h-chip + .h-chip::before{ left: 5px; }
+
       .microline{ font-size: 12px; }
       .openBadge{ font-size: 11.8px; }
 
@@ -704,19 +937,53 @@
       .kvIcon{ width: 32px; height: 32px; border-radius: 12px; }
       .kvValue{ font-size: 12.8px; }
 
+      .highlights{ grid-template-columns: 1fr; }
+      .hcard{ min-height: 0; }
+
       .topbtn{ right: 12px; bottom: 14px; }
-      .toast{ bottom: 14px; }
+      .toast{ bottom: 78px; } /* não briga com botões flutuantes */
+      .wabtn{ left: 12px; bottom: 14px; width: 56px; height: 56px; }
     }
 
     @media (prefers-reduced-motion: reduce){
-      .btn, .tab, .copybtn { transition: none !important; }
+      .btn, .tab, .copybtn, .card, .wabtn { transition: none !important; }
       html { scroll-behavior: auto; }
+    }
+
+    /* ===== Print (one-page CV) ===== */
+    @media print{
+      :root{ --bg:#fff; --shadow:none; --shadow2:none; }
+      body{ background:#fff; }
+      .topbar, .toast, .topbtn, .wabtn{ display:none !important; }
+      .wrap{ max-width: 980px; padding: 0; }
+      .card{ box-shadow:none !important; border-color: rgba(15,23,42,.16); }
+      a{ color: #0f172a; text-decoration:none; }
+      .btn, .tab, .copybtn{ display:none !important; }
+      .tabs{ display:none !important; }
+      /* mantém tudo visível e “currículo” */
+      .grid{ grid-template-columns: 1fr; }
+      .hero{ gap: 10px; }
+      .heroRight{ order: 2; }
+      .heroLeft{ order: 1; }
+      footer{ padding: 10px 0 0; }
+      /* evita quebras estranhas */
+      .job{ break-inside: avoid; }
+      .kv{ break-inside: avoid; }
     }
   </style>
 </head>
 
 <body>
-  <div class="topbar">
+  <!-- WhatsApp floating -->
+  <a class="wabtn" id="waFloat" href="https://wa.me/5511942327967" target="_blank" rel="noreferrer" aria-label="Abrir WhatsApp para falar comigo">
+    <svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M20 11.5a8 8 0 0 1-11.8 7L4 19.8l1.4-4.2A8 8 0 1 1 20 11.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M9.2 8.9c.2-.6.4-.7.7-.7h.6c.2 0 .5 0 .7.5.2.6.7 1.7.8 1.8.1.2.1.4 0 .6-.2.3-.4.6-.5.7-.2.2-.3.4-.1.7.2.3.8 1.3 1.8 2.1 1.3 1 2.4 1.3 2.8 1.5.3.1.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.4-.2.7-.1.3.1 1.9.9 2.2 1.1.3.2.5.2.5.4 0 .2 0 1.2-.5 1.9-.5.7-1.3.8-1.8.7-.5-.1-1.1-.2-1.8-.5-1.2-.5-2.7-1.4-4.1-2.8-1.4-1.4-2.4-3-2.9-4.2-.2-.7-.4-1.3-.5-1.8-.1-.5.1-1.2.3-1.6Z"
+        stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+
+  <div class="topbar" id="topbar">
     <div class="topbar-inner">
       <div class="brand" aria-label="Identidade do perfil">
         <div class="mark" aria-hidden="true">NM</div>
@@ -733,9 +1000,26 @@
       </div>
 
       <div class="actions" aria-label="Ações rápidas">
-        <a class="btn primary" href="#communication_channels">Contatos</a>
-        <a class="btn" href="#operational_history">Experiência</a>
-        <a class="btn" href="#tooling_matrix">Skills</a>
+        <a class="btn primary" href="#communication_channels" aria-label="Ir para contatos">
+          <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M7 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM2 22a5 5 0 0 1 10 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M14 8h8M14 12h8M14 16h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          Contatos
+        </a>
+        <a class="btn" href="#operational_history" aria-label="Ir para experiência">
+          <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M7 4h10M7 8h10M7 12h10M7 16h10M7 20h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M5 4h.01M5 8h.01M5 12h.01M5 16h.01M5 20h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          Experiência
+        </a>
+        <a class="btn" href="#tooling_matrix" aria-label="Ir para skills">
+          <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M10 6h4M6 10h12M8 14h8M10 18h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          Skills
+        </a>
       </div>
     </div>
   </div>
@@ -752,17 +1036,13 @@
             <div style="flex:1 1 520px">
               <h1>Nicolas Mesquita Fernandes</h1>
 
-              <!-- ===== HEADLINE (bugfix) ===== -->
+              <!-- ===== HEADLINE (quebra inteligente, sem “bug visual”) ===== -->
               <div class="headline" aria-label="Headline do perfil">
-                <span class="h-main">Infrastructure & Incident Operations Specialist</span>
-                <span class="h-sep" aria-hidden="true">•</span>
-                <span class="h-item">Suporte N1/N2/N3</span>
-                <span class="h-sep" aria-hidden="true">•</span>
-                <span class="h-item">NOC/SLA</span>
-                <span class="h-sep" aria-hidden="true">•</span>
-                <span class="h-item">Segurança da Informação</span>
-                <span class="h-sep" aria-hidden="true">•</span>
-                <span class="h-item">Automação (PowerShell/Bash/Python)</span>
+                <span class="h-chip h-main">Infrastructure & Incident Operations Specialist</span>
+                <span class="h-chip">Suporte N1/N2/N3</span>
+                <span class="h-chip">NOC/SLA</span>
+                <span class="h-chip">Segurança da Informação</span>
+                <span class="h-chip">Automação (PowerShell/Bash/Python)</span>
               </div>
 
               <!-- ===== MICROLINE premium ===== -->
@@ -780,22 +1060,172 @@
                 Disponível para oportunidades <small>(visual)</small>
               </div>
 
+              <!-- ===== CTA Row (inclui “Falar comigo” / WhatsApp) ===== -->
               <div class="ctaRow" aria-label="Ações do perfil">
-                <a class="btn primary" href="https://www.linkedin.com/in/nicolasmesquita/" target="_blank" rel="noreferrer">Abrir LinkedIn</a>
-                <a class="btn ghost" href="https://github.com/omfgnick" target="_blank" rel="noreferrer">Abrir GitHub</a>
-                <button class="btn ghost copybtn" data-copy="omfg_nick@hotmail.com" type="button" aria-label="Copiar email">Copiar Email</button>
-                <button class="btn ghost copybtn" data-copy="+5511942327967" type="button" aria-label="Copiar telefone">Copiar Telefone</button>
+                <a class="btn primary" href="https://www.linkedin.com/in/nicolasmesquita/" target="_blank" rel="noreferrer" aria-label="Abrir LinkedIn">
+                  <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 8.5V20h4.5V8.5H4ZM6.25 7.1A2.1 2.1 0 1 0 6.25 3a2.1 2.1 0 0 0 0 4.1Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 20v-6.2c0-1.8.8-3 2.6-3 1.7 0 2.4 1.1 2.4 3V20H21v-6.8c0-3.7-2-5.6-4.9-5.6-1.8 0-3 .9-3.6 1.8V8.5H12V20Z"
+                      stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Abrir LinkedIn
+                </a>
+
+                <a class="btn ghost" href="https://github.com/omfgnick" target="_blank" rel="noreferrer" aria-label="Abrir GitHub">
+                  <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M9 19c-3.5 1-3.5-2-5-2m10 4v-3.1c0-.9.3-1.6.8-2.1-2.7-.3-5.6-1.3-5.6-6a4.6 4.6 0 0 1 1.2-3.2 4.3 4.3 0 0 1 .1-3.1s1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C22 1.1 23 1.4 23 1.4a4.3 4.3 0 0 1 .1 3.1 4.6 4.6 0 0 1 1.2 3.2c0 4.7-2.9 5.7-5.6 6 .5.5.9 1.3.9 2.6V23"
+                      stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Abrir GitHub
+                </a>
+
+                <a class="btn ghost" href="https://wa.me/5511942327967" target="_blank" rel="noreferrer" aria-label="Falar comigo no WhatsApp">
+                  <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M20 11.5a8 8 0 0 1-11.8 7L4 19.8l1.4-4.2A8 8 0 1 1 20 11.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                    <path d="M9.2 8.9c.2-.6.4-.7.7-.7h.6c.2 0 .5 0 .7.5.2.6.7 1.7.8 1.8.1.2.1.4 0 .6-.2.3-.4.6-.5.7-.2.2-.3.4-.1.7.2.3.8 1.3 1.8 2.1 1.3 1 2.4 1.3 2.8 1.5.3.1.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.4-.2.7-.1.3.1 1.9.9 2.2 1.1.3.2.5.2.5.4 0 .2 0 1.2-.5 1.9-.5.7-1.3.8-1.8.7-.5-.1-1.1-.2-1.8-.5-1.2-.5-2.7-1.4-4.1-2.8-1.4-1.4-2.4-3-2.9-4.2-.2-.7-.4-1.3-.5-1.8-.1-.5.1-1.2.3-1.6Z"
+                      stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Falar comigo
+                </a>
+
+                <button class="btn ghost copybtn" data-copy="omfg_nick@hotmail.com" type="button" aria-label="Copiar email">
+                  <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                    <path d="m5 7 7 6 7-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Copiar Email
+                </button>
+
+                <button class="btn ghost copybtn" data-copy="+5511942327967" type="button" aria-label="Copiar telefone">
+                  <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M7 3h4l2 5-3 2c1 3 3 5 6 6l2-3 5 2v4c0 1-1 2-2 2-10 0-18-8-18-18 0-1 1-2 2-2Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Copiar Telefone
+                </button>
               </div>
 
+              <!-- ===== Destaques (LinkedIn-like, ícones SVG minimalistas) ===== -->
+              <div class="highlights" aria-label="Destaques">
+                <div class="hcard">
+                  <div class="hico" aria-hidden="true">
+                    <svg class="ico sm" viewBox="0 0 24 24" fill="none">
+                      <path d="M7 2v4M17 2v4M4 7h16M6 10h4M6 14h4M6 18h4M14 10h4M14 14h4M14 18h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <div class="htext">
+                    <div class="hbig">+10 anos</div>
+                    <div class="hsmall">experiência em TI (desde 2014)</div>
+                  </div>
+                </div>
+
+                <div class="hcard">
+                  <div class="hico" aria-hidden="true">
+                    <svg class="ico sm" viewBox="0 0 24 24" fill="none">
+                      <path d="M4 17c3-1 5-5 8-5s5 4 8 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                      <path d="M6 12V7a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                      <path d="M9 8h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <div class="htext">
+                    <div class="hbig">SLA / NOC</div>
+                    <div class="hsmall">incidentes, escalonamento e operação</div>
+                  </div>
+                </div>
+
+                <div class="hcard">
+                  <div class="hico" aria-hidden="true">
+                    <svg class="ico sm" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 3v4M12 17v4M4 12h4M16 12h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                      <path d="M8 8l8 8M16 8l-8 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                      <path d="M12 8a4 4 0 1 0 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <div class="htext">
+                    <div class="hbig">Automação</div>
+                    <div class="hsmall">PowerShell / Bash / Python</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ===== badges (mesmo conteúdo, agora com ícones SVG) ===== -->
               <div class="badges" aria-label="Destaques rápidos">
-                <span class="badge ok">São Paulo, Brasil</span>
-                <span class="badge primary">Automação</span>
-                <span class="badge">NOC / SLA</span>
-                <span class="badge">ITSM (Remedy/Jira/GLPI)</span>
-                <span class="badge">Monitoramento (SolarWinds/Netcool/SiteScope)</span>
-                <span class="badge">Observabilidade (Grafana/Zabbix/Nagios)</span>
-                <span class="badge">MDM (Workspace ONE)</span>
-                <span class="badge">Backup (NetBackup/Data Protector)</span>
+                <span class="badge ok">
+                  <svg class="ico xs" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                    <path d="M12 10.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="1.8"/>
+                  </svg>
+                  São Paulo, Brasil
+                </span>
+
+                <span class="badge primary">
+                  <svg class="ico xs" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 2v4M12 18v4M4 12H2M22 12h-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M7 12a5 5 0 1 0 10 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  </svg>
+                  Automação
+                </span>
+
+                <span class="badge">
+                  <svg class="ico xs" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 12h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M7 6h10M7 18h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  </svg>
+                  NOC / SLA
+                </span>
+
+                <span class="badge">
+                  <svg class="ico xs" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M7 4h10v16H7V4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                    <path d="M9 8h6M9 12h6M9 16h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  </svg>
+                  ITSM (Remedy/Jira/GLPI)
+                </span>
+
+                <span class="badge">
+                  <svg class="ico xs" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 17c3-1 5-5 8-5s5 4 8 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M6 12V7a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  </svg>
+                  Monitoramento (SolarWinds/Netcool/SiteScope)
+                </span>
+
+                <span class="badge">
+                  <svg class="ico xs" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 19V5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M6 17l4-4 3 3 5-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Observabilidade (Grafana/Zabbix/Nagios)
+                </span>
+
+                <span class="badge">
+                  <svg class="ico xs" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M8 2h8v20H8V2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                    <path d="M10 18h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  </svg>
+                  MDM (Workspace ONE)
+                </span>
+
+                <span class="badge">
+                  <svg class="ico xs" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 7h16v14H4V7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                    <path d="M8 7V5a4 4 0 0 1 8 0v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  </svg>
+                  Backup (NetBackup/Data Protector)
+                </span>
+              </div>
+
+              <!-- ===== Provas rápidas (sem inventar números) ===== -->
+              <div class="resultsBar" aria-label="Resultados (provas rápidas)">
+                <span class="resultsTag">
+                  <svg class="ico xs" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M7 12l3 3 7-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 22a10 10 0 1 0-10-10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                  </svg>
+                  Resultados
+                </span>
+                <span class="resultsChip">redução de tarefas manuais via automação</span>
+                <span class="resultsChip">padronização de runbooks e rotinas</span>
+                <span class="resultsChip">triagem e escalonamento orientados a SLA</span>
               </div>
             </div>
           </div>
@@ -807,7 +1237,6 @@
         <div class="cardHead">
           <div>
             <h3 class="cardTitle">
-              <!-- ícone linear: "contatos" -->
               <svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M7 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM2 22a5 5 0 0 1 10 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
                 <path d="M14 8h8M14 12h8M14 16h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
@@ -887,6 +1316,28 @@
               </div>
             </div>
 
+          </div>
+
+          <!-- QR LinkedIn (opcional e útil pra impresso) -->
+          <div class="qrWrap" aria-label="QR Code do LinkedIn (opcional)">
+            <div class="qrBox" aria-hidden="true">
+              <!-- usa um gerador externo (simples). Se preferir 100% offline, eu troco por QR em JS (maior). -->
+              <img
+                alt="QR Code do LinkedIn"
+                src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fnicolasmesquita%2F"
+                loading="lazy"
+              />
+            </div>
+            <div class="qrText">
+              <div class="t1">
+                <svg class="ico xs" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M3 7h18v14H3V7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  <path d="M7 7V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+                QR do LinkedIn
+              </div>
+              <div class="t2">Útil para currículo impresso: aponte a câmera e abra o perfil rapidamente.</div>
+            </div>
           </div>
         </div>
       </aside>
@@ -1383,11 +1834,19 @@
 
       const topBtn = $("#topBtn");
       function onScroll(){
-        if (!topBtn) return;
-        topBtn.classList.toggle("show", window.scrollY > 600);
+        if (topBtn) topBtn.classList.toggle("show", window.scrollY > 600);
+
+        // compact sticky header no mobile
+        const topbar = $("#topbar");
+        const isMobile = window.matchMedia("(max-width: 520px)").matches;
+        if (topbar){
+          topbar.classList.toggle("compact", isMobile && window.scrollY > 24);
+        }
       }
       window.addEventListener("scroll", onScroll, { passive:true });
+      window.addEventListener("resize", onScroll, { passive:true });
       onScroll();
+
       if (topBtn){
         topBtn.addEventListener("click", () => window.scrollTo({ top:0, behavior:"smooth" }));
       }

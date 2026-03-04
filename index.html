@@ -7,6 +7,39 @@
   <meta name="description" content="Infrastructure & Incident Operations • Suporte N1/N2/N3 • NOC/SLA • Segurança • Automação (PowerShell/Bash/Python) — São Paulo, Brasil." />
   <meta name="theme-color" content="#0a66c2" />
 
+  <!-- Canonical / SEO (GitHub Pages) -->
+  <link rel="canonical" href="https://omfgnick.github.io/" />
+
+  <!-- SEO/social -->
+  <meta property="og:title" content="Nicolas Mesquita Fernandes — Perfil Profissional" />
+  <meta property="og:description" content="Infrastructure & Incident Operations • Suporte N1/N2/N3 • NOC/SLA • Segurança • Automação (PowerShell/Bash/Python) — São Paulo, Brasil." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:url" content="https://omfgnick.github.io/" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Nicolas Mesquita Fernandes — Perfil Profissional" />
+  <meta name="twitter:description" content="Infrastructure & Incident Operations • Suporte N1/N2/N3 • NOC/SLA • Segurança • Automação (PowerShell/Bash/Python) — São Paulo, Brasil." />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nicolas Mesquita Fernandes",
+    "jobTitle": "Infrastructure & Incident Operations Specialist",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "São Paulo",
+      "addressCountry": "BR"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/nicolasmesquita/",
+      "https://github.com/omfgnick"
+    ],
+    "url": "https://omfgnick.github.io/"
+  }
+  </script>
+
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Crect width='64' height='64' rx='14' fill='%230a66c2'/%3E%3Cpath d='M18 46V26h8v20h-8zm4-29a4 4 0 110-8 4 4 0 010 8zm14 29V35c0-6 3-10 9-10 5 0 8 3 8 9v12h-8V35c0-2-1-4-3-4-2 0-4 2-4 5v10h-8z' fill='white'/%3E%3C/svg%3E" />
 
   <style>
@@ -62,6 +95,26 @@
       outline: none;
       box-shadow: var(--focus);
       border-color: var(--focusBorder) !important;
+    }
+
+    /* Skip link (A11y) */
+    .skiplink{
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      transform: translateY(-160%);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 12px;
+      font-size: 12px;
+      box-shadow: var(--shadow);
+      z-index: 1000;
+    }
+    .skiplink:focus{
+      transform: translateY(0);
+      outline: none;
+      box-shadow: var(--focus);
     }
 
     /* ===== icons (minimal) ===== */
@@ -770,50 +823,6 @@
       box-shadow: 0 10px 18px rgba(15,157,88,.10);
     }
 
-    /* ===== QR LinkedIn ===== */
-    .qrWrap{
-      margin-top: 14px;
-      border-top: 1px dashed rgba(15,23,42,.14);
-      padding-top: 14px;
-      display:flex;
-      gap: 12px;
-      align-items:center;
-      flex-wrap: wrap;
-    }
-    .qrBox{
-      width: 120px;
-      height: 120px;
-      border-radius: 16px;
-      border: 1px solid rgba(15,23,42,.10);
-      background: rgba(15,23,42,.02);
-      display:grid;
-      place-items:center;
-      overflow:hidden;
-    }
-    .qrBox img{
-      width: 120px;
-      height: 120px;
-      display:block;
-    }
-    .qrText{
-      min-width: 220px;
-      flex: 1 1 240px;
-    }
-    .qrText .t1{
-      font-weight: 860;
-      font-size: 13px;
-      color: rgba(15,23,42,.90);
-      display:flex;
-      align-items:center;
-      gap: 8px;
-    }
-    .qrText .t2{
-      margin-top: 4px;
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.35;
-    }
-
     /* ===== Toast + top button ===== */
     .toast{
       position: fixed;
@@ -974,8 +983,10 @@
 </head>
 
 <body>
-  <!-- WhatsApp floating -->
-  <a class="wabtn" id="waFloat" href="https://wa.me/5511942327967" target="_blank" rel="noreferrer" aria-label="Abrir WhatsApp para falar comigo">
+  <a class="skiplink" href="#mainContent">Pular para o conteúdo</a>
+
+  <!-- WhatsApp floating (href set via JS) -->
+  <a class="wabtn" id="waFloat" href="#" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp para falar comigo">
     <svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d="M20 11.5a8 8 0 0 1-11.8 7L4 19.8l1.4-4.2A8 8 0 1 1 20 11.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
       <path d="M9.2 8.9c.2-.6.4-.7.7-.7h.6c.2 0 .5 0 .7.5.2.6.7 1.7.8 1.8.1.2.1.4 0 .6-.2.3-.4.6-.5.7-.2.2-.3.4-.1.7.2.3.8 1.3 1.8 2.1 1.3 1 2.4 1.3 2.8 1.5.3.1.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.4-.2.7-.1.3.1 1.9.9 2.2 1.1.3.2.5.2.5.4 0 .2 0 1.2-.5 1.9-.5.7-1.3.8-1.8.7-.5-.1-1.1-.2-1.8-.5-1.2-.5-2.7-1.4-4.1-2.8-1.4-1.4-2.4-3-2.9-4.2-.2-.7-.4-1.3-.5-1.8-.1-.5.1-1.2.3-1.6Z"
@@ -1024,7 +1035,7 @@
     </div>
   </div>
 
-  <div class="wrap">
+  <div class="wrap" id="mainContent">
     <div class="hero">
       <section class="card heroLeft">
         <div class="cardBody">
@@ -1062,7 +1073,7 @@
 
               <!-- ===== CTA Row (inclui “Falar comigo” / WhatsApp) ===== -->
               <div class="ctaRow" aria-label="Ações do perfil">
-                <a class="btn primary" href="https://www.linkedin.com/in/nicolasmesquita/" target="_blank" rel="noreferrer" aria-label="Abrir LinkedIn">
+                <a class="btn primary" href="https://www.linkedin.com/in/nicolasmesquita/" target="_blank" rel="noopener noreferrer" aria-label="Abrir LinkedIn">
                   <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M4 8.5V20h4.5V8.5H4ZM6.25 7.1A2.1 2.1 0 1 0 6.25 3a2.1 2.1 0 0 0 0 4.1Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M12 20v-6.2c0-1.8.8-3 2.6-3 1.7 0 2.4 1.1 2.4 3V20H21v-6.8c0-3.7-2-5.6-4.9-5.6-1.8 0-3 .9-3.6 1.8V8.5H12V20Z"
@@ -1071,7 +1082,7 @@
                   Abrir LinkedIn
                 </a>
 
-                <a class="btn ghost" href="https://github.com/omfgnick" target="_blank" rel="noreferrer" aria-label="Abrir GitHub">
+                <a class="btn ghost" href="https://github.com/omfgnick" target="_blank" rel="noopener noreferrer" aria-label="Abrir GitHub">
                   <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M9 19c-3.5 1-3.5-2-5-2m10 4v-3.1c0-.9.3-1.6.8-2.1-2.7-.3-5.6-1.3-5.6-6a4.6 4.6 0 0 1 1.2-3.2 4.3 4.3 0 0 1 .1-3.1s1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C22 1.1 23 1.4 23 1.4a4.3 4.3 0 0 1 .1 3.1 4.6 4.6 0 0 1 1.2 3.2c0 4.7-2.9 5.7-5.6 6 .5.5.9 1.3.9 2.6V23"
                       stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1079,7 +1090,7 @@
                   Abrir GitHub
                 </a>
 
-                <a class="btn ghost" href="https://wa.me/5511942327967" target="_blank" rel="noreferrer" aria-label="Falar comigo no WhatsApp">
+                <a class="btn ghost" id="waCta" href="#" target="_blank" rel="noopener noreferrer" aria-label="Falar comigo no WhatsApp">
                   <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M20 11.5a8 8 0 0 1-11.8 7L4 19.8l1.4-4.2A8 8 0 1 1 20 11.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
                     <path d="M9.2 8.9c.2-.6.4-.7.7-.7h.6c.2 0 .5 0 .7.5.2.6.7 1.7.8 1.8.1.2.1.4 0 .6-.2.3-.4.6-.5.7-.2.2-.3.4-.1.7.2.3.8 1.3 1.8 2.1 1.3 1 2.4 1.3 2.8 1.5.3.1.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.4-.2.7-.1.3.1 1.9.9 2.2 1.1.3.2.5.2.5.4 0 .2 0 1.2-.5 1.9-.5.7-1.3.8-1.8.7-.5-.1-1.1-.2-1.8-.5-1.2-.5-2.7-1.4-4.1-2.8-1.4-1.4-2.4-3-2.9-4.2-.2-.7-.4-1.3-.5-1.8-.1-.5.1-1.2.3-1.6Z"
@@ -1088,7 +1099,7 @@
                   Falar comigo
                 </a>
 
-                <button class="btn ghost copybtn" data-copy="omfg_nick@hotmail.com" type="button" aria-label="Copiar email">
+                <button class="btn ghost copybtn" id="copyEmailBtn" data-copy="" type="button" aria-label="Copiar email">
                   <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
                     <path d="m5 7 7 6 7-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1096,7 +1107,7 @@
                   Copiar Email
                 </button>
 
-                <button class="btn ghost copybtn" data-copy="+5511942327967" type="button" aria-label="Copiar telefone">
+                <button class="btn ghost copybtn" id="copyPhoneBtn" data-copy="" type="button" aria-label="Copiar telefone">
                   <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M7 3h4l2 5-3 2c1 3 3 5 6 6l2-3 5 2v4c0 1-1 2-2 2-10 0-18-8-18-18 0-1 1-2 2-2Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
@@ -1250,14 +1261,14 @@
 
         <div class="cardBody">
           <div class="kvs">
-            <div class="kv" data-type="email" data-filter-item data-filter-text="email omfg_nick@hotmail.com contato">
+            <div class="kv" data-type="email" data-filter-item data-filter-text="email omfg_nick hotmail.com contato">
               <div class="kvRow">
                 <div class="kvIcon" aria-hidden="true">✉️</div>
                 <div class="kvMain">
                   <div class="kvLabel">Email</div>
-                  <div class="kvValue"><a href="mailto:omfg_nick@hotmail.com" id="emailLink">omfg_nick@hotmail.com</a></div>
+                  <div class="kvValue"><a href="#" id="emailLink">carregando…</a></div>
                 </div>
-                <button class="copybtn" data-copy="omfg_nick@hotmail.com" type="button">copiar</button>
+                <button class="copybtn" id="copyEmailSide" data-copy="" type="button">copiar</button>
               </div>
             </div>
 
@@ -1266,9 +1277,9 @@
                 <div class="kvIcon" aria-hidden="true">📞</div>
                 <div class="kvMain">
                   <div class="kvLabel">Telefone</div>
-                  <div class="kvValue"><a href="tel:+5511942327967" id="phoneLink">+55 11 94232-7967</a></div>
+                  <div class="kvValue"><a href="#" id="phoneLink">carregando…</a></div>
                 </div>
-                <button class="copybtn" data-copy="+5511942327967" type="button">copiar</button>
+                <button class="copybtn" id="copyPhoneSide" data-copy="" type="button">copiar</button>
               </div>
             </div>
 
@@ -1277,7 +1288,7 @@
                 <div class="kvIcon" aria-hidden="true">💼</div>
                 <div class="kvMain">
                   <div class="kvLabel">LinkedIn</div>
-                  <div class="kvValue"><a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/nicolasmesquita/" id="lnk">linkedin.com/in/nicolasmesquita</a></div>
+                  <div class="kvValue"><a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/nicolasmesquita/" id="lnk">linkedin.com/in/nicolasmesquita</a></div>
                 </div>
                 <button class="copybtn" data-copy="https://www.linkedin.com/in/nicolasmesquita/" type="button">copiar</button>
               </div>
@@ -1288,7 +1299,7 @@
                 <div class="kvIcon" aria-hidden="true">🐙</div>
                 <div class="kvMain">
                   <div class="kvLabel">GitHub</div>
-                  <div class="kvValue"><a target="_blank" rel="noreferrer" href="https://github.com/omfgnick" id="gh">github.com/omfgnick</a></div>
+                  <div class="kvValue"><a target="_blank" rel="noopener noreferrer" href="https://github.com/omfgnick" id="gh">github.com/omfgnick</a></div>
                 </div>
                 <button class="copybtn" data-copy="https://github.com/omfgnick" type="button">copiar</button>
               </div>
@@ -1318,10 +1329,9 @@
 
           </div>
 
-          <!-- QR LinkedIn (opcional e útil pra impresso) -->
+          <!-- QR LinkedIn (mantido como você tinha; request externo continua) -->
           <div class="qrWrap" aria-label="QR Code do LinkedIn (opcional)">
             <div class="qrBox" aria-hidden="true">
-              <!-- usa um gerador externo (simples). Se preferir 100% offline, eu troco por QR em JS (maior). -->
               <img
                 alt="QR Code do LinkedIn"
                 src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fnicolasmesquita%2F"
@@ -1346,11 +1356,11 @@
     <div class="grid">
       <main class="card">
         <div class="tabs" role="tablist" aria-label="Abas">
-          <button class="tab active" data-tab="profile_summary" type="button">Perfil</button>
-          <button class="tab" data-tab="operational_history" type="button">Experiência</button>
-          <button class="tab" data-tab="tooling_matrix" type="button">Skills</button>
-          <button class="tab" data-tab="certification_log" type="button">Certificações</button>
-          <button class="tab" data-tab="academic_record" type="button">Formação</button>
+          <button class="tab active" role="tab" aria-selected="true" aria-controls="profile_summary" data-tab="profile_summary" type="button">Perfil</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="operational_history" data-tab="operational_history" type="button">Experiência</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="tooling_matrix" data-tab="tooling_matrix" type="button">Skills</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="certification_log" data-tab="certification_log" type="button">Certificações</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="academic_record" data-tab="academic_record" type="button">Formação</button>
         </div>
 
         <section class="section" id="profile_summary" data-filter-item
@@ -1774,6 +1784,45 @@
       if (luSide) luSide.textContent = "Atualizado: " + lastUpdate;
       if (luFoot) luFoot.textContent = "Atualizado em " + lastUpdate;
 
+      // ===== Contatos (montados via JS; sem remover informações) =====
+      const phoneParts = ["+55","11","94232","7967"];
+      const phoneE164 = phoneParts.join("").replace(/\s+/g,"");
+      const phoneHuman = "+55 11 94232-7967";
+
+      const emailParts = ["omfg_nick","hotmail","com"];
+      const email = emailParts[0] + "@" + emailParts[1] + "." + emailParts[2];
+
+      // ===== WhatsApp: mensagem alterada (mais direta e profissional) =====
+      const waText = encodeURIComponent("Olá, tudo bem? Vi seu perfil e gostaria de conversar sobre uma oportunidade na área de TI (suporte/infra/operações). Podemos falar?");
+      const waUrl = "https://wa.me/" + phoneE164.replace("+","") + "?text=" + waText;
+
+      const waFloat = $("#waFloat");
+      const waCta = $("#waCta");
+      if (waFloat) waFloat.href = waUrl;
+      if (waCta) waCta.href = waUrl;
+
+      // Email/tel links (sem retirar informações)
+      const emailLink = $("#emailLink");
+      if (emailLink){
+        emailLink.textContent = email;
+        emailLink.href = "mailto:" + email;
+      }
+
+      const phoneLink = $("#phoneLink");
+      if (phoneLink){
+        phoneLink.textContent = phoneHuman;
+        phoneLink.href = "tel:" + phoneE164;
+      }
+
+      // Copy buttons
+      const copyEmailBtn = $("#copyEmailBtn");
+      const copyEmailSide = $("#copyEmailSide");
+      const copyPhoneBtn = $("#copyPhoneBtn");
+      const copyPhoneSide = $("#copyPhoneSide");
+
+      [copyEmailBtn, copyEmailSide].forEach(b => b && b.setAttribute("data-copy", email));
+      [copyPhoneBtn, copyPhoneSide].forEach(b => b && b.setAttribute("data-copy", phoneE164));
+
       const toast = $("#toast");
       let toastT = null;
       function showToast(msg){
@@ -1855,7 +1904,11 @@
       function goTab(id){
         const el = document.getElementById(id);
         if (!el) return;
-        tabs.forEach(t => t.classList.toggle("active", t.getAttribute("data-tab") === id));
+        tabs.forEach(t => {
+          const active = t.getAttribute("data-tab") === id;
+          t.classList.toggle("active", active);
+          t.setAttribute("aria-selected", active ? "true" : "false");
+        });
         el.scrollIntoView({ behavior:"smooth", block:"start" });
         showToast("Seção: " + (id || "").replace(/_/g," "));
       }
@@ -1869,14 +1922,15 @@
         return (s||"").toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu,"");
       }
       function applyFilter(val){
-        const v = norm(val).trim();
-        if (!v){
+        const terms = norm(val).trim().split(/\s+/).filter(Boolean);
+        if (!terms.length){
           items.forEach(el => el.classList.remove("hidden"));
           return;
         }
         items.forEach(el=>{
           const t = norm(el.getAttribute("data-filter-text") || el.textContent || "");
-          el.classList.toggle("hidden", !t.includes(v));
+          const ok = terms.every(term => t.includes(term));
+          el.classList.toggle("hidden", !ok);
         });
       }
       if (q){

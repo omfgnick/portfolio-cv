@@ -2,43 +2,64 @@
 
 **English** · [Português (BR)](README.pt-BR.md)
 
-Single-page professional profile / online CV for **Nicolas Mesquita Fernandes**
-— Infrastructure & Incident Operations (NOC, N1/N2/N3 support, SLA/MTTR,
-security, automation with PowerShell / Bash / Python).
+[![Deploy](https://github.com/omfgnick/portfolio-cv/actions/workflows/deploy.yml/badge.svg)](https://github.com/omfgnick/portfolio-cv/actions/workflows/deploy.yml)
+
+Professional profile / online CV for **Nicolas Mesquita Fernandes** — Infrastructure
+& Incident Operations (NOC, N1/N2/N3 support, SLA/MTTR, security, automation with
+PowerShell / Bash / Python).
 
 Live: <https://omfgnick.github.io/portfolio-cv/>
 
-## Overview
+## Tech stack
 
-The whole site is a single, dependency-free [`index.html`](index.html):
+Same stack and conventions as the **SynapseNutri** landing page:
 
-- No build step, no frameworks, no external requests — HTML, inline CSS and
-  vanilla JavaScript only.
-- Light/dark theme, responsive layout, and a client-side search/filter over the
-  experience sections.
-- SEO and social metadata (Open Graph, Twitter card, JSON-LD `Person` schema)
-  plus a restrictive Content-Security-Policy.
+- **Vite + React 18 + TypeScript**
+- **CSS Modules** with a design-token system (`src/styles/tokens.css`) — noir
+  aurora palette (emerald → cyan → violet)
+- **WebGL `AuroraCanvas`** animated background (with reduced-motion + WebGL
+  fallbacks), `SplitText`, `useSpotlight` interactions
+- **lucide-react** icons; Fraunces + Inter + JetBrains Mono type
+- **Vitest** unit tests
+- Data-driven content (`src/data/cv.ts`)
 
-## Running locally
+## Project structure
 
-Because everything is self-contained, just open the file:
+```
+src/
+  main.tsx                 # entry
+  pages/Home.tsx           # the whole CV (one page, like the landing's Home)
+  pages/Home.module.css
+  components/
+    aurora/                # AuroraCanvas, SplitText, useTilt, useSpotlight (shared kit)
+    qr/QRCode.tsx          # real, scannable QR (self-contained encoder)
+    qr/qrEncoder.ts        # byte-mode, ECC-M, Reed-Solomon; qrEncoder.test.ts
+    Counter.tsx
+  hooks/useReveal.ts
+  data/cv.ts               # profile, jobs, skills, certs, contacts
+  styles/tokens.css, global.css
+```
+
+## Scripts
 
 ```bash
-# option 1: open directly
-open index.html          # macOS
-start index.html         # Windows
-
-# option 2: serve it (recommended, closer to production)
-python -m http.server 8000
-# then browse to http://localhost:8000
+npm install
+npm run dev        # dev server (http://localhost:5173/portfolio-cv/)
+npm run build      # type-check + production build → dist/
+npm run preview    # preview the production build
+npm test           # Vitest (QR encoder round-trip)
 ```
 
 ## Deployment
 
-Hosted with **GitHub Pages** from the default branch. Any push updates the live
-site at the URL above.
+GitHub Pages via GitHub Actions ([`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)):
+every push to `main` type-checks, runs tests, builds, and deploys `dist/`. The
+Vite `base` is `/portfolio-cv/` to match the project Pages URL.
 
-## Editing
+## Notes
 
-All content and styling live in `index.html`. Update the relevant section in the
-markup; there is nothing to compile or bundle.
+- The QR code is a genuine, scannable QR generated from scratch (no external
+  library) — the unit test decodes it back to the LinkedIn URL and verifies the
+  Reed-Solomon syndromes.
+- Motion is fail-safe: reveal-on-scroll and counters degrade gracefully when
+  `IntersectionObserver` / `requestAnimationFrame` are unavailable.

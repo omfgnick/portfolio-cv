@@ -6,7 +6,7 @@ Single-page professional profile / online CV for **Nicolas Mesquita Fernandes**
 — Infrastructure & Incident Operations (NOC, N1/N2/N3 support, SLA/MTTR,
 security, automation with PowerShell / Bash / Python).
 
-Live: <https://omfgnick.github.io/>
+Live: <https://omfgnick.github.io/portfolio-cv/>
 
 ## Overview
 

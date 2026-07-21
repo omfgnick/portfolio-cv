@@ -6,7 +6,7 @@ Perfil profissional / currículo online de página única de **Nicolas Mesquita
 Fernandes** — Infrastructure & Incident Operations (NOC, suporte N1/N2/N3,
 SLA/MTTR, segurança, automação com PowerShell / Bash / Python).
 
-Online: <https://omfgnick.github.io/>
+Online: <https://omfgnick.github.io/portfolio-cv/>
 
 ## Visão geral
 

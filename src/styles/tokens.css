@@ -6,48 +6,49 @@
    ================================================================ */
 
 :root {
-  /* ── Brand palette — CYBERPUNK (magenta neon + ciano + amarelo ácido) ── */
-  /* Accent primário: magenta/rosa neon (os tokens mantêm o nome --emerald-*). */
-  --emerald-900: #3d0a2e;
-  --emerald-700: #a3004f;
-  --emerald-600: #d10a5b;
-  --emerald-500: #ff2a6d;
-  --emerald-400: #ff5c8a;
-  --emerald-300: #ff8fb0;
+  /* ── Brand palette — AFTERLIFE (Cyberpunk 2077): verde-teal atmosférico,
+        brilho de neon menta, âmbar quente de destaque e vermelho de alerta. ── */
+  /* Accent primário: verde-menta do letreiro Afterlife (tokens --emerald-*). */
+  --emerald-900: #063d2c;
+  --emerald-700: #0a9e70;
+  --emerald-600: #14c98e;
+  --emerald-500: #35f0b0;
+  --emerald-400: #6cffcf;
+  --emerald-300: #a7ffe4;
 
-  /* Highlight: amarelo ácido (status, glow, "ok"). */
-  --lime-600: #c9c400;
-  --lime-500: #fcee0a;
-  --lime-400: #fff85c;
+  /* Highlight: âmbar quente (glow do balcão, status, "ok"). */
+  --lime-600: #d99b1c;
+  --lime-500: #f6c453;
+  --lime-400: #ffd97a;
 
-  --aurora-cyan:   #00e5ff;
-  --aurora-violet: #b026ff;
-  --amber-400:     #fcee0a;
-  --rose-400:      #ff2a6d;
+  --aurora-cyan:   #22e0c8;   /* teal */
+  --aurora-violet: #0e7a6e;   /* verde-teal profundo (gradiente monocromático) */
+  --amber-400:     #f6c453;
+  --rose-400:      #ff4d4d;   /* vermelho de alerta */
 
-  /* Noir arroxeado (superfícies profundas) */
-  --noir-1: #08040f;
-  --noir-2: #0c0718;
-  --noir-3: #120a24;
+  /* Noir esverdeado (superfícies profundas, atmosféricas) */
+  --noir-1: #04110d;
+  --noir-2: #071a14;
+  --noir-3: #0b261e;
 
   /* Gradients & aurora effects */
-  --grad-aurora:  linear-gradient(95deg, var(--emerald-500) 0%, var(--aurora-cyan) 52%, var(--aurora-violet) 100%);
+  --grad-aurora:  linear-gradient(95deg, var(--emerald-400) 0%, var(--aurora-cyan) 52%, var(--aurora-violet) 100%);
   --grad-brand:   linear-gradient(135deg, var(--emerald-500) 0%, var(--aurora-cyan) 100%);
-  --aurora-line:  rgba(0, 229, 255, 0.12);
-  --aurora-line2: rgba(0, 229, 255, 0.22);
-  --aurora-glass: rgba(18, 10, 36, 0.55);
-  --glow-emerald: 0 12px 40px -12px rgba(255, 42, 109, 0.6);
+  --aurora-line:  rgba(45, 232, 213, 0.12);
+  --aurora-line2: rgba(45, 232, 213, 0.22);
+  --aurora-glass: rgba(9, 26, 20, 0.6);
+  --glow-emerald: 0 12px 40px -12px rgba(53, 240, 176, 0.55);
 
   /* ── Semantic (dark) ───────────────────────────────────────── */
   --surface-base:    var(--noir-1);
   --surface-raised:  var(--noir-2);
   --surface-overlay: var(--noir-3);
-  --card-bg:         rgba(255, 255, 255, 0.035);
+  --card-bg:         rgba(210, 255, 240, 0.035);
   --card-border:     var(--aurora-line);
 
-  --text-primary:   #eaf0ff;
-  --text-secondary: rgba(234, 240, 255, 0.72);
-  --text-tertiary:  rgba(234, 240, 255, 0.52);
+  --text-primary:   #e6fff5;
+  --text-secondary: rgba(230, 255, 245, 0.72);
+  --text-tertiary:  rgba(230, 255, 245, 0.50);
   --border:         var(--aurora-line);
   --border-strong:  var(--aurora-line2);
   --border-focus:   var(--aurora-cyan);

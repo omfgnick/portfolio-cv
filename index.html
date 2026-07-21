@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-  <title>Nicolas Mesquita Fernandes — Perfil Profissional</title>
+  <title>Nicolas Mesquita Fernandes — Infrastructure &amp; Incident Operations</title>
   <meta name="description" content="Infrastructure & Incident Operations • Suporte N1/N2/N3 • NOC/SLA • Segurança • Automação (PowerShell/Bash/Python) — São Paulo, Brasil." />
-  <meta name="theme-color" content="#0a66c2" />
+  <meta name="theme-color" content="#060910" />
 
   <meta name="robots" content="index, follow" />
   <meta name="author" content="Nicolas Mesquita Fernandes" />
@@ -27,14 +27,14 @@
     " />
 
   <link rel="canonical" href="https://omfgnick.github.io/portfolio-cv/" />
-  <meta property="og:title" content="Nicolas Mesquita Fernandes — Perfil Profissional" />
-  <meta property="og:description" content="Infrastructure & Incident Operations • Suporte N1/N2/N3 • NOC/SLA • Segurança • Automação (PowerShell/Bash/Python) — São Paulo, Brasil." />
+  <meta property="og:title" content="Nicolas Mesquita Fernandes — Infrastructure & Incident Operations" />
+  <meta property="og:description" content="NOC • SLA/MTTR • Incident Management • Segurança • Automação (PowerShell/Bash/Python) — São Paulo, Brasil." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:url" content="https://omfgnick.github.io/portfolio-cv/" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Nicolas Mesquita Fernandes — Perfil Profissional" />
-  <meta name="twitter:description" content="Infrastructure & Incident Operations • Suporte N1/N2/N3 • NOC/SLA • Segurança • Automação (PowerShell/Bash/Python) — São Paulo, Brasil." />
+  <meta name="twitter:title" content="Nicolas Mesquita Fernandes — Infrastructure & Incident Operations" />
+  <meta name="twitter:description" content="NOC • SLA/MTTR • Incident Management • Segurança • Automação — São Paulo, Brasil." />
 
   <script type="application/ld+json">
   {
@@ -51,2533 +51,864 @@
       "https://github.com/omfgnick"
     ],
     "knowsAbout": [
-      "NOC Operations",
-      "Incident Management",
-      "Infrastructure Monitoring",
-      "Observability",
-      "SLA",
-      "MTTR",
-      "Runbooks",
-      "PowerShell Automation",
-      "Python Automation",
-      "Bash Scripting",
-      "Network Troubleshooting",
-      "ITSM",
-      "ITIL"
+      "NOC Operations","Incident Management","Infrastructure Monitoring","Observability","SLA","MTTR",
+      "Runbooks","PowerShell Automation","Python Automation","Bash Scripting","Network Troubleshooting","ITSM","ITIL"
     ]
   }
   </script>
 
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Crect width='64' height='64' rx='14' fill='%230a66c2'/%3E%3Cpath d='M18 46V26h8v20h-8zm4-29a4 4 0 110-8 4 4 0 010 8zm14 29V35c0-6 3-10 9-10 5 0 8 3 8 9v12h-8V35c0-2-1-4-3-4-2 0-4 2-4 5v10h-8z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Crect width='64' height='64' rx='14' fill='%23060910'/%3E%3Crect x='6' y='6' width='52' height='52' rx='11' fill='none' stroke='%2322d3ee' stroke-width='2'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='26' font-weight='700' fill='%2322d3ee' text-anchor='middle'%3ENM%3C/text%3E%3C/svg%3E" />
 
   <style>
     :root{
-      --bg: #f3f2ef;
-      --card: #ffffff;
-      --text: #0f172a;
-      --muted: rgba(15,23,42,.78);
-      --muted2: rgba(15,23,42,.62);
-      --border: rgba(15,23,42,.10);
-      --shadow: 0 12px 28px rgba(15,23,42,.10);
-      --shadow2: 0 18px 44px rgba(15,23,42,.14);
-      --radius: 18px;
-      --primary: #0a66c2;
-      --primarySoft: rgba(10,102,194,.10);
-      --ok: #0f9d58;
-      --okSoft: rgba(15,157,88,.10);
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      --focus: 0 0 0 3px rgba(10,102,194,.22);
-      --focusBorder: rgba(10,102,194,.55);
-      --liftShadow: 0 16px 34px rgba(15,23,42,.12);
-      --liftShadowSoft: 0 14px 28px rgba(15,23,42,.10);
-      --tap: 44px;
+      --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --mono: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+      /* dark (default) — mission control */
+      --bg:      #060910;
+      --bg2:     #0a1020;
+      --panel:   rgba(255,255,255,.045);
+      --panel2:  rgba(255,255,255,.028);
+      --stroke:  rgba(255,255,255,.09);
+      --stroke2: rgba(255,255,255,.14);
+      --text:    #e8eefc;
+      --muted:   rgba(232,238,252,.72);
+      --muted2:  rgba(232,238,252,.52);
+      --cyan:    #22d3ee;
+      --blue:    #3b82f6;
+      --green:   #34d399;
+      --amber:   #fbbf24;
+      --violet:  #a78bfa;
+      --danger:  #fb7185;
+      --glow:    0 0 0 1px rgba(34,211,238,.18), 0 18px 50px rgba(6,9,16,.6);
+      --ring:    0 0 0 3px rgba(34,211,238,.28);
+      --grid:    rgba(120,160,255,.055);
+      --card-shadow: 0 22px 60px rgba(3,6,14,.55);
+      --accentGrad: linear-gradient(135deg, var(--cyan), var(--blue));
+      color-scheme: dark;
+    }
+    :root[data-theme="light"]{
+      --bg:      #eef2f9;
+      --bg2:     #e6ecf7;
+      --panel:   rgba(255,255,255,.85);
+      --panel2:  rgba(255,255,255,.7);
+      --stroke:  rgba(12,24,48,.10);
+      --stroke2: rgba(12,24,48,.16);
+      --text:    #0b1424;
+      --muted:   rgba(11,20,36,.72);
+      --muted2:  rgba(11,20,36,.55);
+      --cyan:    #0891b2;
+      --blue:    #2563eb;
+      --green:   #059669;
+      --amber:   #b45309;
+      --violet:  #7c3aed;
+      --danger:  #e11d48;
+      --glow:    0 0 0 1px rgba(8,145,178,.14), 0 18px 44px rgba(15,23,42,.12);
+      --ring:    0 0 0 3px rgba(8,145,178,.22);
+      --grid:    rgba(30,64,140,.06);
+      --card-shadow: 0 20px 48px rgba(15,23,42,.12);
+      --accentGrad: linear-gradient(135deg, var(--cyan), var(--blue));
       color-scheme: light;
-      --bgDark: #0b1220;
-      --cardDark: rgba(255,255,255,.06);
-      --textDark: rgba(255,255,255,.92);
-      --mutedDark: rgba(255,255,255,.74);
-      --muted2Dark: rgba(255,255,255,.64);
-      --borderDark: rgba(255,255,255,.10);
-      --shadowDark: 0 14px 30px rgba(0,0,0,.38);
-      --shadow2Dark: 0 18px 44px rgba(0,0,0,.46);
     }
 
-    html[data-theme="dark"]{ color-scheme: dark; }
-    html[data-theme="dark"] body{ background: var(--bgDark); color: var(--textDark); }
-    html[data-theme="dark"] a{ color: #7fb7ff; }
-    html[data-theme="dark"] .topbar{
-      background: rgba(11,18,32,.82);
-      border-bottom: 1px solid var(--borderDark);
-      backdrop-filter: blur(12px);
-    }
-    html[data-theme="dark"] .search{
-      background: rgba(255,255,255,.06);
-      border-color: var(--borderDark);
-    }
-    html[data-theme="dark"] .search input{ color: var(--textDark); }
-    html[data-theme="dark"] .search .hint{
-      background: rgba(255,255,255,.06);
-      border-color: var(--borderDark);
-      color: rgba(255,255,255,.72);
-    }
-    html[data-theme="dark"] .btn{
-      background: rgba(255,255,255,.06);
-      border-color: var(--borderDark);
-      color: var(--textDark);
-    }
-    html[data-theme="dark"] .btn.primary{
-      background: rgba(10,102,194,.16);
-      border-color: rgba(127,183,255,.28);
-      color: rgba(255,255,255,.92);
-    }
-    html[data-theme="dark"] .card{
-      background: var(--cardDark);
-      border-color: var(--borderDark);
-      box-shadow: var(--shadowDark);
-    }
-    html[data-theme="dark"] .cardHead{
-      border-bottom-color: rgba(255,255,255,.08);
-      background: linear-gradient(180deg, rgba(255,255,255,.04), transparent);
-    }
-    html[data-theme="dark"] .cardMeta{ color: var(--mutedDark); }
-    html[data-theme="dark"] .brandSub{ color: var(--mutedDark); }
-    html[data-theme="dark"] .ico{ color: rgba(255,255,255,.74); }
-    html[data-theme="dark"] .badge{
-      border-color: rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      color: rgba(255,255,255,.88);
-    }
-    html[data-theme="dark"] .badge.primary{
-      border-color: rgba(127,183,255,.22);
-      background: rgba(127,183,255,.10);
-      color: rgba(255,255,255,.92);
-    }
-    html[data-theme="dark"] .badge.ok{
-      border-color: rgba(15,157,88,.22);
-      background: rgba(15,157,88,.14);
-      color: rgba(255,255,255,.92);
-    }
-    html[data-theme="dark"] .tabs{
-      background: rgba(255,255,255,.03);
-      border-bottom-color: rgba(255,255,255,.08);
-    }
-    html[data-theme="dark"] .tab{
-      background: rgba(255,255,255,.05);
-      border-color: rgba(255,255,255,.10);
-      color: rgba(255,255,255,.92);
-    }
-    html[data-theme="dark"] .tab.active{
-      background: rgba(10,102,194,.18);
-      border-color: rgba(127,183,255,.28);
-      color: rgba(255,255,255,.95);
-      box-shadow: 0 10px 18px rgba(10,102,194,.10);
-    }
-    html[data-theme="dark"] .job{
-      background: rgba(255,255,255,.04);
-      border-color: rgba(255,255,255,.10);
-    }
-    html[data-theme="dark"] .jobOrg{ color: var(--mutedDark); }
-    html[data-theme="dark"] .jobPeriod{ color: var(--mutedDark); }
-    html[data-theme="dark"] .jobLoc{ color: var(--muted2Dark); }
-    html[data-theme="dark"] .jobDesc,
-    html[data-theme="dark"] .lead,
-    html[data-theme="dark"] .list,
-    html[data-theme="dark"] .points{ color: rgba(255,255,255,.92); }
-    html[data-theme="dark"] .resultsBar{
-      border-color: rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
-    }
-    html[data-theme="dark"] .resultsChip{
-      background: rgba(255,255,255,.05);
-      border-color: rgba(255,255,255,.10);
-      color: rgba(255,255,255,.90);
-    }
-    html[data-theme="dark"] .hcard{
-      background: rgba(255,255,255,.04);
-      border-color: rgba(255,255,255,.10);
-    }
-    html[data-theme="dark"] .hico{
-      background: rgba(255,255,255,.05);
-      border-color: rgba(255,255,255,.10);
-    }
-    html[data-theme="dark"] .microline{ color: rgba(255,255,255,.74); }
-    html[data-theme="dark"] .microline span::before{
-      background: rgba(127,183,255,.70);
-      box-shadow: 0 0 0 3px rgba(127,183,255,.14);
-    }
-    html[data-theme="dark"] .avatar{
-      border-color: rgba(255,255,255,.10);
-      box-shadow: var(--shadow2Dark);
-      background:
-        radial-gradient(80px 80px at 35% 30%, rgba(127,183,255,.22), transparent 62%),
-        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-    }
-    html[data-theme="dark"] .avatar::before{ border-color: rgba(127,183,255,.20); }
-    html[data-theme="dark"] .avatar .initials{
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.10);
-      color: rgba(255,255,255,.92);
-    }
-    html[data-theme="dark"] .kv{
-      background: rgba(255,255,255,.04);
-      border-color: rgba(255,255,255,.10);
-      box-shadow: var(--shadowDark);
-    }
-    html[data-theme="dark"] .kvIcon{
-      background: rgba(255,255,255,.05);
-      border-color: rgba(255,255,255,.10);
-    }
-    html[data-theme="dark"] .kvLabel{ color: rgba(255,255,255,.84); }
-    html[data-theme="dark"] .kvValue{ color: rgba(255,255,255,.94); }
-    html[data-theme="dark"] .copybtn{
-      background: rgba(255,255,255,.05);
-      border-color: rgba(255,255,255,.10);
-      color: rgba(255,255,255,.84);
-    }
-    html[data-theme="dark"] .copybtn:hover{
-      background: rgba(127,183,255,.10);
-      border-color: rgba(127,183,255,.22);
-    }
-    html[data-theme="dark"] footer{ color: rgba(255,255,255,.72); }
-    html[data-theme="dark"] .topbtn{
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.10);
-      color: rgba(255,255,255,.92);
-    }
-
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
     body{
-      margin:0;
-      font-family: var(--sans);
-      color: var(--text);
-      background: var(--bg);
-      overflow-x:hidden;
+      margin:0; font-family:var(--sans); color:var(--text);
+      background:var(--bg); overflow-x:hidden; line-height:1.55;
+      -webkit-font-smoothing:antialiased;
     }
+    a{ color:var(--cyan); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+    h1,h2,h3{ margin:0; line-height:1.12; letter-spacing:-.01em; }
+    section{ scroll-margin-top:96px; }
+    ::selection{ background:rgba(34,211,238,.28); }
+    :focus-visible{ outline:none; box-shadow:var(--ring); border-radius:12px; }
 
-    a{color:var(--primary); text-decoration:none}
-    a:hover{text-decoration:underline}
+    /* ---------- animated backdrop ---------- */
+    .bg{ position:fixed; inset:0; z-index:-2; overflow:hidden; background:
+        radial-gradient(1200px 720px at 82% -8%, rgba(59,130,246,.16), transparent 60%),
+        radial-gradient(1000px 620px at 8% 8%, rgba(34,211,238,.14), transparent 58%),
+        radial-gradient(900px 700px at 60% 108%, rgba(167,139,250,.12), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2)); }
+    .bg::before{ content:""; position:absolute; inset:-2px;
+      background-image:linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size:44px 44px; mask-image:radial-gradient(1200px 800px at 50% 30%, #000 55%, transparent 92%);
+      -webkit-mask-image:radial-gradient(1200px 800px at 50% 30%, #000 55%, transparent 92%); }
+    .blob{ position:absolute; border-radius:50%; filter:blur(60px); opacity:.5; mix-blend-mode:screen; animation:float 22s ease-in-out infinite; }
+    .blob.b1{ width:420px; height:420px; left:-80px; top:-60px; background:radial-gradient(circle, rgba(34,211,238,.5), transparent 70%); }
+    .blob.b2{ width:520px; height:520px; right:-120px; top:60px; background:radial-gradient(circle, rgba(59,130,246,.5), transparent 70%); animation-delay:-7s; }
+    .blob.b3{ width:460px; height:460px; left:30%; bottom:-160px; background:radial-gradient(circle, rgba(167,139,250,.45), transparent 70%); animation-delay:-13s; }
+    :root[data-theme="light"] .blob{ opacity:.35; }
+    @keyframes float{ 0%,100%{ transform:translate3d(0,0,0) scale(1); } 33%{ transform:translate3d(30px,40px,0) scale(1.08); } 66%{ transform:translate3d(-24px,20px,0) scale(.96); } }
 
-    :focus-visible{
-      outline: none;
-      box-shadow: var(--focus);
-      border-color: var(--focusBorder) !important;
-    }
+    /* ---------- layout ---------- */
+    .wrap{ max-width:1200px; margin:0 auto; padding:0 20px 72px; }
 
-    section{ scroll-margin-top: 92px; }
+    /* ---------- topbar ---------- */
+    .topbar{ position:sticky; top:0; z-index:60; backdrop-filter:blur(14px);
+      background:color-mix(in srgb, var(--bg) 72%, transparent); border-bottom:1px solid var(--stroke); }
+    .topbar-inner{ max-width:1200px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+    .brand{ display:flex; align-items:center; gap:11px; flex:1 1 auto; min-width:0; }
+    .logo{ width:40px; height:40px; border-radius:11px; display:grid; place-items:center; flex:0 0 auto;
+      font-family:var(--mono); font-weight:800; font-size:14px; color:#04121a;
+      background:var(--accentGrad); box-shadow:0 10px 24px rgba(34,211,238,.28); }
+    .brandText{ display:grid; gap:1px; min-width:0; }
+    .brandTitle{ font-family:var(--mono); font-size:12.5px; font-weight:700; letter-spacing:.02em; }
+    .brandSub{ font-size:11.5px; color:var(--muted2); display:flex; align-items:center; gap:6px; }
+    .pulse{ width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 0 0 rgba(52,211,153,.6); animation:beat 2s infinite; }
+    @keyframes beat{ 0%{ box-shadow:0 0 0 0 rgba(52,211,153,.55);} 70%{ box-shadow:0 0 0 8px rgba(52,211,153,0);} 100%{ box-shadow:0 0 0 0 rgba(52,211,153,0);} }
 
-    .skiplink{
-      position: absolute;
-      left: 12px;
-      top: 12px;
-      transform: translateY(-160%);
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 10px 12px;
-      font-size: 12px;
-      box-shadow: var(--shadow);
-      z-index: 1000;
-    }
-    .skiplink:focus{
-      transform: translateY(0);
-      outline: none;
-      box-shadow: var(--focus);
-    }
+    .search{ flex:2 1 340px; display:flex; align-items:center; gap:9px; min-width:min(420px,100%);
+      border:1px solid var(--stroke); background:var(--panel2); border-radius:12px; padding:8px 12px; }
+    .search svg{ width:15px; height:15px; color:var(--muted2); flex:0 0 auto; }
+    .search input{ width:100%; border:0; outline:none; background:transparent; color:var(--text); font-size:13px; font-family:var(--sans); }
+    .search .kbd{ font-family:var(--mono); font-size:11px; color:var(--muted2); border:1px solid var(--stroke); border-radius:7px; padding:2px 7px; }
+    .navlinks{ display:flex; gap:6px; flex:0 0 auto; }
+    .navlinks a{ font-size:12.5px; color:var(--muted); padding:8px 11px; border-radius:10px; border:1px solid transparent; }
+    .navlinks a:hover{ color:var(--text); border-color:var(--stroke); background:var(--panel2); text-decoration:none; }
+    .navlinks a.on{ color:var(--text); border-color:var(--stroke2); background:var(--panel); }
+    .iconbtn{ width:40px; height:40px; flex:0 0 auto; border:1px solid var(--stroke); background:var(--panel2); color:var(--text);
+      border-radius:11px; cursor:pointer; display:grid; place-items:center; font-size:16px; transition:transform .15s, border-color .2s; }
+    .iconbtn:hover{ transform:translateY(-1px); border-color:var(--stroke2); }
+    @media (max-width:900px){ .navlinks{ display:none; } }
 
-    .ico{
-      width: 18px;
-      height: 18px;
-      display:inline-block;
-      vertical-align: -3px;
-      color: rgba(15,23,42,.74);
-      flex: 0 0 auto;
-    }
-    .ico.sm{ width: 16px; height: 16px; vertical-align: -3px; }
-    .ico.xs{ width: 14px; height: 14px; vertical-align: -2px; }
+    /* ---------- generic panel ---------- */
+    .panel{ position:relative; border:1px solid var(--stroke); background:var(--panel); border-radius:18px;
+      box-shadow:var(--card-shadow); backdrop-filter:blur(8px); }
+    .panel.glow{ box-shadow:var(--glow), var(--card-shadow); }
+    .eyebrow{ font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--cyan); display:flex; align-items:center; gap:8px; }
+    .eyebrow::before{ content:""; width:20px; height:1px; background:linear-gradient(90deg, var(--cyan), transparent); }
 
-    .topbar{
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(255,255,255,.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-      transition: padding .18s ease, box-shadow .18s ease, background .18s ease;
-    }
-    .topbar-inner{
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 10px 16px;
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      flex-wrap: wrap;
-      transition: padding .18s ease;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      min-width: 240px;
-      flex: 1 1 280px;
-    }
-    .mark{
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--primary), #2ea0ff);
-      display:grid;
-      place-items:center;
-      color:white;
-      font-family: var(--mono);
-      font-size: 13px;
-      letter-spacing: .5px;
-      box-shadow: 0 10px 20px rgba(10,102,194,.18);
-      user-select:none;
-      transition: transform .18s ease, box-shadow .18s ease;
-    }
-    .brandText{display:grid; gap: 1px;}
-    .brandTitle{ font-weight: 780; font-size: 13px; letter-spacing: .2px; }
-    .brandSub{ font-size: 12px; color: var(--muted); line-height: 1.2; transition: opacity .18s ease, max-height .18s ease; }
+    /* ---------- hero ---------- */
+    .hero{ display:grid; grid-template-columns:1.25fr .95fr; gap:20px; padding-top:34px; align-items:stretch; }
+    @media (max-width:960px){ .hero{ grid-template-columns:1fr; } }
+    .heroMain{ padding:30px 30px 28px; }
+    .status{ display:inline-flex; align-items:center; gap:9px; font-family:var(--mono); font-size:12px; color:var(--green);
+      border:1px solid rgba(52,211,153,.3); background:rgba(52,211,153,.08); padding:6px 12px; border-radius:999px; }
+    h1.name{ font-size:clamp(30px,5vw,50px); font-weight:850; margin:16px 0 6px; letter-spacing:-.02em; }
+    h1.name .grad{ background:var(--accentGrad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .role{ font-family:var(--mono); font-size:clamp(13px,1.6vw,15.5px); color:var(--muted); min-height:1.4em; }
+    .role .caret{ display:inline-block; width:9px; height:1.05em; vertical-align:-2px; background:var(--cyan); margin-left:2px; animation:blink 1s steps(1) infinite; }
+    @keyframes blink{ 50%{ opacity:0; } }
+    .tagline{ margin-top:16px; color:var(--muted); font-size:14.5px; max-width:60ch; }
+    .tagline b{ color:var(--text); }
+    .heroTags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+    .tag{ font-family:var(--mono); font-size:11.5px; color:var(--muted); border:1px solid var(--stroke); background:var(--panel2);
+      padding:6px 10px; border-radius:8px; }
+    .tag .dot{ color:var(--cyan); }
+    .cta{ display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+    .btn{ display:inline-flex; align-items:center; gap:9px; font-size:13px; font-weight:600; cursor:pointer;
+      border:1px solid var(--stroke2); background:var(--panel2); color:var(--text); padding:11px 16px; border-radius:12px;
+      transition:transform .14s, box-shadow .2s, border-color .2s; white-space:nowrap; font-family:var(--sans); }
+    .btn:hover{ transform:translateY(-2px); text-decoration:none; }
+    .btn svg{ width:16px; height:16px; }
+    .btn.primary{ border-color:transparent; background:var(--accentGrad); color:#04121a; box-shadow:0 12px 28px rgba(34,211,238,.28); }
+    .btn.primary:hover{ box-shadow:0 16px 36px rgba(34,211,238,.36); }
 
-    .search{
-      flex: 2 1 420px;
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      border: 1px solid var(--border);
-      background: #f7f7f7;
-      border-radius: 999px;
-      padding: 8px 12px;
-      min-width: min(520px, 100%);
-      transition: transform .18s ease, padding .18s ease;
-    }
-    .search .k{
-      font-family: var(--mono);
-      font-size: 11px;
-      color: rgba(15,23,42,.60);
-      white-space: nowrap;
-    }
-    .search input{
-      width:100%;
-      border:0; outline: none;
-      background: transparent;
-      font-size: 13px;
-      color: var(--text);
-    }
-    .search .hint{
-      font-family: var(--mono);
-      font-size: 11px;
-      color: rgba(15,23,42,.60);
-      border: 1px solid var(--border);
-      background: white;
-      padding: 3px 8px;
-      border-radius: 999px;
-      white-space: nowrap;
-      user-select:none;
-    }
+    /* terminal */
+    .term{ padding:0; overflow:hidden; display:flex; flex-direction:column; }
+    .termBar{ display:flex; align-items:center; gap:8px; padding:12px 14px; border-bottom:1px solid var(--stroke); background:var(--panel2); }
+    .termDot{ width:11px; height:11px; border-radius:50%; }
+    .termDot.r{ background:#ff5f57; } .termDot.y{ background:#febc2e; } .termDot.g{ background:#28c840; }
+    .termTitle{ margin-left:6px; font-family:var(--mono); font-size:11.5px; color:var(--muted2); }
+    .termBody{ padding:16px 16px 18px; font-family:var(--mono); font-size:12.6px; line-height:1.75; flex:1;
+      min-height:230px; color:var(--muted); }
+    .termBody .l{ white-space:pre-wrap; word-break:break-word; }
+    .termBody .p{ color:var(--cyan); } .termBody .ok{ color:var(--green); } .termBody .w{ color:var(--amber); }
+    .termBody .c{ color:var(--text); }
+    .termCaret{ display:inline-block; width:8px; height:1.05em; vertical-align:-2px; background:var(--green); animation:blink 1s steps(1) infinite; }
 
-    .actions{
-      display:flex;
-      gap: 8px;
-      flex: 0 0 auto;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
+    /* ---------- metrics ---------- */
+    .metrics{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:20px; }
+    @media (max-width:760px){ .metrics{ grid-template-columns:repeat(2,1fr); } }
+    .metric{ padding:18px 16px; }
+    .metric .k{ font-family:var(--mono); font-size:clamp(26px,3.4vw,36px); font-weight:800; line-height:1;
+      background:var(--accentGrad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .metric .lbl{ margin-top:8px; font-size:12px; color:var(--muted2); }
+    .metric .spark{ margin-top:10px; height:22px; display:flex; align-items:flex-end; gap:3px; }
+    .metric .spark i{ flex:1; background:linear-gradient(180deg, var(--cyan), transparent); border-radius:2px 2px 0 0; opacity:.55; }
 
-    .btn{
-      border: 1px solid var(--border);
-      background: white;
-      color: var(--text);
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 12px;
-      cursor:pointer;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap: 8px;
-      user-select:none;
-      transition: transform .14s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
-      line-height: 1;
-      white-space: nowrap;
-      min-height: 36px;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .btn:hover{
-      border-color: rgba(10,102,194,.35);
-      box-shadow: var(--liftShadowSoft);
-      transform: translateY(-1px);
-    }
-    .btn:active{
-      transform: translateY(0px);
-      box-shadow: 0 10px 18px rgba(15,23,42,.08);
-    }
-    .btn.primary{
-      border-color: rgba(10,102,194,.40);
-      background: rgba(10,102,194,.10);
-      color: #0b3b73;
-    }
-    .btn.ghost{ background: rgba(15,23,42,.02); }
+    /* ---------- section heading ---------- */
+    .sec{ margin-top:34px; }
+    .sechead{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom:14px; flex-wrap:wrap; }
+    .sechead h2{ font-size:clamp(19px,2.4vw,24px); font-weight:800; display:flex; align-items:center; gap:11px; }
+    .sechead .idx{ font-family:var(--mono); font-size:12px; color:var(--muted2); }
+    .secDesc{ color:var(--muted2); font-size:12.5px; }
 
-    .topbar.compact{
-      background: rgba(255,255,255,.96);
-      box-shadow: 0 8px 18px rgba(15,23,42,.06);
-    }
-    .topbar.compact .topbar-inner{ padding: 6px 12px; }
-    .topbar.compact .mark{ transform: scale(.94); box-shadow: 0 8px 16px rgba(10,102,194,.14); }
-    .topbar.compact .brandSub{
-      opacity: 0;
-      max-height: 0;
-      overflow: hidden;
-    }
-    .topbar.compact .search{
-      padding: 7px 10px;
-      transform: translateY(-.5px);
-    }
+    /* about + skills grid */
+    .cols{ display:grid; grid-template-columns:1.3fr .7fr; gap:20px; align-items:start; }
+    @media (max-width:960px){ .cols{ grid-template-columns:1fr; } }
+    .about{ padding:24px; }
+    .about p{ margin:0 0 14px; color:var(--muted); font-size:14px; }
+    .about p b{ color:var(--text); }
+    .capgrid{ display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:6px; }
+    @media (max-width:560px){ .capgrid{ grid-template-columns:1fr; } }
+    .cap{ border:1px solid var(--stroke); border-radius:13px; background:var(--panel2); padding:13px 14px; }
+    .cap .h{ display:flex; align-items:center; gap:9px; font-weight:700; font-size:13px; }
+    .cap .h svg{ width:16px; height:16px; color:var(--cyan); flex:0 0 auto; }
+    .cap .d{ margin-top:6px; font-size:12.3px; color:var(--muted2); }
 
-    .wrap{
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 16px 16px 64px;
-    }
+    /* ---------- experience timeline ---------- */
+    .timeline{ position:relative; padding-left:26px; }
+    .timeline::before{ content:""; position:absolute; left:7px; top:6px; bottom:6px; width:2px;
+      background:linear-gradient(180deg, var(--cyan), var(--blue), transparent); opacity:.5; }
+    .job{ position:relative; margin-bottom:14px; }
+    .job::before{ content:""; position:absolute; left:-24px; top:20px; width:12px; height:12px; border-radius:50%;
+      background:var(--bg); border:2px solid var(--cyan); box-shadow:0 0 0 4px color-mix(in srgb, var(--cyan) 18%, transparent); }
+    .job.open::before{ background:var(--cyan); }
+    .jobCard{ border:1px solid var(--stroke); border-radius:15px; background:var(--panel); overflow:hidden; transition:border-color .2s; }
+    .jobCard:hover{ border-color:var(--stroke2); }
+    .jobToggle{ width:100%; text-align:left; border:0; background:transparent; color:inherit; cursor:pointer; padding:16px 18px; font-family:var(--sans); }
+    .jobTop{ display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    .jobRole{ font-weight:750; font-size:14.5px; }
+    .jobOrg{ color:var(--cyan); font-size:12.5px; margin-top:3px; }
+    .jobMeta{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+    .period{ font-family:var(--mono); font-size:11.5px; color:var(--muted2); white-space:nowrap; border:1px solid var(--stroke); padding:4px 9px; border-radius:999px; }
+    .chev{ width:26px; height:26px; border-radius:50%; border:1px solid var(--stroke); display:grid; place-items:center; transition:transform .25s, background .2s; flex:0 0 auto; }
+    .chev svg{ width:14px; height:14px; }
+    .job.open .chev{ transform:rotate(180deg); background:color-mix(in srgb, var(--cyan) 14%, transparent); border-color:var(--cyan); }
+    .loc{ font-size:11.5px; color:var(--muted2); margin-top:4px; }
+    .jobBody{ max-height:0; overflow:hidden; transition:max-height .3s ease; }
+    .jobBody .inner{ padding:0 18px 18px; }
+    .jobDesc{ color:var(--muted); font-size:13px; border-left:2px solid var(--stroke2); padding-left:12px; }
+    .points{ margin:12px 0 0; padding:0; list-style:none; display:grid; gap:8px; }
+    .points li{ position:relative; padding-left:20px; font-size:13px; color:var(--muted); }
+    .points li::before{ content:"▹"; position:absolute; left:0; color:var(--cyan); }
 
-    .grid{
-      display:grid;
-      grid-template-columns: 1.35fr .65fr;
-      gap: 14px;
-      align-items:start;
-      margin-top: 14px;
-    }
-    @media (max-width: 1020px){
-      .grid{ grid-template-columns: 1fr; }
-      .search{ min-width: 100%; }
-    }
+    /* ---------- skills ---------- */
+    .skills{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+    @media (max-width:760px){ .skills{ grid-template-columns:1fr; } }
+    .skill{ padding:16px 16px 18px; }
+    .skill .h{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .skill .h .t{ display:flex; align-items:center; gap:9px; font-weight:700; font-size:13px; }
+    .skill .h .t svg{ width:16px; height:16px; color:var(--cyan); }
+    .signal{ display:flex; align-items:flex-end; gap:2px; height:14px; }
+    .signal i{ width:3px; border-radius:2px; background:var(--cyan); opacity:.35; }
+    .signal i.on{ opacity:1; }
+    .chips{ display:flex; flex-wrap:wrap; gap:7px; margin-top:12px; }
+    .chip{ font-family:var(--mono); font-size:11px; color:var(--muted); border:1px solid var(--stroke); background:var(--panel2); padding:5px 9px; border-radius:7px; }
 
-    .card{
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      transition: transform .16s ease, box-shadow .20s ease, border-color .20s ease;
-      -webkit-tap-highlight-color: transparent;
-    }
-    @media (hover:hover){
-      .card:hover{
-        box-shadow: var(--liftShadow);
-        transform: translateY(-2px);
-        border-color: rgba(15,23,42,.14);
-      }
-    }
-    .card:active{
-      box-shadow: var(--liftShadowSoft);
-      transform: translateY(-1px);
-      border-color: rgba(15,23,42,.14);
-    }
+    /* ---------- certs / edu ---------- */
+    .list{ display:grid; gap:10px; }
+    .li{ display:flex; gap:12px; align-items:flex-start; border:1px solid var(--stroke); border-radius:13px; background:var(--panel2); padding:13px 15px; }
+    .li .ic{ width:34px; height:34px; border-radius:10px; display:grid; place-items:center; flex:0 0 auto; font-size:16px;
+      background:color-mix(in srgb, var(--cyan) 14%, transparent); border:1px solid var(--stroke); }
+    .li .m{ min-width:0; }
+    .li .t{ font-weight:650; font-size:13.5px; }
+    .li .s{ font-size:12px; color:var(--muted2); margin-top:3px; }
+    .li .cred{ font-family:var(--mono); font-size:10.5px; color:var(--muted2); word-break:break-all; }
 
-    .cardHead{
-      padding: 16px 18px;
-      border-bottom: 1px solid rgba(15,23,42,.08);
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      background: linear-gradient(180deg, rgba(15,23,42,.02), transparent);
-    }
-    .cardTitle{
-      margin:0;
-      font-size: 14px;
-      letter-spacing: .2px;
-      font-weight: 800;
-      display:flex;
-      align-items:center;
-      gap: 8px;
-    }
-    .cardMeta{
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.35;
-      margin-top: 4px;
-    }
-    .cardBody{ padding: 16px 18px 18px; }
+    /* ---------- contact ---------- */
+    .contactGrid{ display:grid; grid-template-columns:1.2fr .8fr; gap:20px; align-items:start; }
+    @media (max-width:860px){ .contactGrid{ grid-template-columns:1fr; } }
+    .kv{ padding:20px; }
+    .kvrow{ display:grid; grid-template-columns:38px 1fr auto; gap:12px; align-items:center; padding:11px 0; border-bottom:1px dashed var(--stroke); }
+    .kvrow:last-child{ border-bottom:0; }
+    .kvic{ width:38px; height:38px; border-radius:11px; display:grid; place-items:center; font-size:17px;
+      border:1px solid var(--stroke); background:var(--panel2); }
+    .kvlbl{ font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted2); }
+    .kvval{ font-size:13.5px; margin-top:2px; word-break:break-word; }
+    .copybtn{ font-family:var(--mono); font-size:11px; color:var(--muted); border:1px solid var(--stroke); background:var(--panel2);
+      padding:7px 11px; border-radius:9px; cursor:pointer; transition:border-color .2s, color .2s; white-space:nowrap; }
+    .copybtn:hover{ color:var(--text); border-color:var(--stroke2); }
+    .copybtn.copied{ color:var(--green); border-color:rgba(52,211,153,.4); }
+    .qrPanel{ padding:20px; display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center; }
+    .qrBox{ width:150px; height:150px; border-radius:16px; padding:10px; background:#fff; box-shadow:0 12px 30px rgba(3,6,14,.5); }
+    .qrBox canvas{ width:130px; height:130px; display:block; }
+    .qrText .t{ font-weight:700; font-size:13px; display:flex; align-items:center; gap:8px; justify-content:center; }
+    .qrText .d{ font-size:11.5px; color:var(--muted2); margin-top:5px; max-width:220px; }
 
-    .hero{
-      display:flex;
-      gap: 14px;
-      align-items:stretch;
-      flex-wrap: wrap;
-    }
-    .heroLeft{ flex: 1 1 660px; min-width: min(660px, 100%); position:relative; overflow:hidden; }
-    .heroRight{ flex: 1 1 340px; min-width: min(340px, 100%); }
+    /* ---------- footer ---------- */
+    footer{ margin-top:40px; padding-top:22px; border-top:1px solid var(--stroke); display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+      color:var(--muted2); font-size:12px; font-family:var(--mono); }
 
-    .heroLeft::before{
-      content:"";
-      position:absolute; left:0; right:0; top:0;
-      height: 74px;
-      background:
-        radial-gradient(420px 160px at 16% 0%, rgba(10,102,194,.22), transparent 60%),
-        linear-gradient(90deg, rgba(10,102,194,.12), rgba(10,102,194,.05), rgba(255,255,255,0)),
-        linear-gradient(180deg, rgba(10,102,194,.08), rgba(255,255,255,0));
-      pointer-events:none;
-    }
-    .heroLeft .cardBody{ padding: 18px 18px 20px; }
+    /* floating */
+    .fab{ position:fixed; z-index:70; width:52px; height:52px; border-radius:50%; display:grid; place-items:center; cursor:pointer;
+      border:1px solid var(--stroke2); transition:transform .16s, opacity .2s; }
+    .fab svg{ width:22px; height:22px; }
+    .wa{ left:18px; bottom:18px; background:linear-gradient(135deg,#25d366,#128c7e); color:#fff; box-shadow:0 14px 30px rgba(18,140,126,.4); }
+    .wa:hover{ transform:translateY(-2px); }
+    .toTop{ right:18px; bottom:18px; background:var(--panel); color:var(--text); backdrop-filter:blur(8px); opacity:0; pointer-events:none; }
+    .toTop.show{ opacity:1; pointer-events:auto; }
+    .toTop:hover{ transform:translateY(-2px); }
 
-    .idrow{ display:flex; gap: 16px; align-items:flex-start; flex-wrap: wrap; }
+    .toast{ position:fixed; left:50%; bottom:22px; transform:translate(-50%,10px); z-index:90; opacity:0; pointer-events:none;
+      background:color-mix(in srgb, var(--bg) 40%, #000); color:#fff; border:1px solid var(--stroke2); backdrop-filter:blur(10px);
+      padding:11px 15px; border-radius:12px; font-size:12.5px; font-family:var(--mono); transition:opacity .2s, transform .2s; max-width:90vw; text-align:center; }
+    .toast.show{ opacity:1; transform:translate(-50%,0); }
 
-    .avatar{
-      width: 112px;
-      height: 112px;
-      border-radius: 22px;
-      border: 1px solid rgba(15,23,42,.12);
-      background:
-        radial-gradient(80px 80px at 35% 30%, rgba(10,102,194,.22), transparent 62%),
-        linear-gradient(135deg, rgba(15,23,42,.08), rgba(15,23,42,.02));
-      box-shadow:
-        0 12px 30px rgba(10,102,194,.18),
-        0 2px 6px rgba(0,0,0,.08);
-      position: relative;
-      overflow:hidden;
-      flex: 0 0 auto;
-      display:grid;
-      place-items:center;
-      user-select:none;
-    }
-    .avatar::before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      border-radius: inherit;
-      border: 2px solid rgba(10,102,194,.20);
-      pointer-events:none;
-    }
-    .avatar::after{
-      content:"";
-      position:absolute; inset:0;
-      border-radius: 22px;
-      box-shadow: inset 0 0 0 2px rgba(255,255,255,.78);
-      opacity:.34;
-      pointer-events:none;
-    }
-    .avatar .initials{
-      width: 76px;
-      height: 76px;
-      border-radius: 999px;
-      display:grid;
-      place-items:center;
-      background: rgba(255,255,255,.55);
-      border: 1px solid rgba(15,23,42,.10);
-      box-shadow: 0 12px 22px rgba(15,23,42,.10);
-      font-family: var(--mono);
-      font-weight: 900;
-      letter-spacing: .6px;
-      color: rgba(15,23,42,.82);
-    }
-
-    .openBadge{
-      margin-top: 10px;
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(15,157,88,.22);
-      background: rgba(15,157,88,.10);
-      color: rgba(11,90,59,.92);
-      font-size: 12px;
-      font-weight: 780;
-      width: fit-content;
-      user-select:none;
-    }
-    .openBadge .dot{
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(15,157,88,.95);
-      box-shadow: 0 0 0 3px rgba(15,157,88,.18);
-    }
-    .openBadge small{
-      font-weight: 680;
-      color: rgba(11,90,59,.78);
-    }
-
-    h1{
-      margin: 0;
-      font-size: 24px;
-      line-height: 1.15;
-      letter-spacing: .05px;
-      font-weight: 860;
-      text-wrap: balance;
-    }
-
-    .headline{
-      margin-top: 6px;
-      max-width: 920px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      font-size: clamp(12.6px, 1.15vw, 13.6px);
-      line-height: 1.45;
-      gap: 6px 0;
-    }
-    .headline .h-chip{
-      position: relative;
-      display: inline-flex;
-      align-items: baseline;
-      padding: 2px 0;
-      color: rgba(15,23,42,.72);
-      font-weight: 650;
-      min-width: 0;
-      word-break: normal;
-      text-wrap: pretty;
-    }
-    .headline .h-chip.h-main{
-      color: rgba(15,23,42,.92);
-      font-weight: 860;
-    }
-    .headline .h-chip + .h-chip{ padding-left: 16px; }
-    .headline .h-chip + .h-chip::before{
-      content: "•";
-      position: absolute;
-      left: 6px;
-      top: 0;
-      color: rgba(15,23,42,.32);
-      user-select: none;
-      transform: translateY(1px);
-    }
-
-    .microline{
-      margin-top: 8px;
-      display:flex;
-      flex-wrap:wrap;
-      gap: 6px 10px;
-      align-items:center;
-      color: rgba(15,23,42,.66);
-      font-size: 12.5px;
-      max-width: 920px;
-    }
-    .microline span{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-    }
-    .microline span::before{
-      content:"";
-      width: 6px; height: 6px;
-      border-radius: 999px;
-      background: rgba(10,102,194,.55);
-      box-shadow: 0 0 0 3px rgba(10,102,194,.10);
-    }
-
-    .ctaRow{
-      display:flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-    }
-
-    .resultsBar{
-      margin-top: 12px;
-      border: 1px solid rgba(15,23,42,.10);
-      background: linear-gradient(180deg, rgba(15,23,42,.02), rgba(15,23,42,.00));
-      border-radius: 16px;
-      padding: 10px 12px;
-      display:flex;
-      flex-wrap:wrap;
-      gap: 8px 10px;
-      align-items:center;
-    }
-    .resultsTag{
-      font-size: 12px;
-      font-weight: 860;
-      color: rgba(15,23,42,.80);
-      display:inline-flex;
-      gap: 8px;
-      align-items:center;
-    }
-    .resultsChip{
-      font-size: 12px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(15,23,42,.10);
-      background: rgba(255,255,255,.86);
-      color: rgba(15,23,42,.82);
-      white-space: nowrap;
-    }
-
-    .highlights{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 12px;
-    }
-    .hcard{
-      border: 1px solid rgba(15,23,42,.10);
-      border-radius: 16px;
-      background: rgba(255,255,255,.82);
-      padding: 10px 12px;
-      display:flex;
-      gap: 10px;
-      align-items:flex-start;
-      min-height: 64px;
-    }
-    .hico{
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
-      border: 1px solid rgba(15,23,42,.10);
-      background: rgba(15,23,42,.03);
-      display:grid;
-      place-items:center;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.55);
-      flex: 0 0 auto;
-    }
-    .htext{ min-width: 0; }
-    .hbig{
-      font-weight: 900;
-      letter-spacing: .1px;
-      font-size: 13px;
-      line-height: 1.2;
-      color: rgba(15,23,42,.92);
-    }
-    .hsmall{
-      margin-top: 4px;
-      font-size: 12px;
-      color: rgba(15,23,42,.70);
-      line-height: 1.25;
-    }
-
-    .badges{
-      display:flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 12px;
-    }
-    .badge{
-      font-size: 12px;
-      padding: 7px 11px;
-      border-radius: 999px;
-      border: 1px solid rgba(15,23,42,.10);
-      background: rgba(15,23,42,.02);
-      color: rgba(15,23,42,.88);
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      white-space: nowrap;
-    }
-    .badge .ico{ color: rgba(15,23,42,.70); }
-    .badge.primary{
-      border-color: rgba(10,102,194,.22);
-      background: var(--primarySoft);
-      color: #0b3b73;
-    }
-    .badge.ok{
-      border-color: rgba(15,157,88,.18);
-      background: var(--okSoft);
-      color: #0b5a3b;
-    }
-
-    .chips{
-      margin-top: 12px;
-      display:flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items:center;
-    }
-    .chipLabel{
-      font-size: 12px;
-      color: var(--muted);
-      font-weight: 780;
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      margin-right: 2px;
-    }
-    .chip{
-      border: 1px solid rgba(15,23,42,.10);
-      background: rgba(15,23,42,.02);
-      color: rgba(15,23,42,.86);
-      padding: 7px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      cursor: pointer;
-      user-select:none;
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      transition: transform .14s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
-      min-height: 34px;
-      -webkit-tap-highlight-color: transparent;
-      white-space: nowrap;
-    }
-    .chip:hover{
-      border-color: rgba(10,102,194,.35);
-      box-shadow: var(--liftShadowSoft);
-      transform: translateY(-1px);
-    }
-    .chip:active{
-      transform: translateY(0px);
-      box-shadow: 0 10px 18px rgba(15,23,42,.08);
-    }
-    .chip.on{
-      border-color: rgba(10,102,194,.45);
-      background: rgba(10,102,194,.10);
-      color: #0b3b73;
-    }
-    html[data-theme="dark"] .chip{
-      border-color: rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      color: rgba(255,255,255,.92);
-    }
-    html[data-theme="dark"] .chip.on{
-      border-color: rgba(127,183,255,.28);
-      background: rgba(127,183,255,.10);
-      color: rgba(255,255,255,.95);
-    }
-    html[data-theme="dark"] .chipLabel{ color: rgba(255,255,255,.72); }
-
-    .tabs{
-      display:flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      padding: 12px 18px;
-      border-bottom: 1px solid rgba(15,23,42,.08);
-      background: #fbfbfb;
-    }
-    .tab{
-      border: 1px solid var(--border);
-      background: white;
-      color: var(--text);
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 12px;
-      cursor:pointer;
-      user-select:none;
-      transition: transform .14s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
-      min-height: 36px;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .tab:hover{
-      border-color: rgba(10,102,194,.35);
-      box-shadow: var(--liftShadowSoft);
-      transform: translateY(-1px);
-    }
-    .tab:active{
-      transform: translateY(0px);
-      box-shadow: 0 10px 18px rgba(15,23,42,.08);
-    }
-    .tab.active{
-      border-color: rgba(10,102,194,.45);
-      background: rgba(10,102,194,.10);
-      color: #0b3b73;
-      box-shadow: 0 10px 18px rgba(10,102,194,.10);
-    }
-
-    .section{ padding: 14px 18px 18px; }
-    .section h2{
-      margin: 0 0 10px;
-      font-size: 14px;
-      font-weight: 820;
-      letter-spacing: .2px;
-      display:flex;
-      align-items:center;
-      gap: 8px;
-    }
-    .lead{
-      margin:0;
-      font-size: 13.5px;
-      line-height: 1.7;
-      color: rgba(15,23,42,.90);
-    }
-    .list{
-      margin: 10px 0 0;
-      padding-left: 18px;
-      color: rgba(15,23,42,.90);
-      line-height: 1.7;
-      font-size: 13.5px;
-    }
-    .list li{ margin: 7px 0; }
-
-    .job{
-      border: 1px solid rgba(15,23,42,.10);
-      border-radius: 14px;
-      padding: 14px;
-      margin-top: 12px;
-      background: white;
-      position: relative;
-    }
-    .job:first-child{ margin-top: 0; }
-    .jobTitle{ font-weight: 860; font-size: 13px; letter-spacing: .1px; }
-    .jobOrg{ color: var(--muted); font-size: 12px; margin-left: 6px; font-weight: 680; }
-    .jobPeriod{ font-size: 12px; color: var(--muted); white-space: nowrap; }
-    .jobLoc{ margin-top: 4px; font-size: 12px; color: var(--muted2); }
-    .jobDesc{
-      margin-top: 10px;
-      font-size: 13px;
-      color: rgba(15,23,42,.90);
-      line-height: 1.65;
-      white-space: pre-wrap;
-    }
-    .points{
-      margin: 10px 0 0;
-      padding-left: 18px;
-      font-size: 13px;
-      color: rgba(15,23,42,.90);
-      line-height: 1.65;
-    }
-    .points li{ margin: 6px 0; }
-
-    .jobToggle{
-      width: 100%;
-      border: 0;
-      background: transparent;
-      padding: 0;
-      margin: 0;
-      text-align: left;
-      cursor: pointer;
-      display:block;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .jobToggle:focus-visible{ border-radius: 12px; }
-    .jobChevron{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      width: 28px;
-      height: 28px;
-      border-radius: 999px;
-      border: 1px solid rgba(15,23,42,.10);
-      background: rgba(15,23,42,.02);
-      transition: transform .18s ease, background .18s ease, border-color .18s ease;
-      flex: 0 0 auto;
-    }
-    .jobChevron svg{ width: 14px; height: 14px; }
-    .jobHeadRow{
-      display:flex;
-      align-items:flex-start;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .jobMetaRight{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content:flex-end;
-    }
-    .jobBody{
-      overflow: hidden;
-      max-height: 0;
-      opacity: 0;
-      transform: translateY(-2px);
-      transition: max-height .24s ease, opacity .18s ease, transform .18s ease;
-    }
-    .job.open .jobBody{
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .job.open .jobChevron{
-      transform: rotate(180deg);
-      border-color: rgba(10,102,194,.25);
-      background: rgba(10,102,194,.06);
-    }
-    html[data-theme="dark"] .jobChevron{
-      border-color: rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
-    }
-    html[data-theme="dark"] .job.open .jobChevron{
-      border-color: rgba(127,183,255,.22);
-      background: rgba(127,183,255,.10);
-    }
+    /* Visible by default; only hidden once JS "arms" the animation, so content
+       is never stuck invisible if IntersectionObserver is unavailable. */
+    .reveal{ transition:opacity .6s ease, transform .6s ease; }
+    .reveal.armed{ opacity:0; transform:translateY(16px); }
+    .reveal.armed.in{ opacity:1; transform:none; }
 
     [data-filter-item].hidden{ display:none !important; }
 
-    .kvs{ display:grid; gap: 10px; }
-    .kv{
-      border: 1px solid rgba(15,23,42,.10);
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 10px 20px rgba(15,23,42,.06);
-      overflow:hidden;
-    }
-    .kvRow{
-      position: relative;
-      display:grid;
-      grid-template-columns: 40px 1fr auto;
-      gap: 12px;
-      align-items:center;
-      padding: 12px 12px 12px 12px;
-    }
-    .kvRow::before{
-      content:"";
-      position:absolute;
-      left:0; top:0; bottom:0;
-      width: 4px;
-      background: linear-gradient(180deg, rgba(10,102,194,.70), rgba(10,102,194,.14));
-    }
-    .kv[data-type="email"]     .kvRow::before{ background: linear-gradient(180deg, rgba(10,102,194,.72), rgba(10,102,194,.14)); }
-    .kv[data-type="phone"]     .kvRow::before{ background: linear-gradient(180deg, rgba(15,157,88,.72), rgba(15,157,88,.14)); }
-    .kv[data-type="linkedin"]  .kvRow::before{ background: linear-gradient(180deg, rgba(10,102,194,.72), rgba(10,102,194,.14)); }
-    .kv[data-type="github"]    .kvRow::before{ background: linear-gradient(180deg, rgba(15,23,42,.55), rgba(15,23,42,.10)); }
-    .kv[data-type="location"]  .kvRow::before{ background: linear-gradient(180deg, rgba(245,158,11,.68), rgba(245,158,11,.14)); }
-    .kv[data-type="tools"]     .kvRow::before{ background: linear-gradient(180deg, rgba(99,102,241,.60), rgba(99,102,241,.12)); }
-
-    .kvIcon{
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
-      border: 1px solid rgba(15,23,42,.10);
-      background: rgba(15,23,42,.03);
-      display:grid;
-      place-items:center;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.55);
-      user-select:none;
-      margin-left: 6px;
-    }
-    .kvMain{ min-width: 0; }
-    .kvLabel{
-      font-size: 12px;
-      font-weight: 850;
-      color: rgba(15,23,42,.82);
-      letter-spacing: .1px;
-      line-height: 1.2;
-    }
-    .kvValue{
-      margin-top: 4px;
-      font-size: 13px;
-      color: rgba(15,23,42,.92);
-      line-height: 1.35;
-      word-break: break-word;
-    }
-    .kvValue a{ font-weight: 750; }
-
-    .copybtn{
-      border: 1px solid rgba(15,23,42,.12);
-      background: rgba(15,23,42,.02);
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 11px;
-      cursor: pointer;
-      color: rgba(15,23,42,.78);
-      transition: transform .12s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
-      white-space: nowrap;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap: 6px;
-      user-select:none;
-      -webkit-tap-highlight-color: transparent;
-      min-height: 32px;
-    }
-    .copybtn:hover{
-      border-color: rgba(10,102,194,.25);
-      background: rgba(10,102,194,.06);
-      box-shadow: var(--liftShadowSoft);
-      transform: translateY(-1px);
-    }
-    .copybtn:active{
-      transform: translateY(0px);
-      box-shadow: 0 10px 18px rgba(15,23,42,.08);
-    }
-    .copybtn.copied{
-      border-color: rgba(15,157,88,.28);
-      background: rgba(15,157,88,.10);
-      color: rgba(11,90,59,.95);
-      box-shadow: 0 10px 18px rgba(15,157,88,.10);
-    }
-
-    .qrWrap{
-      margin-top: 14px;
-      border-top: 1px dashed rgba(15,23,42,.14);
-      padding-top: 14px;
-      display:flex;
-      gap: 12px;
-      align-items:center;
-      flex-wrap: wrap;
-    }
-    .qrBox{
-      width: 120px;
-      height: 120px;
-      border-radius: 16px;
-      border: 1px solid rgba(15,23,42,.10);
-      background: rgba(15,23,42,.02);
-      display:grid;
-      place-items:center;
-      overflow:hidden;
-    }
-    .qrBox canvas{
-      width: 120px;
-      height: 120px;
-      display:block;
-    }
-    .qrText{
-      min-width: 220px;
-      flex: 1 1 240px;
-    }
-    .qrText .t1{
-      font-weight: 860;
-      font-size: 13px;
-      color: rgba(15,23,42,.90);
-      display:flex;
-      align-items:center;
-      gap: 8px;
-    }
-    .qrText .t2{
-      margin-top: 4px;
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.35;
-    }
-
-    .toast{
-      position: fixed;
-      left: 50%;
-      bottom: 18px;
-      transform: translateX(-50%) translateY(8px);
-      opacity: 0;
-      pointer-events: none;
-      background: rgba(15,23,42,.92);
-      color: white;
-      padding: 10px 12px;
-      border-radius: 12px;
-      font-size: 12px;
-      box-shadow: var(--shadow);
-      transition: opacity .18s ease, transform .18s ease;
-      z-index: 80;
-      max-width: min(92vw, 520px);
-      text-align:center;
-    }
-    .toast.show{
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-    .topbtn{
-      position: fixed;
-      right: 16px;
-      bottom: 18px;
-      z-index: 70;
-      border: 1px solid var(--border);
-      background: white;
-      color: var(--text);
-      padding: 10px 12px;
-      border-radius: 999px;
-      cursor:pointer;
-      box-shadow: var(--shadow);
-      opacity: 0;
-      transform: translateY(8px);
-      pointer-events: none;
-      transition: opacity .18s ease, transform .18s ease;
-      font-size: 12px;
-      min-height: 40px;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .topbtn.show{
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events:auto;
-    }
-
-    .wabtn{
-      position: fixed;
-      left: 16px;
-      bottom: 18px;
-      z-index: 75;
-      width: 54px;
-      height: 54px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, rgba(15,157,88,.95), rgba(15,157,88,.78));
-      border: 1px solid rgba(15,157,88,.22);
-      box-shadow: 0 16px 34px rgba(15,23,42,.16);
-      display:grid;
-      place-items:center;
-      color: white;
-      text-decoration:none;
-      transition: transform .14s ease, box-shadow .18s ease;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .wabtn:hover{
-      transform: translateY(-2px);
-      box-shadow: 0 20px 42px rgba(15,23,42,.18);
-    }
-    .wabtn:active{ transform: translateY(0px) scale(.98); }
-    .wabtn .ico{ color: white; width: 22px; height: 22px; }
-
-    footer{
-      margin-top: 14px;
-      color: var(--muted);
-      font-size: 12px;
-      display:flex;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-      padding: 8px 2px 0;
-    }
-
-    @media (max-width: 520px){
-      .wrap{ padding: 12px 12px 84px; }
-      .topbar-inner{ padding: 10px 12px; }
-      .mark{ width: 32px; height: 32px; border-radius: 10px; }
-      .search{ padding: 8px 10px; }
-      .actions{ width:100%; justify-content:flex-start; }
-      .btn{ padding: 10px 12px; min-height: var(--tap); }
-      .tab{ min-height: var(--tap); padding: 10px 12px; }
-      .copybtn{ min-height: var(--tap); padding: 10px 12px; font-size: 12px; }
-
-      .avatar{ width: 96px; height: 96px; border-radius: 18px; }
-      .avatar::after{ border-radius: 18px; }
-      .avatar .initials{ width: 66px; height: 66px; }
-
-      h1{ font-size: 20px; }
-      .headline{ font-size: 12.2px; line-height: 1.42; }
-      .headline .h-chip + .h-chip{ padding-left: 14px; }
-      .headline .h-chip + .h-chip::before{ left: 5px; }
-
-      .microline{ font-size: 12px; }
-      .openBadge{ font-size: 11.8px; }
-
-      .heroLeft::before{ height: 68px; }
-      .cardHead{ padding: 14px 14px; }
-      .cardBody{ padding: 14px 14px 16px; }
-      .tabs{ padding: 12px 14px; }
-      .section{ padding: 14px 14px 16px; }
-
-      .kvRow{
-        grid-template-columns: 38px 1fr auto;
-        gap: 10px;
-        padding: 12px 10px;
-      }
-      .kvIcon{ width: 32px; height: 32px; border-radius: 12px; }
-      .kvValue{ font-size: 12.8px; }
-
-      .highlights{ grid-template-columns: 1fr; }
-      .hcard{ min-height: 0; }
-
-      .topbtn{ right: 12px; bottom: 14px; }
-      .toast{ bottom: 78px; }
-      .wabtn{ left: 12px; bottom: 14px; width: 56px; height: 56px; }
-    }
+    .skiplink{ position:absolute; left:12px; top:-60px; background:var(--panel); border:1px solid var(--stroke2); border-radius:10px;
+      padding:10px 14px; font-size:12px; z-index:100; transition:top .2s; }
+    .skiplink:focus{ top:12px; }
 
     @media (prefers-reduced-motion: reduce){
-      .btn, .tab, .copybtn, .card, .wabtn, .chip, .jobBody { transition: none !important; }
-      html { scroll-behavior: auto; }
+      *{ animation:none !important; }
+      html{ scroll-behavior:auto; }
+      .reveal, .reveal.armed{ opacity:1 !important; transform:none !important; }
     }
-
     @media print{
-      @page { margin: 1.2cm; }
-      :root{ --bg:#fff; --shadow:none; --shadow2:none; }
-      body{ background:#fff; }
-      .topbar, .toast, .topbtn, .wabtn{ display:none !important; }
-      .wrap{ max-width: 980px; padding: 0; }
-      .card{ box-shadow:none !important; border-color: rgba(15,23,42,.16); }
-      a{ color: #0f172a; text-decoration:none; }
-      .btn, .tab, .copybtn{ display:none !important; }
-      .tabs{ display:none !important; }
-      .chips{ display:none !important; }
-      .qrWrap{ display:none !important; }
-      .grid{ grid-template-columns: 1fr; }
-      .hero{ gap: 10px; }
-      .heroRight{ order: 2; }
-      .heroLeft{ order: 1; }
-      footer{ padding: 10px 0 0; }
-      .job{ break-inside: avoid; }
-      .kv{ break-inside: avoid; }
-      .jobBody{ max-height: none !important; opacity: 1 !important; transform: none !important; }
+      .bg,.topbar,.fab,.toTop,.wa,.toast,.term,.metrics .spark{ display:none !important; }
+      body{ background:#fff; color:#000; }
+      .panel,.jobCard,.li,.cap{ box-shadow:none !important; border-color:#ccc !important; background:#fff !important; }
+      .jobBody{ max-height:none !important; }
+      a{ color:#000; }
     }
   </style>
 </head>
 
 <body>
-  <a class="skiplink" href="#mainContent">Pular para o conteúdo</a>
+  <a class="skiplink" href="#about">Pular para o conteúdo</a>
 
-  <nav aria-label="breadcrumb" style="display:none">
-    <ol>
-      <li>Home</li>
-      <li>Perfil profissional</li>
-      <li>Nicolas Mesquita Fernandes</li>
-    </ol>
-  </nav>
-
-  <a class="wabtn" id="waFloat" href="https://wa.me/5511942327967" target="_blank" rel="noopener noreferrer nofollow" aria-label="Abrir WhatsApp para falar comigo">
-    <svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M20 11.5a8 8 0 0 1-11.8 7L4 19.8l1.4-4.2A8 8 0 1 1 20 11.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-      <path d="M9.2 8.9c.2-.6.4-.7.7-.7h.6c.2 0 .5 0 .7.5.2.6.7 1.7.8 1.8.1.2.1.4 0 .6-.2.3-.4.6-.5.7-.2.2-.3.4-.1.7.2.3.8 1.3 1.8 2.1 1.3 1 2.4 1.3 2.8 1.5.3.1.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.4-.2.7-.1.3.1 1.9.9 2.2 1.1.3.2.5.2.5.4 0 .2 0 1.2-.5 1.9-.5.7-1.3.8-1.8.7-.5-.1-1.1-.2-1.8-.5-1.2-.5-2.7-1.4-4.1-2.8-1.4-1.4-2.4-3-2.9-4.2-.2-.7-.4-1.3-.5-1.8-.1-.5.1-1.2.3-1.6Z"
-        stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </a>
-
-  <div class="topbar" id="topbar">
-    <div class="topbar-inner">
-      <div class="brand" aria-label="Identidade do perfil">
-        <div class="mark" aria-hidden="true">NM</div>
-        <div class="brandText">
-          <div class="brandTitle">Perfil profissional</div>
-          <div class="brandSub" id="lastUpdateTop">Atualizado em —</div>
-        </div>
-      </div>
-
-      <div class="search" role="search" aria-label="Pesquisar no perfil">
-        <span class="k">Buscar</span>
-        <input id="q" type="search" placeholder="filtrar experiências, skills, ferramentas..." autocomplete="off" />
-        <span class="hint">/</span>
-      </div>
-
-      <div class="actions" aria-label="Ações rápidas">
-        <button class="btn" id="themeBtn" type="button" aria-label="Alternar tema (claro/escuro)">
-          <span id="themeIcon" aria-hidden="true">🌙</span>
-          Tema
-        </button>
-
-        <button class="btn" id="shareBtn" type="button" aria-label="Compartilhar perfil">
-          <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M16 8a3 3 0 1 0-2.8-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            <path d="M7 14a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" stroke="currentColor" stroke-width="1.8"/>
-            <path d="M17 14a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" stroke="currentColor" stroke-width="1.8"/>
-            <path d="M9.4 16.1 14.6 18.9M14.7 5.1 9.3 7.9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-          Compartilhar
-        </button>
-
-        <button class="btn" id="copyLinkBtn" type="button" aria-label="Copiar link do perfil">
-          <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M10 14a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            <path d="M14 10a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-          Copiar Link
-        </button>
-
-        <a class="btn primary" href="#communication_channels" aria-label="Ir para contatos">
-          <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M7 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM2 22a5 5 0 0 1 10 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            <path d="M14 8h8M14 12h8M14 16h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-          Contatos
-        </a>
-        <a class="btn" href="#operational_history" aria-label="Ir para experiência">
-          <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M7 4h10M7 8h10M7 12h10M7 16h10M7 20h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            <path d="M5 4h.01M5 8h.01M5 12h.01M5 16h.01M5 20h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-          </svg>
-          Experiência
-        </a>
-        <a class="btn" href="#tooling_matrix" aria-label="Ir para skills">
-          <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M10 6h4M6 10h12M8 14h8M10 18h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-          Skills
-        </a>
-      </div>
-    </div>
+  <div class="bg" aria-hidden="true">
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
   </div>
 
-  <div class="wrap" id="mainContent">
-    <header class="hero" aria-label="Apresentação">
-      <section class="card heroLeft">
-        <div class="cardBody">
-          <div class="idrow">
-            <div class="avatar" aria-label="Avatar (iniciais)">
-              <div class="initials" aria-hidden="true">NM</div>
-            </div>
+  <a class="fab wa" id="waFloat" href="https://wa.me/5511942327967" target="_blank" rel="noopener noreferrer nofollow" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 19.8l1.4-4.2A8 8 0 1 1 20 11.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.2 8.9c.2-.6.4-.7.7-.7h.6c.2 0 .5 0 .7.5.2.6.7 1.7.8 1.8.1.2.1.4 0 .6-.4.6-.6.7-.6.9 0 .1 0 .3.2.6.6 1 1.5 1.6 2.6 2 .3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2.2 1.1c.3.2.3.2.3.5s-.4 1.4-.8 1.7c-.5.3-1.1.5-2.9-.2-2.3-.9-3.8-3.2-3.9-3.4-.1-.2-1-1.3-1-2.5s.6-1.8.8-2Z" stroke="currentColor" stroke-width="1" fill="currentColor"/></svg>
+  </a>
+  <button class="fab toTop" id="toTop" type="button" aria-label="Voltar ao topo">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M12 19V6M6 12l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="toast" id="toast" role="status" aria-live="polite">Copiado.</div>
 
-            <div style="flex:1 1 520px">
-              <h1>Nicolas Mesquita Fernandes</h1>
-
-              <div class="headline" aria-label="Headline do perfil">
-                <span class="h-chip h-main">Infrastructure &amp; Incident Operations Specialist</span>
-                <span class="h-chip">Suporte N1/N2/N3</span>
-                <span class="h-chip">NOC/SLA</span>
-                <span class="h-chip">Segurança da Informação</span>
-                <span class="h-chip">Automação (PowerShell/Bash/Python)</span>
-              </div>
-
-              <div class="microline" aria-label="Resumo rápido">
-                <span>Operações</span>
-                <span>Incidentes</span>
-                <span>SLA/MTTR</span>
-                <span>Automação</span>
-                <span>Observabilidade</span>
-              </div>
-
-              <div class="openBadge" aria-label="Selo visual estilo LinkedIn">
-                <span class="dot" aria-hidden="true"></span>
-                Disponível para oportunidades <small>(visual)</small>
-              </div>
-
-              <div class="ctaRow" aria-label="Ações do perfil">
-                <a class="btn primary" href="https://www.linkedin.com/in/nicolasmesquita/" target="_blank" rel="noopener noreferrer nofollow" aria-label="Abrir LinkedIn">
-                  <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M4 8.5V20h4.5V8.5H4ZM6.25 7.1A2.1 2.1 0 1 0 6.25 3a2.1 2.1 0 0 0 0 4.1Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M12 20v-6.2c0-1.8.8-3 2.6-3 1.7 0 2.4 1.1 2.4 3V20H21v-6.8c0-3.7-2-5.6-4.9-5.6-1.8 0-3 .9-3.6 1.8V8.5H12V20Z"
-                      stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  Ver perfil no LinkedIn
-                </a>
-
-                <a class="btn ghost" href="https://github.com/omfgnick" target="_blank" rel="noopener noreferrer nofollow" aria-label="Abrir GitHub">
-                  <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M9 19c-3.5 1-3.5-2-5-2m10 4v-3.1c0-.9.3-1.6.8-2.1-2.7-.3-5.6-1.3-5.6-6a4.6 4.6 0 0 1 1.2-3.2 4.3 4.3 0 0 1 .1-3.1s1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C22 1.1 23 1.4 23 1.4a4.3 4.3 0 0 1 .1 3.1 4.6 4.6 0 0 1 1.2 3.2c0 4.7-2.9 5.7-5.6 6 .5.5.9 1.3.9 2.6V23"
-                      stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  Abrir GitHub
-                </a>
-
-                <a class="btn ghost" id="waCta" href="https://wa.me/5511942327967" target="_blank" rel="noopener noreferrer nofollow" aria-label="Falar comigo no WhatsApp">
-                  <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M20 11.5a8 8 0 0 1-11.8 7L4 19.8l1.4-4.2A8 8 0 1 1 20 11.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-                    <path d="M9.2 8.9c.2-.6.4-.7.7-.7h.6c.2 0 .5 0 .7.5.2.6.7 1.7.8 1.8.1.2.1.4 0 .6-.2.3-.4.6-.5.7-.2.2-.3.4-.1.7.2.3.8 1.3 1.8 2.1 1.3 1 2.4 1.3 2.8 1.5.3.1.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.4-.2.7-.1.3.1 1.9.9 2.2 1.1.3.2.5.2.5.4 0 .2 0 1.2-.5 1.9-.5.7-1.3.8-1.8.7-.5-.1-1.1-.2-1.8-.5-1.2-.5-2.7-1.4-4.1-2.8-1.4-1.4-2.4-3-2.9-4.2-.2-.7-.4-1.3-.5-1.8-.1-.5.1-1.2.3-1.6Z"
-                      stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  Falar comigo
-                </a>
-
-                <button class="btn ghost copybtn" data-copy="omfg_nick@hotmail.com" type="button" aria-label="Copiar email">
-                  <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-                    <path d="m5 7 7 6 7-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  Copiar Email
-                </button>
-
-                <button class="btn ghost copybtn" data-copy="+5511942327967" type="button" aria-label="Copiar telefone">
-                  <svg class="ico sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M7 3h4l2 5-3 2c1 3 3 5 6 6l2-3 5 2v4c0 1-1 2-2 2-10 0-18-8-18-18 0-1 1-2 2-2Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  Copiar Telefone
-                </button>
-
-                <button class="btn" type="button" onclick="window.print()" aria-label="Baixar PDF">🖨️ Baixar PDF</button>
-              </div>
-
-              <div class="chips" aria-label="Filtros rápidos">
-                <span class="chipLabel">Filtros rápidos</span>
-                <button class="chip" type="button" data-chip="noc">NOC</button>
-                <button class="chip" type="button" data-chip="sla">SLA</button>
-                <button class="chip" type="button" data-chip="incidentes">Incidentes</button>
-                <button class="chip" type="button" data-chip="automacao">Automação</button>
-                <button class="chip" type="button" data-chip="meraki">Meraki</button>
-                <button class="chip" type="button" data-chip="workspace one">Workspace ONE</button>
-                <button class="chip" type="button" data-chip="solarwinds">SolarWinds</button>
-                <button class="chip" type="button" data-chip="remedy">Remedy</button>
-                <button class="chip" id="clearChips" type="button">Limpar</button>
-              </div>
-
-              <div class="highlights" aria-label="Destaques">
-                <div class="hcard">
-                  <div class="hico" aria-hidden="true">
-                    <svg class="ico sm" viewBox="0 0 24 24" fill="none">
-                      <path d="M7 2v4M17 2v4M4 7h16M6 10h4M6 14h4M6 18h4M14 10h4M14 14h4M14 18h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                    </svg>
-                  </div>
-                  <div class="htext">
-                    <div class="hbig">+10 anos</div>
-                    <div class="hsmall">experiência em TI (desde 2014)</div>
-                  </div>
-                </div>
-
-                <div class="hcard">
-                  <div class="hico" aria-hidden="true">
-                    <svg class="ico sm" viewBox="0 0 24 24" fill="none">
-                      <path d="M4 17c3-1 5-5 8-5s5 4 8 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                      <path d="M6 12V7a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                      <path d="M9 8h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                    </svg>
-                  </div>
-                  <div class="htext">
-                    <div class="hbig">SLA / NOC</div>
-                    <div class="hsmall">incidentes, escalonamento e operação</div>
-                  </div>
-                </div>
-
-                <div class="hcard">
-                  <div class="hico" aria-hidden="true">
-                    <svg class="ico sm" viewBox="0 0 24 24" fill="none">
-                      <path d="M12 3v4M12 17v4M4 12h4M16 12h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                      <path d="M8 8l8 8M16 8l-8 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-                      <path d="M12 8a4 4 0 1 0 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                    </svg>
-                  </div>
-                  <div class="htext">
-                    <div class="hbig">Automação</div>
-                    <div class="hsmall">PowerShell / Bash / Python</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="badges" aria-label="Destaques rápidos">
-                <span class="badge ok">
-                  <svg class="ico xs" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-                    <path d="M12 10.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="1.8"/>
-                  </svg>
-                  São Paulo, Brasil
-                </span>
-
-                <span class="badge primary">
-                  <svg class="ico xs" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M12 2v4M12 18v4M4 12H2M22 12h-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                    <path d="M7 12a5 5 0 1 0 10 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                  </svg>
-                  Automação
-                </span>
-
-                <span class="badge">
-                  <svg class="ico xs" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M4 12h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                    <path d="M7 6h10M7 18h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                  </svg>
-                  NOC / SLA
-                </span>
-
-                <span class="badge">
-                  <svg class="ico xs" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M7 4h10v16H7V4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-                    <path d="M9 8h6M9 12h6M9 16h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                  </svg>
-                  ITSM (Remedy/Jira/GLPI)
-                </span>
-
-                <span class="badge">
-                  <svg class="ico xs" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M4 17c3-1 5-5 8-5s5 4 8 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                    <path d="M6 12V7a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                  </svg>
-                  Monitoramento (SolarWinds/Netcool/SiteScope)
-                </span>
-
-                <span class="badge">
-                  <svg class="ico xs" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M4 19V5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                    <path d="M6 17l4-4 3 3 5-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  Observabilidade (Grafana/Zabbix/Nagios)
-                </span>
-
-                <span class="badge">
-                  <svg class="ico xs" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M8 2h8v20H8V2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-                    <path d="M10 18h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                  </svg>
-                  MDM (Workspace ONE)
-                </span>
-
-                <span class="badge">
-                  <svg class="ico xs" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M4 7h16v14H4V7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-                    <path d="M8 7V5a4 4 0 0 1 8 0v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                  </svg>
-                  Backup (NetBackup/Data Protector)
-                </span>
-              </div>
-
-              <div class="resultsBar" aria-label="Resultados">
-                <span class="resultsTag">
-                  <svg class="ico xs" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M7 12l3 3 7-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M12 22a10 10 0 1 0-10-10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                  </svg>
-                  Resultados
-                </span>
-                <span class="resultsChip">redução de tarefas manuais via automação</span>
-                <span class="resultsChip">padronização de runbooks e rotinas</span>
-                <span class="resultsChip">triagem e escalonamento orientados a SLA</span>
-              </div>
-            </div>
-          </div>
-
-          <div style="display:none" aria-hidden="true">
-            ATS: Analista de Suporte, Infraestrutura, NOC, Monitoramento, Observabilidade, Incident Response, Incident Management, Problem Management, Change Management, ITSM, ITIL, SLA, MTTR, Runbook, PowerShell, Python, Bash, SolarWinds, Netcool, SiteScope, Zabbix, Grafana, Nagios, Remedy, Jira, GLPI, Cisco Meraki, Workspace ONE, Windows, Linux, Active Directory.
-          </div>
-
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">NM</div>
+        <div class="brandText">
+          <div class="brandTitle">nicolas.mesquita</div>
+          <div class="brandSub"><span class="pulse"></span> mission control · online</div>
         </div>
-      </section>
-
-      <aside class="card heroRight" id="communication_channels" aria-label="Contatos">
-        <div class="cardHead">
-          <div>
-            <h3 class="cardTitle">
-              <svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M7 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM2 22a5 5 0 0 1 10 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                <path d="M14 8h8M14 12h8M14 16h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-              </svg>
-              Contatos
-            </h3>
-            <div class="cardMeta">Canais diretos e redes</div>
-          </div>
-          <div class="cardMeta" id="lastUpdateSide">—</div>
-        </div>
-
-        <div class="cardBody">
-          <div class="kvs">
-            <div class="kv" data-type="email" data-filter-item data-filter-text="email omfg_nick@hotmail.com contato">
-              <div class="kvRow">
-                <div class="kvIcon" aria-hidden="true">✉️</div>
-                <div class="kvMain">
-                  <div class="kvLabel">Email</div>
-                  <div class="kvValue"><a href="mailto:omfg_nick@hotmail.com" id="emailLink">omfg_nick@hotmail.com</a></div>
-                </div>
-                <button class="copybtn" data-copy="omfg_nick@hotmail.com" type="button">copiar</button>
-              </div>
-            </div>
-
-            <div class="kv" data-type="phone" data-filter-item data-filter-text="telefone phone +55 11 94232-7967 contato">
-              <div class="kvRow">
-                <div class="kvIcon" aria-hidden="true">📞</div>
-                <div class="kvMain">
-                  <div class="kvLabel">Telefone</div>
-                  <div class="kvValue"><a href="tel:+5511942327967" id="phoneLink">+55 11 94232-7967</a></div>
-                </div>
-                <button class="copybtn" data-copy="+5511942327967" type="button">copiar</button>
-              </div>
-            </div>
-
-            <div class="kv" data-type="linkedin" data-filter-item data-filter-text="linkedin redes social contato nicolasmesquita">
-              <div class="kvRow">
-                <div class="kvIcon" aria-hidden="true">💼</div>
-                <div class="kvMain">
-                  <div class="kvLabel">LinkedIn</div>
-                  <div class="kvValue"><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.linkedin.com/in/nicolasmesquita/" id="lnk">linkedin.com/in/nicolasmesquita</a></div>
-                </div>
-                <button class="copybtn" data-copy="https://www.linkedin.com/in/nicolasmesquita/" type="button">copiar</button>
-              </div>
-            </div>
-
-            <div class="kv" data-type="github" data-filter-item data-filter-text="github redes social contato omfgnick">
-              <div class="kvRow">
-                <div class="kvIcon" aria-hidden="true">🐙</div>
-                <div class="kvMain">
-                  <div class="kvLabel">GitHub</div>
-                  <div class="kvValue"><a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/omfgnick" id="gh">github.com/omfgnick</a></div>
-                </div>
-                <button class="copybtn" data-copy="https://github.com/omfgnick" type="button">copiar</button>
-              </div>
-            </div>
-
-            <div class="kv" data-type="location" data-filter-item data-filter-text="local sao paulo brasil contato">
-              <div class="kvRow">
-                <div class="kvIcon" aria-hidden="true">📍</div>
-                <div class="kvMain">
-                  <div class="kvLabel">Local</div>
-                  <div class="kvValue">São Paulo, Brasil</div>
-                </div>
-                <span aria-hidden="true"></span>
-              </div>
-            </div>
-
-            <div class="kv" data-type="tools" data-filter-item data-filter-text="workspace one grafana zabbix nagios ferramentas monitoramento mdm">
-              <div class="kvRow">
-                <div class="kvIcon" aria-hidden="true">🧩</div>
-                <div class="kvMain">
-                  <div class="kvLabel">Ferramentas (stack)</div>
-                  <div class="kvValue">Workspace ONE • Grafana • Zabbix • Nagios</div>
-                </div>
-                <span aria-hidden="true"></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="qrWrap" aria-label="QR Code do LinkedIn">
-            <div class="qrBox" aria-hidden="true">
-              <canvas id="qrCanvas" width="120" height="120"></canvas>
-            </div>
-            <div class="qrText">
-              <div class="t1">
-                <svg class="ico xs" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M3 7h18v14H3V7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-                  <path d="M7 7V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                </svg>
-                QR do LinkedIn
-              </div>
-              <div class="t2">Útil para currículo impresso: aponte a câmera e abra o perfil rapidamente.</div>
-            </div>
-          </div>
-        </div>
-      </aside>
-    </header>
-
-    <div class="grid">
-      <main class="card" aria-label="Conteúdo principal">
-        <div class="tabs" aria-label="Navegação rápida">
-          <button class="tab active" data-tab="profile_summary" type="button">Perfil</button>
-          <button class="tab" data-tab="operational_history" type="button">Experiência</button>
-          <button class="tab" data-tab="tooling_matrix" type="button">Skills</button>
-          <button class="tab" data-tab="certification_log" type="button">Certificações</button>
-          <button class="tab" data-tab="academic_record" type="button">Formação</button>
-        </div>
-
-        <section class="section" id="profile_summary" data-filter-item
-          data-filter-text="sobre resumo suporte n1 n2 n3 noc sla infraestrutura seguranca automacao powershell bash python incident management incident response troubleshooting escalation sla runbook documentation rca problem management change management observability monitoring sre">
-          <h2>
-            <svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M4 19h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-              <path d="M6 17V7a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-              <path d="M9 8h6M9 11h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-            Sobre
-          </h2>
-          <p class="lead">
-            Especialista em operação de infraestrutura crítica, monitoração NOC e gestão de incidentes, atuando em escalonamento e continuidade do serviço.
-            Forte foco em <b>SLA/MTTR</b>, padronização operacional (runbooks) e <b>automação</b> para reduzir tarefas manuais e erro humano.
-          </p>
-
-          <ul class="list">
-            <li><b>Suporte Técnico (N1/N2/N3):</b> troubleshooting de hardware/software, redes e incidentes críticos.</li>
-            <li><b>NOC/Monitoração:</b> triagem, escalonamento e acompanhamento orientado a SLA.</li>
-            <li><b>Gestão de Incidentes:</b> comunicação objetiva e acompanhamento até normalização.</li>
-            <li><b>Processos ITSM:</b> incident / problem / change (conceitos e rotina operacional).</li>
-            <li><b>Documentação:</b> runbooks, base de conhecimento e padronização.</li>
-            <li><b>Segurança:</b> boas práticas, políticas e controles operacionais (incluindo backups e auditoria básica).</li>
-            <li><b>Automação:</b> scripts e rotinas (PowerShell/Bash/Python) para ganho de eficiência e consistência.</li>
-            <li><b>Colaboração:</b> comunicação com times internos e fornecedores.</li>
-          </ul>
-        </section>
-
-        <section class="section" id="operational_history" aria-label="Experiência">
-          <h2>
-            <svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 4h10M7 8h10M7 12h10M7 16h10M7 20h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-              <path d="M5 4h.01M5 8h.01M5 12h.01M5 16h.01M5 20h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-            </svg>
-            Experiência
-          </h2>
-
-          <div class="job open" data-acc data-filter-item data-filter-text="tecnico de suporte mercado livre randstad presencial impressoras zebra mdm jira 5s inventario suporte n1 n2 n3 windows">
-            <button class="jobToggle" type="button" aria-expanded="true" aria-controls="jobBody-ml">
-              <div class="jobHeadRow">
-                <div>
-                  <span class="jobTitle">🧰 Técnico de Suporte — Mercado Livre</span>
-                  <span class="jobOrg">| Randstad Brasil · Tempo integral</span>
-                  <div class="jobLoc">Presencial</div>
-                </div>
-                <div class="jobMetaRight">
-                  <div class="jobPeriod">nov/2024 – jan/2026 · 1 ano 3 meses</div>
-                  <span class="jobChevron" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </button>
-            <div class="jobBody" id="jobBody-ml">
-              <div class="jobDesc">Assistência presencial e suporte na disponibilidade de equipamentos; manutenção preventiva; tickets; MDM; 5S; inventário; Jira.</div>
-              <ul class="points">
-                <li>Suporte aos usuários e disponibilidade de equipamentos (bancadas, baterias, handhelds).</li>
-                <li>Manutenção preventiva e suporte em impressoras Zebra (limpeza/ajustes).</li>
-                <li>Gestão de chamados e acompanhamento via Jira.</li>
-                <li>MDM para gestão de dispositivos móveis; configuração de hardware (ex.: leitores 3D).</li>
-                <li>Aplicação de 5S e padronização de postos.</li>
-                <li>Criação e apresentação de guias de boas práticas.</li>
-                <li>Gestão e controle de inventário.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="job" data-acc data-filter-item data-filter-text="operador suporte datacenter noc mcdonalds telefonica ingenieria seguridad solarwinds remedy meraki links operadoras ping switches access-point pos sat kvs quiosque sla">
-            <button class="jobToggle" type="button" aria-expanded="false" aria-controls="jobBody-tis-2019-2022">
-              <div class="jobHeadRow">
-                <div>
-                  <span class="jobTitle">📡 Operador de Suporte Datacenter — NOC Mc Donalds</span>
-                  <span class="jobOrg">| Telefónica Ingeniería de Seguridad</span>
-                </div>
-                <div class="jobMetaRight">
-                  <div class="jobPeriod">out/2019 – abr/2022 · 2 anos 7 meses</div>
-                  <span class="jobChevron" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </button>
-            <div class="jobBody" id="jobBody-tis-2019-2022">
-              <div class="jobDesc">Monitoração de links via SolarWinds; incidentes via BMC Remedy; validação de conectividade; acionamento de operadoras; Cisco Meraki.</div>
-              <ul class="points">
-                <li>Monitoração e abertura/acompanhamento de incidentes (SolarWinds + Remedy).</li>
-                <li>Validação de conectividade em lojas (Ping): switches, APs, POS, SAT, KVS, quiosques e Meraki.</li>
-                <li>Acionamento e acompanhamento com operadoras até normalização.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="job" data-acc data-filter-item data-filter-text="analista suporte projeto tdata telefonica vivo tech mahindra noc n1 sla relatorios emails solarwinds dashboard remedy servidores infraestrutura redes escalonamento">
-            <button class="jobToggle" type="button" aria-expanded="false" aria-controls="jobBody-tdata-2019">
-              <div class="jobHeadRow">
-                <div>
-                  <span class="jobTitle">🧭 Analista de Suporte — Projeto TDATA Telefônica | VIVO</span>
-                  <span class="jobOrg">| Tech Mahindra - Brasil</span>
-                </div>
-                <div class="jobMetaRight">
-                  <div class="jobPeriod">mai/2019 – set/2019 · 5 meses</div>
-                  <span class="jobChevron" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </button>
-            <div class="jobBody" id="jobBody-tdata-2019">
-              <div class="jobDesc">Atuação no NOC Telefônica (Tdata): monitoramento de incidentes, N1, SLA, relatórios, acionamentos e escalonamentos.</div>
-              <ul class="points">
-                <li>Monitoramento e tratamento de incidentes no primeiro nível; atualização e acompanhamento de chamados.</li>
-                <li>Acompanhamento de SLA; relatórios e comunicação com o cliente via e-mail.</li>
-                <li>Suporte ao time Tdata; monitoração de servidores (virtuais e físicos), infraestrutura e redes.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="job" data-acc data-filter-item data-filter-text="analista suporte noc mcdonalds telefonica vivo tech mahindra solarwinds remedy links ping switches access-point pos sat kvs quiosque operadoras">
-            <button class="jobToggle" type="button" aria-expanded="false" aria-controls="jobBody-noc-mcd-tm-2017-2019">
-              <div class="jobHeadRow">
-                <div>
-                  <span class="jobTitle">📡 Analista de Suporte — Projeto NOC Mc Donalds Telefônica | VIVO</span>
-                  <span class="jobOrg">| Tech Mahindra - Brasil</span>
-                </div>
-                <div class="jobMetaRight">
-                  <div class="jobPeriod">nov/2017 – set/2019 · 1 ano 11 meses</div>
-                  <span class="jobChevron" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </button>
-            <div class="jobBody" id="jobBody-noc-mcd-tm-2017-2019">
-              <div class="jobDesc">Monitoração de links via SolarWinds; incidentes via BMC Remedy; validação de conectividade e indisponibilidade; operadoras.</div>
-              <ul class="points">
-                <li>Monitoração e incidentes (SolarWinds + Remedy).</li>
-                <li>Validação de conectividade em loja e diagnóstico de indisponibilidade.</li>
-                <li>Acionamento de operadoras e acompanhamento.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="job" data-acc data-filter-item data-filter-text="analista suporte noc mcdonalds telefonica vivo sonda solarwinds remedy links ping indisponibilidade operadoras">
-            <button class="jobToggle" type="button" aria-expanded="false" aria-controls="jobBody-noc-mcd-sonda-2017">
-              <div class="jobHeadRow">
-                <div>
-                  <span class="jobTitle">📡 Analista de Suporte — Projeto NOC Mc Donalds Telefônica | VIVO</span>
-                  <span class="jobOrg">| SONDA Brasil</span>
-                </div>
-                <div class="jobMetaRight">
-                  <div class="jobPeriod">fev/2017 – out/2017 · 9 meses</div>
-                  <span class="jobChevron" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </button>
-            <div class="jobBody" id="jobBody-noc-mcd-sonda-2017">
-              <div class="jobDesc">Monitoração de links; incidentes Remedy; validação e acionamento de operadoras.</div>
-              <ul class="points">
-                <li>Monitoração (SolarWinds) e abertura/acompanhamento de incidentes (Remedy).</li>
-                <li>Validação de conectividade e indisponibilidade; acionamento de operadoras.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="job" data-acc data-filter-item data-filter-text="analista producao ndc telefonica vivo end-to-end technology control-m schedules remedy restore netbackup batch jobs">
-            <button class="jobToggle" type="button" aria-expanded="false" aria-controls="jobBody-prod-2016">
-              <div class="jobHeadRow">
-                <div>
-                  <span class="jobTitle">⚙️ Analista de Produção — Projeto NDC Telefônica | VIVO</span>
-                  <span class="jobOrg">| end-to-end technology</span>
-                </div>
-                <div class="jobMetaRight">
-                  <div class="jobPeriod">jun/2016 – set/2016 · 4 meses</div>
-                  <span class="jobChevron" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </button>
-            <div class="jobBody" id="jobBody-prod-2016">
-              <div class="jobDesc">Control-M (rerun/hold/free/force ok/kill/run now/confirm/ordenação), schedules, Remedy, restores e NetBackup.</div>
-              <ul class="points">
-                <li>Operação de rotinas no Control-M e acompanhamento de schedules em produção.</li>
-                <li>Chamados em Remedy e atividades de restore/backup (NetBackup).</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="job" data-acc data-filter-item data-filter-text="analista monitoracao ponto focal ndc telefonica vivo end-to-end technology netcool omnibus sitescope remedy incidentes acionamento comunicacao diretoria grafana zabbix nagios">
-            <button class="jobToggle" type="button" aria-expanded="false" aria-controls="jobBody-mon-ete-2016">
-              <div class="jobHeadRow">
-                <div>
-                  <span class="jobTitle">🧠 Analista de Monitoração / Ponto Focal — Projeto NDC Telefônica | VIVO</span>
-                  <span class="jobOrg">| end-to-end technology</span>
-                </div>
-                <div class="jobMetaRight">
-                  <div class="jobPeriod">abr/2016 – set/2016 · 6 meses</div>
-                  <span class="jobChevron" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </button>
-            <div class="jobBody" id="jobBody-mon-ete-2016">
-              <div class="jobDesc">Netcool/Omnibus + SiteScope; incidentes Remedy; acionamento técnico; acompanhamento; comunicação com diretoria/gestores.</div>
-              <ul class="points">
-                <li>Monitoração de infraestrutura e análise de alarmes (Netcool/Omnibus + SiteScope).</li>
-                <li>Incidentes Remedy, acionamento técnico e acompanhamento de resolução.</li>
-                <li>Comunicação com liderança conforme plano e tempos definidos.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="job" data-acc data-filter-item data-filter-text="analista monitoracao ponto focal ndc telefonica vivo stefanini netcool omnibus sitescope remedy incidentes acionamento comunicacao lideranca">
-            <button class="jobToggle" type="button" aria-expanded="false" aria-controls="jobBody-stef-2014-2016">
-              <div class="jobHeadRow">
-                <div>
-                  <span class="jobTitle">🧠 Analista de Monitoração / Ponto Focal — Projeto NDC Telefônica | VIVO</span>
-                  <span class="jobOrg">| Stefanini</span>
-                  <div class="jobLoc">São Paulo e Região, Brasil</div>
-                </div>
-                <div class="jobMetaRight">
-                  <div class="jobPeriod">nov/2014 – mar/2016 · 1 ano 5 meses</div>
-                  <span class="jobChevron" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </button>
-            <div class="jobBody" id="jobBody-stef-2014-2016">
-              <div class="jobDesc">Monitoração de infraestrutura crítica; alarmes; Remedy; acionamentos; acompanhamento e comunicação com liderança.</div>
-              <ul class="points">
-                <li>Monitoração e análise de alarmes em sistemas/servidores críticos.</li>
-                <li>Incidentes Remedy, acionamento técnico e follow-up de resolução.</li>
-                <li>Comunicação com liderança conforme plano.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="job" data-acc data-filter-item data-filter-text="tecnico informatica senior marabraz monitoramento open-source mapas scripts bash powershell backup hp data protector vmware nagios zabbix grafana">
-            <button class="jobToggle" type="button" aria-expanded="false" aria-controls="jobBody-marabraz-2013-2014">
-              <div class="jobHeadRow">
-                <div>
-                  <span class="jobTitle">🛠️ Técnico de Informática Sênior</span>
-                  <span class="jobOrg">| Lojas Marabraz</span>
-                  <div class="jobLoc">São Paulo e Região, Brasil</div>
-                </div>
-                <div class="jobMetaRight">
-                  <div class="jobPeriod">ago/2013 – mai/2014 · 10 meses</div>
-                  <span class="jobChevron" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </button>
-            <div class="jobBody" id="jobBody-marabraz-2013-2014">
-              <div class="jobDesc">Monitoramento open-source + mapas; scripts Bash/PowerShell; jobs de backup HP Data Protector; VMware.</div>
-              <ul class="points">
-                <li>Implementação/monitoramento com ferramentas open-source e mapas de visualização.</li>
-                <li>Desenvolvimento de scripts em Bash e PowerShell para demandas de monitoração.</li>
-                <li>Operação e criação de jobs de backup (HP Data Protector).</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="job" data-acc data-filter-item data-filter-text="estagiario xmm tecnologia informacao cajamar glpi servicedesk suporte usuarios redes servidores microinformatica cabeamento roteadores switches">
-            <button class="jobToggle" type="button" aria-expanded="false" aria-controls="jobBody-xmm-2012-2013">
-              <div class="jobHeadRow">
-                <div>
-                  <span class="jobTitle">🎓 Estagiário</span>
-                  <span class="jobOrg">| XMM Tecnologia da Informação</span>
-                  <div class="jobLoc">Cajamar - SP</div>
-                </div>
-                <div class="jobMetaRight">
-                  <div class="jobPeriod">mar/2012 – mai/2013 · 1 ano 3 meses</div>
-                  <span class="jobChevron" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </button>
-            <div class="jobBody" id="jobBody-xmm-2012-2013">
-              <div class="jobDesc">ServiceDesk GLPI; suporte a usuários; redes e servidores; microinformática; cabeamento; roteadores/switches.</div>
-              <ul class="points">
-                <li>Atendimento de chamados via GLPI e suporte a usuários.</li>
-                <li>Vivência em redes, servidores e microinformática.</li>
-                <li>Cabeamento e suporte em roteadores/switches.</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section class="section" id="academic_record" data-filter-item data-filter-text="formacao estacio defesa cibernetica faccamp sistemas de informacao etec gino rezaghi">
-          <h2>
-            <svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 3 2 8l10 5 10-5-10-5Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M6 10v6c0 2 3 4 6 4s6-2 6-4v-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Formação
-          </h2>
-          <ul class="list" style="margin-top:0">
-            <li>Estácio — <b>Defesa Cibernética</b> (jan/2024)</li>
-            <li>FACCAMP — <b>Bacharelado em Sistemas de Informação</b> (2011 – 2015)</li>
-            <li>ETEC Gino Rezaghi — <b>Formação</b> (2009 – 2010)</li>
-          </ul>
-        </section>
-
-        <section class="section" id="certification_log" data-filter-item data-filter-text="certificacoes estacio programacao internet python aws cloud practitioner ka solution desec pentest cisco ciberseguranca meraki ecms1 fastpath bootcamp">
-          <h2>
-            <svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 4h10v8a5 5 0 0 1-10 0V4Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-              <path d="M12 14v7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-              <path d="M9 21h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-            Certificações
-          </h2>
-          <ul class="list" style="margin-top:0">
-            <li>Estácio — PROGRAMAÇÃO PARA INTERNET (jul/2025) • credencial: db67f5df491f166a9630ba5</li>
-            <li>Estácio — DESENVOLVIMENTO DE APLICAÇÕES EM PYTHON (dez/2024) • credencial: 8641f2465a0d1ac13b5067f</li>
-            <li>Estácio — AWS Cloud Practitioner Essentials (abr/2024)</li>
-            <li>Ka Solution — Fase 2 | Capacitação - Computação em Nuvem (abr/2024)</li>
-            <li>Ka Solution — Computação em Nuvem | AWS Discovery Day (mar/2024)</li>
-            <li>Desec Security — Introdução ao Pentest na Prática (jan/2024) • credencial: RWXO-JGIXJ-LYLFC</li>
-            <li>Cisco — Introdução à Cibersegurança (jan/2024)</li>
-            <li>Cisco Meraki — ECMS1 (Engineering Cisco Meraki Solutions 1) (jun/2021)</li>
-            <li>FASTPATH University — BOOTCAMP Cisco - Meraki (abr/2020)</li>
-          </ul>
-        </section>
-
-        <noscript>
-          <div style="padding:12px;margin:12px;border:1px solid rgba(15,23,42,.2);border-radius:12px;background:#fff;">
-            Este perfil funciona melhor com JavaScript habilitado (filtro, copiar, tema e acordeões).
-          </div>
-        </noscript>
-      </main>
-
-      <aside class="card" id="tooling_matrix" aria-label="Skills e ferramentas">
-        <div class="cardHead">
-          <div>
-            <h3 class="cardTitle">
-              <svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M10 6h4M6 10h12M8 14h8M10 18h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-              </svg>
-              Skills &amp; Ferramentas
-            </h3>
-            <div class="cardMeta">Resumo por categoria (inclui as ferramentas que você citou)</div>
-          </div>
-          <div class="cardMeta" id="siteMeta">São Paulo • Brasil</div>
-        </div>
-
-        <div class="cardBody" data-filter-item data-filter-text="
-          skills competencias windows linux active directory iam access management tcp ip troubleshooting lan wan dns wifi vpn switching roteamento
-          monitoramento noc observabilidade grafana zabbix nagios solarwinds netcool omnibus sitescope
-          itsm itil incident management incident response problem management change management rca runbook documentation knowledge base
-          automacao scripting powershell bash python git github
-          backup restore disaster recovery netbackup data protector control-m
-          seguranca informacao ciberseguranca pentest vulnerability assessment hardening security awareness
-          meraki mdm workspace one
-          sre site reliability engineering
-        ">
-          <div class="kvs">
-            <div class="kv" data-type="tools">
-              <div class="kvRow">
-                <div class="kvIcon" aria-hidden="true">🛰</div>
-                <div class="kvMain">
-                  <div class="kvLabel">Monitoramento / NOC</div>
-                  <div class="kvValue">SolarWinds • Netcool/Omnibus • HP SiteScope • Zabbix • Nagios • Grafana</div>
-                </div>
-                <span aria-hidden="true"></span>
-              </div>
-            </div>
-
-            <div class="kv" data-type="email">
-              <div class="kvRow">
-                <div class="kvIcon" aria-hidden="true">🧾</div>
-                <div class="kvMain">
-                  <div class="kvLabel">ITSM / Incidentes</div>
-                  <div class="kvValue">BMC Remedy • Jira • GLPI • ITIL • SLA • Incident Management • Escalation Management • Problem/Change Management • RCA • Runbooks/Documentação</div>
-                </div>
-                <span aria-hidden="true"></span>
-              </div>
-            </div>
-
-            <div class="kv" data-type="github">
-              <div class="kvRow">
-                <div class="kvIcon" aria-hidden="true">🧱</div>
-                <div class="kvMain">
-                  <div class="kvLabel">Redes</div>
-                  <div class="kvValue">TCP/IP • LAN/WAN • DNS • Wi-Fi (Troubleshooting) • VPN (conceitos) • Switching/Roteamento (conceitos) • Cisco Meraki</div>
-                </div>
-                <span aria-hidden="true"></span>
-              </div>
-            </div>
-
-            <div class="kv" data-type="linkedin">
-              <div class="kvRow">
-                <div class="kvIcon" aria-hidden="true">⚙️</div>
-                <div class="kvMain">
-                  <div class="kvLabel">Automação / Scripting</div>
-                  <div class="kvValue">PowerShell • Bash • Python • Automação de rotinas operacionais • Git/GitHub</div>
-                </div>
-                <span aria-hidden="true"></span>
-              </div>
-            </div>
-
-            <div class="kv" data-type="github">
-              <div class="kvRow">
-                <div class="kvIcon" aria-hidden="true">🗄</div>
-                <div class="kvMain">
-                  <div class="kvLabel">Backup / Continuidade</div>
-                  <div class="kvValue">Symantec NetBackup • HP Data Protector • Backup/Restore • Disaster Recovery (conceitos) • Validação de Restore</div>
-                </div>
-                <span aria-hidden="true"></span>
-              </div>
-            </div>
-
-            <div class="kv" data-type="tools">
-              <div class="kvRow">
-                <div class="kvIcon" aria-hidden="true">🗓</div>
-                <div class="kvMain">
-                  <div class="kvLabel">Produção / Schedules</div>
-                  <div class="kvValue">BMC Control-M</div>
-                </div>
-                <span aria-hidden="true"></span>
-              </div>
-            </div>
-
-            <div class="kv" data-type="phone">
-              <div class="kvRow">
-                <div class="kvIcon" aria-hidden="true">🛡</div>
-                <div class="kvMain">
-                  <div class="kvLabel">Segurança</div>
-                  <div class="kvValue">Segurança da Informação • Cibersegurança • Pentest (fundamentos) • Vulnerability Assessment (conceitos) • Hardening (conceitos) • Security Awareness</div>
-                </div>
-                <span aria-hidden="true"></span>
-              </div>
-            </div>
-
-            <div class="kv" data-type="tools">
-              <div class="kvRow">
-                <div class="kvIcon" aria-hidden="true">📱</div>
-                <div class="kvMain">
-                  <div class="kvLabel">Gestão de Dispositivos</div>
-                  <div class="kvValue">MDM • Workspace ONE</div>
-                </div>
-                <span aria-hidden="true"></span>
-              </div>
-            </div>
-
-            <div class="kv" data-type="email">
-              <div class="kvRow">
-                <div class="kvIcon" aria-hidden="true">💻</div>
-                <div class="kvMain">
-                  <div class="kvLabel">Sistemas</div>
-                  <div class="kvValue">Windows • Linux (operacional) • Active Directory (rotina) • Gestão de Acessos (IAM básico) • SQL/SQL Server • Microsoft Office</div>
-                </div>
-                <span aria-hidden="true"></span>
-              </div>
-            </div>
-
-            <div class="kv" data-type="location">
-              <div class="kvRow">
-                <div class="kvIcon" aria-hidden="true">🧠</div>
-                <div class="kvMain">
-                  <div class="kvLabel">Soft Skills</div>
-                  <div class="kvValue">Comunicação • Trabalho em equipe • Atendimento • Documentação técnica • Treinamento • Technical English</div>
-                </div>
-                <span aria-hidden="true"></span>
-              </div>
-            </div>
-
-            <div class="kv" data-type="linkedin">
-              <div class="kvRow">
-                <div class="kvIcon" aria-hidden="true">☁️</div>
-                <div class="kvMain">
-                  <div class="kvLabel">Cloud (fundamentos)</div>
-                  <div class="kvValue">AWS (Fundamentos) • Cloud Computing</div>
-                </div>
-                <span aria-hidden="true"></span>
-              </div>
-            </div>
-          </div>
-
-          <p class="lead" style="margin-top:12px">
-            Direção do perfil: <b>operação estável</b>, <b>incidentes</b>, <b>SLA</b> e <b>automação</b> para aumentar consistência e reduzir esforço manual.
-          </p>
-        </div>
-      </aside>
+      </div>
+      <div class="search" role="search">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m20 20-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input id="q" type="search" placeholder="filtrar experiências, skills, ferramentas..." autocomplete="off" aria-label="Buscar" />
+        <span class="kbd">/</span>
+      </div>
+      <nav class="navlinks" aria-label="Seções">
+        <a href="#about" data-nav>Perfil</a>
+        <a href="#experience" data-nav>Experiência</a>
+        <a href="#skills" data-nav>Skills</a>
+        <a href="#credentials" data-nav>Credenciais</a>
+        <a href="#contact" data-nav>Contato</a>
+      </nav>
+      <button class="iconbtn" id="themeBtn" type="button" aria-label="Alternar tema"><span id="themeIcon">☀️</span></button>
     </div>
+  </header>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero" aria-label="Apresentação">
+      <div class="panel glow heroMain">
+        <span class="status"><span class="pulse"></span> DISPONÍVEL PARA NOVAS OPORTUNIDADES</span>
+        <h1 class="name">Nicolas Mesquita <span class="grad">Fernandes</span></h1>
+        <div class="role" id="role" aria-label="Cargo"><span class="caret"></span></div>
+        <p class="tagline">
+          Especialista em operação de <b>infraestrutura crítica</b>, monitoração <b>NOC</b> e gestão de
+          <b>incidentes</b>. Foco em <b>SLA/MTTR</b>, padronização (runbooks) e <b>automação</b> para reduzir
+          esforço manual e erro humano.
+        </p>
+        <div class="heroTags">
+          <span class="tag"><span class="dot">◈</span> Suporte N1/N2/N3</span>
+          <span class="tag"><span class="dot">◈</span> NOC / SLA</span>
+          <span class="tag"><span class="dot">◈</span> Segurança da Informação</span>
+          <span class="tag"><span class="dot">◈</span> Automação (PowerShell/Bash/Python)</span>
+        </div>
+        <div class="cta">
+          <a class="btn primary" href="https://www.linkedin.com/in/nicolasmesquita/" target="_blank" rel="noopener noreferrer nofollow">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 8.5V20h4.5V8.5H4ZM6.25 7.1A2.1 2.1 0 1 0 6.25 3a2.1 2.1 0 0 0 0 4.1Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 20v-6.2c0-1.8.8-3 2.6-3 1.7 0 2.4 1.1 2.4 3V20H21v-6.8c0-3.7-2-5.6-4.9-5.6-1.8 0-3 .9-3.6 1.8V8.5H12V20Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            LinkedIn
+          </a>
+          <a class="btn" href="https://github.com/omfgnick" target="_blank" rel="noopener noreferrer nofollow">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 19c-3.5 1-3.5-2-5-2m10 4v-3.1c0-.9.3-1.6.8-2.1-2.7-.3-5.6-1.3-5.6-6a4.6 4.6 0 0 1 1.2-3.2 4.3 4.3 0 0 1 .1-3.1s1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0C19 1.6 20 1.9 20 1.9a4.3 4.3 0 0 1 .1 3.1 4.6 4.6 0 0 1 1.2 3.2c0 4.7-2.9 5.7-5.6 6 .5.5.9 1.3.9 2.6V23" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            GitHub
+          </a>
+          <button class="btn" id="waCta" type="button" data-wa>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 19.8l1.4-4.2A8 8 0 1 1 20 11.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            Falar comigo
+          </button>
+          <button class="btn" type="button" onclick="window.print()">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 9V3h12v6M6 18H4v-6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6h-2M8 14h8v7H8z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            PDF
+          </button>
+        </div>
+      </div>
+
+      <div class="panel glow term" aria-hidden="true">
+        <div class="termBar">
+          <span class="termDot r"></span><span class="termDot y"></span><span class="termDot g"></span>
+          <span class="termTitle">noc@vivo:~ — status</span>
+        </div>
+        <div class="termBody" id="term"></div>
+      </div>
+    </section>
+
+    <!-- METRICS -->
+    <section class="metrics" aria-label="Indicadores">
+      <div class="panel metric reveal"><div class="k" data-count="12" data-suffix="+">0</div><div class="lbl">anos em operações de TI</div><div class="spark" data-spark></div></div>
+      <div class="panel metric reveal"><div class="k" data-count="10">0</div><div class="lbl">projetos &amp; experiências</div><div class="spark" data-spark></div></div>
+      <div class="panel metric reveal"><div class="k" data-count="9">0</div><div class="lbl">certificações técnicas</div><div class="spark" data-spark></div></div>
+      <div class="panel metric reveal"><div class="k" data-count="3">0</div><div class="lbl">linguagens de automação</div><div class="spark" data-spark></div></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="sec" id="about" aria-label="Perfil">
+      <div class="sechead">
+        <h2><span class="eyebrow">Perfil</span></h2>
+        <span class="idx">01 / whoami</span>
+      </div>
+      <div class="cols">
+        <div class="panel about reveal" data-filter-item data-filter-text="sobre resumo suporte n1 n2 n3 noc sla infraestrutura seguranca automacao powershell bash python incident management incident response troubleshooting escalation runbook documentation rca problem management change management observability monitoring sre">
+          <p>
+            Atuo em <b>escalonamento e continuidade do serviço</b> em ambientes de missão crítica, unindo
+            monitoração proativa, gestão de incidentes orientada a <b>SLA</b> e automação de rotinas operacionais.
+          </p>
+          <div class="capgrid">
+            <div class="cap"><div class="h"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h4l2-6 4 12 2-6h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Suporte N1/N2/N3</div><div class="d">Troubleshooting de hardware/software, redes e incidentes críticos.</div></div>
+            <div class="cap"><div class="h"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0Z" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> NOC / Monitoração</div><div class="d">Triagem, escalonamento e acompanhamento orientado a SLA.</div></div>
+            <div class="cap"><div class="h"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg> Gestão de Incidentes</div><div class="d">Comunicação objetiva e follow-up até a normalização.</div></div>
+            <div class="cap"><div class="h"><svg viewBox="0 0 24 24" fill="none"><path d="M7 4h10M7 8h10M7 12h10M7 16h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> ITSM</div><div class="d">Incident / Problem / Change — conceitos e rotina operacional.</div></div>
+            <div class="cap"><div class="h"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16v12H4zM8 7V5a4 4 0 0 1 8 0v2" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg> Segurança</div><div class="d">Boas práticas, políticas, backups e auditoria básica.</div></div>
+            <div class="cap"><div class="h"><svg viewBox="0 0 24 24" fill="none"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13 5l-2 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Automação</div><div class="d">Scripts e rotinas em PowerShell/Bash/Python para consistência.</div></div>
+          </div>
+        </div>
+        <div class="panel about reveal" aria-label="Snapshot">
+          <div class="eyebrow" style="margin-bottom:14px">Snapshot</div>
+          <div class="list">
+            <div class="li"><div class="ic">📍</div><div class="m"><div class="t">São Paulo, Brasil</div><div class="s">Presencial / híbrido</div></div></div>
+            <div class="li"><div class="ic">🎯</div><div class="m"><div class="t">Foco</div><div class="s">Operação estável · Incidentes · SLA · Automação</div></div></div>
+            <div class="li"><div class="ic">🧩</div><div class="m"><div class="t">Stack principal</div><div class="s">SolarWinds · Remedy · Grafana · Zabbix · Meraki · Workspace ONE</div></div></div>
+            <div class="li"><div class="ic">🌐</div><div class="m"><div class="t">Idiomas</div><div class="s">Português (nativo) · Technical English</div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="sec" id="experience" aria-label="Experiência">
+      <div class="sechead">
+        <h2><span class="eyebrow">Experiência</span></h2>
+        <span class="idx">02 / operational history</span>
+      </div>
+      <div class="timeline" id="timeline"></div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="sec" id="skills" aria-label="Skills e ferramentas">
+      <div class="sechead">
+        <h2><span class="eyebrow">Skills &amp; Ferramentas</span></h2>
+        <span class="idx">03 / tooling matrix</span>
+      </div>
+      <div class="skills" id="skills-grid"></div>
+    </section>
+
+    <!-- CREDENTIALS -->
+    <section class="sec" id="credentials" aria-label="Certificações e formação">
+      <div class="sechead">
+        <h2><span class="eyebrow">Credenciais</span></h2>
+        <span class="idx">04 / certification &amp; academic log</span>
+      </div>
+      <div class="cols">
+        <div class="panel about reveal" data-filter-item data-filter-text="certificacoes estacio programacao internet python aws cloud practitioner ka solution desec pentest cisco ciberseguranca meraki ecms1 fastpath bootcamp">
+          <div class="eyebrow" style="margin-bottom:14px">Certificações</div>
+          <div class="list" id="certs"></div>
+        </div>
+        <div class="panel about reveal" data-filter-item data-filter-text="formacao estacio defesa cibernetica faccamp sistemas de informacao etec gino rezaghi">
+          <div class="eyebrow" style="margin-bottom:14px">Formação</div>
+          <div class="list" id="edu"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="sec" id="contact" aria-label="Contato">
+      <div class="sechead">
+        <h2><span class="eyebrow">Contato</span></h2>
+        <span class="idx">05 / communication channels</span>
+      </div>
+      <div class="contactGrid">
+        <div class="panel kv reveal">
+          <div class="kvrow" data-filter-item data-filter-text="email omfg_nick hotmail contato">
+            <div class="kvic">✉️</div>
+            <div><div class="kvlbl">Email</div><div class="kvval"><a href="mailto:omfg_nick@hotmail.com">omfg_nick@hotmail.com</a></div></div>
+            <button class="copybtn" data-copy="omfg_nick@hotmail.com" type="button">copiar</button>
+          </div>
+          <div class="kvrow" data-filter-item data-filter-text="telefone phone 11 94232 7967 contato whatsapp">
+            <div class="kvic">📞</div>
+            <div><div class="kvlbl">Telefone</div><div class="kvval"><a href="tel:+5511942327967">+55 11 94232-7967</a></div></div>
+            <button class="copybtn" data-copy="+5511942327967" type="button">copiar</button>
+          </div>
+          <div class="kvrow" data-filter-item data-filter-text="linkedin redes social nicolasmesquita">
+            <div class="kvic">💼</div>
+            <div><div class="kvlbl">LinkedIn</div><div class="kvval"><a href="https://www.linkedin.com/in/nicolasmesquita/" target="_blank" rel="noopener noreferrer nofollow">linkedin.com/in/nicolasmesquita</a></div></div>
+            <button class="copybtn" data-copy="https://www.linkedin.com/in/nicolasmesquita/" type="button">copiar</button>
+          </div>
+          <div class="kvrow" data-filter-item data-filter-text="github redes social omfgnick codigo">
+            <div class="kvic">🐙</div>
+            <div><div class="kvlbl">GitHub</div><div class="kvval"><a href="https://github.com/omfgnick" target="_blank" rel="noopener noreferrer nofollow">github.com/omfgnick</a></div></div>
+            <button class="copybtn" data-copy="https://github.com/omfgnick" type="button">copiar</button>
+          </div>
+          <div class="kvrow" data-filter-item data-filter-text="local sao paulo brasil">
+            <div class="kvic">📍</div>
+            <div><div class="kvlbl">Localização</div><div class="kvval">São Paulo, Brasil</div></div>
+            <span></span>
+          </div>
+        </div>
+        <div class="panel qrPanel reveal">
+          <div class="qrBox"><canvas id="qrCanvas" width="130" height="130"></canvas></div>
+          <div class="qrText">
+            <div class="t">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h3v3h-3zM20 14v6M17 20h3" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              QR do LinkedIn
+            </div>
+            <div class="d">Aponte a câmera para abrir o perfil rapidamente — ideal para currículo impresso.</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <footer>
-      <div>© <span id="y"></span> — Nicolas Mesquita Fernandes</div>
-      <div id="lastUpdateFooter">Atualizado em —</div>
+      <div>© <span id="y"></span> Nicolas Mesquita Fernandes</div>
+      <div id="lastUpdate">last sync —</div>
     </footer>
-  </div>
+  </main>
 
-  <button class="topbtn" id="topBtn" type="button" aria-label="Voltar ao topo">⬆️ Topo</button>
-  <div class="toast" id="toast" role="status" aria-live="polite">Copiado.</div>
+  <noscript>
+    <div style="padding:16px;margin:16px;border:1px solid #888;border-radius:12px;">
+      Este perfil funciona melhor com JavaScript habilitado (filtro, tema, terminal, timeline e QR).
+    </div>
+  </noscript>
 
   <script>
     (function(){
-      const $ = (s, r=document) => r.querySelector(s);
-      const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
-      const pad2 = (n)=> String(n).padStart(2,"0");
+      "use strict";
+      const $ = (s,r=document)=> r.querySelector(s);
+      const $$ = (s,r=document)=> Array.from(r.querySelectorAll(s));
+      const pad2 = n => String(n).padStart(2,"0");
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      const y = $("#y");
-      if (y) y.textContent = new Date().getFullYear();
+      /* ---------- data ---------- */
+      const JOBS = [
+        { role:"🧰 Técnico de Suporte — Mercado Livre", org:"Randstad Brasil · Tempo integral", loc:"Presencial", period:"nov/2024 – jan/2026 · 1 ano 3 meses", open:true,
+          f:"tecnico suporte mercado livre randstad presencial impressoras zebra mdm jira 5s inventario n1 n2 n3 windows",
+          desc:"Assistência presencial e disponibilidade de equipamentos; manutenção preventiva; tickets; MDM; 5S; inventário; Jira.",
+          points:["Suporte aos usuários e disponibilidade de equipamentos (bancadas, baterias, handhelds).","Manutenção preventiva e suporte em impressoras Zebra.","Gestão de chamados e acompanhamento via Jira.","MDM para dispositivos móveis; configuração de hardware (ex.: leitores 3D).","Aplicação de 5S e padronização de postos.","Guias de boas práticas; gestão e controle de inventário."] },
+        { role:"📡 Operador de Suporte Datacenter — NOC Mc Donald's", org:"Telefónica Ingeniería de Seguridad", loc:"", period:"out/2019 – abr/2022 · 2 anos 7 meses",
+          f:"operador suporte datacenter noc mcdonalds telefonica ingenieria seguridad solarwinds remedy meraki links operadoras ping switches access-point pos sat kvs quiosque sla",
+          desc:"Monitoração de links via SolarWinds; incidentes via BMC Remedy; validação de conectividade; acionamento de operadoras; Cisco Meraki.",
+          points:["Monitoração e abertura/acompanhamento de incidentes (SolarWinds + Remedy).","Validação de conectividade em lojas (Ping): switches, APs, POS, SAT, KVS, quiosques e Meraki.","Acionamento e acompanhamento com operadoras até normalização."] },
+        { role:"🧭 Analista de Suporte — Projeto TDATA Telefônica | VIVO", org:"Tech Mahindra – Brasil", loc:"", period:"mai/2019 – set/2019 · 5 meses",
+          f:"analista suporte projeto tdata telefonica vivo tech mahindra noc n1 sla relatorios emails solarwinds dashboard remedy servidores infraestrutura redes escalonamento",
+          desc:"NOC Telefônica (Tdata): monitoramento de incidentes, N1, SLA, relatórios, acionamentos e escalonamentos.",
+          points:["Monitoramento e tratamento de incidentes no primeiro nível; acompanhamento de chamados.","Acompanhamento de SLA; relatórios e comunicação com o cliente via e-mail.","Monitoração de servidores (virtuais e físicos), infraestrutura e redes."] },
+        { role:"📡 Analista de Suporte — Projeto NOC Mc Donald's Telefônica | VIVO", org:"Tech Mahindra – Brasil", loc:"", period:"nov/2017 – set/2019 · 1 ano 11 meses",
+          f:"analista suporte noc mcdonalds telefonica vivo tech mahindra solarwinds remedy links ping switches access-point pos sat kvs quiosque operadoras",
+          desc:"Monitoração de links via SolarWinds; incidentes via BMC Remedy; validação de conectividade e indisponibilidade; operadoras.",
+          points:["Monitoração e incidentes (SolarWinds + Remedy).","Validação de conectividade em loja e diagnóstico de indisponibilidade.","Acionamento de operadoras e acompanhamento."] },
+        { role:"📡 Analista de Suporte — Projeto NOC Mc Donald's Telefônica | VIVO", org:"SONDA Brasil", loc:"", period:"fev/2017 – out/2017 · 9 meses",
+          f:"analista suporte noc mcdonalds telefonica vivo sonda solarwinds remedy links ping indisponibilidade operadoras",
+          desc:"Monitoração de links; incidentes Remedy; validação e acionamento de operadoras.",
+          points:["Monitoração (SolarWinds) e abertura/acompanhamento de incidentes (Remedy).","Validação de conectividade e indisponibilidade; acionamento de operadoras."] },
+        { role:"⚙️ Analista de Produção — Projeto NDC Telefônica | VIVO", org:"end-to-end technology", loc:"", period:"jun/2016 – set/2016 · 4 meses",
+          f:"analista producao ndc telefonica vivo end-to-end technology control-m schedules remedy restore netbackup batch jobs",
+          desc:"Control-M (rerun/hold/free/force ok/kill/run now/confirm/ordenação), schedules, Remedy, restores e NetBackup.",
+          points:["Operação de rotinas no Control-M e acompanhamento de schedules em produção.","Chamados em Remedy e atividades de restore/backup (NetBackup)."] },
+        { role:"🧠 Analista de Monitoração / Ponto Focal — Projeto NDC Telefônica | VIVO", org:"end-to-end technology", loc:"", period:"abr/2016 – set/2016 · 6 meses",
+          f:"analista monitoracao ponto focal ndc telefonica vivo end-to-end technology netcool omnibus sitescope remedy incidentes acionamento comunicacao diretoria grafana zabbix nagios",
+          desc:"Netcool/Omnibus + SiteScope; incidentes Remedy; acionamento técnico; comunicação com diretoria/gestores.",
+          points:["Monitoração de infraestrutura e análise de alarmes (Netcool/Omnibus + SiteScope).","Incidentes Remedy, acionamento técnico e acompanhamento de resolução.","Comunicação com liderança conforme plano e tempos definidos."] },
+        { role:"🧠 Analista de Monitoração / Ponto Focal — Projeto NDC Telefônica | VIVO", org:"Stefanini", loc:"São Paulo e Região, Brasil", period:"nov/2014 – mar/2016 · 1 ano 5 meses",
+          f:"analista monitoracao ponto focal ndc telefonica vivo stefanini netcool omnibus sitescope remedy incidentes acionamento comunicacao lideranca",
+          desc:"Monitoração de infraestrutura crítica; alarmes; Remedy; acionamentos; acompanhamento e comunicação com liderança.",
+          points:["Monitoração e análise de alarmes em sistemas/servidores críticos.","Incidentes Remedy, acionamento técnico e follow-up de resolução.","Comunicação com liderança conforme plano."] },
+        { role:"🛠️ Técnico de Informática Sênior", org:"Lojas Marabraz", loc:"São Paulo e Região, Brasil", period:"ago/2013 – mai/2014 · 10 meses",
+          f:"tecnico informatica senior marabraz monitoramento open-source mapas scripts bash powershell backup hp data protector vmware nagios zabbix grafana",
+          desc:"Monitoramento open-source + mapas; scripts Bash/PowerShell; jobs de backup HP Data Protector; VMware.",
+          points:["Monitoramento com ferramentas open-source e mapas de visualização.","Scripts em Bash e PowerShell para demandas de monitoração.","Operação e criação de jobs de backup (HP Data Protector)."] },
+        { role:"🎓 Estagiário", org:"XMM Tecnologia da Informação", loc:"Cajamar – SP", period:"mar/2012 – mai/2013 · 1 ano 3 meses",
+          f:"estagiario xmm tecnologia informacao cajamar glpi servicedesk suporte usuarios redes servidores microinformatica cabeamento roteadores switches",
+          desc:"ServiceDesk GLPI; suporte a usuários; redes e servidores; microinformática; cabeamento; roteadores/switches.",
+          points:["Atendimento de chamados via GLPI e suporte a usuários.","Vivência em redes, servidores e microinformática.","Cabeamento e suporte em roteadores/switches."] }
+      ];
 
-      const d = new Date();
-      const lastUpdate = `${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())} ${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
-      const luTop = $("#lastUpdateTop");
-      const luSide = $("#lastUpdateSide");
-      const luFoot = $("#lastUpdateFooter");
-      if (luTop) luTop.textContent = "Atualizado em " + lastUpdate;
-      if (luSide) luSide.textContent = "Atualizado: " + lastUpdate;
-      if (luFoot) luFoot.textContent = "Atualizado em " + lastUpdate;
+      const SKILLS = [
+        { t:"Monitoramento / NOC", lvl:5, icon:'<path d="M3 12h4l2-6 4 12 2-6h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>', chips:["SolarWinds","Netcool/Omnibus","HP SiteScope","Zabbix","Nagios","Grafana"] },
+        { t:"ITSM / Incidentes", lvl:5, icon:'<path d="M7 4h10M7 8h10M7 12h10M7 16h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>', chips:["BMC Remedy","Jira","GLPI","ITIL","SLA","Incident Mgmt","Escalation","Problem/Change","RCA","Runbooks"] },
+        { t:"Redes", lvl:4, icon:'<path d="M6 9V5h12v4M6 19v-4h12v4M12 9v6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>', chips:["TCP/IP","LAN/WAN","DNS","Wi-Fi","VPN","Switching/Roteamento","Cisco Meraki"] },
+        { t:"Automação / Scripting", lvl:4, icon:'<path d="m8 8-4 4 4 4M16 8l4 4-4 4M13 5l-2 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>', chips:["PowerShell","Bash","Python","Git/GitHub","Automação de rotinas"] },
+        { t:"Backup / Continuidade", lvl:4, icon:'<path d="M4 7c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3ZM4 7v10c0 1.7 3.6 3 8 3s8-1.3 8-3V7" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>', chips:["Symantec NetBackup","HP Data Protector","Backup/Restore","Disaster Recovery","Validação de Restore"] },
+        { t:"Segurança", lvl:3, icon:'<path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>', chips:["Segurança da Informação","Cibersegurança","Pentest (fundamentos)","Vulnerability Assessment","Hardening","Security Awareness"] },
+        { t:"Sistemas", lvl:4, icon:'<path d="M4 5h16v11H4zM2 20h20M9 20l.5-4M15 20l-.5-4" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>', chips:["Windows","Linux","Active Directory","IAM básico","SQL/SQL Server","Microsoft Office"] },
+        { t:"Produção · MDM · Cloud", lvl:3, icon:'<path d="M6 16a4 4 0 0 1 .8-7.9 5 5 0 0 1 9.7 1.2A3.5 3.5 0 0 1 18 16H6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>', chips:["BMC Control-M","MDM","Workspace ONE","AWS (Fundamentos)","Cloud Computing"] }
+      ];
 
-      const toast = $("#toast");
-      let toastT = null;
-      function showToast(msg){
-        if (!toast) return;
-        toast.textContent = msg;
-        toast.classList.add("show");
-        clearTimeout(toastT);
-        toastT = setTimeout(() => toast.classList.remove("show"), 1400);
-      }
+      const CERTS = [
+        { t:"Programação para Internet", s:"Estácio · jul/2025", cred:"db67f5df491f166a9630ba5" },
+        { t:"Desenvolvimento de Aplicações em Python", s:"Estácio · dez/2024", cred:"8641f2465a0d1ac13b5067f" },
+        { t:"AWS Cloud Practitioner Essentials", s:"Estácio · abr/2024" },
+        { t:"Fase 2 | Capacitação - Computação em Nuvem", s:"Ka Solution · abr/2024" },
+        { t:"Computação em Nuvem | AWS Discovery Day", s:"Ka Solution · mar/2024" },
+        { t:"Introdução ao Pentest na Prática", s:"Desec Security · jan/2024", cred:"RWXO-JGIXJ-LYLFC" },
+        { t:"Introdução à Cibersegurança", s:"Cisco · jan/2024" },
+        { t:"ECMS1 — Engineering Cisco Meraki Solutions 1", s:"Cisco Meraki · jun/2021" },
+        { t:"BOOTCAMP Cisco - Meraki", s:"FASTPATH University · abr/2020" }
+      ];
+      const EDU = [
+        { t:"Defesa Cibernética", s:"Estácio · jan/2024", ic:"🛡️" },
+        { t:"Bacharelado em Sistemas de Informação", s:"FACCAMP · 2011 – 2015", ic:"🎓" },
+        { t:"Formação Técnica", s:"ETEC Gino Rezaghi · 2009 – 2010", ic:"📘" }
+      ];
 
-      async function copyText(t){
-        try{
-          await navigator.clipboard.writeText(t);
-          return true;
-        }catch(e){
-          try{
-            const ta = document.createElement("textarea");
-            ta.value = t;
-            ta.style.position = "fixed";
-            ta.style.left = "-9999px";
-            document.body.appendChild(ta);
-            ta.select();
-            document.execCommand("copy");
-            ta.remove();
-            return true;
-          }catch(err){
-            return false;
-          }
-        }
-      }
-      function setCopiedState(btn){
-        if (!btn) return;
-        const originalText = btn.textContent;
-        btn.classList.add("copied");
-        btn.textContent = "✅ Copiado";
-        clearTimeout(btn._copiedTimer);
-        btn._copiedTimer = setTimeout(() => {
-          btn.classList.remove("copied");
-          btn.textContent = originalText;
-        }, 1000);
-      }
+      const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
-      document.addEventListener("click", async (ev) => {
-        const btn = ev.target.closest(".copybtn");
-        if (!btn) return;
-        const text = btn.getAttribute("data-copy") || "";
-        if (!text) return;
-        const ok = await copyText(text);
-        if (ok){
-          setCopiedState(btn);
-          showToast("Copiado: " + text);
-        }else{
-          showToast("Não foi possível copiar.");
-        }
+      /* ---------- render experience ---------- */
+      const tl = $("#timeline");
+      JOBS.forEach((j,i)=>{
+        const el = document.createElement("div");
+        el.className = "job" + (j.open ? " open" : "");
+        el.setAttribute("data-acc",""); el.setAttribute("data-filter-item","");
+        el.setAttribute("data-filter-text", j.f + " " + j.desc + " " + j.points.join(" "));
+        el.innerHTML = `
+          <div class="jobCard">
+            <button class="jobToggle" type="button" aria-expanded="${j.open?'true':'false'}">
+              <div class="jobTop">
+                <div>
+                  <div class="jobRole">${esc(j.role)}</div>
+                  <div class="jobOrg">${esc(j.org)}</div>
+                  ${j.loc?`<div class="loc">${esc(j.loc)}</div>`:""}
+                </div>
+                <div class="jobMeta">
+                  <span class="period">${esc(j.period)}</span>
+                  <span class="chev"><svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </div>
+              </div>
+            </button>
+            <div class="jobBody">
+              <div class="inner">
+                <div class="jobDesc">${esc(j.desc)}</div>
+                <ul class="points">${j.points.map(p=>`<li>${esc(p)}</li>`).join("")}</ul>
+              </div>
+            </div>
+          </div>`;
+        tl.appendChild(el);
       });
 
-      document.addEventListener("keydown", async (ev) => {
-        if (ev.key !== "Enter") return;
-        const btn = ev.target.closest && ev.target.closest(".copybtn");
-        if (!btn) return;
-        ev.preventDefault();
-        const text = btn.getAttribute("data-copy") || "";
-        if (!text) return;
-        const ok = await copyText(text);
-        if (ok){
-          setCopiedState(btn);
-          showToast("Copiado: " + text);
-        }else{
-          showToast("Não foi possível copiar.");
-        }
+      /* ---------- render skills ---------- */
+      const sg = $("#skills-grid");
+      SKILLS.forEach(sk=>{
+        const el = document.createElement("div");
+        el.className = "panel skill reveal";
+        el.setAttribute("data-filter-item",""); el.setAttribute("data-filter-text", (sk.t+" "+sk.chips.join(" ")).toLowerCase());
+        const bars = Array.from({length:5},(_,k)=>`<i class="${k<sk.lvl?'on':''}" style="height:${6+k*2}px"></i>`).join("");
+        el.innerHTML = `
+          <div class="h">
+            <div class="t"><svg viewBox="0 0 24 24" fill="none">${sk.icon}</svg>${esc(sk.t)}</div>
+            <div class="signal" title="ênfase">${bars}</div>
+          </div>
+          <div class="chips">${sk.chips.map(c=>`<span class="chip">${esc(c)}</span>`).join("")}</div>`;
+        sg.appendChild(el);
       });
 
-      const waBase = "https://wa.me/5511942327967";
-      function buildWaUrl(kind){
-        const base = "Olá! Vi seu perfil e gostaria de conversar sobre uma oportunidade.";
-        const extra = (kind === "float")
-          ? " Vim pelo botão flutuante no site."
-          : " Vim pelo botão 'Falar comigo' no site.";
-        const msg = encodeURIComponent(base + extra + " Podemos falar?");
-        return waBase + "?text=" + msg;
-      }
-      const waFloat = $("#waFloat");
-      const waCta = $("#waCta");
-      if (waFloat) waFloat.href = buildWaUrl("float");
-      if (waCta) waCta.href = buildWaUrl("cta");
-
-      const THEME_KEY = "nm_theme";
-      const themeBtn = $("#themeBtn");
-      const themeIcon = $("#themeIcon");
-
-      function getSystemTheme(){
-        return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-      }
-      function applyTheme(t){
-        const html = document.documentElement;
-        if (t === "dark"){
-          html.setAttribute("data-theme", "dark");
-          if (themeIcon) themeIcon.textContent = "☀️";
-        }else{
-          html.removeAttribute("data-theme");
-          if (themeIcon) themeIcon.textContent = "🌙";
-        }
-        const metaTheme = document.querySelector('meta[name="theme-color"]');
-        if (metaTheme){
-          metaTheme.setAttribute("content", t === "dark" ? "#0b1220" : "#0a66c2");
-        }
-      }
-      const savedTheme = localStorage.getItem(THEME_KEY);
-      applyTheme(savedTheme || getSystemTheme());
-
-      if (themeBtn){
-        themeBtn.addEventListener("click", ()=>{
-          const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-          const next = isDark ? "light" : "dark";
-          localStorage.setItem(THEME_KEY, next);
-          applyTheme(next);
-          showToast(next === "dark" ? "Tema: escuro" : "Tema: claro");
-        });
-      }
-
-      const shareBtn = $("#shareBtn");
-      const copyLinkBtn = $("#copyLinkBtn");
-      const pageUrl = () => window.location.href.split("#")[0];
-
-      async function shareProfile(){
-        const data = {
-          title: document.title,
-          text: "Perfil profissional — Nicolas Mesquita Fernandes",
-          url: pageUrl()
-        };
-        if (navigator.share){
-          try{
-            await navigator.share(data);
-          }catch(e){}
-        }else{
-          const ok = await copyText(pageUrl());
-          if (ok){
-            showToast("Link copiado.");
-          }else{
-            window.location.href = "mailto:?subject=" + encodeURIComponent(document.title) + "&body=" + encodeURIComponent(pageUrl());
-          }
-        }
-      }
-      if (shareBtn) shareBtn.addEventListener("click", shareProfile);
-
-      if (copyLinkBtn){
-        copyLinkBtn.addEventListener("click", async ()=>{
-          const ok = await copyText(pageUrl());
-          showToast(ok ? "Link copiado." : "Não foi possível copiar o link.");
-        });
-      }
-
-      const topBtn = $("#topBtn");
-      function onScroll(){
-        if (topBtn) topBtn.classList.toggle("show", window.scrollY > 600);
-        const topbar = $("#topbar");
-        const isMobile = window.matchMedia("(max-width: 520px)").matches;
-        if (topbar){
-          topbar.classList.toggle("compact", isMobile && window.scrollY > 80);
-        }
-      }
-      window.addEventListener("scroll", onScroll, { passive:true });
-      window.addEventListener("resize", onScroll, { passive:true });
-      onScroll();
-
-      if (topBtn){
-        topBtn.addEventListener("click", () => window.scrollTo({ top:0, behavior:"smooth" }));
-      }
-
-      const tabs = $$(".tab");
-      function goTab(id){
-        const el = document.getElementById(id);
-        if (!el) return;
-        tabs.forEach(t => {
-          const active = t.getAttribute("data-tab") === id;
-          t.classList.toggle("active", active);
-        });
-        el.scrollIntoView({ behavior:"smooth", block:"start" });
-        showToast("Seção: " + (id || "").replace(/_/g," "));
-      }
-      tabs.forEach(t=>{
-        t.addEventListener("click", ()=> goTab(t.getAttribute("data-tab")));
+      /* ---------- render certs / edu ---------- */
+      const cc = $("#certs");
+      CERTS.forEach(c=>{
+        const el=document.createElement("div"); el.className="li";
+        el.innerHTML=`<div class="ic">📜</div><div class="m"><div class="t">${esc(c.t)}</div><div class="s">${esc(c.s)}</div>${c.cred?`<div class="cred">cred: ${esc(c.cred)}</div>`:""}</div>`;
+        cc.appendChild(el);
+      });
+      const ed = $("#edu");
+      EDU.forEach(e=>{
+        const el=document.createElement("div"); el.className="li";
+        el.innerHTML=`<div class="ic">${e.ic}</div><div class="m"><div class="t">${esc(e.t)}</div><div class="s">${esc(e.s)}</div></div>`;
+        ed.appendChild(el);
       });
 
-      const q = $("#q");
-      const items = $$("[data-filter-item]");
+      /* ---------- year / last update ---------- */
+      $("#y").textContent = new Date().getFullYear();
+      const d=new Date();
+      $("#lastUpdate").textContent = `last sync ${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())} ${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
 
-      function norm(s){
-        s = (s||"").toLowerCase().normalize("NFD");
-        try{
-          return s.replace(/\p{Diacritic}/gu,"");
-        }catch(e){
-          return s.replace(/[\u0300-\u036f]/g,"");
-        }
+      /* ---------- theme ---------- */
+      const KEY="nm_theme_v2";
+      const themeIcon=$("#themeIcon");
+      function apply(t){
+        document.documentElement.setAttribute("data-theme", t);
+        if(themeIcon) themeIcon.textContent = t==="dark" ? "☀️" : "🌙";
+        const mt=document.querySelector('meta[name="theme-color"]'); if(mt) mt.setAttribute("content", t==="dark"?"#060910":"#eef2f9");
       }
-      function applyFilter(val){
-        const terms = norm(val).trim().split(/\s+/).filter(Boolean);
-        if (!terms.length){
-          items.forEach(el => el.classList.remove("hidden"));
-          return;
-        }
-        items.forEach(el=>{
-          const t = norm(el.getAttribute("data-filter-text") || el.textContent || "");
-          const ok = terms.every(term => t.includes(term));
-          el.classList.toggle("hidden", !ok);
-        });
-      }
-      if (q){
-        q.addEventListener("input", ()=> applyFilter(q.value));
-      }
-
-      window.addEventListener("keydown", (e)=>{
-        const tag = (document.activeElement && document.activeElement.tagName) ? document.activeElement.tagName.toLowerCase() : "";
-        const typing = tag === "input" || tag === "textarea";
-        if (e.key === "/" && !typing){
-          e.preventDefault();
-          q && q.focus();
-        }
+      apply(localStorage.getItem(KEY) || "dark");
+      $("#themeBtn").addEventListener("click", ()=>{
+        const next = document.documentElement.getAttribute("data-theme")==="dark" ? "light" : "dark";
+        localStorage.setItem(KEY,next); apply(next); toastMsg("tema: "+next);
       });
 
-      const chips = $$(".chip[data-chip]");
-      const clearChips = $("#clearChips");
-      const chipState = new Set();
+      /* ---------- toast ---------- */
+      const toast=$("#toast"); let tt=null;
+      function toastMsg(m){ if(!toast)return; toast.textContent=m; toast.classList.add("show"); clearTimeout(tt); tt=setTimeout(()=>toast.classList.remove("show"),1500); }
 
-      function syncChipsToSearch(){
-        const v = Array.from(chipState).join(" ").trim();
-        if (q){
-          q.value = v;
-          applyFilter(v);
-        }
+      /* ---------- copy ---------- */
+      async function copy(t){
+        try{ await navigator.clipboard.writeText(t); return true; }
+        catch(e){ try{ const ta=document.createElement("textarea"); ta.value=t; ta.style.position="fixed"; ta.style.left="-9999px"; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); return true; }catch(_){ return false; } }
       }
+      document.addEventListener("click", async (ev)=>{
+        const b=ev.target.closest(".copybtn"); if(!b) return;
+        const t=b.getAttribute("data-copy")||""; if(!t) return;
+        if(await copy(t)){ const o=b.textContent; b.classList.add("copied"); b.textContent="✓ copiado"; toastMsg("copiado: "+t); setTimeout(()=>{ b.classList.remove("copied"); b.textContent=o; },1100); }
+        else toastMsg("não foi possível copiar");
+      });
 
-      chips.forEach(btn=>{
+      /* ---------- whatsapp ---------- */
+      const waUrl = "https://wa.me/5511942327967?text=" + encodeURIComponent("Olá! Vi seu perfil e gostaria de conversar sobre uma oportunidade. Podemos falar?");
+      const waF=$("#waFloat"); if(waF) waF.href=waUrl;
+      const waC=$("#waCta"); if(waC) waC.addEventListener("click", ()=> window.open(waUrl,"_blank","noopener"));
+
+      /* ---------- search filter ---------- */
+      const q=$("#q");
+      function norm(s){ s=(s||"").toLowerCase().normalize("NFD"); try{ return s.replace(/\p{Diacritic}/gu,""); }catch(e){ return s.replace(/[̀-ͯ]/g,""); } }
+      function applyFilter(v){
+        const terms=norm(v).trim().split(/\s+/).filter(Boolean);
+        $$("[data-filter-item]").forEach(el=>{
+          if(!terms.length){ el.classList.remove("hidden"); return; }
+          const t=norm(el.getAttribute("data-filter-text")||el.textContent||"");
+          el.classList.toggle("hidden", !terms.every(x=>t.includes(x)));
+        });
+      }
+      if(q) q.addEventListener("input", ()=>applyFilter(q.value));
+      window.addEventListener("keydown",(e)=>{
+        const tag=(document.activeElement&&document.activeElement.tagName||"").toLowerCase();
+        if(e.key==="/" && tag!=="input" && tag!=="textarea"){ e.preventDefault(); q&&q.focus(); }
+        if(e.key==="Escape" && document.activeElement===q){ q.value=""; applyFilter(""); q.blur(); }
+      });
+
+      /* ---------- accordion ---------- */
+      const accs=$$("[data-acc]");
+      function setH(job,open){ const b=job.querySelector(".jobBody"); if(!b)return; b.style.maxHeight = open ? (b.scrollHeight+"px") : "0px"; }
+      accs.forEach(j=> setH(j, j.classList.contains("open")));
+      accs.forEach(job=>{
+        const btn=job.querySelector(".jobToggle");
         btn.addEventListener("click", ()=>{
-          const tag = (btn.getAttribute("data-chip")||"").trim();
-          if (!tag) return;
-          if (chipState.has(tag)){
-            chipState.delete(tag);
-            btn.classList.remove("on");
-          }else{
-            chipState.add(tag);
-            btn.classList.add("on");
-          }
-          syncChipsToSearch();
+          const open=!job.classList.contains("open");
+          if(open) accs.forEach(o=>{ if(o!==job){ o.classList.remove("open"); o.querySelector(".jobToggle").setAttribute("aria-expanded","false"); setH(o,false);} });
+          job.classList.toggle("open",open); btn.setAttribute("aria-expanded",open?"true":"false"); setH(job,open);
         });
       });
+      window.addEventListener("resize", ()=> accs.forEach(j=>{ if(j.classList.contains("open")) setH(j,true); }), {passive:true});
 
-      if (clearChips){
-        clearChips.addEventListener("click", ()=>{
-          chipState.clear();
-          chips.forEach(c=> c.classList.remove("on"));
-          if (q) q.value = "";
-          applyFilter("");
-          showToast("Filtros limpos.");
-        });
+      /* ---------- back to top ---------- */
+      const toTop=$("#toTop");
+      window.addEventListener("scroll", ()=> toTop.classList.toggle("show", window.scrollY>560), {passive:true});
+      toTop.addEventListener("click", ()=> window.scrollTo({top:0, behavior: reduce?"auto":"smooth"}));
+
+      /* ---------- active nav highlight ---------- */
+      const navA=$$("[data-nav]");
+      const secIds=navA.map(a=>a.getAttribute("href").slice(1));
+      const spy=new IntersectionObserver((ents)=>{
+        ents.forEach(en=>{ if(en.isIntersecting){ const id=en.target.id; navA.forEach(a=>a.classList.toggle("on", a.getAttribute("href")==="#"+id)); } });
+      }, {rootMargin:"-45% 0px -50% 0px"});
+      secIds.forEach(id=>{ const el=document.getElementById(id); if(el) spy.observe(el); });
+
+      /* ---------- reveal on scroll + counters + sparks ---------- */
+      function sparkFill(el){ const n=14; el.innerHTML=""; for(let i=0;i<n;i++){ const b=document.createElement("i"); const h=6+Math.round(16*Math.abs(Math.sin(i*0.9)+Math.random()*0.4)); b.style.height=Math.min(h,22)+"px"; el.appendChild(b); } }
+      function countUp(el){
+        const target=parseFloat(el.getAttribute("data-count")); const suf=el.getAttribute("data-suffix")||"";
+        if(reduce){ el.textContent=target+suf; return; }
+        // Timer-driven (not rAF) so it still completes in backgrounded tabs.
+        const steps=32; let i=0;
+        const iv=setInterval(()=>{
+          i++; const p=i/steps, e=1-Math.pow(1-p,3);
+          el.textContent = (i>=steps ? target : Math.round(target*e)) + suf;
+          if(i>=steps) clearInterval(iv);
+        }, 30);
+      }
+      function reveal(el){
+        if(el.classList.contains("in")) return;
+        el.classList.add("in");
+        el.querySelectorAll("[data-count]").forEach(countUp);
+        el.querySelectorAll("[data-spark]").forEach(sparkFill);
+      }
+      const revEls=$$(".reveal");
+      if("IntersectionObserver" in window){
+        revEls.forEach(el=> el.classList.add("armed"));
+        const revO=new IntersectionObserver((ents)=>{
+          ents.forEach(en=>{ if(en.isIntersecting){ reveal(en.target); revO.unobserve(en.target); } });
+        }, {threshold:0.16});
+        revEls.forEach(el=> revO.observe(el));
+        // Safety net: never leave content hidden if the observer never fires.
+        setTimeout(()=> $$(".reveal.armed").forEach(reveal), 1800);
+      }else{
+        revEls.forEach(reveal);
       }
 
-      const accJobs = $$("[data-acc]");
-      function closeAllExcept(exceptEl){
-        accJobs.forEach(j=>{
-          if (j !== exceptEl){
-            j.classList.remove("open");
-            const btn = j.querySelector(".jobToggle");
-            if (btn) btn.setAttribute("aria-expanded","false");
-            const body = j.querySelector(".jobBody");
-            if (body) body.style.maxHeight = "0px";
+      /* ---------- terminal typing ---------- */
+      const roleText = "// Infrastructure & Incident Operations Specialist";
+      const roleEl=$("#role");
+      const termEl=$("#term");
+      const termLines = [
+        { html:'<span class="p">noc@vivo:~$</span> whoami' },
+        { html:'<span class="c">nicolas.mesquita</span> — infrastructure &amp; incident operations' },
+        { html:'<span class="p">noc@vivo:~$</span> uptime' },
+        { html:'online <span class="ok">desde 2014</span> · foco em <span class="ok">SLA/MTTR</span>' },
+        { html:'<span class="p">noc@vivo:~$</span> monitor --stack' },
+        { html:'SolarWinds · Remedy · Grafana · Zabbix · Meraki <span class="ok">[ok]</span>' },
+        { html:'<span class="p">noc@vivo:~$</span> status' },
+        { html:'<span class="ok">● systems operational</span> — <span class="w">disponível para oportunidades</span>' }
+      ];
+      function typeRole(){
+        if(reduce || !roleEl){ if(roleEl) roleEl.innerHTML=roleText; return; }
+        let i=0; roleEl.innerHTML="";
+        (function tick(){ if(i<=roleText.length){ roleEl.innerHTML=esc(roleText.slice(0,i))+'<span class="caret"></span>'; i++; setTimeout(tick, 26); } })();
+      }
+      function runTerminal(){
+        if(!termEl) return;
+        if(reduce){ termEl.innerHTML=termLines.map(l=>`<div class="l">${l.html}</div>`).join(""); return; }
+        let li=0;
+        function nextLine(){
+          if(li>=termLines.length){ const cur=termEl.querySelector(".termCaret"); if(cur) cur.remove(); const last=termEl.lastElementChild; if(last) last.insertAdjacentHTML("beforeend",' <span class="termCaret"></span>'); return; }
+          const line=termLines[li++]; const div=document.createElement("div"); div.className="l"; termEl.appendChild(div);
+          // prompt lines type char-by-char (plain), output lines appear instantly
+          if(line.html.includes("noc@vivo")){
+            const plain=line.html.replace(/<[^>]+>/g,"").replace(/&amp;/g,"&");
+            let c=0; (function tc(){ if(c<=plain.length){ div.innerHTML=`<span class="p">${esc(plain.slice(0,3))}</span>${esc(plain.slice(3,c))}<span class="termCaret"></span>`; c++; setTimeout(tc,18); } else { div.innerHTML=line.html; setTimeout(nextLine,140); } })();
+          } else {
+            div.innerHTML=line.html; setTimeout(nextLine, 260);
           }
-        });
-      }
-      function setBodyHeight(job, open){
-        const body = job.querySelector(".jobBody");
-        if (!body) return;
-        if (!open){
-          body.style.maxHeight = "0px";
-          return;
         }
-        body.style.maxHeight = body.scrollHeight + "px";
+        nextLine();
       }
-      accJobs.forEach(job=>{
-        const isOpen = job.classList.contains("open");
-        setBodyHeight(job, isOpen);
-      });
+      typeRole();
+      runTerminal();
 
-      accJobs.forEach(job=>{
-        const btn = job.querySelector(".jobToggle");
-        if (!btn) return;
-        btn.addEventListener("click", ()=>{
-          const isOpen = job.classList.contains("open");
-          const next = !isOpen;
-          if (next) closeAllExcept(job);
-          job.classList.toggle("open", next);
-          btn.setAttribute("aria-expanded", next ? "true" : "false");
-          setBodyHeight(job, next);
-          if (next){
-            setTimeout(()=>{
-              const top = job.getBoundingClientRect().top + window.scrollY - 110;
-              window.scrollTo({ top, behavior: "smooth" });
-            }, 40);
-          }
-        });
-      });
-
-      window.addEventListener("resize", ()=>{
-        accJobs.forEach(job=>{
-          if (job.classList.contains("open")) setBodyHeight(job, true);
-        });
-      }, { passive:true });
-
-      // --- Real, scannable QR code (byte mode, ECC level M, versions 1..6) ---
-      // Self-contained: the page CSP forbids external scripts, so this is a
-      // compact from-scratch encoder (GF(256) Reed-Solomon + mask selection).
+      /* ============================================================
+         Real, scannable QR code (byte mode, ECC level M, versions 1..6)
+         Self-contained: the page CSP forbids external scripts, so this is a
+         compact from-scratch encoder (GF(256) Reed-Solomon + mask selection).
+      ============================================================ */
       function qrMatrix(text){
         const EXP = new Array(512), LOG = new Array(256);
         (function(){ let x=1; for (let i=0;i<255;i++){ EXP[i]=x; LOG[x]=i; x<<=1; if (x&0x100) x^=0x11d; } for (let i=255;i<512;i++) EXP[i]=EXP[i-255]; })();
         const gmul = (a,b)=> (a===0||b===0) ? 0 : EXP[LOG[a]+LOG[b]];
         function rsGen(n){ let g=[1]; for (let i=0;i<n;i++){ const ng=new Array(g.length+1).fill(0); for (let j=0;j<g.length;j++){ ng[j]^=g[j]; ng[j+1]^=gmul(g[j],EXP[i]); } g=ng; } return g; }
-        function rsEC(data,n){ const gen=rsGen(n); const rem=new Array(n).fill(0); for (const d of data){ const f=d^rem[0]; rem.shift(); rem.push(0); if (f!==0) for (let i=0;i<n;i++) rem[i]^=gmul(gen[i+1],f); } return rem; }
+        function rsEC(data,n){ const gen=rsGen(n); const rem=new Array(n).fill(0); for (const dd of data){ const f=dd^rem[0]; rem.shift(); rem.push(0); if (f!==0) for (let i=0;i<n;i++) rem[i]^=gmul(gen[i+1],f); } return rem; }
 
-        // [ecPerBlock, blocks, dataPerBlock] and alignment centres, per version (ECC M).
         const ECC   = {1:[10,1,16], 2:[16,1,28], 3:[26,1,44], 4:[18,2,32], 5:[24,2,43], 6:[16,4,27]};
-        const TOTAL = {1:26, 2:44, 3:70, 4:100, 5:134, 6:172};
         const ALIGN = {1:[], 2:[6,18], 3:[6,22], 4:[6,26], 5:[6,30], 6:[6,34]};
-        const FMT   = [0x5412,0x5125,0x5E7C,0x5B4B,0x45F9,0x40CE,0x4F97,0x4AA0]; // level M, masks 0..7
+        const FMT   = [0x5412,0x5125,0x5E7C,0x5B4B,0x45F9,0x40CE,0x4F97,0x4AA0];
 
         const bytes = Array.from(new TextEncoder().encode(text));
         let version=0, ecPer, blocks, dataPer, dataCw;
-        for (let v=1; v<=6; v++){
-          const [ep,nb,dp]=ECC[v], cap=nb*dp;
-          if (4 + 8 + 8*bytes.length <= cap*8){ version=v; ecPer=ep; blocks=nb; dataPer=dp; dataCw=cap; break; }
-        }
-        if (!version) throw new Error("QR: text too long for versions 1..6");
+        for (let v=1; v<=6; v++){ const a=ECC[v], cap=a[1]*a[2]; if (4+8+8*bytes.length <= cap*8){ version=v; ecPer=a[0]; blocks=a[1]; dataPer=a[2]; dataCw=cap; break; } }
+        if (!version) throw new Error("QR: text too long");
 
-        // Bit stream: mode (byte) + count + data + terminator + padding.
         const bits=[]; const put=(val,len)=>{ for (let i=len-1;i>=0;i--) bits.push((val>>i)&1); };
         put(4,4); put(bytes.length,8); for (const b of bytes) put(b,8);
         const capBits=dataCw*8;
@@ -2585,78 +916,36 @@
         while (bits.length%8!==0) bits.push(0);
         const pads=[0xEC,0x11]; let pi=0;
         while (bits.length<capBits){ put(pads[pi&1],8); pi++; }
-        const dataBytes=[];
-        for (let i=0;i<bits.length;i+=8){ let v=0; for (let j=0;j<8;j++) v=(v<<1)|bits[i+j]; dataBytes.push(v); }
+        const dataBytes=[]; for (let i=0;i<bits.length;i+=8){ let v=0; for (let j=0;j<8;j++) v=(v<<1)|bits[i+j]; dataBytes.push(v); }
 
-        // Blocks + Reed-Solomon, then interleave.
         const blkData=[], blkEc=[];
         for (let b=0;b<blocks;b++){ const chunk=dataBytes.slice(b*dataPer,(b+1)*dataPer); blkData.push(chunk); blkEc.push(rsEC(chunk,ecPer)); }
         const finalCw=[];
         for (let i=0;i<dataPer;i++) for (let b=0;b<blocks;b++) if (i<blkData[b].length) finalCw.push(blkData[b][i]);
         for (let i=0;i<ecPer;i++)  for (let b=0;b<blocks;b++) finalCw.push(blkEc[b][i]);
-        const dataBits=[];
-        for (const cw of finalCw) for (let i=7;i>=0;i--) dataBits.push((cw>>i)&1);
+        const dataBits=[]; for (const cw of finalCw) for (let i=7;i>=0;i--) dataBits.push((cw>>i)&1);
 
-        // Function-pattern matrix.
         const size=17+4*version;
         const m   = Array.from({length:size},()=>new Array(size).fill(null));
         const res = Array.from({length:size},()=>new Array(size).fill(false));
         const set = (r,c,v)=>{ if (r<0||r>=size||c<0||c>=size) return; m[r][c]=v?1:0; res[r][c]=true; };
-
-        function finder(r,c){
-          for (let i=-1;i<=7;i++) for (let j=-1;j<=7;j++){
-            const inRing=((i>=0&&i<=6)&&(j===0||j===6))||((j>=0&&j<=6)&&(i===0||i===6));
-            const inCore=(i>=2&&i<=4&&j>=2&&j<=4);
-            set(r+i,c+j, inRing||inCore);
-          }
-        }
+        function finder(r,c){ for (let i=-1;i<=7;i++) for (let j=-1;j<=7;j++){ const inRing=((i>=0&&i<=6)&&(j===0||j===6))||((j>=0&&j<=6)&&(i===0||i===6)); const inCore=(i>=2&&i<=4&&j>=2&&j<=4); set(r+i,c+j, inRing||inCore); } }
         finder(0,0); finder(0,size-7); finder(size-7,0);
         for (let i=8;i<size-8;i++){ const v=(i%2===0); if (m[6][i]===null) set(6,i,v); if (m[i][6]===null) set(i,6,v); }
         const ac=ALIGN[version];
-        for (const r of ac) for (const c of ac){
-          if ((r===6&&c===6)||(r===6&&c===size-7)||(r===size-7&&c===6)) continue;
-          for (let i=-2;i<=2;i++) for (let j=-2;j<=2;j++) set(r+i,c+j, Math.max(Math.abs(i),Math.abs(j))!==1);
-        }
-        set(4*version+9, 8, true); // dark module
-        // Reserve format-info cells (written after masking).
+        for (const r of ac) for (const c of ac){ if ((r===6&&c===6)||(r===6&&c===size-7)||(r===size-7&&c===6)) continue; for (let i=-2;i<=2;i++) for (let j=-2;j<=2;j++) set(r+i,c+j, Math.max(Math.abs(i),Math.abs(j))!==1); }
+        set(4*version+9, 8, true);
         for (let i=0;i<=8;i++){ res[8][i]=true; res[i][8]=true; }
         for (let i=0;i<8;i++)  res[size-1-i][8]=true;
         for (let i=8;i<15;i++) res[8][size-15+i]=true;
 
-        // Zig-zag data placement (raw bits; mask applied per candidate below).
         let idx=0;
-        for (let right=size-1; right>=1; right-=2){
-          if (right===6) right=5;
-          for (let vert=0; vert<size; vert++){
-            for (let j=0;j<2;j++){
-              const cc=right-j, upward=((right+1)&2)===0, row=upward?size-1-vert:vert;
-              if (!res[row][cc]){ m[row][cc]=(idx<dataBits.length)?dataBits[idx]:0; idx++; }
-            }
-          }
-        }
+        for (let right=size-1; right>=1; right-=2){ if (right===6) right=5;
+          for (let vert=0; vert<size; vert++){ for (let j=0;j<2;j++){ const cc=right-j, up=((right+1)&2)===0, row=up?size-1-vert:vert; if (!res[row][cc]){ m[row][cc]=(idx<dataBits.length)?dataBits[idx]:0; idx++; } } } }
 
-        function maskCond(k,r,c){
-          switch(k){
-            case 0: return (r+c)%2===0;
-            case 1: return r%2===0;
-            case 2: return c%3===0;
-            case 3: return (r+c)%3===0;
-            case 4: return (Math.floor(r/2)+Math.floor(c/3))%2===0;
-            case 5: return ((r*c)%2)+((r*c)%3)===0;
-            case 6: return (((r*c)%2)+((r*c)%3))%2===0;
-            default:return (((r+c)%2)+((r*c)%3))%2===0;
-          }
-        }
-        function placeFormat(g,fmt){
-          for (let i=0;i<6;i++) g[8][i]=(fmt>>i)&1;
-          g[8][7]=(fmt>>6)&1; g[8][8]=(fmt>>7)&1; g[7][8]=(fmt>>8)&1;
-          for (let i=9;i<15;i++) g[14-i][8]=(fmt>>i)&1;
-          for (let i=0;i<8;i++)  g[size-1-i][8]=(fmt>>i)&1;
-          for (let i=8;i<15;i++) g[8][size-15+i]=(fmt>>i)&1;
-          g[size-8][8]=1;
-        }
-        function penalty(g){
-          let p=0;
+        function maskCond(k,r,c){ switch(k){ case 0:return (r+c)%2===0; case 1:return r%2===0; case 2:return c%3===0; case 3:return (r+c)%3===0; case 4:return (Math.floor(r/2)+Math.floor(c/3))%2===0; case 5:return ((r*c)%2)+((r*c)%3)===0; case 6:return (((r*c)%2)+((r*c)%3))%2===0; default:return (((r+c)%2)+((r*c)%3))%2===0; } }
+        function placeFormat(g,fmt){ for (let i=0;i<6;i++) g[8][i]=(fmt>>i)&1; g[8][7]=(fmt>>6)&1; g[8][8]=(fmt>>7)&1; g[7][8]=(fmt>>8)&1; for (let i=9;i<15;i++) g[14-i][8]=(fmt>>i)&1; for (let i=0;i<8;i++) g[size-1-i][8]=(fmt>>i)&1; for (let i=8;i<15;i++) g[8][size-15+i]=(fmt>>i)&1; g[size-8][8]=1; }
+        function penalty(g){ let p=0;
           for (let r=0;r<size;r++){ let run=1; for (let c=1;c<size;c++){ if (g[r][c]===g[r][c-1]){ run++; if (run===5) p+=3; else if (run>5) p++; } else run=1; } }
           for (let c=0;c<size;c++){ let run=1; for (let r=1;r<size;r++){ if (g[r][c]===g[r-1][c]){ run++; if (run===5) p+=3; else if (run>5) p++; } else run=1; } }
           for (let r=0;r<size-1;r++) for (let c=0;c<size-1;c++){ const v=g[r][c]; if (v===g[r][c+1]&&v===g[r+1][c]&&v===g[r+1][c+1]) p+=3; }
@@ -2665,45 +954,27 @@
           for (let r=0;r<size;r++){ const line=[]; for (let c=0;c<size;c++) line.push(g[r][c]); scan(line); }
           for (let c=0;c<size;c++){ const line=[]; for (let r=0;r<size;r++) line.push(g[r][c]); scan(line); }
           let dark=0; for (let r=0;r<size;r++) for (let c=0;c<size;c++) if (g[r][c]) dark++;
-          p += Math.floor(Math.abs(dark*100/(size*size)-50)/5)*10;
-          return p;
-        }
+          p += Math.floor(Math.abs(dark*100/(size*size)-50)/5)*10; return p; }
 
         let best=null, bestPen=Infinity;
         for (let k=0;k<8;k++){
           const g=Array.from({length:size},()=>new Array(size).fill(0));
-          for (let r=0;r<size;r++) for (let c=0;c<size;c++){
-            g[r][c] = res[r][c] ? (m[r][c]||0) : (m[r][c]^(maskCond(k,r,c)?1:0));
-          }
-          placeFormat(g,FMT[k]);
-          const pen=penalty(g);
-          if (pen<bestPen){ bestPen=pen; best=g; }
+          for (let r=0;r<size;r++) for (let c=0;c<size;c++){ g[r][c] = res[r][c] ? (m[r][c]||0) : (m[r][c]^(maskCond(k,r,c)?1:0)); }
+          placeFormat(g,FMT[k]); const pen=penalty(g); if (pen<bestPen){ bestPen=pen; best=g; }
         }
         return { size, modules: best };
       }
-
       function drawQR(canvas, text){
         if (!canvas) return;
-        let mx;
-        try { mx = qrMatrix(text); }
-        catch (e){ return; }
-        // Render at 2x backing resolution for a crisp code; always dark-on-white
-        // (theme-independent) so it stays scannable in any theme.
-        const DPR = 2, W = 120 * DPR;
-        canvas.width = W; canvas.height = W;
-        const ctx = canvas.getContext("2d");
-        const quiet = 4, total = mx.size + quiet*2;
-        const scale = Math.floor(W/total);
-        const offset = Math.floor((W - scale*total)/2);
-        ctx.fillStyle = "#ffffff"; ctx.fillRect(0,0,W,W);
-        ctx.fillStyle = "#0b1220";
-        for (let r=0;r<mx.size;r++) for (let c=0;c<mx.size;c++){
-          if (mx.modules[r][c]) ctx.fillRect(offset+(c+quiet)*scale, offset+(r+quiet)*scale, scale, scale);
-        }
+        let mx; try { mx = qrMatrix(text); } catch (e){ return; }
+        const DPR=2, W=130*DPR; canvas.width=W; canvas.height=W;
+        const ctx=canvas.getContext("2d");
+        const quiet=4, total=mx.size+quiet*2, scale=Math.floor(W/total), offset=Math.floor((W-scale*total)/2);
+        ctx.fillStyle="#ffffff"; ctx.fillRect(0,0,W,W);
+        ctx.fillStyle="#0b1220";
+        for (let r=0;r<mx.size;r++) for (let c=0;c<mx.size;c++){ if (mx.modules[r][c]) ctx.fillRect(offset+(c+quiet)*scale, offset+(r+quiet)*scale, scale, scale); }
       }
-
-      const qrText = "https://www.linkedin.com/in/nicolasmesquita/";
-      drawQR($("#qrCanvas"), qrText);
+      drawQR($("#qrCanvas"), "https://www.linkedin.com/in/nicolasmesquita/");
     })();
   </script>
 </body>

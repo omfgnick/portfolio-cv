@@ -168,7 +168,7 @@
 .job { position: relative; margin-bottom: 12px; }
 .job::before { content: ""; position: absolute; left: -24px; top: 21px; width: 11px; height: 11px;
   background: var(--noir-1); border: 2px solid var(--emerald-400); transform: rotate(45deg); box-shadow: 0 0 0 4px color-mix(in srgb, var(--emerald-400) 14%, transparent); }
-.jobOpen::before { background: var(--emerald-400); }
+.job[data-open="true"]::before { background: var(--emerald-400); }
 .job { border: 1px solid var(--card-border); border-left: 2px solid var(--emerald-500); background: var(--card-bg); border-radius: 3px; overflow: hidden; backdrop-filter: blur(6px); }
 .jobToggle { width: 100%; text-align: left; padding: 15px 18px; color: inherit; }
 .jobTop { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
@@ -178,7 +178,7 @@
 .jobMeta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .period { font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); white-space: nowrap; border: 1px solid var(--border); padding: 4px 9px; }
 .chev { width: 26px; height: 26px; border: 1px solid var(--border); display: grid; place-items: center; transition: transform .25s, background .2s; flex: 0 0 auto; color: var(--text-secondary); }
-.jobOpen .chev { transform: rotate(180deg); background: color-mix(in srgb, var(--emerald-400) 14%, transparent); border-color: var(--emerald-400); }
+.job[data-open="true"] .chev { transform: rotate(180deg); background: color-mix(in srgb, var(--emerald-400) 14%, transparent); border-color: var(--emerald-400); }
 .jobBody { padding: 0 18px 18px; }
 .jobDesc { color: var(--text-secondary); font-size: 13px; border-left: 2px solid var(--border-strong); padding-left: 12px; }
 .points { margin: 12px 0 0; display: grid; gap: 8px; }

@@ -247,7 +247,7 @@ export default function Home() {
                 const realIdx = JOBS.indexOf(j)
                 const open = openIdx === realIdx
                 return (
-                  <div key={realIdx} className={`${styles.job} ${open ? styles.jobOpen : ''} ${styles.reveal}`} data-reveal>
+                  <div key={realIdx} className={`${styles.job} ${styles.reveal}`} data-open={open ? 'true' : 'false'} data-reveal>
                     <button className={styles.jobToggle} type="button" aria-expanded={open} onClick={() => setOpenIdx(open ? -1 : realIdx)}>
                       <div className={styles.jobTop}>
                         <div>

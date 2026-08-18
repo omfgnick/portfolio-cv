@@ -4,15 +4,12 @@ import type { VisitStats } from '@/hooks/useVisits'
 import styles from './VisitorPanel.module.css'
 
 const NAMES: Record<string, string> = {
-  BR: 'Brasil', US: 'Estados Unidos', PT: 'Portugal', GB: 'Reino Unido', DE: 'Alemanha',
-  FR: 'França', ES: 'Espanha', IT: 'Itália', CA: 'Canadá', NL: 'Países Baixos',
-  IN: 'Índia', JP: 'Japão', AU: 'Austrália', AR: 'Argentina', MX: 'México', CL: 'Chile',
-  CO: 'Colômbia', PE: 'Peru', UY: 'Uruguai', IE: 'Irlanda', CH: 'Suíça', SE: 'Suécia',
-  PL: 'Polônia', RU: 'Rússia', CN: 'China', KR: 'Coreia do Sul', ZA: 'África do Sul',
-  AE: 'Emirados Árabes', SG: 'Singapura', XX: 'Desconhecido',
+  BR: 'Brasil', US: 'EUA', PT: 'Portugal', GB: 'Reino Unido', DE: 'Alemanha', FR: 'França',
+  ES: 'Espanha', IT: 'Itália', CA: 'Canadá', NL: 'Holanda', IN: 'Índia', JP: 'Japão',
+  AU: 'Austrália', AR: 'Argentina', MX: 'México', CL: 'Chile', CO: 'Colômbia', PE: 'Peru',
+  UY: 'Uruguai', IE: 'Irlanda', CH: 'Suíça', SE: 'Suécia', PL: 'Polônia', RU: 'Rússia',
+  CN: 'China', KR: 'Coreia', ZA: 'Áf. do Sul', AE: 'Emirados', SG: 'Singapura', XX: '—',
 }
-// Centróides aproximados [lat, lon] para plotar no mapa (países fora da lista
-// não recebem ponto no mapa, mas continuam na contagem/lista).
 const CENTROIDS: Record<string, [number, number]> = {
   BR: [-14, -51], US: [39, -98], PT: [39.5, -8], GB: [54, -2], DE: [51, 10], FR: [46, 2],
   ES: [40, -4], IT: [42, 12], CA: [56, -106], NL: [52, 5], IN: [21, 78], JP: [36, 138],
@@ -22,66 +19,76 @@ const CENTROIDS: Record<string, [number, number]> = {
   AT: [47, 13], BE: [50.6, 4.6], DK: [56, 9], FI: [64, 26], NO: [61, 8], GR: [39, 22],
   IL: [31, 34], TR: [39, 35], EG: [26, 30], NG: [9, 8], AO: [-11, 17], MZ: [-18, 35],
 }
-const HOME: [number, number] = [-23.55, -46.63] // São Paulo
+const HOME: [number, number] = [-23.55, -46.63]
 const flag = (cc: string) =>
   /^[A-Za-z]{2}$/.test(cc) ? String.fromCodePoint(...[...cc.toUpperCase()].map(c => 127397 + c.charCodeAt(0))) : '🌐'
-
 const MW = 360, MH = 180
 const proj = ([lat, lon]: [number, number]): [number, number] => [lon + 180, 90 - lat]
 
 export default function VisitorPanel({ data }: { data: VisitStats | null }) {
   if (!VISITS_ENDPOINT || !data) return null
 
+  const top = [...(data.countries || [])].sort((a, b) => b.count - a.count)
   const withCoords = (data.countries || []).filter(c => CENTROIDS[c.code])
-  const top = [...(data.countries || [])].sort((a, b) => b.count - a.count).slice(0, 6)
-  const max = Math.max(1, ...top.map(c => c.count))
   const [hx, hy] = proj(HOME)
+  const days = data.days || []
+  const dMax = Math.max(1, ...days.map(d => d.count))
+  const referrer = (data.referrers || [])[0]
 
-  // linhas de grade (graticule) a cada 30°
   const grat: string[] = []
-  for (let lon = 0; lon <= 360; lon += 30) grat.push(`M${lon} 0V${MH}`)
-  for (let lat = 0; lat <= 180; lat += 30) grat.push(`M0 ${lat}H${MW}`)
+  for (let lon = 0; lon <= 360; lon += 45) grat.push(`M${lon} 0V${MH}`)
+  for (let lat = 0; lat <= 180; lat += 45) grat.push(`M0 ${lat}H${MW}`)
 
   return (
-    <section className={styles.panel} aria-label="Tráfego global de visitas">
+    <section className={styles.panel} aria-label="Tráfego de visitas">
       <div className={styles.head}>
-        <span className={styles.title}><Globe size={14} /> GLOBAL TRAFFIC · LIVE MAP</span>
+        <span className={styles.title}><Globe size={13} /> GLOBAL TRAFFIC</span>
+        {!!data.live && <span className={styles.live}><i /> {data.live} ao vivo</span>}
         <span className={styles.total}>{data.total.toLocaleString('pt-BR')} <em>visitas</em></span>
       </div>
 
-      <div className={styles.body}>
-        <div className={styles.mapWrap} aria-hidden="true">
-          <svg viewBox={`0 0 ${MW} ${MH}`} className={styles.map} preserveAspectRatio="xMidYMid meet">
+      <div className={styles.grid}>
+        {/* Mapa mini */}
+        <div className={styles.map}>
+          <svg viewBox={`0 0 ${MW} ${MH}`} preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <path d={grat.join('')} className={styles.grat} />
             {withCoords.map(c => {
-              const [px, py] = proj(CENTROIDS[c.code])
-              const cx = (hx + px) / 2, cy = Math.min(hy, py) - 22
-              return <path key={`a-${c.code}`} d={`M${hx} ${hy}Q${cx} ${cy} ${px} ${py}`} className={styles.arc} />
+              const [px, py] = proj(CENTROIDS[c.code]); const cx = (hx + px) / 2, cy = Math.min(hy, py) - 24
+              return <path key={`a${c.code}`} d={`M${hx} ${hy}Q${cx} ${cy} ${px} ${py}`} className={styles.arc} />
             })}
-            <circle cx={hx} cy={hy} r={2.6} className={styles.home} />
-            {withCoords.map(c => {
-              const [px, py] = proj(CENTROIDS[c.code])
-              const r = 2 + Math.min(4, Math.sqrt(c.count))
-              return (
-                <g key={`d-${c.code}`}>
-                  <circle cx={px} cy={py} r={r + 3} className={styles.pulse} />
-                  <circle cx={px} cy={py} r={r} className={styles.dot} />
-                </g>
-              )
-            })}
+            <circle cx={hx} cy={hy} r={2.8} className={styles.home} />
+            {withCoords.map(c => { const [px, py] = proj(CENTROIDS[c.code]); const r = 2 + Math.min(4, Math.sqrt(c.count))
+              return <g key={`d${c.code}`}><circle cx={px} cy={py} r={r + 3} className={styles.pulse} /><circle cx={px} cy={py} r={r} className={styles.dot} /></g> })}
           </svg>
         </div>
 
-        <div className={styles.rows}>
-          {top.map(c => (
-            <div key={c.code} className={styles.row}>
-              <span className={styles.flag}>{flag(c.code)}</span>
-              <span className={styles.name}>{NAMES[c.code] || c.code}</span>
-              <span className={styles.bar}><i style={{ width: `${(c.count / max) * 100}%` }} /></span>
-              <span className={styles.count}>{c.count.toLocaleString('pt-BR')}</span>
-            </div>
-          ))}
-          {top.length === 0 && <div className={styles.await}>aguardando primeira visita…</div>}
+        {/* Sparkline 14 dias */}
+        <div className={styles.cell}>
+          <div className={styles.cLbl}>ÚLTIMOS 14 DIAS</div>
+          <div className={styles.spark}>
+            {days.map((d, i) => (
+              <span key={i} className={styles.sBar} style={{ height: `${Math.max(6, (d.count / dMax) * 100)}%` }} title={`${d.date}: ${d.count}`} />
+            ))}
+          </div>
+        </div>
+
+        {/* Top países */}
+        <div className={styles.cell}>
+          <div className={styles.cLbl}>TOP PAÍSES</div>
+          <div className={styles.ctys}>
+            {top.slice(0, 4).map(c => (
+              <span key={c.code} className={styles.cty}><span className={styles.f}>{flag(c.code)}</span>{NAMES[c.code] || c.code}<b>{c.count}</b></span>
+            ))}
+            {top.length === 0 && <span className={styles.await}>aguardando…</span>}
+          </div>
+        </div>
+
+        {/* Origem (referrer) */}
+        <div className={styles.cell}>
+          <div className={styles.cLbl}>ORIGEM</div>
+          <div className={styles.ref}>
+            {referrer ? <><b>{referrer.host}</b><span>{referrer.count} visita(s)</span></> : <><b>direto</b><span>sem referrer</span></>}
+          </div>
         </div>
       </div>
     </section>

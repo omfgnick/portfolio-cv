@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react'
 import { VISITS_ENDPOINT } from '@/data/config'
 
-export interface VisitStats { total: number; countries: { code: string; count: number }[] }
+export interface VisitStats {
+  total: number
+  countries: { code: string; count: number }[]
+  days?: { date: string; count: number }[]
+  referrers?: { host: string; count: number }[]
+  live?: number
+}
 
 /**
- * Busca as estatísticas de visitas (e registra 1 hit por sessão). Uma única
- * chamada no app inteiro — o resultado é compartilhado (HUD + painel de mapa).
+ * Busca as estatísticas de visitas (e registra 1 hit por sessão, com o referrer).
+ * Uma única chamada no app inteiro — resultado compartilhado (HUD + painel).
  */
 export function useVisits(): VisitStats | null {
   const [data, setData] = useState<VisitStats | null>(null)
@@ -17,7 +23,10 @@ export function useVisits(): VisitStats | null {
       try {
         if (!sessionStorage.getItem('nm_hit')) {
           sessionStorage.setItem('nm_hit', '1')
-          await fetch(`${base}/hit`, { method: 'POST' }).catch(() => {})
+          let ref = ''
+          try { ref = document.referrer ? new URL(document.referrer).hostname : '' } catch { /* noop */ }
+          const hit = `${base}/hit${ref ? `?ref=${encodeURIComponent(ref)}` : ''}`
+          await fetch(hit, { method: 'POST' }).catch(() => {})
         }
         const r = await fetch(`${base}/stats`)
         const j = (await r.json()) as VisitStats

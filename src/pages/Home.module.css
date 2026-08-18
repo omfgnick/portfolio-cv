@@ -61,6 +61,10 @@
   border: 1px solid var(--border); background: var(--card-bg); padding: 7px 12px; border-radius: 3px; }
 .hudSearch input { flex: 1; min-width: 0; border: 0; outline: none; background: transparent; color: var(--text-primary); font-family: var(--font-mono); font-size: 12px; }
 .kbd { font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px; }
+.hudCmd { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em;
+  color: var(--text-tertiary); border: 1px solid var(--border); background: var(--card-bg); padding: 6px 9px; cursor: pointer;
+  transition: color .18s, border-color .18s; white-space: nowrap; }
+.hudCmd:hover { color: var(--emerald-300); border-color: var(--aurora-line2); }
 .hudClock { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-secondary); white-space: nowrap; }
 .hudLed { width: 7px; height: 7px; border-radius: 50%; background: var(--emerald-400); box-shadow: 0 0 10px var(--emerald-400); animation: led 2s infinite; }
 
@@ -179,7 +183,9 @@
 .period { font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); white-space: nowrap; border: 1px solid var(--border); padding: 4px 9px; }
 .chev { width: 26px; height: 26px; border: 1px solid var(--border); display: grid; place-items: center; transition: transform .25s, background .2s; flex: 0 0 auto; color: var(--text-secondary); }
 .job[data-open="true"] .chev { transform: rotate(180deg); background: color-mix(in srgb, var(--emerald-400) 14%, transparent); border-color: var(--emerald-400); }
-.jobBody { padding: 0 18px 18px; }
+.jobBody { max-height: 0; overflow: hidden; opacity: 0; transition: max-height .32s var(--ease), opacity .25s var(--ease); }
+.job[data-open="true"] .jobBody { max-height: 1600px; opacity: 1; }
+.jobBodyInner { padding: 0 18px 18px; }
 .jobDesc { color: var(--text-secondary); font-size: 13px; border-left: 2px solid var(--border-strong); padding-left: 12px; }
 .points { margin: 12px 0 0; display: grid; gap: 8px; }
 .points li { position: relative; padding-left: 20px; font-size: 13px; color: var(--text-secondary); }
@@ -227,6 +233,39 @@
 .top { right: 20px; bottom: 20px; background: var(--surface-overlay); color: var(--text-primary); backdrop-filter: blur(8px); opacity: 0; pointer-events: none; }
 .top.show { opacity: 1; pointer-events: auto; }
 .top:hover { transform: translateY(-2px); }
+
+/* ── Print / PDF: currículo limpo em papel claro ───────────── */
+@media print {
+  /* Paleta clara só na impressão (as vars cascateiam para os descendentes). */
+  .shell {
+    --text-primary: #0b1424; --text-secondary: #2a3646; --text-tertiary: #55606d;
+    --card-bg: #ffffff; --card-border: #cfd6df; --border: #e3e7ed; --border-strong: #c7cfd9;
+    --emerald-500: #0a7f5f; --emerald-400: #0a7f5f; --emerald-300: #0a7f5f;
+    --aurora-cyan: #0a7f5f; --lime-500: #a15c00;
+    --shadow-card: none; --glow-emerald: none;
+    background: #fff !important;
+  }
+  /* Esconde toda a "cromagem" de HUD */
+  .rail, .hudTop, .scan, .auroraBg, .gridBg, .fab, .term { display: none !important; }
+  .panel::before, .panel::after { display: none !important; }
+  .panelHead { display: none !important; }
+  .main { margin-left: 0 !important; }
+  .content { max-width: none !important; padding: 0 !important; }
+  .panel, .job, .metrics { box-shadow: none !important; backdrop-filter: none !important; background: #fff !important; }
+  .hero { display: block !important; }
+  .heroBody { padding: 0 0 8px !important; }
+  /* Tudo visível (sem animação de reveal e acordeão totalmente aberto) */
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .jobBody { max-height: none !important; opacity: 1 !important; overflow: visible !important; }
+  .job { break-inside: avoid; margin-bottom: 8px !important; }
+  .section { margin-top: 18px !important; }
+  /* Texto com gradiente vira cor sólida (senão fica transparente no papel) */
+  .nameAccent, .metricK {
+    background: none !important; -webkit-background-clip: border-box !important; background-clip: border-box !important;
+    -webkit-text-fill-color: #0b1424 !important; color: #0b1424 !important;
+  }
+  .timeline::before { background: #0a7f5f !important; }
+}
 
 /* ── Reveal (fail-safe) ────────────────────────────────────── */
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .55s var(--ease), transform .55s var(--ease); }

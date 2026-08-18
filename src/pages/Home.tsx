@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   Search, ChevronDown, Copy, Check, Printer, ArrowUp, MessageCircle,
   Linkedin, Github, Mail, Phone, MapPin, ExternalLink, ChevronRight,
-  User, Briefcase, Cpu, Award, Radio,
+  User, Briefcase, Cpu, Award, Radio, Download, Command,
   Headphones, Radar, ShieldAlert, ListChecks, Lock, Terminal,
   Activity, Network, DatabaseBackup, ShieldCheck, Server, Cloud, type LucideIcon,
 } from 'lucide-react'
@@ -11,10 +11,17 @@ import aurora from '@/components/aurora/aurora.module.css'
 import AuroraCanvas from '@/components/aurora/AuroraCanvas'
 import Counter from '@/components/Counter'
 import QRCode from '@/components/qr/QRCode'
+import CommandPalette, { type CmdItem } from '@/components/CommandPalette'
+import VisitorPanel from '@/components/VisitorPanel'
 import { useReveal } from '@/hooks/useReveal'
+import { downloadVCard } from '@/lib/vcard'
 import {
   PROFILE, METRICS, TERMINAL, CAPS, JOBS, SKILLS, CERTS, EDU, CONTACTS, LINKEDIN_QR,
 } from '@/data/cv'
+
+const SECTION_LABEL: Record<string, string> = {
+  about: 'Perfil', experience: 'Experiência', skills: 'Skills', credentials: 'Credenciais', contact: 'Contato',
+}
 
 const ICONS: Record<string, LucideIcon> = {
   Headphones, Radar, ShieldAlert, ListChecks, Lock, Terminal,
@@ -74,6 +81,7 @@ export default function Home() {
   const [toTop, setToTop] = useState(false)
   const [active, setActive] = useState('about')
   const [clock, setClock] = useState('--:--:--')
+  const [paletteOpen, setPaletteOpen] = useState(false)
   const searchRef = useRef<HTMLInputElement>(null)
 
   useReveal(styles.visible)
@@ -104,6 +112,7 @@ export default function Home() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const tag = (document.activeElement?.tagName || '').toLowerCase()
+      if ((e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)) { e.preventDefault(); setPaletteOpen(o => !o); return }
       if (e.key === '/' && tag !== 'input' && tag !== 'textarea') { e.preventDefault(); searchRef.current?.focus() }
       if (e.key === 'Escape' && document.activeElement === searchRef.current) { setQuery(''); searchRef.current?.blur() }
     }
@@ -120,6 +129,18 @@ export default function Home() {
   const doCopy = async (key: string, val: string) => { if (await copyText(val)) { setCopied(key); setTimeout(() => setCopied(''), 1100) } }
   const waUrl = `${PROFILE.whatsapp}?text=${encodeURIComponent('Olá! Vi seu perfil e gostaria de conversar sobre uma oportunidade. Podemos falar?')}`
   const year = new Date().getFullYear()
+
+  const goto = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  const cmdItems: CmdItem[] = [
+    ...NAV.map(n => ({ id: `go-${n.id}`, label: `Ir para ${SECTION_LABEL[n.id]}`, icon: n.icon, run: () => goto(n.id) })),
+    { id: 'linkedin', label: 'Abrir LinkedIn', hint: 'nicolasmesquita', icon: Linkedin, run: () => window.open(PROFILE.linkedin, '_blank', 'noopener') },
+    { id: 'github', label: 'Abrir GitHub', hint: 'omfgnick', icon: Github, run: () => window.open(PROFILE.github, '_blank', 'noopener') },
+    { id: 'wa', label: 'Falar no WhatsApp', icon: MessageCircle, run: () => window.open(waUrl, '_blank', 'noopener') },
+    { id: 'email', label: 'Copiar e-mail', hint: 'omfg_nick@hotmail.com', icon: Mail, run: () => doCopy('email', 'omfg_nick@hotmail.com') },
+    { id: 'phone', label: 'Copiar telefone', hint: '+55 11 94232-7967', icon: Phone, run: () => doCopy('phone', '+5511942327967') },
+    { id: 'vcard', label: 'Baixar vCard (.vcf)', icon: Download, run: downloadVCard },
+    { id: 'print', label: 'Imprimir / PDF', icon: Printer, run: () => window.print() },
+  ]
 
   return (
     <div className={styles.shell}>
@@ -158,6 +179,9 @@ export default function Home() {
             <input ref={searchRef} value={query} onChange={e => setQuery(e.target.value)} type="search" placeholder="filter --experiencia --skill --ferramenta" aria-label="Buscar" autoComplete="off" />
             <span className={styles.kbd}>/</span>
           </label>
+          <button className={styles.hudCmd} type="button" onClick={() => setPaletteOpen(true)} aria-label="Abrir command palette (Ctrl/Cmd + K)">
+            <Command size={13} /> K
+          </button>
           <span className={styles.hudClock}><span className={styles.hudLed} /> {clock}</span>
         </div>
 
@@ -179,6 +203,7 @@ export default function Home() {
                   <a className={`${styles.btn} ${styles.primary}`} href={PROFILE.linkedin} target="_blank" rel="noopener noreferrer nofollow"><Linkedin size={16} /> LinkedIn</a>
                   <a className={styles.btn} href={PROFILE.github} target="_blank" rel="noopener noreferrer nofollow"><Github size={16} /> GitHub</a>
                   <a className={styles.btn} href={waUrl} target="_blank" rel="noopener noreferrer nofollow"><MessageCircle size={16} /> Falar comigo</a>
+                  <button className={styles.btn} type="button" onClick={downloadVCard}><Download size={16} /> vCard</button>
                   <button className={styles.btn} type="button" onClick={() => window.print()}><Printer size={16} /> PDF</button>
                 </div>
               </div>
@@ -210,6 +235,9 @@ export default function Home() {
               </div>
             ))}
           </section>
+
+          {/* GLOBAL TRAFFIC (aparece só quando VISITS_ENDPOINT está configurado) */}
+          <VisitorPanel />
 
           {/* ABOUT */}
           <section id="about" className={styles.section}>
@@ -261,12 +289,12 @@ export default function Home() {
                         </div>
                       </div>
                     </button>
-                    {open && (
-                      <div className={styles.jobBody}>
+                    <div className={styles.jobBody}>
+                      <div className={styles.jobBodyInner}>
                         <div className={styles.jobDesc}>{j.desc}</div>
                         <ul className={styles.points}>{j.points.map((p, k) => <li key={k}>{p}</li>)}</ul>
                       </div>
-                    )}
+                    </div>
                   </div>
                 )
               })}
@@ -340,6 +368,8 @@ export default function Home() {
           </footer>
         </main>
       </div>
+
+      <CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)} items={cmdItems} />
     </div>
   )
 }

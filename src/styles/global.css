@@ -58,3 +58,8 @@ ul { list-style: none; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
 }
+
+@media print {
+  html, body { background: #fff !important; color: #0b1424 !important; }
+  @page { margin: 14mm; }
+}

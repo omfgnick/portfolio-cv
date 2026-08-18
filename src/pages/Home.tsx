@@ -14,6 +14,7 @@ import QRCode from '@/components/qr/QRCode'
 import CommandPalette, { type CmdItem } from '@/components/CommandPalette'
 import VisitorPanel from '@/components/VisitorPanel'
 import BootScreen from '@/components/BootScreen'
+import ShortcutsHelp from '@/components/ShortcutsHelp'
 import { useReveal } from '@/hooks/useReveal'
 import { useVisits } from '@/hooks/useVisits'
 import { downloadVCard } from '@/lib/vcard'
@@ -73,11 +74,16 @@ export default function Home() {
   const [active, setActive] = useState('about')
   const [clock, setClock] = useState('--:--:--')
   const [paletteOpen, setPaletteOpen] = useState(false)
+  const [helpOpen, setHelpOpen] = useState(false)
   const [theme, setTheme] = useState<'dark' | 'light'>(
     () => (typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark'),
   )
   const [lang, setLang] = useState<Lang>(() => {
-    try { return localStorage.getItem('nm_lang') === 'en' ? 'en' : 'pt' } catch { return 'pt' }
+    try {
+      const url = new URLSearchParams(window.location.search).get('lang')
+      if (url === 'en' || url === 'pt') return url
+      return localStorage.getItem('nm_lang') === 'en' ? 'en' : 'pt'
+    } catch { return 'pt' }
   })
   const searchRef = useRef<HTMLInputElement>(null)
   const visits = useVisits()
@@ -131,10 +137,17 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
+    const KONAMI = ['arrowup', 'arrowup', 'arrowdown', 'arrowdown', 'arrowleft', 'arrowright', 'arrowleft', 'arrowright', 'b', 'a']
+    let ki = 0
+    const glitch = () => { document.body.classList.add('nm-glitch'); setTimeout(() => document.body.classList.remove('nm-glitch'), 2600) }
     const onKey = (e: KeyboardEvent) => {
       const tag = (document.activeElement?.tagName || '').toLowerCase()
-      if ((e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)) { e.preventDefault(); setPaletteOpen(o => !o); return }
-      if (e.key === '/' && tag !== 'input' && tag !== 'textarea') { e.preventDefault(); searchRef.current?.focus() }
+      const typing = tag === 'input' || tag === 'textarea'
+      const k = e.key.toLowerCase()
+      if (k === KONAMI[ki]) { ki++; if (ki === KONAMI.length) { ki = 0; glitch() } } else { ki = k === KONAMI[0] ? 1 : 0 }
+      if ((k === 'k') && (e.metaKey || e.ctrlKey)) { e.preventDefault(); setPaletteOpen(o => !o); return }
+      if (e.key === '?' && !typing) { e.preventDefault(); setHelpOpen(o => !o); return }
+      if (e.key === '/' && !typing) { e.preventDefault(); searchRef.current?.focus() }
       if (e.key === 'Escape' && document.activeElement === searchRef.current) { setQuery(''); searchRef.current?.blur() }
     }
     window.addEventListener('keydown', onKey)
@@ -421,6 +434,7 @@ export default function Home() {
       </div>
 
       <CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)} items={cmdItems} ui={t} />
+      <ShortcutsHelp open={helpOpen} onClose={() => setHelpOpen(false)} lang={lang} />
     </div>
   )
 }

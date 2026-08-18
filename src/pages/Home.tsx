@@ -221,10 +221,10 @@ export default function Home() {
             <input ref={searchRef} value={query} onChange={e => setQuery(e.target.value)} type="search" placeholder={t.searchPh} aria-label="Search" autoComplete="off" />
             <span className={styles.kbd}>/</span>
           </label>
-          <button className={styles.hudIcon} type="button" onClick={toggleLang} aria-label={t.langToggle} title={t.langToggle}>
+          <button className={styles.hudIcon} type="button" onClick={toggleLang} aria-label={t.langToggle} title={t.langToggle} data-testid="lang-toggle">
             <Languages size={14} /> <span className={styles.hudLang}>{lang.toUpperCase()}</span>
           </button>
-          <button className={styles.hudIcon} type="button" onClick={toggleTheme} aria-label={t.themeToggle} title={t.themeToggle}>
+          <button className={styles.hudIcon} type="button" onClick={toggleTheme} aria-label={t.themeToggle} title={t.themeToggle} data-testid="theme-toggle">
             {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
           </button>
           <button className={styles.hudCmd} type="button" onClick={() => setPaletteOpen(true)} aria-label="Command palette (Ctrl/Cmd + K)">
@@ -253,7 +253,7 @@ export default function Home() {
                   <a className={styles.btn} href={P.github} target="_blank" rel="noopener noreferrer nofollow"><Github size={16} /> GitHub</a>
                   <a className={styles.btn} href={waUrl} target="_blank" rel="noopener noreferrer nofollow"><MessageCircle size={16} /> {t.contact}</a>
                   <button className={styles.btn} type="button" onClick={downloadVCard}><Download size={16} /> vCard</button>
-                  <a className={styles.btn} href={pdfUrl} download><FileText size={16} /> CV (PDF)</a>
+                  <a className={styles.btn} href={pdfUrl} download data-testid="pdf-download"><FileText size={16} /> CV (PDF)</a>
                 </div>
               </div>
             </div>

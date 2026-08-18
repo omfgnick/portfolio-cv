@@ -1,0 +1,56 @@
+.grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px;
+}
+
+.card {
+  position: relative; display: flex; flex-direction: column; gap: 12px;
+  padding: 18px 18px 16px; border: 1px solid var(--border); border-radius: 12px;
+  background: var(--panel); overflow: hidden;
+}
+.card::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+  background: linear-gradient(180deg, var(--emerald-500), transparent);
+}
+.card:hover { border-color: color-mix(in srgb, var(--emerald-500) 40%, var(--border)); }
+
+.mark {
+  position: absolute; right: 12px; top: 8px;
+  font-family: var(--font-mono); font-size: 44px; line-height: 1;
+  color: var(--emerald-500); opacity: .14; pointer-events: none; user-select: none;
+}
+
+.quote { margin: 0; font-size: .95rem; line-height: 1.6; color: var(--text-primary); }
+
+.who { display: flex; align-items: center; gap: 11px; margin-top: auto; }
+.avatar {
+  flex: 0 0 auto; width: 38px; height: 38px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--font-mono); font-size: .74rem; font-weight: 700; letter-spacing: .04em;
+  color: var(--emerald-400); background: color-mix(in srgb, var(--emerald-500) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--emerald-500) 35%, var(--border));
+}
+.meta { min-width: 0; }
+.name { font-size: .87rem; font-weight: 650; color: var(--text-primary); }
+.role {
+  font-size: .72rem; color: var(--text-secondary); line-height: 1.35;
+  overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+}
+.rel {
+  font-family: var(--font-mono); font-size: .66rem; letter-spacing: .04em;
+  color: var(--text-tertiary, var(--text-secondary)); opacity: .8; margin-top: 3px;
+}
+
+/* Aviso de que a citação foi traduzida do português */
+.translated {
+  font-family: var(--font-mono); font-size: .64rem; letter-spacing: .05em;
+  color: var(--text-tertiary, var(--text-secondary)); opacity: .65; font-style: italic;
+}
+
+.source {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 10px;
+  font-family: var(--font-mono); font-size: .72rem; letter-spacing: .04em;
+  color: var(--text-secondary); text-decoration: none;
+}
+.source:hover { color: var(--emerald-400); }
+
+@media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }

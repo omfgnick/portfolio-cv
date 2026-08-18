@@ -64,6 +64,25 @@ test.describe('portfolio-cv', () => {
     expect(res.headers()['content-type']).toContain('pdf')
   })
 
+  test('deep link da seção copia URL com idioma e ancora', async ({ page, context }) => {
+    await context.grantPermissions(['clipboard-read', 'clipboard-write'])
+    await page.locator('#praise').scrollIntoViewIfNeeded()
+    await page.locator('#praise button[aria-label]').first().click()
+    const copied = await page.evaluate(() => navigator.clipboard.readText())
+    expect(copied).toMatch(/\?lang=(pt|en)#praise$/)
+  })
+
+  test('depoimentos exibem as recomendações reais', async ({ page }) => {
+    const cards = page.locator('#praise figure')
+    await expect(cards).toHaveCount(2)
+    // nomes são iguais nos dois idiomas; a citação varia (pt literal / en traduzido)
+    await expect(cards.first()).toContainText('Alexsandro Romão Dias')
+    await expect(cards.nth(1)).toContainText('Lafaiete Rodrigues Machado')
+    await expect(cards.nth(1).locator('blockquote'))
+      .toHaveText(/sem restrições|without reservation/)
+    await expect(page.locator('#praise')).toContainText(/LinkedIn/)
+  })
+
   test('sem violações sérias de acessibilidade (axe)', async ({ page }) => {
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
@@ -71,5 +90,32 @@ test.describe('portfolio-cv', () => {
     const serious = results.violations.filter(v => v.impact === 'serious' || v.impact === 'critical')
     const summary = serious.map(v => `${v.id} (${v.impact}) — ${v.nodes.length}x`).join('\n')
     expect(serious, summary).toEqual([])
+  })
+})
+
+// Primeira visita sem preferência salva: o idioma vem do navegador
+test.describe('detecção de idioma', () => {
+  test.describe('visitante en-US', () => {
+    test.use({ locale: 'en-US' })
+    test('abre em inglês', async ({ page }) => {
+      await page.goto('./')
+      await expect(page.getByTestId('lang-toggle')).toHaveText(/EN/)
+      await expect(page.locator('html')).toHaveAttribute('lang', 'en')
+      await expect(page.locator('a[href="#main-content"]')).toHaveText(/Skip to content/i)
+    })
+  })
+
+  test.describe('visitante pt-BR', () => {
+    test.use({ locale: 'pt-BR' })
+    test('abre em português', async ({ page }) => {
+      await page.goto('./')
+      await expect(page.getByTestId('lang-toggle')).toHaveText(/PT/)
+      await expect(page.locator('html')).toHaveAttribute('lang', 'pt-BR')
+    })
+  })
+
+  test('?lang= tem precedência sobre o navegador', async ({ page }) => {
+    await page.goto('./?lang=en')
+    await expect(page.getByTestId('lang-toggle')).toHaveText(/EN/)
   })
 })

@@ -22,6 +22,8 @@ export interface UIStrings {
   cmdLinkedin: string; cmdGithub: string; cmdWa: string; cmdEmail: string; cmdPhone: string; cmdVcard: string; cmdPrint: string
   bootSkip: string
   skipToContent: string
+  copyLink: string; linkCopied: string
+  verifyOn: string; translated: string
   themeToggle: string; langToggle: string
   // visitor panel
   visits: string; live: string; last14: string; topCountries: string; source: string; waiting: string; visitCount: string; direct: string; noReferrer: string
@@ -32,8 +34,8 @@ export const UI: Record<Lang, UIStrings> = {
     available: 'DISPONÍVEL PARA NOVAS OPORTUNIDADES',
     searchPh: 'filter --experiencia --skill --ferramenta',
     contact: 'Falar comigo',
-    navLabels: { about: 'PERFIL', experience: 'EXP', skills: 'SKILLS', projects: 'PROJ', credentials: 'CRED', contact: 'LINK' },
-    sectionTitle: { about: '~/profile $ whoami', experience: '~/logs $ cat operational_history', skills: '~/sys $ ls tooling_matrix', projects: '~/repos $ git log --oneline', credentials: '~/creds $ verify --all', contact: '~/net $ connect --secure' },
+    navLabels: { about: 'PERFIL', experience: 'EXP', skills: 'SKILLS', projects: 'PROJ', credentials: 'CRED', praise: 'REFS', contact: 'LINK' },
+    sectionTitle: { about: '~/profile $ whoami', experience: '~/logs $ cat operational_history', skills: '~/sys $ ls tooling_matrix', projects: '~/repos $ git log --oneline', credentials: '~/creds $ verify --all', praise: '~/refs $ cat recommendations', contact: '~/net $ connect --secure' },
     aboutLead: 'Atuo em escalonamento e continuidade do serviço em ambientes de missão crítica, unindo monitoração proativa, gestão de incidentes orientada a SLA e automação de rotinas operacionais.',
     snapshot: '// SNAPSHOT',
     focus: 'Foco', focusVal: 'Operação estável · Incidentes · SLA · Automação',
@@ -50,6 +52,8 @@ export const UI: Record<Lang, UIStrings> = {
     cmdLinkedin: 'Abrir LinkedIn', cmdGithub: 'Abrir GitHub', cmdWa: 'Falar no WhatsApp', cmdEmail: 'Copiar e-mail', cmdPhone: 'Copiar telefone', cmdVcard: 'Baixar vCard (.vcf)', cmdPrint: 'Imprimir / PDF',
     bootSkip: 'clique ou tecle para pular',
     skipToContent: 'Pular para o conteúdo',
+    copyLink: 'Copiar link desta seção', linkCopied: 'link copiado',
+    verifyOn: 'ver as recomendações no LinkedIn', translated: '',
     themeToggle: 'Tema claro/escuro', langToggle: 'Idioma PT/EN',
     visits: 'visitas', live: 'ao vivo', last14: 'ÚLTIMOS 14 DIAS', topCountries: 'TOP PAÍSES', source: 'ORIGEM', waiting: 'aguardando…', visitCount: 'visita(s)', direct: 'direto', noReferrer: 'sem referrer',
   },
@@ -57,8 +61,8 @@ export const UI: Record<Lang, UIStrings> = {
     available: 'OPEN TO NEW OPPORTUNITIES',
     searchPh: 'filter --experience --skill --tool',
     contact: 'Contact me',
-    navLabels: { about: 'PROFILE', experience: 'EXP', skills: 'SKILLS', projects: 'PROJ', credentials: 'CRED', contact: 'LINK' },
-    sectionTitle: { about: '~/profile $ whoami', experience: '~/logs $ cat operational_history', skills: '~/sys $ ls tooling_matrix', projects: '~/repos $ git log --oneline', credentials: '~/creds $ verify --all', contact: '~/net $ connect --secure' },
+    navLabels: { about: 'PROFILE', experience: 'EXP', skills: 'SKILLS', projects: 'PROJ', credentials: 'CRED', praise: 'REFS', contact: 'LINK' },
+    sectionTitle: { about: '~/profile $ whoami', experience: '~/logs $ cat operational_history', skills: '~/sys $ ls tooling_matrix', projects: '~/repos $ git log --oneline', credentials: '~/creds $ verify --all', praise: '~/refs $ cat recommendations', contact: '~/net $ connect --secure' },
     aboutLead: 'I work on escalation and service continuity in mission-critical environments, combining proactive monitoring, SLA-driven incident management and automation of operational routines.',
     snapshot: '// SNAPSHOT',
     focus: 'Focus', focusVal: 'Stable ops · Incidents · SLA · Automation',
@@ -75,6 +79,8 @@ export const UI: Record<Lang, UIStrings> = {
     cmdLinkedin: 'Open LinkedIn', cmdGithub: 'Open GitHub', cmdWa: 'Chat on WhatsApp', cmdEmail: 'Copy e-mail', cmdPhone: 'Copy phone', cmdVcard: 'Download vCard (.vcf)', cmdPrint: 'Print / PDF',
     bootSkip: 'click or press any key to skip',
     skipToContent: 'Skip to content',
+    copyLink: 'Copy link to this section', linkCopied: 'link copied',
+    verifyOn: 'see the recommendations on LinkedIn', translated: 'translated from Portuguese',
     themeToggle: 'Light/dark theme', langToggle: 'Language PT/EN',
     visits: 'visits', live: 'live', last14: 'LAST 14 DAYS', topCountries: 'TOP COUNTRIES', source: 'SOURCE', waiting: 'waiting…', visitCount: 'visit(s)', direct: 'direct', noReferrer: 'no referrer',
   },

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import {
   Search, ChevronDown, Copy, Check, Printer, ArrowUp, MessageCircle,
   Linkedin, Github, Mail, Phone, MapPin, ExternalLink, ChevronRight,
-  User, Briefcase, Cpu, Award, Radio, Download, Command, Globe, FolderGit2, ArrowUpRight, Sun, Moon, Languages, FileText,
+  User, Briefcase, Cpu, Award, Radio, Download, Command, Globe, FolderGit2, ArrowUpRight, Sun, Moon, Languages, FileText, Link2, Quote,
   Headphones, Radar, ShieldAlert, ListChecks, Lock, Terminal,
   Activity, Network, DatabaseBackup, ShieldCheck, Server, Cloud, type LucideIcon,
 } from 'lucide-react'
@@ -18,10 +18,11 @@ import VisitorPanel from '@/components/VisitorPanel'
 import BootScreen from '@/components/BootScreen'
 import ShortcutsHelp from '@/components/ShortcutsHelp'
 import TerminalPanel from '@/components/Terminal'
+import Testimonials from '@/components/Testimonials'
 import { useReveal } from '@/hooks/useReveal'
 import { useVisits } from '@/hooks/useVisits'
 import { downloadVCard } from '@/lib/vcard'
-import { getCV, type Lang, LINKEDIN_QR } from '@/data/cv'
+import { getCV, type Lang, LINKEDIN_QR, AVAILABILITY, getAvailabilityNote } from '@/data/cv'
 import { UI } from '@/i18n/ui'
 
 const NAV = [
@@ -30,6 +31,7 @@ const NAV = [
   { id: 'skills', icon: Cpu },
   { id: 'projects', icon: FolderGit2 },
   { id: 'credentials', icon: Award },
+  { id: 'praise', icon: Quote },
   { id: 'contact', icon: Radio },
 ]
 
@@ -58,10 +60,17 @@ async function copyText(t: string): Promise<boolean> {
   }
 }
 
-function SecHead({ cmd, tag }: { cmd: string; tag: string }) {
+function SecHead({ cmd, tag, id, onCopy, copied, label }: {
+  cmd: string; tag: string; id: string
+  onCopy: (id: string) => void; copied: boolean; label: string
+}) {
   return (
     <div className={styles.cmd}>
       <span className={styles.cmdLine}><span className={styles.cmdPrompt}>&gt;</span> {cmd}<span className={styles.cmdCaret} /></span>
+      <button className={`${styles.cmdLink} ${copied ? styles.cmdLinkOn : ''}`} type="button"
+        onClick={() => onCopy(id)} aria-label={label} title={label}>
+        {copied ? <Check size={13} /> : <Link2 size={13} />}
+      </button>
       <span className={styles.cmdTag}>[ {tag} ]</span>
     </div>
   )
@@ -80,11 +89,20 @@ export default function Home() {
   const [theme, setTheme] = useState<'dark' | 'light'>(
     () => (typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark'),
   )
+  // Precedência: ?lang= → escolha salva → idioma do navegador → pt
   const [lang, setLang] = useState<Lang>(() => {
     try {
       const url = new URLSearchParams(window.location.search).get('lang')
       if (url === 'en' || url === 'pt') return url
-      return localStorage.getItem('nm_lang') === 'en' ? 'en' : 'pt'
+      const saved = localStorage.getItem('nm_lang')
+      if (saved === 'en' || saved === 'pt') return saved
+      const navs = navigator.languages?.length ? navigator.languages : [navigator.language]
+      for (const l of navs) {
+        const tag = (l || '').toLowerCase()
+        if (tag.startsWith('pt')) return 'pt'
+        if (tag.startsWith('en')) return 'en'
+      }
+      return 'pt'
     } catch { return 'pt' }
   })
   const searchRef = useRef<HTMLInputElement>(null)
@@ -116,6 +134,11 @@ export default function Home() {
   }
 
   useReveal(styles.visible)
+
+  // Mantém <html lang> coerente (o HTML nasce pt-BR; a detecção pode dar 'en')
+  useEffect(() => {
+    document.documentElement.setAttribute('lang', lang === 'pt' ? 'pt-BR' : 'en')
+  }, [lang])
 
   useEffect(() => {
     const loc = lang === 'pt' ? 'pt-BR' : 'en-GB'
@@ -162,6 +185,15 @@ export default function Home() {
   const skills = cv.skills.filter(s => !terms.length || match(`${s.title} ${s.chips.join(' ')}`))
 
   const doCopy = async (key: string, val: string) => { if (await copyText(val)) { setCopied(key); setTimeout(() => setCopied(''), 1100) } }
+
+  /** Link direto para uma seção, preservando o idioma ativo. */
+  const copySectionLink = (id: string) => {
+    const u = new URL(window.location.href)
+    u.search = `?lang=${lang}`
+    u.hash = `#${id}`
+    doCopy(`sec:${id}`, u.toString())
+    history.replaceState(null, '', `#${id}`)
+  }
   const waText = lang === 'pt'
     ? 'Olá! Vi seu perfil e gostaria de conversar sobre uma oportunidade. Podemos falar?'
     : 'Hi! I saw your profile and would like to talk about an opportunity. Can we chat?'
@@ -240,11 +272,14 @@ export default function Home() {
             <div className={`${styles.panel} ${styles.heroMain}`}>
               <div className={styles.panelHead}><span className={styles.phId}>OPR·001</span><span className={styles.phDots}><i /><i /><i /></span><span className={styles.phStatus}>DOSSIER</span></div>
               <div className={styles.heroBody}>
-                <span className={aurora.badge}><span className={aurora.dot} /> {t.available}</span>
+                {AVAILABILITY.open && (
+                  <span className={aurora.badge}><span className={aurora.dot} /> {getAvailabilityNote(lang) ?? t.available}</span>
+                )}
                 <h1 className={styles.name} data-text="Nicolas Mesquita Fernandes">Nicolas Mesquita <span className={styles.nameAccent}>Fernandes</span></h1>
                 <p className={styles.role}>{P.role}</p>
                 <div className={styles.idLine}>
-                  <span>ID <b>NMF·2014</b></span><i>//</i><span>CLEARANCE <b>NOC-N3</b></span><i>//</i><span>LOC <b>SÃO PAULO</b></span><i>//</i><span>STATUS <b className={styles.avail}>AVAILABLE</b></span>
+                  <span>ID <b>NMF·2014</b></span><i>//</i><span>CLEARANCE <b>NOC-N3</b></span><i>//</i><span>LOC <b>SÃO PAULO</b></span>
+                  {AVAILABILITY.open && <><i>//</i><span>STATUS <b className={styles.avail}>AVAILABLE</b></span></>}
                 </div>
                 <p className={styles.tagline}>{P.tagline}</p>
                 <div className={styles.tags}>{P.tags.map(tag => <span key={tag} className={styles.tag}><ChevronRight size={12} /> {tag}</span>)}</div>
@@ -279,7 +314,7 @@ export default function Home() {
 
           {/* ABOUT */}
           <section id="about" className={styles.section}>
-            <SecHead cmd={t.sectionTitle.about} tag="01" />
+            <SecHead cmd={t.sectionTitle.about} tag="01" id="about" onCopy={copySectionLink} copied={copied === 'sec:about'} label={t.copyLink} />
             <div className={styles.cols}>
               <div className={`${styles.panel} ${styles.pad} ${styles.reveal}`} data-reveal>
                 <p className={styles.lead}>{t.aboutLead}</p>
@@ -306,7 +341,7 @@ export default function Home() {
 
           {/* EXPERIENCE */}
           <section id="experience" className={styles.section}>
-            <SecHead cmd={t.sectionTitle.experience} tag="02" />
+            <SecHead cmd={t.sectionTitle.experience} tag="02" id="experience" onCopy={copySectionLink} copied={copied === 'sec:experience'} label={t.copyLink} />
             <div className={styles.timeline}>
               {jobs.length === 0 && <p className={styles.empty}>{t.emptyExp}</p>}
               {jobs.map((j) => {
@@ -341,7 +376,7 @@ export default function Home() {
 
           {/* SKILLS */}
           <section id="skills" className={styles.section}>
-            <SecHead cmd={t.sectionTitle.skills} tag="03" />
+            <SecHead cmd={t.sectionTitle.skills} tag="03" id="skills" onCopy={copySectionLink} copied={copied === 'sec:skills'} label={t.copyLink} />
             <div ref={skillsRef} className={styles.skills}>
               {skills.length === 0 && <p className={styles.empty}>{t.emptySkill}</p>}
               {skills.map(s => (
@@ -358,7 +393,7 @@ export default function Home() {
 
           {/* PROJECTS */}
           <section id="projects" className={styles.section}>
-            <SecHead cmd={t.sectionTitle.projects} tag="04" />
+            <SecHead cmd={t.sectionTitle.projects} tag="04" id="projects" onCopy={copySectionLink} copied={copied === 'sec:projects'} label={t.copyLink} />
             <div className={styles.projects}>
               {cv.projects.map(pr => (
                 <a key={pr.name} href={pr.url} target="_blank" rel="noopener noreferrer nofollow"
@@ -376,7 +411,7 @@ export default function Home() {
 
           {/* CREDENTIALS */}
           <section id="credentials" className={styles.section}>
-            <SecHead cmd={t.sectionTitle.credentials} tag="05" />
+            <SecHead cmd={t.sectionTitle.credentials} tag="05" id="credentials" onCopy={copySectionLink} copied={copied === 'sec:credentials'} label={t.copyLink} />
             <div className={styles.cols}>
               <div className={`${styles.panel} ${styles.pad} ${styles.reveal}`} data-reveal>
                 <div className={styles.subhead}>{t.certifications}</div>
@@ -396,9 +431,17 @@ export default function Home() {
             </div>
           </section>
 
+          {/* DEPOIMENTOS — recomendações reais do LinkedIn, transcritas literalmente */}
+          <section id="praise" className={styles.section}>
+            <SecHead cmd={t.sectionTitle.praise} tag="06" id="praise" onCopy={copySectionLink} copied={copied === 'sec:praise'} label={t.copyLink} />
+            <div className={styles.reveal} data-reveal>
+              <Testimonials lang={lang} source={`${P.linkedin}details/recommendations/`} ui={{ verifyOn: t.verifyOn, translated: t.translated }} />
+            </div>
+          </section>
+
           {/* CONTACT */}
           <section id="contact" className={styles.section}>
-            <SecHead cmd={t.sectionTitle.contact} tag="06" />
+            <SecHead cmd={t.sectionTitle.contact} tag="07" id="contact" onCopy={copySectionLink} copied={copied === 'sec:contact'} label={t.copyLink} />
             <div className={styles.contactGrid}>
               <div className={`${styles.panel} ${styles.pad} ${styles.reveal}`} data-reveal>
                 {cv.contacts.map(c => (

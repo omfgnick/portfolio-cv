@@ -217,6 +217,23 @@ const PROJECTS_L: { name: string; desc: L; tags: string[]; url: string }[] = [
     desc: { pt: 'Este currículo — Vite + React + TypeScript, HUD cyberpunk, QR real gerado do zero e contador de visitas por país (Cloudflare Worker + KV).', en: 'This résumé — Vite + React + TypeScript, cyberpunk HUD, a from-scratch scannable QR and a per-country visitor counter (Cloudflare Worker + KV).' } },
 ]
 
+/**
+ * Selo de disponibilidade — ÚNICO lugar a editar.
+ *   open: false            → o selo some do site
+ *   note: null             → usa o texto padrão ("aberto a propostas")
+ *   note: { pt, en }       → texto custom (ex.: "disponível a partir de março")
+ */
+export const AVAILABILITY: { open: boolean; note: L | null } = {
+  open: true,
+  note: null,
+}
+
+/** Texto do selo no idioma ativo, ou null quando desligado. */
+export function getAvailabilityNote(lang: Lang): string | null {
+  if (!AVAILABILITY.open) return null
+  return AVAILABILITY.note ? p(AVAILABILITY.note, lang) : null
+}
+
 export const LINKEDIN_QR = 'https://www.linkedin.com/in/nicolasmesquita/'
 export const PROFILE_INFO = { name: PROFILE_L.name, linkedin: PROFILE_L.linkedin, github: PROFILE_L.github }
 

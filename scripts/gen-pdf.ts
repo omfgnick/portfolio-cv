@@ -6,6 +6,7 @@
 import PDFDocument from 'pdfkit'
 import { createWriteStream } from 'node:fs'
 import { getCV, PROFILE_INFO, type Lang } from '../src/data/cv'
+import { TESTIMONIALS, formatDate } from '../src/data/testimonials'
 
 const EMERALD = '#0a7f5f'
 const DARK = '#12211c'
@@ -61,6 +62,16 @@ function build(lang: Lang, outfile: string): Promise<void> {
   h(lang === 'pt' ? 'Formação' : 'Education')
   doc.font('Helvetica').fontSize(9).fillColor(DARK)
   for (const e of cv.edu) doc.text('•  ' + e.title + ' — ' + e.sub)
+
+  // Recomendações (transcrição literal do LinkedIn)
+  h(lang === 'pt' ? 'Recomendações' : 'Recommendations')
+  for (const r of TESTIMONIALS) {
+    doc.font('Helvetica-Oblique').fontSize(9).fillColor(DARK)
+      .text('“' + (lang === 'pt' ? r.quote : r.quoteEn) + '”', { align: 'justify' })
+    doc.font('Helvetica').fontSize(8).fillColor(GREY)
+      .text(`— ${r.name}, ${r.role} (${r.rel[lang]}, ${formatDate(r.date, lang)})`)
+    doc.moveDown(0.3)
+  }
 
   doc.end()
   return new Promise(res => stream.on('finish', () => res()))

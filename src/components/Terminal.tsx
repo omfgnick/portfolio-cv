@@ -14,11 +14,12 @@ export interface TermCtx {
   links: { linkedin: string; github: string; wa: string }
 }
 
-const SECTIONS = ['about', 'experience', 'skills', 'projects', 'credentials', 'contact']
+const SECTIONS = ['about', 'experience', 'skills', 'projects', 'credentials', 'praise', 'contact']
 const ALIAS: Record<string, string> = {
   perfil: 'about', profile: 'about', experiencia: 'experience', exp: 'experience',
   projetos: 'projects', proj: 'projects', credenciais: 'credentials', cred: 'credentials',
   contato: 'contact', link: 'contact', skill: 'skills',
+  refs: 'praise', depoimentos: 'praise', recomendacoes: 'praise', recommendations: 'praise',
 }
 
 export default function Terminal({ boot, ctx }: { boot: string[]; ctx: TermCtx }) {

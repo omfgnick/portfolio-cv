@@ -13,11 +13,16 @@
   mask-image: radial-gradient(1300px 900px at 60% 20%, #000 55%, transparent 92%);
   -webkit-mask-image: radial-gradient(1300px 900px at 60% 20%, #000 55%, transparent 92%);
 }
+/* Scanline atrás do conteúdo (z-index -1): textura só o fundo, não reduz o
+   contraste do texto/UI. */
 .scan {
-  position: fixed; inset: 0; z-index: 60; pointer-events: none; opacity: .5;
-  background: repeating-linear-gradient(0deg, rgba(0,0,0,0) 0 2px, rgba(0,0,0,.14) 3px);
-  mix-blend-mode: multiply;
+  position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .5;
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,0) 0 2px, rgba(0,0,0,.16) 3px);
 }
+
+/* Barra de progresso de leitura (topo) */
+.progress { position: fixed; left: 0; top: 0; right: 0; height: 2px; z-index: 65; pointer-events: none; }
+.progress span { display: block; height: 100%; transform-origin: left; background: var(--grad-aurora); box-shadow: 0 0 8px rgba(53, 240, 176, .5); }
 
 /* ── Left rail ─────────────────────────────────────────────── */
 .rail {

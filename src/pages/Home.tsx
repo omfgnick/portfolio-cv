@@ -80,6 +80,7 @@ export default function Home() {
   const [copied, setCopied] = useState<string>('')
   const [shownLines, setShownLines] = useState(0)
   const [toTop, setToTop] = useState(false)
+  const [scrollPct, setScrollPct] = useState(0)
   const [active, setActive] = useState('about')
   const [clock, setClock] = useState('--:--:--')
   const [paletteOpen, setPaletteOpen] = useState(false)
@@ -103,6 +104,9 @@ export default function Home() {
   useEffect(() => {
     const onScroll = () => {
       setToTop(window.scrollY > 620)
+      const de = document.documentElement
+      const max = de.scrollHeight - de.clientHeight
+      setScrollPct(max > 0 ? Math.min(1, de.scrollTop / max) : 0)
       let cur = NAV[0].id
       for (const n of NAV) { const el = document.getElementById(n.id); if (el && el.getBoundingClientRect().top <= 160) cur = n.id }
       setActive(cur)
@@ -149,6 +153,7 @@ export default function Home() {
       <AuroraCanvas className={styles.auroraBg} />
       <div className={styles.gridBg} aria-hidden="true" />
       <div className={styles.scan} aria-hidden="true" />
+      <div className={styles.progress} aria-hidden="true"><span style={{ transform: `scaleX(${scrollPct})` }} /></div>
 
       {/* floating */}
       <a className={`${styles.fab} ${styles.wa}`} href={waUrl} target="_blank" rel="noopener noreferrer nofollow" aria-label="WhatsApp"><MessageCircle size={22} /></a>

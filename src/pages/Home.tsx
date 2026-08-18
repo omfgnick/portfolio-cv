@@ -17,6 +17,7 @@ import CommandPalette, { type CmdItem } from '@/components/CommandPalette'
 import VisitorPanel from '@/components/VisitorPanel'
 import BootScreen from '@/components/BootScreen'
 import ShortcutsHelp from '@/components/ShortcutsHelp'
+import TerminalPanel from '@/components/Terminal'
 import { useReveal } from '@/hooks/useReveal'
 import { useVisits } from '@/hooks/useVisits'
 import { downloadVCard } from '@/lib/vcard'
@@ -70,7 +71,6 @@ export default function Home() {
   const [query, setQuery] = useState('')
   const [openIdx, setOpenIdx] = useState<number>(0)
   const [copied, setCopied] = useState<string>('')
-  const [shownLines, setShownLines] = useState(0)
   const [toTop, setToTop] = useState(false)
   const [scrollPct, setScrollPct] = useState(0)
   const [active, setActive] = useState('about')
@@ -116,13 +116,6 @@ export default function Home() {
   }
 
   useReveal(styles.visible)
-
-  useEffect(() => {
-    const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
-    if (reduce) { setShownLines(cv.terminal.length); return }
-    const iv = setInterval(() => setShownLines(n => { if (n >= cv.terminal.length) { clearInterval(iv); return n } return n + 1 }), 240)
-    return () => clearInterval(iv)
-  }, [cv.terminal.length])
 
   useEffect(() => {
     const loc = lang === 'pt' ? 'pt-BR' : 'en-GB'
@@ -263,19 +256,9 @@ export default function Home() {
               </div>
             </div>
 
-            <div ref={termRef} className={`${styles.panel} ${styles.term}`} aria-hidden="true">
+            <div ref={termRef} className={`${styles.panel} ${styles.term}`}>
               <div className={styles.panelHead}><span className={styles.phId}>TTY·0</span><span className={styles.phDots}><i /><i /><i /></span><span className={styles.phStatus}>noc@vivo</span></div>
-              <div className={styles.termBody}>
-                {cv.terminal.slice(0, shownLines).map((line, i) => {
-                  const prompt = line.startsWith('$')
-                  return (
-                    <div key={i} className={styles.termLine}>
-                      {prompt ? <><span className={styles.prompt}>noc@vivo:~$</span>{line.slice(1)}</> : <span className={line.includes('operational') ? styles.ok : styles.out}>{line}</span>}
-                      {i === shownLines - 1 && <span className={styles.caret} />}
-                    </div>
-                  )
-                })}
-              </div>
+              <TerminalPanel boot={cv.terminal} ctx={{ lang, goto, toggleTheme, toggleLang, print: () => window.print(), vcard: downloadVCard, links: { linkedin: P.linkedin, github: P.github, wa: waUrl } }} />
             </div>
           </section>
 

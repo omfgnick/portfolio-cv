@@ -1,0 +1,15 @@
+.body {
+  padding: 15px 16px 16px; font-family: var(--font-mono); font-size: 12.4px; line-height: 1.8;
+  color: var(--text-secondary); flex: 1; min-height: 210px; max-height: 300px; overflow-y: auto; cursor: text;
+}
+.line { white-space: pre-wrap; word-break: break-word; }
+.prompt { color: var(--emerald-300); margin-right: 6px; }
+.ok { color: var(--lime-500); }
+.out { color: var(--text-secondary); }
+.err { color: var(--rose-400); }
+.echo { color: var(--text-primary); }
+.inputRow { display: flex; align-items: center; gap: 0; margin-top: 2px; }
+.input { flex: 1; min-width: 0; border: 0; outline: none; background: transparent; color: var(--text-primary);
+  font-family: var(--font-mono); font-size: 12.4px; padding: 0; caret-color: var(--lime-500); }
+.caret { flex: 0 0 auto; display: inline-block; width: 8px; height: 1.05em; background: var(--lime-500); animation: tbl 1s steps(1) infinite; }
+@keyframes tbl { 50% { opacity: 0; } }

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import {
   Search, ChevronDown, Copy, Check, Printer, ArrowUp, MessageCircle,
   Linkedin, Github, Mail, Phone, MapPin, ExternalLink, ChevronRight,
-  User, Briefcase, Cpu, Award, Radio, Download, Command, Globe, FolderGit2, ArrowUpRight, Sun, Moon, Languages,
+  User, Briefcase, Cpu, Award, Radio, Download, Command, Globe, FolderGit2, ArrowUpRight, Sun, Moon, Languages, FileText,
   Headphones, Radar, ShieldAlert, ListChecks, Lock, Terminal,
   Activity, Network, DatabaseBackup, ShieldCheck, Server, Cloud, type LucideIcon,
 } from 'lucide-react'
@@ -168,6 +168,7 @@ export default function Home() {
   const waUrl = `${P.whatsapp}?text=${encodeURIComponent(waText)}`
   const year = new Date().getFullYear()
   const nfmt = (n: number) => n.toLocaleString(lang === 'pt' ? 'pt-BR' : 'en-US')
+  const pdfUrl = `${import.meta.env.BASE_URL}cv-nicolas-mesquita-${lang}.pdf`
 
   const goto = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   const cmdItems: CmdItem[] = [
@@ -183,6 +184,7 @@ export default function Home() {
 
   return (
     <div className={styles.shell}>
+      <a className={styles.skip} href="#main-content">{t.skipToContent}</a>
       <BootScreen skipText={t.bootSkip} />
       <AuroraCanvas className={styles.auroraBg} />
       <div className={styles.gridBg} aria-hidden="true" />
@@ -232,7 +234,7 @@ export default function Home() {
           <span className={styles.hudClock}><span className={styles.hudLed} /> {clock}</span>
         </div>
 
-        <main className={styles.content}>
+        <main className={styles.content} id="main-content" tabIndex={-1}>
           {/* HERO */}
           <section ref={heroRef} className={styles.hero}>
             <div className={`${styles.panel} ${styles.heroMain}`}>
@@ -251,7 +253,7 @@ export default function Home() {
                   <a className={styles.btn} href={P.github} target="_blank" rel="noopener noreferrer nofollow"><Github size={16} /> GitHub</a>
                   <a className={styles.btn} href={waUrl} target="_blank" rel="noopener noreferrer nofollow"><MessageCircle size={16} /> {t.contact}</a>
                   <button className={styles.btn} type="button" onClick={downloadVCard}><Download size={16} /> vCard</button>
-                  <button className={styles.btn} type="button" onClick={() => window.print()}><Printer size={16} /> PDF</button>
+                  <a className={styles.btn} href={pdfUrl} download><FileText size={16} /> CV (PDF)</a>
                 </div>
               </div>
             </div>

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Search, CornerDownLeft, type LucideIcon } from 'lucide-react'
+import { useFocusTrap } from '@/hooks/useFocusTrap'
 import styles from './CommandPalette.module.css'
 
 export interface CmdItem {
@@ -21,6 +22,8 @@ export default function CommandPalette({ open, onClose, items, ui }: { open: boo
   const [q, setQ] = useState('')
   const [idx, setIdx] = useState(0)
   const inputRef = useRef<HTMLInputElement>(null)
+  const boxRef = useRef<HTMLDivElement>(null)
+  useFocusTrap(boxRef, open)
 
   const filtered = useMemo(() => {
     const t = norm(q).trim()
@@ -44,7 +47,7 @@ export default function CommandPalette({ open, onClose, items, ui }: { open: boo
 
   return (
     <div className={styles.overlay} onMouseDown={onClose} role="dialog" aria-modal="true" aria-label="Command palette">
-      <div className={styles.box} onMouseDown={e => e.stopPropagation()} onKeyDown={onKey}>
+      <div ref={boxRef} className={styles.box} onMouseDown={e => e.stopPropagation()} onKeyDown={onKey}>
         <div className={styles.head}>
           <Search size={15} />
           <input ref={inputRef} value={q} onChange={e => { setQ(e.target.value); setIdx(0) }} placeholder={ui.palettePh} aria-label="Command" />

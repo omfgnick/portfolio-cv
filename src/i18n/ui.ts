@@ -21,6 +21,7 @@ export interface UIStrings {
   palettePh: string; paletteEmpty: string; navHint: string; selectHint: string; closeHint: string
   cmdLinkedin: string; cmdGithub: string; cmdWa: string; cmdEmail: string; cmdPhone: string; cmdVcard: string; cmdPrint: string
   bootSkip: string
+  skipToContent: string
   themeToggle: string; langToggle: string
   // visitor panel
   visits: string; live: string; last14: string; topCountries: string; source: string; waiting: string; visitCount: string; direct: string; noReferrer: string
@@ -48,6 +49,7 @@ export const UI: Record<Lang, UIStrings> = {
     palettePh: 'Digite um comando ou seção…', paletteEmpty: 'Nenhum comando encontrado.', navHint: '↑↓ navegar', selectHint: '↵ selecionar', closeHint: 'esc fechar',
     cmdLinkedin: 'Abrir LinkedIn', cmdGithub: 'Abrir GitHub', cmdWa: 'Falar no WhatsApp', cmdEmail: 'Copiar e-mail', cmdPhone: 'Copiar telefone', cmdVcard: 'Baixar vCard (.vcf)', cmdPrint: 'Imprimir / PDF',
     bootSkip: 'clique ou tecle para pular',
+    skipToContent: 'Pular para o conteúdo',
     themeToggle: 'Tema claro/escuro', langToggle: 'Idioma PT/EN',
     visits: 'visitas', live: 'ao vivo', last14: 'ÚLTIMOS 14 DIAS', topCountries: 'TOP PAÍSES', source: 'ORIGEM', waiting: 'aguardando…', visitCount: 'visita(s)', direct: 'direto', noReferrer: 'sem referrer',
   },
@@ -72,6 +74,7 @@ export const UI: Record<Lang, UIStrings> = {
     palettePh: 'Type a command or section…', paletteEmpty: 'No command found.', navHint: '↑↓ navigate', selectHint: '↵ select', closeHint: 'esc close',
     cmdLinkedin: 'Open LinkedIn', cmdGithub: 'Open GitHub', cmdWa: 'Chat on WhatsApp', cmdEmail: 'Copy e-mail', cmdPhone: 'Copy phone', cmdVcard: 'Download vCard (.vcf)', cmdPrint: 'Print / PDF',
     bootSkip: 'click or press any key to skip',
+    skipToContent: 'Skip to content',
     themeToggle: 'Light/dark theme', langToggle: 'Language PT/EN',
     visits: 'visits', live: 'live', last14: 'LAST 14 DAYS', topCountries: 'TOP COUNTRIES', source: 'SOURCE', waiting: 'waiting…', visitCount: 'visit(s)', direct: 'direct', noReferrer: 'no referrer',
   },

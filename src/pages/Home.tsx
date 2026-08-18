@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   Search, ChevronDown, Copy, Check, Printer, ArrowUp, MessageCircle,
   Linkedin, Github, Mail, Phone, MapPin, ExternalLink, ChevronRight,
-  User, Briefcase, Cpu, Award, Radio, Download, Command,
+  User, Briefcase, Cpu, Award, Radio, Download, Command, Globe,
   Headphones, Radar, ShieldAlert, ListChecks, Lock, Terminal,
   Activity, Network, DatabaseBackup, ShieldCheck, Server, Cloud, type LucideIcon,
 } from 'lucide-react'
@@ -14,6 +14,7 @@ import QRCode from '@/components/qr/QRCode'
 import CommandPalette, { type CmdItem } from '@/components/CommandPalette'
 import VisitorPanel from '@/components/VisitorPanel'
 import { useReveal } from '@/hooks/useReveal'
+import { useVisits } from '@/hooks/useVisits'
 import { downloadVCard } from '@/lib/vcard'
 import {
   PROFILE, METRICS, TERMINAL, CAPS, JOBS, SKILLS, CERTS, EDU, CONTACTS, LINKEDIN_QR,
@@ -83,6 +84,7 @@ export default function Home() {
   const [clock, setClock] = useState('--:--:--')
   const [paletteOpen, setPaletteOpen] = useState(false)
   const searchRef = useRef<HTMLInputElement>(null)
+  const visits = useVisits()
 
   useReveal(styles.visible)
 
@@ -182,6 +184,7 @@ export default function Home() {
           <button className={styles.hudCmd} type="button" onClick={() => setPaletteOpen(true)} aria-label="Abrir command palette (Ctrl/Cmd + K)">
             <Command size={13} /> K
           </button>
+          {visits && <span className={styles.hudVisits} title="visitas totais"><Globe size={12} /> {visits.total.toLocaleString('pt-BR')}</span>}
           <span className={styles.hudClock}><span className={styles.hudLed} /> {clock}</span>
         </div>
 
@@ -237,7 +240,7 @@ export default function Home() {
           </section>
 
           {/* GLOBAL TRAFFIC (aparece só quando VISITS_ENDPOINT está configurado) */}
-          <VisitorPanel />
+          <VisitorPanel data={visits} />
 
           {/* ABOUT */}
           <section id="about" className={styles.section}>

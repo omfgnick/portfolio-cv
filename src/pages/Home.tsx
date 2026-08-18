@@ -19,6 +19,7 @@ import BootScreen from '@/components/BootScreen'
 import ShortcutsHelp from '@/components/ShortcutsHelp'
 import TerminalPanel from '@/components/Terminal'
 import Testimonials from '@/components/Testimonials'
+import Timeline from '@/components/Timeline'
 import { useReveal } from '@/hooks/useReveal'
 import { useVisits } from '@/hooks/useVisits'
 import { downloadVCard } from '@/lib/vcard'
@@ -186,6 +187,15 @@ export default function Home() {
 
   const doCopy = async (key: string, val: string) => { if (await copyText(val)) { setCopied(key); setTimeout(() => setCopied(''), 1100) } }
 
+  /** Barra da linha do tempo → abre a experiência (limpa o filtro se ela estiver oculta). */
+  const pickJob = (i: number) => {
+    setQuery('')
+    setOpenIdx(i)
+    requestAnimationFrame(() => {
+      document.getElementById(`job-${i}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    })
+  }
+
   /** Link direto para uma seção, preservando o idioma ativo. */
   const copySectionLink = (id: string) => {
     const u = new URL(window.location.href)
@@ -342,13 +352,14 @@ export default function Home() {
           {/* EXPERIENCE */}
           <section id="experience" className={styles.section}>
             <SecHead cmd={t.sectionTitle.experience} tag="02" id="experience" onCopy={copySectionLink} copied={copied === 'sec:experience'} label={t.copyLink} />
+            <Timeline jobs={cv.jobs} onPick={pickJob} ui={{ totalYears: t.tlYears, roles: t.tlRoles, hint: t.tlHint }} />
             <div className={styles.timeline}>
               {jobs.length === 0 && <p className={styles.empty}>{t.emptyExp}</p>}
               {jobs.map((j) => {
                 const realIdx = cv.jobs.indexOf(j)
                 const open = openIdx === realIdx
                 return (
-                  <div key={realIdx} className={`${styles.job} ${styles.reveal}`} data-open={open ? 'true' : 'false'} data-reveal>
+                  <div key={realIdx} id={`job-${realIdx}`} className={`${styles.job} ${styles.reveal}`} data-open={open ? 'true' : 'false'} data-reveal>
                     <button className={styles.jobToggle} type="button" aria-expanded={open} onClick={() => setOpenIdx(open ? -1 : realIdx)}>
                       <div className={styles.jobTop}>
                         <div>

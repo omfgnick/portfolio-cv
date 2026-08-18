@@ -83,6 +83,17 @@ test.describe('portfolio-cv', () => {
     await expect(page.locator('#praise')).toContainText(/LinkedIn/)
   })
 
+  test('linha do tempo abre a experiência correspondente', async ({ page }) => {
+    const bars = page.locator('#experience ol li button')
+    await expect(bars).toHaveCount(10)
+    // com filtro ativo, clicar numa barra deve limpar a busca e revelar a vaga
+    await page.getByRole('searchbox').fill('zebra')
+    await expect(page.locator('#experience [id^=job-]')).toHaveCount(1)
+    await bars.nth(7).click()
+    await expect(page.getByRole('searchbox')).toHaveValue('')
+    await expect(page.locator('#job-7')).toHaveAttribute('data-open', 'true')
+  })
+
   test('sem violações sérias de acessibilidade (axe)', async ({ page }) => {
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])

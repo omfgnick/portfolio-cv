@@ -5,7 +5,8 @@ interface L { pt: string; en: string }
 const p = (l: L, lang: Lang) => l[lang]
 const arr = (a: L[], lang: Lang) => a.map(x => x[lang])
 
-export interface Job { role: string; org: string; loc?: string; period: string; open?: boolean; filter: string; desc: string; points: string[] }
+/** `start`/`end` em AAAA-MM alimentam a linha do tempo; `period` é o texto exibido. */
+export interface Job { role: string; org: string; loc?: string; start: string; end: string; period: string; open?: boolean; filter: string; desc: string; points: string[] }
 export interface Skill { title: string; level: number; icon: string; chips: string[] }
 export interface Credential { title: string; sub: string; cred?: string }
 export interface Metric { count: number; suffix?: string; label: string }
@@ -57,10 +58,10 @@ const CAPS_L = [
   { icon: 'Terminal', h: { pt: 'Automação', en: 'Automation' }, d: { pt: 'Scripts e rotinas em PowerShell/Bash/Python para consistência.', en: 'PowerShell/Bash/Python scripts and routines for consistency.' } },
 ]
 
-const JOBS_L: { role: L; org: string; loc?: L; period: L; open?: boolean; filter: string; desc: L; points: L[] }[] = [
+const JOBS_L: { role: L; org: string; loc?: L; start: string; end: string; period: L; open?: boolean; filter: string; desc: L; points: L[] }[] = [
   {
     role: { pt: 'Técnico de Suporte — Mercado Livre', en: 'Support Technician — Mercado Livre' }, org: 'Randstad Brasil · Tempo integral',
-    loc: { pt: 'Presencial', en: 'On-site' }, period: { pt: 'nov/2024 – jan/2026 · 1 ano 3 meses', en: 'Nov 2024 – Jan 2026 · 1 yr 3 mos' }, open: true,
+    loc: { pt: 'Presencial', en: 'On-site' }, start: '2024-11', end: '2026-01', period: { pt: 'nov/2024 – jan/2026 · 1 ano 3 meses', en: 'Nov 2024 – Jan 2026 · 1 yr 3 mos' }, open: true,
     filter: 'tecnico suporte mercado livre randstad presencial impressoras zebra mdm jira 5s inventario n1 n2 n3 windows',
     desc: { pt: 'Assistência presencial e disponibilidade de equipamentos; manutenção preventiva; tickets; MDM; 5S; inventário; Jira.', en: 'On-site support and equipment availability; preventive maintenance; tickets; MDM; 5S; inventory; Jira.' },
     points: [
@@ -74,7 +75,7 @@ const JOBS_L: { role: L; org: string; loc?: L; period: L; open?: boolean; filter
   },
   {
     role: { pt: 'Operador de Suporte Datacenter — NOC Mc Donald’s', en: 'Datacenter Support Operator — NOC McDonald’s' }, org: 'Telefónica Ingeniería de Seguridad',
-    period: { pt: 'out/2019 – abr/2022 · 2 anos 7 meses', en: 'Oct 2019 – Apr 2022 · 2 yrs 7 mos' },
+    start: '2019-10', end: '2022-04', period: { pt: 'out/2019 – abr/2022 · 2 anos 7 meses', en: 'Oct 2019 – Apr 2022 · 2 yrs 7 mos' },
     filter: 'operador suporte datacenter noc mcdonalds telefonica ingenieria seguridad solarwinds remedy meraki links operadoras ping switches access-point pos sat kvs quiosque sla',
     desc: { pt: 'Monitoração de links via SolarWinds; incidentes via BMC Remedy; validação de conectividade; acionamento de operadoras; Cisco Meraki.', en: 'Link monitoring with SolarWinds; incidents in BMC Remedy; connectivity validation; carrier escalation; Cisco Meraki.' },
     points: [
@@ -85,7 +86,7 @@ const JOBS_L: { role: L; org: string; loc?: L; period: L; open?: boolean; filter
   },
   {
     role: { pt: 'Analista de Suporte — Projeto TDATA Telefônica | VIVO', en: 'Support Analyst — TDATA Telefônica | VIVO Project' }, org: 'Tech Mahindra – Brasil',
-    period: { pt: 'mai/2019 – set/2019 · 5 meses', en: 'May 2019 – Sep 2019 · 5 mos' },
+    start: '2019-05', end: '2019-09', period: { pt: 'mai/2019 – set/2019 · 5 meses', en: 'May 2019 – Sep 2019 · 5 mos' },
     filter: 'analista suporte projeto tdata telefonica vivo tech mahindra noc n1 sla relatorios emails solarwinds dashboard remedy servidores infraestrutura redes escalonamento',
     desc: { pt: 'NOC Telefônica (Tdata): monitoramento de incidentes, N1, SLA, relatórios, acionamentos e escalonamentos.', en: 'Telefônica NOC (Tdata): incident monitoring, N1, SLA, reporting, escalations.' },
     points: [
@@ -96,7 +97,7 @@ const JOBS_L: { role: L; org: string; loc?: L; period: L; open?: boolean; filter
   },
   {
     role: { pt: 'Analista de Suporte — Projeto NOC Mc Donald’s Telefônica | VIVO', en: 'Support Analyst — NOC McDonald’s Telefônica | VIVO Project' }, org: 'Tech Mahindra – Brasil',
-    period: { pt: 'nov/2017 – set/2019 · 1 ano 11 meses', en: 'Nov 2017 – Sep 2019 · 1 yr 11 mos' },
+    start: '2017-11', end: '2019-09', period: { pt: 'nov/2017 – set/2019 · 1 ano 11 meses', en: 'Nov 2017 – Sep 2019 · 1 yr 11 mos' },
     filter: 'analista suporte noc mcdonalds telefonica vivo tech mahindra solarwinds remedy links ping switches access-point pos sat kvs quiosque operadoras',
     desc: { pt: 'Monitoração de links via SolarWinds; incidentes via BMC Remedy; validação de conectividade e indisponibilidade; operadoras.', en: 'Link monitoring with SolarWinds; incidents in BMC Remedy; connectivity/outage validation; carriers.' },
     points: [
@@ -107,7 +108,7 @@ const JOBS_L: { role: L; org: string; loc?: L; period: L; open?: boolean; filter
   },
   {
     role: { pt: 'Analista de Suporte — Projeto NOC Mc Donald’s Telefônica | VIVO', en: 'Support Analyst — NOC McDonald’s Telefônica | VIVO Project' }, org: 'SONDA Brasil',
-    period: { pt: 'fev/2017 – out/2017 · 9 meses', en: 'Feb 2017 – Oct 2017 · 9 mos' },
+    start: '2017-02', end: '2017-10', period: { pt: 'fev/2017 – out/2017 · 9 meses', en: 'Feb 2017 – Oct 2017 · 9 mos' },
     filter: 'analista suporte noc mcdonalds telefonica vivo sonda solarwinds remedy links ping indisponibilidade operadoras',
     desc: { pt: 'Monitoração de links; incidentes Remedy; validação e acionamento de operadoras.', en: 'Link monitoring; Remedy incidents; validation and carrier escalation.' },
     points: [
@@ -117,7 +118,7 @@ const JOBS_L: { role: L; org: string; loc?: L; period: L; open?: boolean; filter
   },
   {
     role: { pt: 'Analista de Produção — Projeto NDC Telefônica | VIVO', en: 'Production Analyst — NDC Telefônica | VIVO Project' }, org: 'end-to-end technology',
-    period: { pt: 'jun/2016 – set/2016 · 4 meses', en: 'Jun 2016 – Sep 2016 · 4 mos' },
+    start: '2016-06', end: '2016-09', period: { pt: 'jun/2016 – set/2016 · 4 meses', en: 'Jun 2016 – Sep 2016 · 4 mos' },
     filter: 'analista producao ndc telefonica vivo end-to-end technology control-m schedules remedy restore netbackup batch jobs',
     desc: { pt: 'Control-M (rerun/hold/free/force ok/kill/run now/confirm/ordenação), schedules, Remedy, restores e NetBackup.', en: 'Control-M (rerun/hold/free/force ok/kill/run now/confirm/ordering), schedules, Remedy, restores and NetBackup.' },
     points: [
@@ -127,7 +128,7 @@ const JOBS_L: { role: L; org: string; loc?: L; period: L; open?: boolean; filter
   },
   {
     role: { pt: 'Analista de Monitoração / Ponto Focal — Projeto NDC Telefônica | VIVO', en: 'Monitoring Analyst / Focal Point — NDC Telefônica | VIVO Project' }, org: 'end-to-end technology',
-    period: { pt: 'abr/2016 – set/2016 · 6 meses', en: 'Apr 2016 – Sep 2016 · 6 mos' },
+    start: '2016-04', end: '2016-09', period: { pt: 'abr/2016 – set/2016 · 6 meses', en: 'Apr 2016 – Sep 2016 · 6 mos' },
     filter: 'analista monitoracao ponto focal ndc telefonica vivo end-to-end technology netcool omnibus sitescope remedy incidentes acionamento comunicacao diretoria grafana zabbix nagios',
     desc: { pt: 'Netcool/Omnibus + SiteScope; incidentes Remedy; acionamento técnico; comunicação com diretoria/gestores.', en: 'Netcool/Omnibus + SiteScope; Remedy incidents; technical escalation; communication with leadership/managers.' },
     points: [
@@ -138,7 +139,7 @@ const JOBS_L: { role: L; org: string; loc?: L; period: L; open?: boolean; filter
   },
   {
     role: { pt: 'Analista de Monitoração / Ponto Focal — Projeto NDC Telefônica | VIVO', en: 'Monitoring Analyst / Focal Point — NDC Telefônica | VIVO Project' }, org: 'Stefanini',
-    loc: { pt: 'São Paulo e Região, Brasil', en: 'São Paulo Area, Brazil' }, period: { pt: 'nov/2014 – mar/2016 · 1 ano 5 meses', en: 'Nov 2014 – Mar 2016 · 1 yr 5 mos' },
+    loc: { pt: 'São Paulo e Região, Brasil', en: 'São Paulo Area, Brazil' }, start: '2014-11', end: '2016-03', period: { pt: 'nov/2014 – mar/2016 · 1 ano 5 meses', en: 'Nov 2014 – Mar 2016 · 1 yr 5 mos' },
     filter: 'analista monitoracao ponto focal ndc telefonica vivo stefanini netcool omnibus sitescope remedy incidentes acionamento comunicacao lideranca',
     desc: { pt: 'Monitoração de infraestrutura crítica; alarmes; Remedy; acionamentos; acompanhamento e comunicação com liderança.', en: 'Critical-infrastructure monitoring; alarms; Remedy; escalations; follow-up and leadership communication.' },
     points: [
@@ -149,7 +150,7 @@ const JOBS_L: { role: L; org: string; loc?: L; period: L; open?: boolean; filter
   },
   {
     role: { pt: 'Técnico de Informática Sênior', en: 'Senior IT Technician' }, org: 'Lojas Marabraz',
-    loc: { pt: 'São Paulo e Região, Brasil', en: 'São Paulo Area, Brazil' }, period: { pt: 'ago/2013 – mai/2014 · 10 meses', en: 'Aug 2013 – May 2014 · 10 mos' },
+    loc: { pt: 'São Paulo e Região, Brasil', en: 'São Paulo Area, Brazil' }, start: '2013-08', end: '2014-05', period: { pt: 'ago/2013 – mai/2014 · 10 meses', en: 'Aug 2013 – May 2014 · 10 mos' },
     filter: 'tecnico informatica senior marabraz monitoramento open-source mapas scripts bash powershell backup hp data protector vmware nagios zabbix grafana',
     desc: { pt: 'Monitoramento open-source + mapas; scripts Bash/PowerShell; jobs de backup HP Data Protector; VMware.', en: 'Open-source monitoring + maps; Bash/PowerShell scripts; HP Data Protector backup jobs; VMware.' },
     points: [
@@ -160,7 +161,7 @@ const JOBS_L: { role: L; org: string; loc?: L; period: L; open?: boolean; filter
   },
   {
     role: { pt: 'Estagiário', en: 'Intern' }, org: 'XMM Tecnologia da Informação',
-    loc: { pt: 'Cajamar – SP', en: 'Cajamar – SP, Brazil' }, period: { pt: 'mar/2012 – mai/2013 · 1 ano 3 meses', en: 'Mar 2012 – May 2013 · 1 yr 3 mos' },
+    loc: { pt: 'Cajamar – SP', en: 'Cajamar – SP, Brazil' }, start: '2012-03', end: '2013-05', period: { pt: 'mar/2012 – mai/2013 · 1 ano 3 meses', en: 'Mar 2012 – May 2013 · 1 yr 3 mos' },
     filter: 'estagiario xmm tecnologia informacao cajamar glpi servicedesk suporte usuarios redes servidores microinformatica cabeamento roteadores switches',
     desc: { pt: 'ServiceDesk GLPI; suporte a usuários; redes e servidores; microinformática; cabeamento; roteadores/switches.', en: 'GLPI ServiceDesk; user support; networks and servers; desktop support; cabling; routers/switches.' },
     points: [
@@ -256,7 +257,7 @@ export function getCV(lang: Lang): CVData {
     metrics: METRICS_L.map(m => ({ count: m.count, suffix: m.suffix, label: p(m.label, lang) })),
     terminal: arr(TERMINAL_L, lang),
     caps: CAPS_L.map(c => ({ icon: c.icon, h: p(c.h, lang), d: p(c.d, lang) })),
-    jobs: JOBS_L.map(j => ({ role: p(j.role, lang), org: j.org, loc: j.loc ? p(j.loc, lang) : undefined, period: p(j.period, lang), open: j.open, filter: j.filter, desc: p(j.desc, lang), points: arr(j.points, lang) })),
+    jobs: JOBS_L.map(j => ({ role: p(j.role, lang), org: j.org, loc: j.loc ? p(j.loc, lang) : undefined, start: j.start, end: j.end, period: p(j.period, lang), open: j.open, filter: j.filter, desc: p(j.desc, lang), points: arr(j.points, lang) })),
     skills: SKILLS_L.map(s => ({ title: p(s.title, lang), level: s.level, icon: s.icon, chips: s.chips })),
     certs: CERTS_L.map(c => ({ title: p(c.title, lang), sub: p(c.sub, lang), cred: c.cred })),
     edu: EDU_L.map(e => ({ title: p(e.title, lang), sub: p(e.sub, lang) })),

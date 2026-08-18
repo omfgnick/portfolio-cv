@@ -9,6 +9,8 @@ import {
 import styles from './Home.module.css'
 import aurora from '@/components/aurora/aurora.module.css'
 import AuroraCanvas from '@/components/aurora/AuroraCanvas'
+import { useSpotlight } from '@/components/aurora/useSpotlight'
+import { useTilt } from '@/components/aurora/useTilt'
 import Counter from '@/components/Counter'
 import QRCode from '@/components/qr/QRCode'
 import CommandPalette, { type CmdItem } from '@/components/CommandPalette'
@@ -86,7 +88,13 @@ export default function Home() {
     } catch { return 'pt' }
   })
   const searchRef = useRef<HTMLInputElement>(null)
+  const skillsRef = useRef<HTMLDivElement>(null)
+  const heroRef = useRef<HTMLElement>(null)
+  const termRef = useRef<HTMLDivElement>(null)
   const visits = useVisits()
+
+  useSpotlight(skillsRef)
+  useTilt(heroRef, termRef, { baseX: 0, rangeX: 6, rangeY: 8 })
 
   const t = UI[lang]
   const cv = getCV(lang)
@@ -233,7 +241,7 @@ export default function Home() {
 
         <main className={styles.content}>
           {/* HERO */}
-          <section className={styles.hero}>
+          <section ref={heroRef} className={styles.hero}>
             <div className={`${styles.panel} ${styles.heroMain}`}>
               <div className={styles.panelHead}><span className={styles.phId}>OPR·001</span><span className={styles.phDots}><i /><i /><i /></span><span className={styles.phStatus}>DOSSIER</span></div>
               <div className={styles.heroBody}>
@@ -255,7 +263,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className={`${styles.panel} ${styles.term}`} aria-hidden="true">
+            <div ref={termRef} className={`${styles.panel} ${styles.term}`} aria-hidden="true">
               <div className={styles.panelHead}><span className={styles.phId}>TTY·0</span><span className={styles.phDots}><i /><i /><i /></span><span className={styles.phStatus}>noc@vivo</span></div>
               <div className={styles.termBody}>
                 {cv.terminal.slice(0, shownLines).map((line, i) => {
@@ -349,7 +357,7 @@ export default function Home() {
           {/* SKILLS */}
           <section id="skills" className={styles.section}>
             <SecHead cmd={t.sectionTitle.skills} tag="03" />
-            <div className={styles.skills}>
+            <div ref={skillsRef} className={styles.skills}>
               {skills.length === 0 && <p className={styles.empty}>{t.emptySkill}</p>}
               {skills.map(s => (
                 <div key={s.title} className={`${styles.panel} ${styles.skill} ${styles.reveal}`} data-reveal>

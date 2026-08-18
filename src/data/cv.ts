@@ -210,10 +210,8 @@ const CONTACTS_L: { type: string; label: L; value: string; href?: string; copy?:
 ]
 
 const PROJECTS_L: { name: string; desc: L; tags: string[]; url: string }[] = [
-  { name: 'Powershell-Scripts', tags: ['PowerShell', 'Automation', 'NOC/Ops'], url: 'https://github.com/omfgnick/Powershell-Scripts',
-    desc: { pt: 'Utilitários de automação para infra Windows: backup + retenção, health-checks (disco, serviços, endpoints), triagem de eventos, expiração de TLS e auditoria de contas locais — com CI de lint (PSScriptAnalyzer).', en: 'Windows-infra automation utilities: backup + retention, health-checks (disk, services, endpoints), event triage, TLS expiry and local-account auditing — with lint CI (PSScriptAnalyzer).' } },
-  { name: 'Bash-Scripts', tags: ['Bash', 'Security', 'Backup'], url: 'https://github.com/omfgnick/Bash-Scripts',
-    desc: { pt: 'Scripts Bash para infraestrutura e segurança: backup compactado com verificação de integridade e port-scan com classificação de vulnerabilidade.', en: 'Bash scripts for infrastructure and security: compressed backup with integrity check and a port scan with vulnerability rating.' } },
+  { name: 'ops-toolkit', tags: ['Bash', 'PowerShell', 'NOC/Ops', 'CI'], url: 'https://github.com/omfgnick/ops-toolkit',
+    desc: { pt: '25 scripts de operação em Bash e PowerShell: triagem de incidente, saúde de serviços, disco, endpoints, validade de TLS, backup verificado por restore e auditoria de hardening. Contrato único (--json, --dry-run, códigos de saída) e 10 jobs de CI — testes em Ubuntu/Debian/Rocky, schemas da saída JSON e análise estática.', en: '25 operations scripts in Bash and PowerShell: incident triage, service health, disk, endpoints, TLS expiry, restore-verified backup and hardening audit. One contract across all of them (--json, --dry-run, exit codes) and 10 CI jobs — tests on Ubuntu/Debian/Rocky, JSON output schemas and static analysis.' } },
   { name: 'portfolio-cv', tags: ['React', 'TypeScript', 'Vite'], url: 'https://github.com/omfgnick/portfolio-cv',
     desc: { pt: 'Este currículo — Vite + React + TypeScript, HUD cyberpunk, QR real gerado do zero e contador de visitas por país (Cloudflare Worker + KV).', en: 'This résumé — Vite + React + TypeScript, cyberpunk HUD, a from-scratch scannable QR and a per-country visitor counter (Cloudflare Worker + KV).' } },
 ]

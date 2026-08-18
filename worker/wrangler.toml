@@ -6,4 +6,4 @@ compatibility_date = "2024-11-01"
 #   npx wrangler kv namespace create VISITS
 [[kv_namespaces]]
 binding = "VISITS"
-id = "SUBSTITUA_PELO_ID_DO_KV"
+id = "501c17e351e846ef9c6985140464749f"

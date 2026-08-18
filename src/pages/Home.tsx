@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   Search, ChevronDown, Copy, Check, Printer, ArrowUp, MessageCircle,
   Linkedin, Github, Mail, Phone, MapPin, ExternalLink, ChevronRight,
-  User, Briefcase, Cpu, Award, Radio, Download, Command, Globe, FolderGit2, ArrowUpRight,
+  User, Briefcase, Cpu, Award, Radio, Download, Command, Globe, FolderGit2, ArrowUpRight, Sun, Moon,
   Headphones, Radar, ShieldAlert, ListChecks, Lock, Terminal,
   Activity, Network, DatabaseBackup, ShieldCheck, Server, Cloud, type LucideIcon,
 } from 'lucide-react'
@@ -87,8 +87,20 @@ export default function Home() {
   const [active, setActive] = useState('about')
   const [clock, setClock] = useState('--:--:--')
   const [paletteOpen, setPaletteOpen] = useState(false)
+  const [theme, setTheme] = useState<'dark' | 'light'>(
+    () => (typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark'),
+  )
   const searchRef = useRef<HTMLInputElement>(null)
   const visits = useVisits()
+
+  const toggleTheme = () => {
+    const next = theme === 'dark' ? 'light' : 'dark'
+    setTheme(next)
+    document.documentElement.setAttribute('data-theme', next)
+    try { localStorage.setItem('nm_theme', next) } catch { /* noop */ }
+    const meta = document.querySelector('meta[name="theme-color"]')
+    if (meta) meta.setAttribute('content', next === 'light' ? '#f3f7f5' : '#04110d')
+  }
 
   useReveal(styles.visible)
 
@@ -190,6 +202,9 @@ export default function Home() {
             <input ref={searchRef} value={query} onChange={e => setQuery(e.target.value)} type="search" placeholder="filter --experiencia --skill --ferramenta" aria-label="Buscar" autoComplete="off" />
             <span className={styles.kbd}>/</span>
           </label>
+          <button className={styles.hudIcon} type="button" onClick={toggleTheme} aria-label="Alternar tema claro/escuro" title="Tema claro/escuro">
+            {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
+          </button>
           <button className={styles.hudCmd} type="button" onClick={() => setPaletteOpen(true)} aria-label="Abrir command palette (Ctrl/Cmd + K)">
             <Command size={13} /> K
           </button>

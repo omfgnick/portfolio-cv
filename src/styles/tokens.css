@@ -88,4 +88,53 @@
   --radius-pill: 999px;
   --shadow-card: 0 22px 60px rgba(2, 6, 10, 0.55);
   --ease: cubic-bezier(0.2, 0.75, 0.2, 1);
+  color-scheme: dark;
+}
+
+/* ── Tema CLARO ─────────────────────────────────────────────────
+   Mantém a identidade Afterlife (verde-teal), mas com acentos mais
+   escuros para contraste em superfícies claras. */
+:root[data-theme="light"] {
+  --emerald-900: #d1fae5;
+  --emerald-700: #0a7f5f;
+  --emerald-600: #0a8f68;
+  --emerald-500: #0a8f68;
+  --emerald-400: #0c9d70;
+  --emerald-300: #0a7f5f;
+
+  --lime-600: #a15c00;
+  --lime-500: #b06a00;
+  --lime-400: #c07a00;
+
+  --aurora-cyan:   #0e8f88;
+  --aurora-violet: #6d3bd6;
+  --amber-400:     #b06a00;
+  --rose-400:      #d13a4e;
+
+  --noir-1: #f3f7f5;
+  --noir-2: #ffffff;
+  --noir-3: #eef4f1;
+
+  --grad-aurora: linear-gradient(95deg, var(--emerald-600) 0%, var(--aurora-cyan) 52%, var(--aurora-violet) 100%);
+  --grad-brand:  linear-gradient(135deg, var(--emerald-600) 0%, var(--aurora-cyan) 100%);
+  --aurora-line:  rgba(10, 120, 100, 0.14);
+  --aurora-line2: rgba(10, 120, 100, 0.26);
+  --aurora-glass: rgba(255, 255, 255, 0.7);
+  --glow-emerald: 0 14px 40px -16px rgba(10, 143, 104, 0.45);
+
+  --surface-base:    var(--noir-1);
+  --surface-raised:  var(--noir-2);
+  --surface-overlay: var(--noir-2);
+  --card-bg:         rgba(255, 255, 255, 0.72);
+  --card-border:     rgba(12, 40, 32, 0.10);
+
+  --text-primary:   #0b1a16;
+  --text-secondary: rgba(11, 26, 22, 0.72);
+  --text-tertiary:  rgba(11, 26, 22, 0.52);
+  --border:         rgba(12, 40, 32, 0.10);
+  --border-strong:  rgba(12, 40, 32, 0.18);
+  --border-focus:   var(--emerald-600);
+
+  --shadow-card: 0 18px 48px rgba(15, 40, 33, 0.10);
+  color-scheme: light;
 }

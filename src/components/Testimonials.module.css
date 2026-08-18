@@ -37,13 +37,14 @@
 }
 .rel {
   font-family: var(--font-mono); font-size: .66rem; letter-spacing: .04em;
-  color: var(--text-tertiary, var(--text-secondary)); opacity: .8; margin-top: 3px;
+  /* sem opacidade extra: texto miúdo precisa de 4.5:1 (WCAG AA) */
+  color: var(--text-secondary); margin-top: 3px;
 }
 
 /* Aviso de que a citação foi traduzida do português */
 .translated {
   font-family: var(--font-mono); font-size: .64rem; letter-spacing: .05em;
-  color: var(--text-tertiary, var(--text-secondary)); opacity: .65; font-style: italic;
+  color: var(--text-secondary); font-style: italic;
 }
 
 .source {

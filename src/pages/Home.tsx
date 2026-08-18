@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import {
   Search, ChevronDown, Copy, Check, Printer, ArrowUp, MessageCircle,
   Linkedin, Github, Mail, Phone, MapPin, ExternalLink, ChevronRight,
-  User, Briefcase, Cpu, Award, Radio, Download, Command, Globe, FolderGit2, ArrowUpRight, Sun, Moon, Languages, FileText, Link2, Quote,
+  User, Briefcase, Cpu, Award, Radio, Download, Command, Globe, FolderGit2, ArrowUpRight, Sun, Moon, Languages, FileText, Link2, Quote, Gauge,
   Headphones, Radar, ShieldAlert, ListChecks, Lock, Terminal,
   Activity, Network, DatabaseBackup, ShieldCheck, Server, Cloud, type LucideIcon,
 } from 'lucide-react'
@@ -20,6 +20,7 @@ import ShortcutsHelp from '@/components/ShortcutsHelp'
 import TerminalPanel from '@/components/Terminal'
 import Testimonials from '@/components/Testimonials'
 import Timeline from '@/components/Timeline'
+import RecruiterView from '@/components/RecruiterView'
 import { useReveal } from '@/hooks/useReveal'
 import { useVisits } from '@/hooks/useVisits'
 import { downloadVCard } from '@/lib/vcard'
@@ -106,6 +107,10 @@ export default function Home() {
       return 'pt'
     } catch { return 'pt' }
   })
+  // ?view=quick abre direto no resumo — o link é compartilhável
+  const [recruiter, setRecruiter] = useState(() => {
+    try { return new URLSearchParams(window.location.search).get('view') === 'quick' } catch { return false }
+  })
   const searchRef = useRef<HTMLInputElement>(null)
   const skillsRef = useRef<HTMLDivElement>(null)
   const heroRef = useRef<HTMLElement>(null)
@@ -135,6 +140,14 @@ export default function Home() {
   }
 
   useReveal(styles.visible)
+
+  // Reflete o resumo na URL sem empilhar histórico
+  useEffect(() => {
+    const u = new URL(window.location.href)
+    if (recruiter) u.searchParams.set('view', 'quick')
+    else u.searchParams.delete('view')
+    history.replaceState(null, '', u.pathname + u.search + u.hash)
+  }, [recruiter])
 
   // Mantém <html lang> coerente (o HTML nasce pt-BR; a detecção pode dar 'en')
   useEffect(() => {
@@ -214,6 +227,7 @@ export default function Home() {
 
   const goto = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   const cmdItems: CmdItem[] = [
+    { id: 'recruiter', label: t.rvOpen, icon: Gauge, run: () => setRecruiter(true) },
     ...NAV.map(n => ({ id: `go-${n.id}`, label: `${t.goTo} ${t.navLabels[n.id]}`, icon: n.icon, run: () => goto(n.id) })),
     { id: 'linkedin', label: t.cmdLinkedin, hint: 'nicolasmesquita', icon: Linkedin, run: () => window.open(P.linkedin, '_blank', 'noopener') },
     { id: 'github', label: t.cmdGithub, hint: 'omfgnick', icon: Github, run: () => window.open(P.github, '_blank', 'noopener') },
@@ -268,6 +282,10 @@ export default function Home() {
           </button>
           <button className={styles.hudIcon} type="button" onClick={toggleTheme} aria-label={t.themeToggle} title={t.themeToggle} data-testid="theme-toggle">
             {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
+          </button>
+          <button className={styles.hudIcon} type="button" onClick={() => setRecruiter(true)}
+            aria-label={t.rvOpen} title={t.rvOpen} data-testid="recruiter-open">
+            <Gauge size={14} />
           </button>
           <button className={styles.hudCmd} type="button" onClick={() => setPaletteOpen(true)} aria-label="Command palette (Ctrl/Cmd + K)">
             <Command size={13} /> K
@@ -480,6 +498,13 @@ export default function Home() {
         </main>
       </div>
 
+      {recruiter && (
+        <RecruiterView
+          cv={cv} pdfUrl={pdfUrl} waUrl={waUrl} email="omfg_nick@hotmail.com"
+          onClose={() => setRecruiter(false)}
+          ui={{ title: t.rvTitle, close: t.rvFull, now: t.rvNow, stack: t.rvStack, certs: t.rvCerts, pdf: t.rvPdf, email: t.rvEmail, seeFull: t.rvFull }}
+        />
+      )}
       <CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)} items={cmdItems} ui={t} />
       <ShortcutsHelp open={helpOpen} onClose={() => setHelpOpen(false)} lang={lang} />
     </div>

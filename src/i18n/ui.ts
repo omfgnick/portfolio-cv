@@ -25,6 +25,7 @@ export interface UIStrings {
   copyLink: string; linkCopied: string
   verifyOn: string; translated: string
   tlYears: string; tlRoles: string; tlHint: string
+  rvOpen: string; rvTitle: string; rvNow: string; rvStack: string; rvCerts: string; rvPdf: string; rvEmail: string; rvFull: string
   themeToggle: string; langToggle: string
   // visitor panel
   visits: string; live: string; last14: string; topCountries: string; source: string; waiting: string; visitCount: string; direct: string; noReferrer: string
@@ -56,6 +57,8 @@ export const UI: Record<Lang, UIStrings> = {
     copyLink: 'Copiar link desta seção', linkCopied: 'link copiado',
     verifyOn: 'ver as recomendações no LinkedIn', translated: '',
     tlYears: 'anos de trajetória', tlRoles: 'posições', tlHint: 'clique numa barra para abrir a experiência',
+    rvOpen: 'Resumo rápido (30s)', rvTitle: 'RESUMO EXECUTIVO // 30 SEGUNDOS', rvNow: '// POSIÇÃO MAIS RECENTE',
+    rvStack: '// STACK PRINCIPAL', rvCerts: '// CERTIFICAÇÕES', rvPdf: 'Baixar CV (PDF)', rvEmail: 'E-mail', rvFull: 'ver o currículo completo →',
     themeToggle: 'Tema claro/escuro', langToggle: 'Idioma PT/EN',
     visits: 'visitas', live: 'ao vivo', last14: 'ÚLTIMOS 14 DIAS', topCountries: 'TOP PAÍSES', source: 'ORIGEM', waiting: 'aguardando…', visitCount: 'visita(s)', direct: 'direto', noReferrer: 'sem referrer',
   },
@@ -84,6 +87,8 @@ export const UI: Record<Lang, UIStrings> = {
     copyLink: 'Copy link to this section', linkCopied: 'link copied',
     verifyOn: 'see the recommendations on LinkedIn', translated: 'translated from Portuguese',
     tlYears: 'years of career', tlRoles: 'roles', tlHint: 'click a bar to open that role',
+    rvOpen: 'Quick summary (30s)', rvTitle: 'EXECUTIVE SUMMARY // 30 SECONDS', rvNow: '// MOST RECENT ROLE',
+    rvStack: '// CORE STACK', rvCerts: '// CERTIFICATIONS', rvPdf: 'Download CV (PDF)', rvEmail: 'E-mail', rvFull: 'see the full résumé →',
     themeToggle: 'Light/dark theme', langToggle: 'Language PT/EN',
     visits: 'visits', live: 'live', last14: 'LAST 14 DAYS', topCountries: 'TOP COUNTRIES', source: 'SOURCE', waiting: 'waiting…', visitCount: 'visit(s)', direct: 'direct', noReferrer: 'no referrer',
   },

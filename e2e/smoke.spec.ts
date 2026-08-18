@@ -94,13 +94,50 @@ test.describe('portfolio-cv', () => {
     await expect(page.locator('#job-7')).toHaveAttribute('data-open', 'true')
   })
 
-  test('sem violações sérias de acessibilidade (axe)', async ({ page }) => {
+  test('modo recrutador abre, fecha e limpa a URL', async ({ page }) => {
+    await page.getByTestId('recruiter-open').click()
+    const dialog = page.getByRole('dialog', { name: /30 (segundos|seconds)/i })
+    await expect(dialog).toBeVisible()
+    await expect(page).toHaveURL(/view=quick/)
+    await expect(dialog.getByTestId('rv-pdf')).toHaveAttribute('download', '')
+    await page.keyboard.press('Escape')
+    await expect(dialog).toHaveCount(0)
+    await expect(page).not.toHaveURL(/view=quick/)
+  })
+
+  test('?view=quick abre o resumo direto e cabe numa tela', async ({ page }) => {
+    await page.goto('./?view=quick')
+    const card = page.locator('[role=dialog] > div')
+    await expect(card).toBeVisible()
+    const fits = await card.evaluate(el => el.scrollHeight <= el.clientHeight + 2)
+    expect(fits, 'o resumo deve caber sem rolagem').toBe(true)
+  })
+
+  async function axeCheck(page: import('@playwright/test').Page) {
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
       .analyze()
     const serious = results.violations.filter(v => v.impact === 'serious' || v.impact === 'critical')
-    const summary = serious.map(v => `${v.id} (${v.impact}) — ${v.nodes.length}x`).join('\n')
-    expect(serious, summary).toEqual([])
+    return serious.map(v => `${v.id} (${v.impact}) — ${v.nodes.length}x: ${v.nodes[0]?.html?.slice(0, 90)}`)
+  }
+
+  test('sem violações sérias de acessibilidade (axe)', async ({ page }) => {
+    const found = await axeCheck(page)
+    expect(found, found.join('\n')).toEqual([])
+  })
+
+  test('acessibilidade também no tema claro', async ({ page }) => {
+    await page.getByTestId('theme-toggle').click()
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
+    const found = await axeCheck(page)
+    expect(found, found.join('\n')).toEqual([])
+  })
+
+  test('acessibilidade no modo recrutador', async ({ page }) => {
+    await page.getByTestId('recruiter-open').click()
+    await expect(page.getByRole('dialog')).toBeVisible()
+    const found = await axeCheck(page)
+    expect(found, found.join('\n')).toEqual([])
   })
 })
 

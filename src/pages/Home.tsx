@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import {
   Search, ChevronDown, Copy, Check, Printer, ArrowUp, MessageCircle,
   Linkedin, Github, Mail, Phone, MapPin, ExternalLink, ChevronRight,
@@ -8,24 +8,32 @@ import {
 } from 'lucide-react'
 import styles from './Home.module.css'
 import aurora from '@/components/aurora/aurora.module.css'
-import AuroraCanvas from '@/components/aurora/AuroraCanvas'
 import { useSpotlight } from '@/components/aurora/useSpotlight'
 import { useTilt } from '@/components/aurora/useTilt'
 import Counter from '@/components/Counter'
-import QRCode from '@/components/qr/QRCode'
-import CommandPalette, { type CmdItem } from '@/components/CommandPalette'
-import VisitorPanel from '@/components/VisitorPanel'
+import { type CmdItem } from '@/components/CommandPalette'
 import BootScreen from '@/components/BootScreen'
-import ShortcutsHelp from '@/components/ShortcutsHelp'
 import TerminalPanel from '@/components/Terminal'
 import Testimonials from '@/components/Testimonials'
 import Timeline from '@/components/Timeline'
-import RecruiterView from '@/components/RecruiterView'
 import { useReveal } from '@/hooks/useReveal'
 import { useVisits } from '@/hooks/useVisits'
 import { downloadVCard } from '@/lib/vcard'
 import { getCV, type Lang, LINKEDIN_QR, AVAILABILITY, getAvailabilityNote } from '@/data/cv'
 import { UI } from '@/i18n/ui'
+
+/*
+ * Code-splitting: nada aqui é necessário para a primeira pintura.
+ * O fundo WebGL, o QR (encoder próprio), o painel de visitas e os três
+ * overlays só chegam quando realmente aparecem — nenhum deles injeta
+ * [data-reveal], então as animações de scroll seguem intactas.
+ */
+const AuroraCanvas = lazy(() => import('@/components/aurora/AuroraCanvas'))
+const QRCode = lazy(() => import('@/components/qr/QRCode'))
+const VisitorPanel = lazy(() => import('@/components/VisitorPanel'))
+const CommandPalette = lazy(() => import('@/components/CommandPalette'))
+const ShortcutsHelp = lazy(() => import('@/components/ShortcutsHelp'))
+const RecruiterView = lazy(() => import('@/components/RecruiterView'))
 
 const NAV = [
   { id: 'about', icon: User },
@@ -242,7 +250,7 @@ export default function Home() {
     <div className={styles.shell}>
       <a className={styles.skip} href="#main-content">{t.skipToContent}</a>
       <BootScreen skipText={t.bootSkip} />
-      <AuroraCanvas className={styles.auroraBg} />
+      <Suspense fallback={null}><AuroraCanvas className={styles.auroraBg} /></Suspense>
       <div className={styles.gridBg} aria-hidden="true" />
       <div className={styles.scan} aria-hidden="true" />
       <div className={styles.progress} aria-hidden="true"><span style={{ transform: `scaleX(${scrollPct})` }} /></div>
@@ -338,7 +346,7 @@ export default function Home() {
             ))}
           </section>
 
-          <VisitorPanel data={visits} lang={lang} />
+          <Suspense fallback={null}><VisitorPanel data={visits} lang={lang} /></Suspense>
 
           {/* ABOUT */}
           <section id="about" className={styles.section}>
@@ -485,7 +493,7 @@ export default function Home() {
                 ))}
               </div>
               <div className={`${styles.panel} ${styles.qrPanel} ${styles.reveal}`} data-reveal>
-                <div className={styles.qrBox}><QRCode text={LINKEDIN_QR} size={132} /></div>
+                <div className={styles.qrBox}><Suspense fallback={null}><QRCode text={LINKEDIN_QR} size={132} /></Suspense></div>
                 <div className={styles.qrText}><div className={styles.qrT}>{t.qrTitle}</div><div className={styles.qrD}>{t.qrDesc}</div></div>
               </div>
             </div>
@@ -498,15 +506,18 @@ export default function Home() {
         </main>
       </div>
 
-      {recruiter && (
-        <RecruiterView
-          cv={cv} pdfUrl={pdfUrl} waUrl={waUrl} email="omfg_nick@hotmail.com"
-          onClose={() => setRecruiter(false)}
-          ui={{ title: t.rvTitle, close: t.rvFull, now: t.rvNow, stack: t.rvStack, certs: t.rvCerts, pdf: t.rvPdf, email: t.rvEmail, seeFull: t.rvFull }}
-        />
-      )}
-      <CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)} items={cmdItems} ui={t} />
-      <ShortcutsHelp open={helpOpen} onClose={() => setHelpOpen(false)} lang={lang} />
+      {/* Só montam quando abertos — assim o chunk também só baixa nesse momento */}
+      <Suspense fallback={null}>
+        {recruiter && (
+          <RecruiterView
+            cv={cv} pdfUrl={pdfUrl} waUrl={waUrl} email="omfg_nick@hotmail.com"
+            onClose={() => setRecruiter(false)}
+            ui={{ title: t.rvTitle, close: t.rvFull, now: t.rvNow, stack: t.rvStack, certs: t.rvCerts, pdf: t.rvPdf, email: t.rvEmail, seeFull: t.rvFull }}
+          />
+        )}
+        {paletteOpen && <CommandPalette open onClose={() => setPaletteOpen(false)} items={cmdItems} ui={t} />}
+        {helpOpen && <ShortcutsHelp open onClose={() => setHelpOpen(false)} lang={lang} />}
+      </Suspense>
     </div>
   )
 }

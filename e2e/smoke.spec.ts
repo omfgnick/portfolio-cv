@@ -113,6 +113,10 @@ test.describe('portfolio-cv', () => {
     expect(fits, 'o resumo deve caber sem rolagem').toBe(true)
   })
 
+  // A varredura do axe nesta página leva ~25s; com vários workers em paralelo
+  // o limite padrão de 30s estoura (falha por tempo, não por violação).
+  const AXE_TIMEOUT = 90_000
+
   async function axeCheck(page: import('@playwright/test').Page) {
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
@@ -122,11 +126,13 @@ test.describe('portfolio-cv', () => {
   }
 
   test('sem violações sérias de acessibilidade (axe)', async ({ page }) => {
+    test.setTimeout(AXE_TIMEOUT)
     const found = await axeCheck(page)
     expect(found, found.join('\n')).toEqual([])
   })
 
   test('acessibilidade também no tema claro', async ({ page }) => {
+    test.setTimeout(AXE_TIMEOUT)
     await page.getByTestId('theme-toggle').click()
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
     const found = await axeCheck(page)
@@ -134,6 +140,7 @@ test.describe('portfolio-cv', () => {
   })
 
   test('acessibilidade no modo recrutador', async ({ page }) => {
+    test.setTimeout(AXE_TIMEOUT)
     await page.getByTestId('recruiter-open').click()
     await expect(page.getByRole('dialog')).toBeVisible()
     const found = await axeCheck(page)

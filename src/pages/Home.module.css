@@ -213,6 +213,21 @@
 .chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
 .chip { font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); border: 1px solid var(--border); background: var(--card-bg); padding: 5px 9px; }
 
+/* ── Projects ──────────────────────────────────────────────── */
+.projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+@media (max-width: 900px) { .projects { grid-template-columns: 1fr; } }
+.project { padding: 16px; display: flex; flex-direction: column; gap: 10px; color: inherit; text-decoration: none; transition: transform .16s var(--ease), border-color .2s; }
+.project:hover { transform: translateY(-3px); text-decoration: none; }
+.projHead { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.projName { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-weight: 700; font-size: 13px; color: var(--text-primary); }
+.projName svg { color: var(--emerald-400); }
+.projArrow { color: var(--text-tertiary); transition: color .2s, transform .2s; }
+.project:hover .projArrow { color: var(--emerald-300); transform: translate(2px, -2px); }
+.projDesc { flex: 1; font-size: 12.5px; color: var(--text-secondary); line-height: 1.55; margin: 0; }
+.projTags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.verifyLink { display: inline-flex; align-items: center; gap: 5px; margin-top: 12px; font-family: var(--font-mono); font-size: 11px; color: var(--emerald-300); }
+
 /* ── Contact ───────────────────────────────────────────────── */
 .contactGrid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 18px; align-items: start; }
 @media (max-width: 880px) { .contactGrid { grid-template-columns: 1fr; } }

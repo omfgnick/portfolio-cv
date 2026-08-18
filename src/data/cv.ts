@@ -170,4 +170,26 @@ export const CONTACTS: Contact[] = [
   { type: 'location', label: 'Localização', value: 'São Paulo, Brasil', icon: 'MapPin' },
 ]
 
+export interface Project { name: string; desc: string; tags: string[]; url: string }
+export const PROJECTS: Project[] = [
+  {
+    name: 'Powershell-Scripts',
+    desc: 'Utilitários de automação para infra Windows: backup + retenção, health-checks (disco, serviços, endpoints), triagem de eventos, expiração de TLS e auditoria de contas locais — com CI de lint (PSScriptAnalyzer).',
+    tags: ['PowerShell', 'Automação', 'NOC/Ops'],
+    url: 'https://github.com/omfgnick/Powershell-Scripts',
+  },
+  {
+    name: 'Bash-Scripts',
+    desc: 'Scripts Bash para infraestrutura e segurança: backup compactado com verificação de integridade e port-scan com classificação de vulnerabilidade.',
+    tags: ['Bash', 'Segurança', 'Backup'],
+    url: 'https://github.com/omfgnick/Bash-Scripts',
+  },
+  {
+    name: 'portfolio-cv',
+    desc: 'Este currículo — Vite + React + TypeScript, HUD cyberpunk, QR real gerado do zero e contador de visitas por país (Cloudflare Worker + KV).',
+    tags: ['React', 'TypeScript', 'Vite'],
+    url: 'https://github.com/omfgnick/portfolio-cv',
+  },
+]
+
 export const LINKEDIN_QR = 'https://www.linkedin.com/in/nicolasmesquita/'

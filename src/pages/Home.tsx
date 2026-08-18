@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   Search, ChevronDown, Copy, Check, Printer, ArrowUp, MessageCircle,
   Linkedin, Github, Mail, Phone, MapPin, ExternalLink, ChevronRight,
-  User, Briefcase, Cpu, Award, Radio, Download, Command, Globe,
+  User, Briefcase, Cpu, Award, Radio, Download, Command, Globe, FolderGit2, ArrowUpRight,
   Headphones, Radar, ShieldAlert, ListChecks, Lock, Terminal,
   Activity, Network, DatabaseBackup, ShieldCheck, Server, Cloud, type LucideIcon,
 } from 'lucide-react'
@@ -13,15 +13,16 @@ import Counter from '@/components/Counter'
 import QRCode from '@/components/qr/QRCode'
 import CommandPalette, { type CmdItem } from '@/components/CommandPalette'
 import VisitorPanel from '@/components/VisitorPanel'
+import BootScreen from '@/components/BootScreen'
 import { useReveal } from '@/hooks/useReveal'
 import { useVisits } from '@/hooks/useVisits'
 import { downloadVCard } from '@/lib/vcard'
 import {
-  PROFILE, METRICS, TERMINAL, CAPS, JOBS, SKILLS, CERTS, EDU, CONTACTS, LINKEDIN_QR,
+  PROFILE, METRICS, TERMINAL, CAPS, JOBS, SKILLS, CERTS, EDU, CONTACTS, PROJECTS, LINKEDIN_QR,
 } from '@/data/cv'
 
 const SECTION_LABEL: Record<string, string> = {
-  about: 'Perfil', experience: 'Experiência', skills: 'Skills', credentials: 'Credenciais', contact: 'Contato',
+  about: 'Perfil', experience: 'Experiência', skills: 'Skills', projects: 'Projetos', credentials: 'Credenciais', contact: 'Contato',
 }
 
 const ICONS: Record<string, LucideIcon> = {
@@ -38,6 +39,7 @@ const NAV = [
   { id: 'about', label: 'PERFIL', icon: User },
   { id: 'experience', label: 'EXP', icon: Briefcase },
   { id: 'skills', label: 'SKILLS', icon: Cpu },
+  { id: 'projects', label: 'PROJ', icon: FolderGit2 },
   { id: 'credentials', label: 'CRED', icon: Award },
   { id: 'contact', label: 'LINK', icon: Radio },
 ]
@@ -46,6 +48,7 @@ const CMD: Record<string, string> = {
   about: '~/profile $ whoami',
   experience: '~/logs $ cat operational_history',
   skills: '~/sys $ ls tooling_matrix',
+  projects: '~/repos $ git log --oneline',
   credentials: '~/creds $ verify --all',
   contact: '~/net $ connect --secure',
 }
@@ -150,6 +153,7 @@ export default function Home() {
 
   return (
     <div className={styles.shell}>
+      <BootScreen />
       <AuroraCanvas className={styles.auroraBg} />
       <div className={styles.gridBg} aria-hidden="true" />
       <div className={styles.scan} aria-hidden="true" />
@@ -326,9 +330,27 @@ export default function Home() {
             </div>
           </section>
 
+          {/* PROJECTS */}
+          <section id="projects" className={styles.section}>
+            <SecHead id="projects" tag="04" />
+            <div className={styles.projects}>
+              {PROJECTS.map(p => (
+                <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer nofollow"
+                  className={`${styles.panel} ${styles.project} ${styles.reveal}`} data-reveal>
+                  <div className={styles.projHead}>
+                    <span className={styles.projName}><FolderGit2 size={15} /> {p.name}</span>
+                    <ArrowUpRight size={15} className={styles.projArrow} />
+                  </div>
+                  <p className={styles.projDesc}>{p.desc}</p>
+                  <div className={styles.projTags}>{p.tags.map(t => <span key={t} className={styles.chip}>{t}</span>)}</div>
+                </a>
+              ))}
+            </div>
+          </section>
+
           {/* CREDENTIALS */}
           <section id="credentials" className={styles.section}>
-            <SecHead id="credentials" tag="04" />
+            <SecHead id="credentials" tag="05" />
             <div className={styles.cols}>
               <div className={`${styles.panel} ${styles.pad} ${styles.reveal}`} data-reveal>
                 <div className={styles.subhead}>// CERTIFICAÇÕES</div>
@@ -337,6 +359,7 @@ export default function Home() {
                     <div key={c.title} className={styles.snapRow}><ShieldCheck size={16} /><div><div className={styles.snapT}>{c.title}</div><div className={styles.snapS}>{c.sub}</div>{c.cred && <div className={styles.cred}>cred: {c.cred}</div>}</div></div>
                   ))}
                 </div>
+                <a className={styles.verifyLink} href={PROFILE.linkedin} target="_blank" rel="noopener noreferrer nofollow">verificar credenciais no LinkedIn <ArrowUpRight size={12} /></a>
               </div>
               <div className={`${styles.panel} ${styles.pad} ${styles.reveal}`} data-reveal>
                 <div className={styles.subhead}>// FORMAÇÃO</div>
@@ -349,7 +372,7 @@ export default function Home() {
 
           {/* CONTACT */}
           <section id="contact" className={styles.section}>
-            <SecHead id="contact" tag="05" />
+            <SecHead id="contact" tag="06" />
             <div className={styles.contactGrid}>
               <div className={`${styles.panel} ${styles.pad} ${styles.reveal}`} data-reveal>
                 {CONTACTS.map(c => (

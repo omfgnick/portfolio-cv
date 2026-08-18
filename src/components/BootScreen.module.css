@@ -1,0 +1,21 @@
+.boot {
+  position: fixed; inset: 0; z-index: 300; display: flex; flex-direction: column;
+  justify-content: center; align-items: flex-start; gap: 18px; padding: 8vw;
+  background:
+    radial-gradient(60% 60% at 30% 30%, rgba(53,240,176,.10), transparent 60%),
+    #04110d;
+  animation: bootIn .2s ease;
+}
+.boot.closing { animation: bootOut .34s ease forwards; }
+@keyframes bootIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes bootOut { to { opacity: 0; visibility: hidden; } }
+
+.term { font-family: var(--font-mono); font-size: clamp(12px, 2.4vw, 15px); line-height: 1.9; color: var(--emerald-300); max-width: 640px; }
+.line { white-space: pre-wrap; }
+.p { color: var(--aurora-cyan); margin-right: 6px; }
+.caret { display: inline-block; width: 8px; height: 1.05em; vertical-align: -2px; background: var(--lime-500); margin-left: 4px; animation: bl 1s steps(1) infinite; }
+@keyframes bl { 50% { opacity: 0; } }
+
+.skip { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; color: var(--text-tertiary); }
+
+@media (prefers-reduced-motion: reduce) { .boot { display: none !important; } }

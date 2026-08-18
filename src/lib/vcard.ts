@@ -1,4 +1,4 @@
-import { PROFILE } from '@/data/cv'
+import { PROFILE_INFO as PROFILE } from '@/data/cv'
 
 /** Gera e baixa um vCard (.vcf) com os dados de contato do perfil. */
 export function downloadVCard(): void {

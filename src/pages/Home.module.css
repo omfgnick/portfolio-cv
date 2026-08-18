@@ -70,9 +70,10 @@
   color: var(--text-tertiary); border: 1px solid var(--border); background: var(--card-bg); padding: 6px 9px; cursor: pointer;
   transition: color .18s, border-color .18s; white-space: nowrap; }
 .hudCmd:hover { color: var(--emerald-300); border-color: var(--aurora-line2); }
-.hudIcon { display: inline-grid; place-items: center; width: 30px; height: 29px; color: var(--text-tertiary);
-  border: 1px solid var(--border); background: var(--card-bg); cursor: pointer; transition: color .18s, border-color .18s; }
+.hudIcon { display: inline-flex; align-items: center; gap: 5px; min-height: 29px; padding: 0 8px; color: var(--text-tertiary);
+  border: 1px solid var(--border); background: var(--card-bg); cursor: pointer; transition: color .18s, border-color .18s; font-family: var(--font-mono); }
 .hudIcon:hover { color: var(--amber-400); border-color: var(--aurora-line2); }
+.hudLang { font-size: 10px; letter-spacing: .06em; }
 .hudVisits { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 11.5px; color: var(--emerald-300);
   border: 1px solid var(--aurora-line2); background: color-mix(in srgb, var(--emerald-500) 8%, transparent); padding: 5px 9px; white-space: nowrap; }
 .hudVisits svg { color: var(--emerald-400); }

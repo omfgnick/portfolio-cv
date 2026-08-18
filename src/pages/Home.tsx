@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   Search, ChevronDown, Copy, Check, Printer, ArrowUp, MessageCircle,
   Linkedin, Github, Mail, Phone, MapPin, ExternalLink, ChevronRight,
-  User, Briefcase, Cpu, Award, Radio, Download, Command, Globe, FolderGit2, ArrowUpRight, Sun, Moon,
+  User, Briefcase, Cpu, Award, Radio, Download, Command, Globe, FolderGit2, ArrowUpRight, Sun, Moon, Languages,
   Headphones, Radar, ShieldAlert, ListChecks, Lock, Terminal,
   Activity, Network, DatabaseBackup, ShieldCheck, Server, Cloud, type LucideIcon,
 } from 'lucide-react'
@@ -17,13 +17,17 @@ import BootScreen from '@/components/BootScreen'
 import { useReveal } from '@/hooks/useReveal'
 import { useVisits } from '@/hooks/useVisits'
 import { downloadVCard } from '@/lib/vcard'
-import {
-  PROFILE, METRICS, TERMINAL, CAPS, JOBS, SKILLS, CERTS, EDU, CONTACTS, PROJECTS, LINKEDIN_QR,
-} from '@/data/cv'
+import { getCV, type Lang, LINKEDIN_QR } from '@/data/cv'
+import { UI } from '@/i18n/ui'
 
-const SECTION_LABEL: Record<string, string> = {
-  about: 'Perfil', experience: 'Experiência', skills: 'Skills', projects: 'Projetos', credentials: 'Credenciais', contact: 'Contato',
-}
+const NAV = [
+  { id: 'about', icon: User },
+  { id: 'experience', icon: Briefcase },
+  { id: 'skills', icon: Cpu },
+  { id: 'projects', icon: FolderGit2 },
+  { id: 'credentials', icon: Award },
+  { id: 'contact', icon: Radio },
+]
 
 const ICONS: Record<string, LucideIcon> = {
   Headphones, Radar, ShieldAlert, ListChecks, Lock, Terminal,
@@ -33,24 +37,6 @@ const ICONS: Record<string, LucideIcon> = {
 const Icon = ({ name, ...p }: { name: string } & React.ComponentProps<LucideIcon>) => {
   const C = ICONS[name] ?? Activity
   return <C {...p} />
-}
-
-const NAV = [
-  { id: 'about', label: 'PERFIL', icon: User },
-  { id: 'experience', label: 'EXP', icon: Briefcase },
-  { id: 'skills', label: 'SKILLS', icon: Cpu },
-  { id: 'projects', label: 'PROJ', icon: FolderGit2 },
-  { id: 'credentials', label: 'CRED', icon: Award },
-  { id: 'contact', label: 'LINK', icon: Radio },
-]
-
-const CMD: Record<string, string> = {
-  about: '~/profile $ whoami',
-  experience: '~/logs $ cat operational_history',
-  skills: '~/sys $ ls tooling_matrix',
-  projects: '~/repos $ git log --oneline',
-  credentials: '~/creds $ verify --all',
-  contact: '~/net $ connect --secure',
 }
 
 const norm = (s: string) => {
@@ -68,10 +54,10 @@ async function copyText(t: string): Promise<boolean> {
   }
 }
 
-function SecHead({ id, tag }: { id: string; tag: string }) {
+function SecHead({ cmd, tag }: { cmd: string; tag: string }) {
   return (
     <div className={styles.cmd}>
-      <span className={styles.cmdLine}><span className={styles.cmdPrompt}>&gt;</span> {CMD[id]}<span className={styles.cmdCaret} /></span>
+      <span className={styles.cmdLine}><span className={styles.cmdPrompt}>&gt;</span> {cmd}<span className={styles.cmdCaret} /></span>
       <span className={styles.cmdTag}>[ {tag} ]</span>
     </div>
   )
@@ -90,8 +76,15 @@ export default function Home() {
   const [theme, setTheme] = useState<'dark' | 'light'>(
     () => (typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark'),
   )
+  const [lang, setLang] = useState<Lang>(() => {
+    try { return localStorage.getItem('nm_lang') === 'en' ? 'en' : 'pt' } catch { return 'pt' }
+  })
   const searchRef = useRef<HTMLInputElement>(null)
   const visits = useVisits()
+
+  const t = UI[lang]
+  const cv = getCV(lang)
+  const P = cv.profile
 
   const toggleTheme = () => {
     const next = theme === 'dark' ? 'light' : 'dark'
@@ -101,20 +94,27 @@ export default function Home() {
     const meta = document.querySelector('meta[name="theme-color"]')
     if (meta) meta.setAttribute('content', next === 'light' ? '#f3f7f5' : '#04110d')
   }
+  const toggleLang = () => {
+    const next: Lang = lang === 'pt' ? 'en' : 'pt'
+    setLang(next)
+    document.documentElement.setAttribute('lang', next === 'pt' ? 'pt-BR' : 'en')
+    try { localStorage.setItem('nm_lang', next) } catch { /* noop */ }
+  }
 
   useReveal(styles.visible)
 
   useEffect(() => {
     const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
-    if (reduce) { setShownLines(TERMINAL.length); return }
-    const iv = setInterval(() => setShownLines(n => { if (n >= TERMINAL.length) { clearInterval(iv); return n } return n + 1 }), 240)
+    if (reduce) { setShownLines(cv.terminal.length); return }
+    const iv = setInterval(() => setShownLines(n => { if (n >= cv.terminal.length) { clearInterval(iv); return n } return n + 1 }), 240)
     return () => clearInterval(iv)
-  }, [])
+  }, [cv.terminal.length])
 
   useEffect(() => {
-    const tick = () => setClock(new Date().toLocaleTimeString('pt-BR', { hour12: false }))
+    const loc = lang === 'pt' ? 'pt-BR' : 'en-GB'
+    const tick = () => setClock(new Date().toLocaleTimeString(loc, { hour12: false }))
     tick(); const iv = setInterval(tick, 1000); return () => clearInterval(iv)
-  }, [])
+  }, [lang])
 
   useEffect(() => {
     const onScroll = () => {
@@ -143,52 +143,55 @@ export default function Home() {
 
   const q = norm(query).trim()
   const terms = q ? q.split(/\s+/) : []
-  const match = (text: string) => { const t = norm(text); return terms.every(x => t.includes(x)) }
-  const jobs = useMemo(() => JOBS.filter(j => !terms.length || match(`${j.filter} ${j.role} ${j.org} ${j.desc} ${j.points.join(' ')}`)), [q])
-  const skills = useMemo(() => SKILLS.filter(s => !terms.length || match(`${s.title} ${s.chips.join(' ')}`)), [q])
+  const match = (text: string) => { const tx = norm(text); return terms.every(x => tx.includes(x)) }
+  const jobs = cv.jobs.filter(j => !terms.length || match(`${j.filter} ${j.role} ${j.org} ${j.desc} ${j.points.join(' ')}`))
+  const skills = cv.skills.filter(s => !terms.length || match(`${s.title} ${s.chips.join(' ')}`))
 
   const doCopy = async (key: string, val: string) => { if (await copyText(val)) { setCopied(key); setTimeout(() => setCopied(''), 1100) } }
-  const waUrl = `${PROFILE.whatsapp}?text=${encodeURIComponent('Olá! Vi seu perfil e gostaria de conversar sobre uma oportunidade. Podemos falar?')}`
+  const waText = lang === 'pt'
+    ? 'Olá! Vi seu perfil e gostaria de conversar sobre uma oportunidade. Podemos falar?'
+    : 'Hi! I saw your profile and would like to talk about an opportunity. Can we chat?'
+  const waUrl = `${P.whatsapp}?text=${encodeURIComponent(waText)}`
   const year = new Date().getFullYear()
+  const nfmt = (n: number) => n.toLocaleString(lang === 'pt' ? 'pt-BR' : 'en-US')
 
   const goto = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   const cmdItems: CmdItem[] = [
-    ...NAV.map(n => ({ id: `go-${n.id}`, label: `Ir para ${SECTION_LABEL[n.id]}`, icon: n.icon, run: () => goto(n.id) })),
-    { id: 'linkedin', label: 'Abrir LinkedIn', hint: 'nicolasmesquita', icon: Linkedin, run: () => window.open(PROFILE.linkedin, '_blank', 'noopener') },
-    { id: 'github', label: 'Abrir GitHub', hint: 'omfgnick', icon: Github, run: () => window.open(PROFILE.github, '_blank', 'noopener') },
-    { id: 'wa', label: 'Falar no WhatsApp', icon: MessageCircle, run: () => window.open(waUrl, '_blank', 'noopener') },
-    { id: 'email', label: 'Copiar e-mail', hint: 'omfg_nick@hotmail.com', icon: Mail, run: () => doCopy('email', 'omfg_nick@hotmail.com') },
-    { id: 'phone', label: 'Copiar telefone', hint: '+55 11 94232-7967', icon: Phone, run: () => doCopy('phone', '+5511942327967') },
-    { id: 'vcard', label: 'Baixar vCard (.vcf)', icon: Download, run: downloadVCard },
-    { id: 'print', label: 'Imprimir / PDF', icon: Printer, run: () => window.print() },
+    ...NAV.map(n => ({ id: `go-${n.id}`, label: `${t.goTo} ${t.navLabels[n.id]}`, icon: n.icon, run: () => goto(n.id) })),
+    { id: 'linkedin', label: t.cmdLinkedin, hint: 'nicolasmesquita', icon: Linkedin, run: () => window.open(P.linkedin, '_blank', 'noopener') },
+    { id: 'github', label: t.cmdGithub, hint: 'omfgnick', icon: Github, run: () => window.open(P.github, '_blank', 'noopener') },
+    { id: 'wa', label: t.cmdWa, icon: MessageCircle, run: () => window.open(waUrl, '_blank', 'noopener') },
+    { id: 'email', label: t.cmdEmail, hint: 'omfg_nick@hotmail.com', icon: Mail, run: () => doCopy('email', 'omfg_nick@hotmail.com') },
+    { id: 'phone', label: t.cmdPhone, hint: '+55 11 94232-7967', icon: Phone, run: () => doCopy('phone', '+5511942327967') },
+    { id: 'vcard', label: t.cmdVcard, icon: Download, run: downloadVCard },
+    { id: 'print', label: t.cmdPrint, icon: Printer, run: () => window.print() },
   ]
 
   return (
     <div className={styles.shell}>
-      <BootScreen />
+      <BootScreen skipText={t.bootSkip} />
       <AuroraCanvas className={styles.auroraBg} />
       <div className={styles.gridBg} aria-hidden="true" />
       <div className={styles.scan} aria-hidden="true" />
       <div className={styles.progress} aria-hidden="true"><span style={{ transform: `scaleX(${scrollPct})` }} /></div>
 
-      {/* floating */}
       <a className={`${styles.fab} ${styles.wa}`} href={waUrl} target="_blank" rel="noopener noreferrer nofollow" aria-label="WhatsApp"><MessageCircle size={22} /></a>
-      <button className={`${styles.fab} ${styles.top} ${toTop ? styles.show : ''}`} type="button" aria-label="Voltar ao topo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}><ArrowUp size={20} /></button>
+      <button className={`${styles.fab} ${styles.top} ${toTop ? styles.show : ''}`} type="button" aria-label="Top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}><ArrowUp size={20} /></button>
 
       {/* LEFT RAIL */}
       <aside className={styles.rail}>
-        <a className={styles.railBrand} href="#top" aria-label="Início"><span>NM</span></a>
-        <nav className={styles.railNav} aria-label="Seções">
+        <a className={styles.railBrand} href="#top" aria-label="Home"><span>NM</span></a>
+        <nav className={styles.railNav} aria-label="Sections">
           {NAV.map(n => (
             <a key={n.id} href={`#${n.id}`} className={`${styles.railLink} ${active === n.id ? styles.railOn : ''}`} aria-current={active === n.id ? 'true' : undefined}>
               <n.icon size={19} />
-              <span className={styles.railLabel}>{n.label}</span>
+              <span className={styles.railLabel}>{t.navLabels[n.id]}</span>
             </a>
           ))}
         </nav>
         <div className={styles.railFoot}>
-          <a href={PROFILE.linkedin} target="_blank" rel="noopener noreferrer nofollow" aria-label="LinkedIn"><Linkedin size={16} /></a>
-          <a href={PROFILE.github} target="_blank" rel="noopener noreferrer nofollow" aria-label="GitHub"><Github size={16} /></a>
+          <a href={P.linkedin} target="_blank" rel="noopener noreferrer nofollow" aria-label="LinkedIn"><Linkedin size={16} /></a>
+          <a href={P.github} target="_blank" rel="noopener noreferrer nofollow" aria-label="GitHub"><Github size={16} /></a>
           <span className={styles.railLed} title="online" />
         </div>
       </aside>
@@ -199,16 +202,19 @@ export default function Home() {
           <span className={styles.hudPath}>SYS://<b>{active.toUpperCase()}</b></span>
           <label className={styles.hudSearch}>
             <Search size={14} />
-            <input ref={searchRef} value={query} onChange={e => setQuery(e.target.value)} type="search" placeholder="filter --experiencia --skill --ferramenta" aria-label="Buscar" autoComplete="off" />
+            <input ref={searchRef} value={query} onChange={e => setQuery(e.target.value)} type="search" placeholder={t.searchPh} aria-label="Search" autoComplete="off" />
             <span className={styles.kbd}>/</span>
           </label>
-          <button className={styles.hudIcon} type="button" onClick={toggleTheme} aria-label="Alternar tema claro/escuro" title="Tema claro/escuro">
+          <button className={styles.hudIcon} type="button" onClick={toggleLang} aria-label={t.langToggle} title={t.langToggle}>
+            <Languages size={14} /> <span className={styles.hudLang}>{lang.toUpperCase()}</span>
+          </button>
+          <button className={styles.hudIcon} type="button" onClick={toggleTheme} aria-label={t.themeToggle} title={t.themeToggle}>
             {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
           </button>
-          <button className={styles.hudCmd} type="button" onClick={() => setPaletteOpen(true)} aria-label="Abrir command palette (Ctrl/Cmd + K)">
+          <button className={styles.hudCmd} type="button" onClick={() => setPaletteOpen(true)} aria-label="Command palette (Ctrl/Cmd + K)">
             <Command size={13} /> K
           </button>
-          {visits && <span className={styles.hudVisits} title="visitas totais"><Globe size={12} /> {visits.total.toLocaleString('pt-BR')}</span>}
+          {visits && <span className={styles.hudVisits} title="visits"><Globe size={12} /> {nfmt(visits.total)}</span>}
           <span className={styles.hudClock}><span className={styles.hudLed} /> {clock}</span>
         </div>
 
@@ -218,18 +224,18 @@ export default function Home() {
             <div className={`${styles.panel} ${styles.heroMain}`}>
               <div className={styles.panelHead}><span className={styles.phId}>OPR·001</span><span className={styles.phDots}><i /><i /><i /></span><span className={styles.phStatus}>DOSSIER</span></div>
               <div className={styles.heroBody}>
-                <span className={aurora.badge}><span className={aurora.dot} /> DISPONÍVEL PARA NOVAS OPORTUNIDADES</span>
+                <span className={aurora.badge}><span className={aurora.dot} /> {t.available}</span>
                 <h1 className={styles.name} data-text="Nicolas Mesquita Fernandes">Nicolas Mesquita <span className={styles.nameAccent}>Fernandes</span></h1>
-                <p className={styles.role}>{PROFILE.role}</p>
+                <p className={styles.role}>{P.role}</p>
                 <div className={styles.idLine}>
                   <span>ID <b>NMF·2014</b></span><i>//</i><span>CLEARANCE <b>NOC-N3</b></span><i>//</i><span>LOC <b>SÃO PAULO</b></span><i>//</i><span>STATUS <b className={styles.avail}>AVAILABLE</b></span>
                 </div>
-                <p className={styles.tagline}>{PROFILE.tagline}</p>
-                <div className={styles.tags}>{PROFILE.tags.map(t => <span key={t} className={styles.tag}><ChevronRight size={12} /> {t}</span>)}</div>
+                <p className={styles.tagline}>{P.tagline}</p>
+                <div className={styles.tags}>{P.tags.map(tag => <span key={tag} className={styles.tag}><ChevronRight size={12} /> {tag}</span>)}</div>
                 <div className={styles.cta}>
-                  <a className={`${styles.btn} ${styles.primary}`} href={PROFILE.linkedin} target="_blank" rel="noopener noreferrer nofollow"><Linkedin size={16} /> LinkedIn</a>
-                  <a className={styles.btn} href={PROFILE.github} target="_blank" rel="noopener noreferrer nofollow"><Github size={16} /> GitHub</a>
-                  <a className={styles.btn} href={waUrl} target="_blank" rel="noopener noreferrer nofollow"><MessageCircle size={16} /> Falar comigo</a>
+                  <a className={`${styles.btn} ${styles.primary}`} href={P.linkedin} target="_blank" rel="noopener noreferrer nofollow"><Linkedin size={16} /> LinkedIn</a>
+                  <a className={styles.btn} href={P.github} target="_blank" rel="noopener noreferrer nofollow"><Github size={16} /> GitHub</a>
+                  <a className={styles.btn} href={waUrl} target="_blank" rel="noopener noreferrer nofollow"><MessageCircle size={16} /> {t.contact}</a>
                   <button className={styles.btn} type="button" onClick={downloadVCard}><Download size={16} /> vCard</button>
                   <button className={styles.btn} type="button" onClick={() => window.print()}><Printer size={16} /> PDF</button>
                 </div>
@@ -239,7 +245,7 @@ export default function Home() {
             <div className={`${styles.panel} ${styles.term}`} aria-hidden="true">
               <div className={styles.panelHead}><span className={styles.phId}>TTY·0</span><span className={styles.phDots}><i /><i /><i /></span><span className={styles.phStatus}>noc@vivo</span></div>
               <div className={styles.termBody}>
-                {TERMINAL.slice(0, shownLines).map((line, i) => {
+                {cv.terminal.slice(0, shownLines).map((line, i) => {
                   const prompt = line.startsWith('$')
                   return (
                     <div key={i} className={styles.termLine}>
@@ -252,9 +258,9 @@ export default function Home() {
             </div>
           </section>
 
-          {/* METRICS readout */}
+          {/* METRICS */}
           <section className={styles.metrics}>
-            {METRICS.map((m, i) => (
+            {cv.metrics.map((m, i) => (
               <div key={m.label} className={`${styles.metric} ${styles.reveal}`} data-reveal>
                 {i > 0 && <span className={styles.metricSep} aria-hidden="true" />}
                 <div className={styles.metricK}><Counter end={m.count} suffix={m.suffix} /></div>
@@ -263,17 +269,16 @@ export default function Home() {
             ))}
           </section>
 
-          {/* GLOBAL TRAFFIC (aparece só quando VISITS_ENDPOINT está configurado) */}
-          <VisitorPanel data={visits} />
+          <VisitorPanel data={visits} lang={lang} />
 
           {/* ABOUT */}
           <section id="about" className={styles.section}>
-            <SecHead id="about" tag="01" />
+            <SecHead cmd={t.sectionTitle.about} tag="01" />
             <div className={styles.cols}>
               <div className={`${styles.panel} ${styles.pad} ${styles.reveal}`} data-reveal>
-                <p className={styles.lead}>Atuo em <b>escalonamento e continuidade do serviço</b> em ambientes de missão crítica, unindo monitoração proativa, gestão de incidentes orientada a <b>SLA</b> e automação de rotinas operacionais.</p>
+                <p className={styles.lead}>{t.aboutLead}</p>
                 <div className={styles.capGrid}>
-                  {CAPS.map(c => (
+                  {cv.caps.map(c => (
                     <div key={c.h} className={styles.cap}>
                       <div className={styles.capH}><Icon name={c.icon} size={16} /> {c.h}</div>
                       <div className={styles.capD}>{c.d}</div>
@@ -282,12 +287,12 @@ export default function Home() {
                 </div>
               </div>
               <div className={`${styles.panel} ${styles.pad} ${styles.reveal}`} data-reveal>
-                <div className={styles.subhead}>// SNAPSHOT</div>
+                <div className={styles.subhead}>{t.snapshot}</div>
                 <div className={styles.snap}>
-                  <div className={styles.snapRow}><MapPin size={16} /><div><div className={styles.snapT}>São Paulo, Brasil</div><div className={styles.snapS}>Presencial / híbrido</div></div></div>
-                  <div className={styles.snapRow}><Activity size={16} /><div><div className={styles.snapT}>Foco</div><div className={styles.snapS}>Operação estável · Incidentes · SLA · Automação</div></div></div>
-                  <div className={styles.snapRow}><Server size={16} /><div><div className={styles.snapT}>Stack principal</div><div className={styles.snapS}>SolarWinds · Remedy · Grafana · Zabbix · Meraki</div></div></div>
-                  <div className={styles.snapRow}><Network size={16} /><div><div className={styles.snapT}>Idiomas</div><div className={styles.snapS}>Português (nativo) · Technical English</div></div></div>
+                  <div className={styles.snapRow}><MapPin size={16} /><div><div className={styles.snapT}>São Paulo, {lang === 'pt' ? 'Brasil' : 'Brazil'}</div><div className={styles.snapS}>{t.presential}</div></div></div>
+                  <div className={styles.snapRow}><Activity size={16} /><div><div className={styles.snapT}>{t.focus}</div><div className={styles.snapS}>{t.focusVal}</div></div></div>
+                  <div className={styles.snapRow}><Server size={16} /><div><div className={styles.snapT}>{t.stack}</div><div className={styles.snapS}>SolarWinds · Remedy · Grafana · Zabbix · Meraki</div></div></div>
+                  <div className={styles.snapRow}><Network size={16} /><div><div className={styles.snapT}>{t.languages}</div><div className={styles.snapS}>{t.languagesVal}</div></div></div>
                 </div>
               </div>
             </div>
@@ -295,11 +300,11 @@ export default function Home() {
 
           {/* EXPERIENCE */}
           <section id="experience" className={styles.section}>
-            <SecHead id="experience" tag="02" />
+            <SecHead cmd={t.sectionTitle.experience} tag="02" />
             <div className={styles.timeline}>
-              {jobs.length === 0 && <p className={styles.empty}>Nenhuma experiência corresponde ao filtro.</p>}
+              {jobs.length === 0 && <p className={styles.empty}>{t.emptyExp}</p>}
               {jobs.map((j) => {
-                const realIdx = JOBS.indexOf(j)
+                const realIdx = cv.jobs.indexOf(j)
                 const open = openIdx === realIdx
                 return (
                   <div key={realIdx} className={`${styles.job} ${styles.reveal}`} data-open={open ? 'true' : 'false'} data-reveal>
@@ -319,7 +324,7 @@ export default function Home() {
                     <div className={styles.jobBody}>
                       <div className={styles.jobBodyInner}>
                         <div className={styles.jobDesc}>{j.desc}</div>
-                        <ul className={styles.points}>{j.points.map((p, k) => <li key={k}>{p}</li>)}</ul>
+                        <ul className={styles.points}>{j.points.map((pt, k) => <li key={k}>{pt}</li>)}</ul>
                       </div>
                     </div>
                   </div>
@@ -330,9 +335,9 @@ export default function Home() {
 
           {/* SKILLS */}
           <section id="skills" className={styles.section}>
-            <SecHead id="skills" tag="03" />
+            <SecHead cmd={t.sectionTitle.skills} tag="03" />
             <div className={styles.skills}>
-              {skills.length === 0 && <p className={styles.empty}>Nenhuma skill corresponde ao filtro.</p>}
+              {skills.length === 0 && <p className={styles.empty}>{t.emptySkill}</p>}
               {skills.map(s => (
                 <div key={s.title} className={`${styles.panel} ${styles.skill} ${styles.reveal}`} data-reveal>
                   <div className={styles.skillH}>
@@ -347,17 +352,17 @@ export default function Home() {
 
           {/* PROJECTS */}
           <section id="projects" className={styles.section}>
-            <SecHead id="projects" tag="04" />
+            <SecHead cmd={t.sectionTitle.projects} tag="04" />
             <div className={styles.projects}>
-              {PROJECTS.map(p => (
-                <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer nofollow"
+              {cv.projects.map(pr => (
+                <a key={pr.name} href={pr.url} target="_blank" rel="noopener noreferrer nofollow"
                   className={`${styles.panel} ${styles.project} ${styles.reveal}`} data-reveal>
                   <div className={styles.projHead}>
-                    <span className={styles.projName}><FolderGit2 size={15} /> {p.name}</span>
+                    <span className={styles.projName}><FolderGit2 size={15} /> {pr.name}</span>
                     <ArrowUpRight size={15} className={styles.projArrow} />
                   </div>
-                  <p className={styles.projDesc}>{p.desc}</p>
-                  <div className={styles.projTags}>{p.tags.map(t => <span key={t} className={styles.chip}>{t}</span>)}</div>
+                  <p className={styles.projDesc}>{pr.desc}</p>
+                  <div className={styles.projTags}>{pr.tags.map(tg => <span key={tg} className={styles.chip}>{tg}</span>)}</div>
                 </a>
               ))}
             </div>
@@ -365,21 +370,21 @@ export default function Home() {
 
           {/* CREDENTIALS */}
           <section id="credentials" className={styles.section}>
-            <SecHead id="credentials" tag="05" />
+            <SecHead cmd={t.sectionTitle.credentials} tag="05" />
             <div className={styles.cols}>
               <div className={`${styles.panel} ${styles.pad} ${styles.reveal}`} data-reveal>
-                <div className={styles.subhead}>// CERTIFICAÇÕES</div>
+                <div className={styles.subhead}>{t.certifications}</div>
                 <div className={styles.snap}>
-                  {CERTS.map(c => (
+                  {cv.certs.map(c => (
                     <div key={c.title} className={styles.snapRow}><ShieldCheck size={16} /><div><div className={styles.snapT}>{c.title}</div><div className={styles.snapS}>{c.sub}</div>{c.cred && <div className={styles.cred}>cred: {c.cred}</div>}</div></div>
                   ))}
                 </div>
-                <a className={styles.verifyLink} href={PROFILE.linkedin} target="_blank" rel="noopener noreferrer nofollow">verificar credenciais no LinkedIn <ArrowUpRight size={12} /></a>
+                <a className={styles.verifyLink} href={P.linkedin} target="_blank" rel="noopener noreferrer nofollow">{t.verify} <ArrowUpRight size={12} /></a>
               </div>
               <div className={`${styles.panel} ${styles.pad} ${styles.reveal}`} data-reveal>
-                <div className={styles.subhead}>// FORMAÇÃO</div>
+                <div className={styles.subhead}>{t.education}</div>
                 <div className={styles.snap}>
-                  {EDU.map(e => <div key={e.title} className={styles.snapRow}><Server size={16} /><div><div className={styles.snapT}>{e.title}</div><div className={styles.snapS}>{e.sub}</div></div></div>)}
+                  {cv.edu.map(e => <div key={e.title} className={styles.snapRow}><Server size={16} /><div><div className={styles.snapT}>{e.title}</div><div className={styles.snapS}>{e.sub}</div></div></div>)}
                 </div>
               </div>
             </div>
@@ -387,23 +392,23 @@ export default function Home() {
 
           {/* CONTACT */}
           <section id="contact" className={styles.section}>
-            <SecHead id="contact" tag="06" />
+            <SecHead cmd={t.sectionTitle.contact} tag="06" />
             <div className={styles.contactGrid}>
               <div className={`${styles.panel} ${styles.pad} ${styles.reveal}`} data-reveal>
-                {CONTACTS.map(c => (
+                {cv.contacts.map(c => (
                   <div key={c.type} className={styles.kvRow}>
                     <span className={styles.kvIc}><Icon name={c.icon} size={17} /></span>
                     <div className={styles.kvMain}>
                       <div className={styles.kvLbl}>{c.label}</div>
                       <div className={styles.kvVal}>{c.href ? <a href={c.href} target={c.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer nofollow">{c.value} {c.href.startsWith('http') && <ExternalLink size={12} style={{ display: 'inline', verticalAlign: '-1px' }} />}</a> : c.value}</div>
                     </div>
-                    {c.copy && <button className={`${styles.copyBtn} ${copied === c.type ? styles.copied : ''}`} type="button" onClick={() => doCopy(c.type, c.copy!)}>{copied === c.type ? <><Check size={13} /> ok</> : <><Copy size={13} /> copy</>}</button>}
+                    {c.copy && <button className={`${styles.copyBtn} ${copied === c.type ? styles.copied : ''}`} type="button" onClick={() => doCopy(c.type, c.copy!)}>{copied === c.type ? <><Check size={13} /> {t.ok}</> : <><Copy size={13} /> {t.copy}</>}</button>}
                   </div>
                 ))}
               </div>
               <div className={`${styles.panel} ${styles.qrPanel} ${styles.reveal}`} data-reveal>
                 <div className={styles.qrBox}><QRCode text={LINKEDIN_QR} size={132} /></div>
-                <div className={styles.qrText}><div className={styles.qrT}>QR // LINKEDIN</div><div className={styles.qrD}>Aponte a câmera para abrir o perfil — ideal para currículo impresso.</div></div>
+                <div className={styles.qrText}><div className={styles.qrT}>{t.qrTitle}</div><div className={styles.qrD}>{t.qrDesc}</div></div>
               </div>
             </div>
           </section>
@@ -415,7 +420,7 @@ export default function Home() {
         </main>
       </div>
 
-      <CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)} items={cmdItems} />
+      <CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)} items={cmdItems} ui={t} />
     </div>
   )
 }

@@ -1,14 +1,25 @@
 import { Globe } from 'lucide-react'
 import { VISITS_ENDPOINT } from '@/data/config'
 import type { VisitStats } from '@/hooks/useVisits'
+import type { Lang } from '@/data/cv'
+import { UI } from '@/i18n/ui'
 import styles from './VisitorPanel.module.css'
 
-const NAMES: Record<string, string> = {
-  BR: 'Brasil', US: 'EUA', PT: 'Portugal', GB: 'Reino Unido', DE: 'Alemanha', FR: 'França',
-  ES: 'Espanha', IT: 'Itália', CA: 'Canadá', NL: 'Holanda', IN: 'Índia', JP: 'Japão',
-  AU: 'Austrália', AR: 'Argentina', MX: 'México', CL: 'Chile', CO: 'Colômbia', PE: 'Peru',
-  UY: 'Uruguai', IE: 'Irlanda', CH: 'Suíça', SE: 'Suécia', PL: 'Polônia', RU: 'Rússia',
-  CN: 'China', KR: 'Coreia', ZA: 'Áf. do Sul', AE: 'Emirados', SG: 'Singapura', XX: '—',
+const NAMES: Record<Lang, Record<string, string>> = {
+  pt: {
+    BR: 'Brasil', US: 'EUA', PT: 'Portugal', GB: 'Reino Unido', DE: 'Alemanha', FR: 'França',
+    ES: 'Espanha', IT: 'Itália', CA: 'Canadá', NL: 'Holanda', IN: 'Índia', JP: 'Japão',
+    AU: 'Austrália', AR: 'Argentina', MX: 'México', CL: 'Chile', CO: 'Colômbia', PE: 'Peru',
+    UY: 'Uruguai', IE: 'Irlanda', CH: 'Suíça', SE: 'Suécia', PL: 'Polônia', RU: 'Rússia',
+    CN: 'China', KR: 'Coreia', ZA: 'Áf. do Sul', AE: 'Emirados', SG: 'Singapura', XX: '—',
+  },
+  en: {
+    BR: 'Brazil', US: 'USA', PT: 'Portugal', GB: 'UK', DE: 'Germany', FR: 'France',
+    ES: 'Spain', IT: 'Italy', CA: 'Canada', NL: 'Netherlands', IN: 'India', JP: 'Japan',
+    AU: 'Australia', AR: 'Argentina', MX: 'Mexico', CL: 'Chile', CO: 'Colombia', PE: 'Peru',
+    UY: 'Uruguay', IE: 'Ireland', CH: 'Switzerland', SE: 'Sweden', PL: 'Poland', RU: 'Russia',
+    CN: 'China', KR: 'S. Korea', ZA: 'S. Africa', AE: 'UAE', SG: 'Singapore', XX: '—',
+  },
 }
 const CENTROIDS: Record<string, [number, number]> = {
   BR: [-14, -51], US: [39, -98], PT: [39.5, -8], GB: [54, -2], DE: [51, 10], FR: [46, 2],
@@ -25,8 +36,11 @@ const flag = (cc: string) =>
 const MW = 360, MH = 180
 const proj = ([lat, lon]: [number, number]): [number, number] => [lon + 180, 90 - lat]
 
-export default function VisitorPanel({ data }: { data: VisitStats | null }) {
+export default function VisitorPanel({ data, lang }: { data: VisitStats | null; lang: Lang }) {
   if (!VISITS_ENDPOINT || !data) return null
+  const u = UI[lang]
+  const names = NAMES[lang]
+  const nf = (n: number) => n.toLocaleString(lang === 'pt' ? 'pt-BR' : 'en-US')
 
   const top = [...(data.countries || [])].sort((a, b) => b.count - a.count)
   const withCoords = (data.countries || []).filter(c => CENTROIDS[c.code])
@@ -40,11 +54,11 @@ export default function VisitorPanel({ data }: { data: VisitStats | null }) {
   for (let lat = 0; lat <= 180; lat += 45) grat.push(`M0 ${lat}H${MW}`)
 
   return (
-    <section className={styles.panel} aria-label="Tráfego de visitas">
+    <section className={styles.panel} aria-label="Visitor traffic">
       <div className={styles.head}>
         <span className={styles.title}><Globe size={13} /> GLOBAL TRAFFIC</span>
-        {!!data.live && <span className={styles.live}><i /> {data.live} ao vivo</span>}
-        <span className={styles.total}>{data.total.toLocaleString('pt-BR')} <em>visitas</em></span>
+        {!!data.live && <span className={styles.live}><i /> {data.live} {u.live}</span>}
+        <span className={styles.total}>{nf(data.total)} <em>{u.visits}</em></span>
       </div>
 
       <div className={styles.grid}>
@@ -64,7 +78,7 @@ export default function VisitorPanel({ data }: { data: VisitStats | null }) {
 
         {/* Sparkline 14 dias */}
         <div className={styles.cell}>
-          <div className={styles.cLbl}>ÚLTIMOS 14 DIAS</div>
+          <div className={styles.cLbl}>{u.last14}</div>
           <div className={styles.spark}>
             {days.map((d, i) => (
               <span key={i} className={styles.sBar} style={{ height: `${Math.max(6, (d.count / dMax) * 100)}%` }} title={`${d.date}: ${d.count}`} />
@@ -74,20 +88,20 @@ export default function VisitorPanel({ data }: { data: VisitStats | null }) {
 
         {/* Top países */}
         <div className={styles.cell}>
-          <div className={styles.cLbl}>TOP PAÍSES</div>
+          <div className={styles.cLbl}>{u.topCountries}</div>
           <div className={styles.ctys}>
             {top.slice(0, 4).map(c => (
-              <span key={c.code} className={styles.cty}><span className={styles.f}>{flag(c.code)}</span>{NAMES[c.code] || c.code}<b>{c.count}</b></span>
+              <span key={c.code} className={styles.cty}><span className={styles.f}>{flag(c.code)}</span>{names[c.code] || c.code}<b>{c.count}</b></span>
             ))}
-            {top.length === 0 && <span className={styles.await}>aguardando…</span>}
+            {top.length === 0 && <span className={styles.await}>{u.waiting}</span>}
           </div>
         </div>
 
         {/* Origem (referrer) */}
         <div className={styles.cell}>
-          <div className={styles.cLbl}>ORIGEM</div>
+          <div className={styles.cLbl}>{u.source}</div>
           <div className={styles.ref}>
-            {referrer ? <><b>{referrer.host}</b><span>{referrer.count} visita(s)</span></> : <><b>direto</b><span>sem referrer</span></>}
+            {referrer ? <><b>{referrer.host}</b><span>{referrer.count} {u.visitCount}</span></> : <><b>{u.direct}</b><span>{u.noReferrer}</span></>}
           </div>
         </div>
       </div>

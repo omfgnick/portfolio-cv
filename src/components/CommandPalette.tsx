@@ -15,7 +15,9 @@ const norm = (s: string) => {
   try { return t.replace(/\p{Diacritic}/gu, '') } catch { return t.replace(/[̀-ͯ]/g, '') }
 }
 
-export default function CommandPalette({ open, onClose, items }: { open: boolean; onClose: () => void; items: CmdItem[] }) {
+interface PaletteUI { palettePh: string; paletteEmpty: string; navHint: string; selectHint: string; closeHint: string }
+
+export default function CommandPalette({ open, onClose, items, ui }: { open: boolean; onClose: () => void; items: CmdItem[]; ui: PaletteUI }) {
   const [q, setQ] = useState('')
   const [idx, setIdx] = useState(0)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -45,11 +47,11 @@ export default function CommandPalette({ open, onClose, items }: { open: boolean
       <div className={styles.box} onMouseDown={e => e.stopPropagation()} onKeyDown={onKey}>
         <div className={styles.head}>
           <Search size={15} />
-          <input ref={inputRef} value={q} onChange={e => { setQ(e.target.value); setIdx(0) }} placeholder="Digite um comando ou seção…" aria-label="Buscar comando" />
+          <input ref={inputRef} value={q} onChange={e => { setQ(e.target.value); setIdx(0) }} placeholder={ui.palettePh} aria-label="Command" />
           <span className={styles.esc}>ESC</span>
         </div>
         <div className={styles.list} role="listbox">
-          {filtered.length === 0 && <div className={styles.empty}>Nenhum comando encontrado.</div>}
+          {filtered.length === 0 && <div className={styles.empty}>{ui.paletteEmpty}</div>}
           {filtered.map((i, k) => (
             <button key={i.id} type="button" role="option" aria-selected={k === idx}
               className={`${styles.item} ${k === idx ? styles.active : ''}`}
@@ -61,7 +63,7 @@ export default function CommandPalette({ open, onClose, items }: { open: boolean
             </button>
           ))}
         </div>
-        <div className={styles.foot}><span>↑↓ navegar</span><span>↵ selecionar</span><span>esc fechar</span></div>
+        <div className={styles.foot}><span>{ui.navHint}</span><span>{ui.selectHint}</span><span>{ui.closeHint}</span></div>
       </div>
     </div>
   )

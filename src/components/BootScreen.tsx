@@ -11,7 +11,7 @@ const LINES = [
   '● systems operational',
 ]
 
-export default function BootScreen() {
+export default function BootScreen({ skipText }: { skipText: string }) {
   const [show, setShow] = useState(true)
   const [n, setN] = useState(0)
   const [closing, setClosing] = useState(false)
@@ -40,7 +40,7 @@ export default function BootScreen() {
           </div>
         ))}
       </div>
-      <div className={styles.skip}>clique ou tecle para pular</div>
+      <div className={styles.skip}>{skipText}</div>
     </div>
   )
 }

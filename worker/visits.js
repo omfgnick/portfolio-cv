@@ -63,21 +63,33 @@ export default {
       const depth = Number(body.depth)
       const seconds = Number(body.seconds)
 
-      const writes = []
-      // Uma chave por ação/seção, mas cada uma incrementada uma única vez por
-      // sessão — o cliente já deduplicou.
-      for (const a of new Set(actions.filter((x) => ACTIONS.includes(x)))) writes.push(inc(env, `a:${a}`))
-      for (const sec of new Set(sections.filter((x) => SECTIONS.includes(x)))) writes.push(inc(env, `s:${sec}`))
-      // Profundidade de rolagem em faixas de 25%, e faixa de permanência
+      // Tudo num registro só, com uma gravação por sessão em vez de uma por
+      // contador. Com chave separada por item seriam ~7 gravações; o KV grátis
+      // dá 1.000/dia somando escrita, exclusão e listagem, e estourar isso
+      // derrubaria o contador de visitas junto, que divide o mesmo balde.
+      //
+      // O custo é uma corrida entre sessões simultâneas (ler-somar-gravar não é
+      // atômico): duas visitas no mesmo instante podem perder um incremento.
+      // Para métrica de tendência isso é aceitável; o total de visitas, que
+      // precisa ser exato, continua em contadores próprios no /hit.
+      const cur = (await env.VISITS.get('eng', { type: 'json' })) || {}
+      const bump = (group, key) => {
+        cur[group] = cur[group] || {}
+        cur[group][key] = (cur[group][key] || 0) + 1
+      }
+
+      for (const a of new Set(actions.filter((x) => ACTIONS.includes(x)))) bump('actions', a)
+      for (const sec of new Set(sections.filter((x) => SECTIONS.includes(x)))) bump('sections', sec)
       if (Number.isFinite(depth) && depth >= 0 && depth <= 100) {
-        writes.push(inc(env, `p:${Math.min(100, Math.floor(depth / 25) * 25)}`))
+        bump('depth', String(Math.min(100, Math.floor(depth / 25) * 25)))
       }
       if (Number.isFinite(seconds) && seconds >= 0) {
-        const band = seconds < 10 ? '0' : seconds < 30 ? '10' : seconds < 120 ? '30' : '120'
-        writes.push(inc(env, `t:${band}`))
+        bump('dwell', seconds < 10 ? '0' : seconds < 30 ? '10' : seconds < 120 ? '30' : '120')
       }
-      await Promise.all(writes)
-      return json({ ok: true, recorded: writes.length })
+      cur.sessions = (cur.sessions || 0) + 1
+
+      await env.VISITS.put('eng', JSON.stringify(cur))
+      return json({ ok: true, sessions: cur.sessions })
     }
 
     // GET /stats
@@ -106,20 +118,8 @@ export default {
       ({ host: k.name.slice(2), count: parseInt(await env.VISITS.get(k.name), 10) || 0 }))))
       .sort((a, b) => b.count - a.count).slice(0, 5)
 
-    // As chaves de engajamento são um conjunto fixo, então lê com get() em vez
-    // de list(): listagem divide a cota de 1.000/dia com as escritas, enquanto
-    // leitura tem 100.000/dia. Isso mantém o custo do /stats onde já estava.
-    const readAll = async (prefix, names) => {
-      const pairs = await Promise.all(names.map(async (n) =>
-        [n, parseInt(await env.VISITS.get(`${prefix}${n}`), 10) || 0]))
-      return Object.fromEntries(pairs.filter(([, v]) => v > 0))
-    }
-    const engagement = {
-      actions: await readAll('a:', ACTIONS),
-      sections: await readAll('s:', SECTIONS),
-      depth: await readAll('p:', ['0', '25', '50', '75', '100']),
-      dwell: await readAll('t:', ['0', '10', '30', '120']),
-    }
+    // Uma leitura só: o engajamento inteiro vive num registro único.
+    const engagement = (await env.VISITS.get('eng', { type: 'json' })) || {}
 
     return json({ total, countries, days, referrers, live, engagement })
   },

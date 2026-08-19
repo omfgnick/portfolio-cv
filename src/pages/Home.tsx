@@ -18,6 +18,7 @@ import Testimonials from '@/components/Testimonials'
 import Timeline from '@/components/Timeline'
 import { useReveal } from '@/hooks/useReveal'
 import { useVisits } from '@/hooks/useVisits'
+import { useEngagement } from '@/hooks/useEngagement'
 import { downloadVCard } from '@/lib/vcard'
 import { getCV, type Lang, LINKEDIN_QR, AVAILABILITY, getAvailabilityNote } from '@/data/cv'
 import { UI } from '@/i18n/ui'
@@ -124,6 +125,7 @@ export default function Home() {
   const heroRef = useRef<HTMLElement>(null)
   const termRef = useRef<HTMLDivElement>(null)
   const visits = useVisits()
+  const eng = useEngagement()
 
   useSpotlight(skillsRef)
   useTilt(heroRef, termRef, { baseX: 0, rangeX: 6, rangeY: 8 })
@@ -291,7 +293,7 @@ export default function Home() {
           <button className={styles.hudIcon} type="button" onClick={toggleTheme} aria-label={t.themeToggle} title={t.themeToggle} data-testid="theme-toggle">
             {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
           </button>
-          <button className={styles.hudIcon} type="button" onClick={() => setRecruiter(true)}
+          <button className={styles.hudIcon} type="button" onClick={() => { eng.track('recruiter'); setRecruiter(true) }}
             aria-label={t.rvOpen} title={t.rvOpen} data-testid="recruiter-open">
             <Gauge size={14} />
           </button>
@@ -320,11 +322,11 @@ export default function Home() {
                 <p className={styles.tagline}>{P.tagline}</p>
                 <div className={styles.tags}>{P.tags.map(tag => <span key={tag} className={styles.tag}><ChevronRight size={12} /> {tag}</span>)}</div>
                 <div className={styles.cta}>
-                  <a className={`${styles.btn} ${styles.primary}`} href={P.linkedin} target="_blank" rel="noopener noreferrer nofollow"><Linkedin size={16} /> LinkedIn</a>
-                  <a className={styles.btn} href={P.github} target="_blank" rel="noopener noreferrer nofollow"><Github size={16} /> GitHub</a>
-                  <a className={styles.btn} href={waUrl} target="_blank" rel="noopener noreferrer nofollow"><MessageCircle size={16} /> {t.contact}</a>
-                  <button className={styles.btn} type="button" onClick={downloadVCard}><Download size={16} /> vCard</button>
-                  <a className={styles.btn} href={pdfUrl} download data-testid="pdf-download"><FileText size={16} /> CV (PDF)</a>
+                  <a className={`${styles.btn} ${styles.primary}`} href={P.linkedin} target="_blank" rel="noopener noreferrer nofollow" onClick={() => eng.track('linkedin')}><Linkedin size={16} /> LinkedIn</a>
+                  <a className={styles.btn} href={P.github} target="_blank" rel="noopener noreferrer nofollow" onClick={() => eng.track('github')}><Github size={16} /> GitHub</a>
+                  <a className={styles.btn} href={waUrl} target="_blank" rel="noopener noreferrer nofollow" onClick={() => eng.track('whatsapp')}><MessageCircle size={16} /> {t.contact}</a>
+                  <button className={styles.btn} type="button" onClick={() => { eng.track('vcard'); downloadVCard() }}><Download size={16} /> vCard</button>
+                  <a className={styles.btn} href={pdfUrl} download data-testid="pdf-download" onClick={() => eng.track('pdf')}><FileText size={16} /> CV (PDF)</a>
                 </div>
               </div>
             </div>

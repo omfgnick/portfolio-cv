@@ -4,7 +4,13 @@
  *
  * Rotas:
  *   POST /hit?ref=<host>  -> incrementa total, país, dia, referrer e "minuto" (p/ ao vivo)
- *   GET  /stats           -> { total, countries[], days[], referrers[], live }
+ *   POST /events          -> resumo de engajamento de UMA sessão (corpo JSON)
+ *   GET  /stats           -> { total, countries[], days[], referrers[], live, engagement }
+ *
+ * Sobre o /events: o navegador acumula os eventos durante a visita e envia um
+ * resumo só, no fim. O plano grátis do KV dá 1.000 operações de escrita, exclusão
+ * e listagem por dia — somadas num único balde —, então gravar evento a evento
+ * consumiria a cota depressa e derrubaria o contador de visitas junto.
  *
  * Binding necessário: KV namespace `VISITS`.
  */
@@ -13,7 +19,12 @@ const cors = {
   'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type',
 }
-const json = (obj) => new Response(JSON.stringify(obj), { headers: { 'Content-Type': 'application/json', ...cors } })
+const json = (obj, status = 200) => new Response(JSON.stringify(obj), { status, headers: { 'Content-Type': 'application/json', ...cors } })
+// Conjuntos fixos: o /events só aceita estes nomes (um cliente adulterado não
+// pode inflar o KV com chaves arbitrárias) e o /stats lê exatamente eles.
+const ACTIONS = ['pdf', 'linkedin', 'github', 'whatsapp', 'email', 'vcard', 'recruiter', 'terminal']
+const SECTIONS = ['about', 'experience', 'skills', 'projects', 'credentials', 'praise', 'contact']
+
 const dayKey = (d) => `d:${d.toISOString().slice(0, 10)}`
 const inc = async (env, key, opts) => {
   const cur = parseInt(await env.VISITS.get(key), 10) || 0
@@ -42,6 +53,33 @@ export default {
       return json({ ok: true })
     }
 
+    // POST /events — resumo de engajamento de UMA sessão, agregado no cliente
+    if (request.method === 'POST' && url.pathname.endsWith('/events')) {
+      let body = {}
+      try { body = await request.json() } catch { return json({ error: 'invalid json' }, 400) }
+
+      const actions = Array.isArray(body.actions) ? body.actions : []
+      const sections = Array.isArray(body.sections) ? body.sections : []
+      const depth = Number(body.depth)
+      const seconds = Number(body.seconds)
+
+      const writes = []
+      // Uma chave por ação/seção, mas cada uma incrementada uma única vez por
+      // sessão — o cliente já deduplicou.
+      for (const a of new Set(actions.filter((x) => ACTIONS.includes(x)))) writes.push(inc(env, `a:${a}`))
+      for (const sec of new Set(sections.filter((x) => SECTIONS.includes(x)))) writes.push(inc(env, `s:${sec}`))
+      // Profundidade de rolagem em faixas de 25%, e faixa de permanência
+      if (Number.isFinite(depth) && depth >= 0 && depth <= 100) {
+        writes.push(inc(env, `p:${Math.min(100, Math.floor(depth / 25) * 25)}`))
+      }
+      if (Number.isFinite(seconds) && seconds >= 0) {
+        const band = seconds < 10 ? '0' : seconds < 30 ? '10' : seconds < 120 ? '30' : '120'
+        writes.push(inc(env, `t:${band}`))
+      }
+      await Promise.all(writes)
+      return json({ ok: true, recorded: writes.length })
+    }
+
     // GET /stats
     const total = parseInt(await env.VISITS.get('total'), 10) || 0
 
@@ -68,6 +106,21 @@ export default {
       ({ host: k.name.slice(2), count: parseInt(await env.VISITS.get(k.name), 10) || 0 }))))
       .sort((a, b) => b.count - a.count).slice(0, 5)
 
-    return json({ total, countries, days, referrers, live })
+    // As chaves de engajamento são um conjunto fixo, então lê com get() em vez
+    // de list(): listagem divide a cota de 1.000/dia com as escritas, enquanto
+    // leitura tem 100.000/dia. Isso mantém o custo do /stats onde já estava.
+    const readAll = async (prefix, names) => {
+      const pairs = await Promise.all(names.map(async (n) =>
+        [n, parseInt(await env.VISITS.get(`${prefix}${n}`), 10) || 0]))
+      return Object.fromEntries(pairs.filter(([, v]) => v > 0))
+    }
+    const engagement = {
+      actions: await readAll('a:', ACTIONS),
+      sections: await readAll('s:', SECTIONS),
+      depth: await readAll('p:', ['0', '25', '50', '75', '100']),
+      dwell: await readAll('t:', ['0', '10', '30', '120']),
+    }
+
+    return json({ total, countries, days, referrers, live, engagement })
   },
 }

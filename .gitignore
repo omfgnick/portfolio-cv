@@ -11,3 +11,6 @@ playwright-report
 playwright/.cache
 .lighthouseci
 lhci
+
+# estado local do wrangler (miniflare) — não versionar
+worker/.wrangler/

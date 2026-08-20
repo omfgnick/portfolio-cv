@@ -26,6 +26,21 @@ async function pageText(page: import('@playwright/test').Page) {
   })
 }
 
+/**
+ * O terminal digita as linhas ao longo de alguns segundos. Sem esperar, a
+ * varredura rodava com metade do texto na tela e um vazamento real
+ * ('systems operational' na linha de status, em portugues) passou batido ate
+ * eu conferir o site publicado na mao.
+ */
+async function esperarTerminal(page: import('@playwright/test').Page) {
+  const body = page.getByTestId('term-body')
+  await body.waitFor()
+  // '$status' e o penultimo comando e e igual nos dois idiomas, entao serve de
+  // ancora sem depender justamente do texto que este teste vai inspecionar.
+  await expect(body).toContainText('$status', { timeout: 10000 })
+  await expect(body).toContainText('●', { timeout: 10000 })
+}
+
 // Palavras que, aparecendo, denunciam o idioma errado
 const SO_EM_INGLES = [
   'DOSSIER', 'AVAILABLE', 'INSTALLED', 'REFLEXES', 'INTELLIGENCE',
@@ -42,6 +57,7 @@ test.describe('consistência de idioma', () => {
   test('em português não sobra rótulo em inglês', async ({ page }) => {
     await page.goto('./?lang=pt')
     await expect(page.locator('#main-content')).toBeVisible()
+    await esperarTerminal(page)
     const txt = await pageText(page)
 
     const vazou = SO_EM_INGLES.filter(w => txt.includes(w))
@@ -51,6 +67,7 @@ test.describe('consistência de idioma', () => {
   test('em inglês não sobra rótulo em português', async ({ page }) => {
     await page.goto('./?lang=en')
     await expect(page.locator('#main-content')).toBeVisible()
+    await esperarTerminal(page)
     const txt = await pageText(page)
 
     const vazou = SO_EM_PORTUGUES.filter(w => txt.includes(w))

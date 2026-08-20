@@ -78,5 +78,29 @@ const check = (label, cond, extra = '') => {
   check('ao vivo soma so os 20 min recentes', j.live === 5, `live=${j.live}`)
 }
 
+// 6. list() bloqueado pela cota nao pode derrubar o total
+{
+  const base = fakeKV({ seed: { total: '615' } })
+  const VISITS = {
+    ops: base.ops,
+    get: base.get.bind(base),
+    put: base.put.bind(base),
+    async list() { throw new Error('KV list() limit exceeded for the day.') },
+  }
+  const j = await (await worker.fetch(req('https://x/stats'), { VISITS })).json()
+  check('cota de list() nao zera o total', j.total === 615, `total=${j.total}`)
+  check('resposta segue valida', Array.isArray(j.countries) && j.days.length === 14)
+}
+
+// 7. /hit continua contando mesmo sem poder migrar
+{
+  const base = fakeKV({ seed: { total: '615' } })
+  const VISITS = { ops: base.ops, get: base.get.bind(base), put: base.put.bind(base), async list() { throw new Error('limit') } }
+  await worker.fetch(req('https://x/hit', 'POST'), { VISITS })
+  check('/hit grava mesmo com list() bloqueado', VISITS.ops.put === 2, `put=${VISITS.ops.put}`)
+  const j2 = await (await worker.fetch(req('https://x/stats'), { VISITS })).json()
+  check('total incrementou', j2.total === 616, `total=${j2.total}`)
+}
+
 console.log(fails === 0 ? '\nTUDO OK' : `\n${fails} FALHA(S)`)
 process.exit(fails ? 1 : 0)

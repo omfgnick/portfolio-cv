@@ -422,9 +422,14 @@ export default function Home() {
               {skills.length === 0 && <p className={styles.empty}>{t.emptySkill}</p>}
               {skills.map(s => (
                 <div key={s.title} className={`${styles.panel} ${styles.skill} ${styles.reveal}`} data-reveal>
+                  <div className={styles.skillAttr}>{s.attr}</div>
                   <div className={styles.skillH}>
                     <div className={styles.skillT}><Icon name={s.icon} size={16} /> {s.title}</div>
-                    <div className={styles.signal}>{Array.from({ length: 5 }).map((_, k) => <i key={k} className={k < s.level ? styles.on : ''} style={{ height: 6 + k * 2 }} />)}</div>
+                    <div className={styles.skillLvl} aria-hidden="true">{s.level}</div>
+                  </div>
+                  {/* aria-hidden porque a barra repete o que o numero ao lado ja diz */}
+                  <div className={styles.signal} aria-hidden="true">
+                    {Array.from({ length: 5 }).map((_, k) => <i key={k} className={k < s.level ? styles.on : ''} />)}
                   </div>
                   <div className={styles.chips}>{s.chips.map(c => <span key={c} className={styles.chip}>{c}</span>)}</div>
                 </div>

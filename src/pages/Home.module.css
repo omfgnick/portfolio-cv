@@ -231,8 +231,7 @@
 .skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
 @media (max-width: 760px) { .skills { grid-template-columns: 1fr; } }
 .skill { padding: 16px; transition: border-color .2s, transform .16s var(--ease); }
-.skill:hover { transform: translateY(-2px); border-color: var(--aurora-line2);
-  background: radial-gradient(340px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--emerald-500) 13%, transparent), transparent 45%), var(--card-bg); }
+.skill:hover { transform: translateY(-2px); }
 .skillH { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .skillT { display: flex; align-items: center; gap: 9px; font-weight: 700; font-size: 13px; color: var(--text-primary); }
 .skillT svg { color: var(--emerald-400); }
@@ -551,3 +550,55 @@ html[data-theme="light"] .hudLed { background: var(--emerald-600); box-shadow: n
 /* No claro o glitch colorido fica sujo em vez de proposital */
 html[data-theme="light"] .cmd.visible .cmdLine,
 html[data-theme="light"] .cmd.visible .cmdTag { animation: none; }
+
+/* ── Skills no formato de atributo ─────────────────────────────
+   O atributo do jogo entra como etiqueta pequena; o rotulo grande
+   continua sendo a competencia real, porque e ela que o recrutador
+   procura quando escaneia a pagina.
+
+   O nivel aparece como numero E como barra. A barra leva
+   aria-hidden: repetir a mesma informacao para quem usa leitor de
+   tela e ruido, nao acessibilidade. */
+.skill { padding: 14px 16px 16px; }
+.skillAttr {
+  font-family: var(--font-hud);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  color: var(--cp-yellow);
+  opacity: .85;
+  margin-bottom: 6px;
+}
+.skillLvl {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--aurora-cyan);
+  text-shadow: 0 0 14px rgba(47, 240, 223, .5);
+}
+/* Barra segmentada, no formato entalhado da UI de perks do jogo */
+.signal { display: flex; align-items: stretch; gap: 3px; height: 6px; margin-top: 10px; }
+.signal i {
+  flex: 1;
+  background: rgba(234, 252, 255, .12);
+  opacity: 1;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 3px) 100%, 0 100%);
+}
+.signal i.on {
+  background: var(--aurora-cyan);
+  box-shadow: 0 0 8px rgba(47, 240, 223, .7);
+}
+
+/* O hover trocava o 'background' do card - e o fundo agora e a moldura
+   chanfrada, entao a borda sumia no hover. O brilho passa para o
+   preenchimento, que e o pseudo-elemento. */
+.skill:hover { background: none; }
+.skill:hover::after {
+  background:
+    radial-gradient(340px circle at var(--mx, 50%) var(--my, 50%),
+      color-mix(in srgb, var(--emerald-500) 14%, transparent), transparent 45%),
+    var(--panel-fill);
+}
+html[data-theme="light"] .skillAttr { color: var(--lime-600); }
+html[data-theme="light"] .skillLvl { color: var(--emerald-700); text-shadow: none; }

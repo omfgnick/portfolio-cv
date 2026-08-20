@@ -7,7 +7,10 @@ const arr = (a: L[], lang: Lang) => a.map(x => x[lang])
 
 /** `start`/`end` em AAAA-MM alimentam a linha do tempo; `period` é o texto exibido. */
 export interface Job { role: string; org: string; loc?: string; start: string; end: string; period: string; open?: boolean; filter: string; desc: string; points: string[] }
-export interface Skill { title: string; level: number; icon: string; chips: string[] }
+export interface Skill { title: string; level: number; icon: string; chips: string[]; attr: Attribute }
+/** Atributos do Cyberpunk 2077. Camada decorativa: o nome real da competencia
+  * continua sendo o rotulo principal, porque e ele que o recrutador procura. */
+export type Attribute = 'BODY' | 'REFLEXES' | 'TECHNICAL' | 'INTELLIGENCE' | 'COOL'
 export interface Credential { title: string; sub: string; cred?: string }
 export interface Metric { count: number; suffix?: string; label: string }
 export interface Contact { type: string; label: string; value: string; href?: string; copy?: string; icon: string }
@@ -172,15 +175,15 @@ const JOBS_L: { role: L; org: string; loc?: L; start: string; end: string; perio
   },
 ]
 
-const SKILLS_L: { title: L; level: number; icon: string; chips: string[] }[] = [
-  { title: { pt: 'Monitoramento / NOC', en: 'Monitoring / NOC' }, level: 5, icon: 'Activity', chips: ['SolarWinds', 'Netcool/Omnibus', 'HP SiteScope', 'Zabbix', 'Nagios', 'Grafana'] },
-  { title: { pt: 'ITSM / Incidentes', en: 'ITSM / Incidents' }, level: 5, icon: 'ListChecks', chips: ['BMC Remedy', 'Jira', 'GLPI', 'ITIL', 'SLA', 'Incident Mgmt', 'Escalation', 'Problem/Change', 'RCA', 'Runbooks'] },
-  { title: { pt: 'Redes', en: 'Networking' }, level: 4, icon: 'Network', chips: ['TCP/IP', 'LAN/WAN', 'DNS', 'Wi-Fi', 'VPN', 'Switching/Routing', 'Cisco Meraki'] },
-  { title: { pt: 'Automação / Scripting', en: 'Automation / Scripting' }, level: 4, icon: 'Terminal', chips: ['PowerShell', 'Bash', 'Python', 'Git/GitHub', 'Routine automation'] },
-  { title: { pt: 'Backup / Continuidade', en: 'Backup / Continuity' }, level: 4, icon: 'DatabaseBackup', chips: ['Symantec NetBackup', 'HP Data Protector', 'Backup/Restore', 'Disaster Recovery', 'Restore validation'] },
-  { title: { pt: 'Segurança', en: 'Security' }, level: 3, icon: 'ShieldCheck', chips: ['Information Security', 'Cybersecurity', 'Pentest (fundamentals)', 'Vulnerability Assessment', 'Hardening', 'Security Awareness'] },
-  { title: { pt: 'Sistemas', en: 'Systems' }, level: 4, icon: 'Server', chips: ['Windows', 'Linux', 'Active Directory', 'IAM basics', 'SQL/SQL Server', 'Microsoft Office'] },
-  { title: { pt: 'Produção · MDM · Cloud', en: 'Production · MDM · Cloud' }, level: 3, icon: 'Cloud', chips: ['BMC Control-M', 'MDM', 'Workspace ONE', 'AWS (fundamentals)', 'Cloud Computing'] },
+const SKILLS_L: { title: L; level: number; icon: string; chips: string[]; attr: Attribute }[] = [
+  { title: { pt: 'Monitoramento / NOC', en: 'Monitoring / NOC' }, level: 5, icon: 'Activity', chips: ['SolarWinds', 'Netcool/Omnibus', 'HP SiteScope', 'Zabbix', 'Nagios', 'Grafana'], attr: 'REFLEXES' },
+  { title: { pt: 'ITSM / Incidentes', en: 'ITSM / Incidents' }, level: 5, icon: 'ListChecks', chips: ['BMC Remedy', 'Jira', 'GLPI', 'ITIL', 'SLA', 'Incident Mgmt', 'Escalation', 'Problem/Change', 'RCA', 'Runbooks'], attr: 'COOL' },
+  { title: { pt: 'Redes', en: 'Networking' }, level: 4, icon: 'Network', chips: ['TCP/IP', 'LAN/WAN', 'DNS', 'Wi-Fi', 'VPN', 'Switching/Routing', 'Cisco Meraki'], attr: 'TECHNICAL' },
+  { title: { pt: 'Automação / Scripting', en: 'Automation / Scripting' }, level: 4, icon: 'Terminal', chips: ['PowerShell', 'Bash', 'Python', 'Git/GitHub', 'Routine automation'], attr: 'INTELLIGENCE' },
+  { title: { pt: 'Backup / Continuidade', en: 'Backup / Continuity' }, level: 4, icon: 'DatabaseBackup', chips: ['Symantec NetBackup', 'HP Data Protector', 'Backup/Restore', 'Disaster Recovery', 'Restore validation'], attr: 'BODY' },
+  { title: { pt: 'Segurança', en: 'Security' }, level: 3, icon: 'ShieldCheck', chips: ['Information Security', 'Cybersecurity', 'Pentest (fundamentals)', 'Vulnerability Assessment', 'Hardening', 'Security Awareness'], attr: 'INTELLIGENCE' },
+  { title: { pt: 'Sistemas', en: 'Systems' }, level: 4, icon: 'Server', chips: ['Windows', 'Linux', 'Active Directory', 'IAM basics', 'SQL/SQL Server', 'Microsoft Office'], attr: 'BODY' },
+  { title: { pt: 'Produção · MDM · Cloud', en: 'Production · MDM · Cloud' }, level: 3, icon: 'Cloud', chips: ['BMC Control-M', 'MDM', 'Workspace ONE', 'AWS (fundamentals)', 'Cloud Computing'], attr: 'TECHNICAL' },
 ]
 
 const CERTS_L: { title: L; sub: L; cred?: string }[] = [
@@ -256,7 +259,7 @@ export function getCV(lang: Lang): CVData {
     terminal: arr(TERMINAL_L, lang),
     caps: CAPS_L.map(c => ({ icon: c.icon, h: p(c.h, lang), d: p(c.d, lang) })),
     jobs: JOBS_L.map(j => ({ role: p(j.role, lang), org: j.org, loc: j.loc ? p(j.loc, lang) : undefined, start: j.start, end: j.end, period: p(j.period, lang), open: j.open, filter: j.filter, desc: p(j.desc, lang), points: arr(j.points, lang) })),
-    skills: SKILLS_L.map(s => ({ title: p(s.title, lang), level: s.level, icon: s.icon, chips: s.chips })),
+    skills: SKILLS_L.map(s => ({ title: p(s.title, lang), level: s.level, icon: s.icon, chips: s.chips, attr: s.attr })),
     certs: CERTS_L.map(c => ({ title: p(c.title, lang), sub: p(c.sub, lang), cred: c.cred })),
     edu: EDU_L.map(e => ({ title: p(e.title, lang), sub: p(e.sub, lang) })),
     contacts: CONTACTS_L.map(c => ({ type: c.type, label: p(c.label, lang), value: c.value, href: c.href, copy: c.copy, icon: c.icon })),

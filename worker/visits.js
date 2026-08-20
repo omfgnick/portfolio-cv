@@ -210,9 +210,19 @@ export default {
       })
     } catch (err) {
       // Cota do KV estourada, KV indisponível, JSON corrompido: seja o que for,
-      // a resposta continua válida e com CORS. O site esconde o contador em
-      // silêncio, em vez de estourar erro no console de todo visitante.
-      return json({ total: 0, countries: [], days: [], referrers: [], live: 0, engagement: {}, degraded: String(err && err.message || err) }, 200)
+      // a resposta continua válida e com CORS, para o site não estourar erro no
+      // console de todo visitante.
+      //
+      // total vai NULO, e não zero. Zero é um número, e o cliente o exibiria:
+      // o contador cairia de 615 para 0 na cara do visitante, como se as visitas
+      // tivessem sumido. Com nulo, o useVisits (que exige typeof === 'number')
+      // simplesmente não popula, e o contador some da tela — que é a verdade:
+      // não é zero, é desconhecido.
+      return json({
+        total: null,
+        countries: [], days: [], referrers: [], live: null, engagement: {},
+        degraded: String((err && err.message) || err),
+      }, 200)
     }
   },
 }

@@ -66,7 +66,10 @@ const check = (label, cond, extra = '') => {
   const j = await r.json()
   check('KV falhando devolve 200', r.status === 200, `status=${r.status}`)
   check('resposta tem CORS', r.headers.get('access-control-allow-origin') === '*')
-  check('marca degradado', typeof j.degraded === 'string' && j.total === 0)
+  check('marca degradado', typeof j.degraded === 'string')
+  // Zero seria exibido pelo cliente e pareceria perda de visitas; nulo faz o
+  // contador sumir, que e a leitura honesta de "nao sei".
+  check('total degradado e NULO, nao zero', j.total === null, `total=${JSON.stringify(j.total)}`)
 }
 
 // 5. "ao vivo" ignora minutos velhos

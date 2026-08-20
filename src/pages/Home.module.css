@@ -602,3 +602,55 @@ html[data-theme="light"] .cmd.visible .cmdTag { animation: none; }
 }
 html[data-theme="light"] .skillAttr { color: var(--lime-600); }
 html[data-theme="light"] .skillLvl { color: var(--emerald-700); text-shadow: none; }
+
+/* ── Certificacoes como slots de cyberware ─────────────────────
+   Cada credencial vira um modulo instalado: moldura chanfrada,
+   icone em caixa de ciano e etiqueta de estado.
+
+   A etiqueta leva aria-hidden - "INSTALLED" e cenario, nao
+   informacao, e num leitor de tela so atrapalharia a leitura da
+   certificacao em si. */
+.slots { display: grid; gap: 10px; }
+.slot {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 12px;
+  background: rgba(47, 240, 223, .04);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--aurora-cyan);
+  clip-path: var(--chamfer-sm);
+  transition: background .18s, border-color .18s;
+}
+.slot:hover { background: rgba(47, 240, 223, .08); border-color: var(--aurora-line2); }
+.slotIcon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  color: var(--noir-1);
+  background: var(--aurora-cyan);
+  clip-path: var(--chamfer-sm);
+  flex: 0 0 auto;
+}
+.slotBody { min-width: 0; }
+.slotTag {
+  font-family: var(--font-hud);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  color: var(--cp-yellow);
+  border: 1px solid rgba(252, 238, 10, .3);
+  padding: 3px 7px;
+  clip-path: var(--chamfer-sm);
+  white-space: nowrap;
+}
+@media (max-width: 520px) {
+  .slot { grid-template-columns: auto 1fr; }
+  .slotTag { display: none; }
+}
+html[data-theme="light"] .slot { background: rgba(6, 115, 108, .05); }
+html[data-theme="light"] .slotIcon { color: #fff; background: var(--emerald-600); }
+html[data-theme="light"] .slotTag { color: var(--lime-600); border-color: rgba(153, 16, 47, .3); }

@@ -461,9 +461,18 @@ export default function Home() {
             <div className={styles.cols}>
               <div className={`${styles.panel} ${styles.pad} ${styles.reveal}`} data-reveal>
                 <div className={styles.subhead}>{t.certifications}</div>
-                <div className={styles.snap}>
+                {/* Slots de cyberware: cada certificacao e um modulo instalado */}
+                <div className={styles.slots}>
                   {cv.certs.map(c => (
-                    <div key={c.title} className={styles.snapRow}><ShieldCheck size={16} /><div><div className={styles.snapT}>{c.title}</div><div className={styles.snapS}>{c.sub}</div>{c.cred && <div className={styles.cred}>cred: {c.cred}</div>}</div></div>
+                    <div key={c.title} className={styles.slot}>
+                      <div className={styles.slotIcon}><ShieldCheck size={15} /></div>
+                      <div className={styles.slotBody}>
+                        <div className={styles.snapT}>{c.title}</div>
+                        <div className={styles.snapS}>{c.sub}</div>
+                        {c.cred && <div className={styles.cred}>cred: {c.cred}</div>}
+                      </div>
+                      <div className={styles.slotTag} aria-hidden="true">INSTALLED</div>
+                    </div>
                   ))}
                 </div>
                 <a className={styles.verifyLink} href={P.linkedin} target="_blank" rel="noopener noreferrer nofollow">{t.verify} <ArrowUpRight size={12} /></a>

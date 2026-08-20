@@ -304,8 +304,8 @@ export default function Home() {
           <button className={styles.hudCmd} type="button" onClick={() => setPaletteOpen(true)} aria-label="Command palette (Ctrl/Cmd + K)">
             <Command size={13} /> K
           </button>
-          {visits && <span className={styles.hudVisits} title="visits"><Globe size={12} /> {nfmt(visits.total)}</span>}
-          <span className={styles.hudClock}><span className={styles.hudLed} /> {clock}</span>
+          {visits && <span className={styles.hudVisits} title="visits" data-testid="hud-visits"><Globe size={12} /> {nfmt(visits.total)}</span>}
+          <span className={styles.hudClock} data-testid="hud-clock"><span className={styles.hudLed} /> {clock}</span>
         </div>
 
         <main className={styles.content} id="main-content" tabIndex={-1}>

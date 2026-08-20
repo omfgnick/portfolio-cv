@@ -19,7 +19,21 @@ export default defineConfig({
     // pula a boot animation e desliga motion → testes determinísticos
     reducedMotion: 'reduce',
   },
-  projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
+  projects: [
+    // A suite padrao ignora o visual.spec: os snapshots sao por plataforma, e
+    // sem a baseline de Linux versionada o CI falharia por arquivo ausente,
+    // nao por regressao. Rode com --project=visual.
+    {
+      name: 'chromium',
+      testIgnore: /visual\.spec\.ts/,
+      use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'visual',
+      testMatch: /visual\.spec\.ts/,
+      use: { ...devices['Desktop Chrome'] },
+    },
+  ],
   webServer: {
     command: `npm run preview -- --port ${PORT} --strictPort`,
     url: BASE,

@@ -12,6 +12,52 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  visual:
+    name: Regressao visual
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      DEBIAN_FRONTEND: noninteractive
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Instalar navegador
+        timeout-minutes: 6
+        run: npx playwright install --with-deps chromium
+      - run: npm run build
+
+      # Os snapshots do Playwright sao por plataforma. As baselines de Linux
+      # so podem ser geradas aqui: quem desenvolve em Windows ou macOS produz
+      # arquivos com outro sufixo, que este job nao usaria.
+      - name: Ha baseline de Linux?
+        id: base
+        run: |
+          if ls e2e/visual.spec.ts-snapshots/*-linux.png >/dev/null 2>&1; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Sem baseline de Linux. Este run gera as imagens e as publica como artefato; baixe, comite em e2e/visual.spec.ts-snapshots/ e a partir dai o job compara de verdade."
+          fi
+
+      - name: Comparar com a baseline
+        if: steps.base.outputs.found == 'true'
+        run: npx playwright test --project=visual
+
+      - name: Gerar baseline (primeira vez)
+        if: steps.base.outputs.found != 'true'
+        run: npx playwright test --project=visual --update-snapshots
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: visual-baseline-linux
+          path: e2e/visual.spec.ts-snapshots/
+          retention-days: 14
+
   e2e:
     name: e2e + axe (Playwright)
     runs-on: ubuntu-latest

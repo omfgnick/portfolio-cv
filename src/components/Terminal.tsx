@@ -88,7 +88,7 @@ export default function Terminal({ boot, ctx }: { boot: string[]; ctx: TermCtx }
   }
 
   return (
-    <div className={styles.body} ref={bodyRef} onClick={() => { const el = document.getElementById('nm-term-input'); el?.focus() }}>
+    <div className={styles.body} data-testid="term-body" ref={bodyRef} onClick={() => { const el = document.getElementById('nm-term-input'); el?.focus() }}>
       {lines.map((l, i) => (
         <div key={i} className={styles.line}>
           {l.c === 'p' && <span className={styles.prompt}>noc@vivo:~$</span>}

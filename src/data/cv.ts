@@ -23,7 +23,7 @@ export interface Project { name: string; desc: string; tags: string[]; url: stri
 
 const PROFILE_L = {
   name: 'Nicolas Mesquita Fernandes',
-  role: { pt: '// Infrastructure & Incident Operations Specialist', en: '// Infrastructure & Incident Operations Specialist' },
+  role: { pt: '// Especialista em Operações de Infraestrutura e Incidentes', en: '// Infrastructure & Incident Operations Specialist' },
   tagline: {
     pt: 'Especialista em operação de infraestrutura crítica, monitoração NOC e gestão de incidentes. Foco em SLA/MTTR, padronização (runbooks) e automação para reduzir esforço manual e erro humano.',
     en: 'Specialist in critical-infrastructure operations, NOC monitoring and incident management. Focused on SLA/MTTR, standardization (runbooks) and automation to cut manual effort and human error.',
@@ -48,13 +48,13 @@ const METRICS_L: { count: number; suffix?: string; label: L }[] = [
 
 const TERMINAL_L: L[] = [
   { pt: '$whoami', en: '$whoami' },
-  { pt: 'nicolas.mesquita — infrastructure & incident operations', en: 'nicolas.mesquita — infrastructure & incident operations' },
+  { pt: 'nicolas.mesquita — operações de infraestrutura e incidentes', en: 'nicolas.mesquita — infrastructure & incident operations' },
   { pt: '$uptime', en: '$uptime' },
   { pt: 'online desde 2014 · foco em SLA/MTTR', en: 'online since 2014 · focused on SLA/MTTR' },
   { pt: '$monitor --stack', en: '$monitor --stack' },
   { pt: 'SolarWinds · Remedy · Grafana · Zabbix · Meraki [ok]', en: 'SolarWinds · Remedy · Grafana · Zabbix · Meraki [ok]' },
   { pt: '$status', en: '$status' },
-  { pt: '● systems operational — disponível para oportunidades', en: '● systems operational — open to opportunities' },
+  { pt: '● sistemas operacionais — disponível para oportunidades', en: '● systems operational — open to opportunities' },
 ]
 
 const CAPS_L = [

@@ -23,8 +23,19 @@
   background: radial-gradient(120% 120% at 30% 20%, rgba(47,240,223,.06), transparent 60%), rgba(255,255,255,.02); }
 .map svg { display: block; width: 100%; height: 100%; }
 @media (max-width: 820px) { .map { height: 120px; } }
-.grat { fill: none; stroke: rgba(255,45,85,.14); stroke-width: .5; }
-.arc { fill: none; stroke: rgba(47,240,223,.55); stroke-width: .8; stroke-dasharray: 3 3; animation: dash 6s linear infinite; }
+/* Os continentes: preenchimento discreto com contorno de ciano. Sem eles o
+   mapa era só uma grade, e os pontos flutuavam sem referência nenhuma. */
+.land {
+  fill: rgba(47, 240, 223, .07);
+  stroke: rgba(47, 240, 223, .38);
+  stroke-width: .4;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.grat { fill: none; stroke: rgba(255,45,85,.16); stroke-width: .4; vector-effect: non-scaling-stroke; }
+.arc { fill: none; stroke: var(--aurora-cyan); opacity: .55; stroke-width: .8; stroke-dasharray: 3 3;
+  vector-effect: non-scaling-stroke; animation: dash 6s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .arc { animation: none; } }
 @keyframes dash { to { stroke-dashoffset: -60; } }
 .home { fill: var(--lime-500); }
 .dot { fill: var(--emerald-400); }
@@ -49,3 +60,9 @@
 
 @media (prefers-reduced-motion: reduce) { .arc, .pulse, .live i { animation: none; } }
 @media print { .panel { display: none !important; } }
+
+html[data-theme="light"] .land {
+  fill: rgba(6, 115, 108, .10);
+  stroke: rgba(6, 115, 108, .45);
+}
+html[data-theme="light"] .grat { stroke: rgba(179, 18, 58, .14); }

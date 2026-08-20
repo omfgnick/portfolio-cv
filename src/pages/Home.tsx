@@ -383,6 +383,12 @@ export default function Home() {
           <section id="experience" className={styles.section}>
             <SecHead cmd={t.sectionTitle.experience} tag="02" id="experience" onCopy={copySectionLink} copied={copied === 'sec:experience'} label={t.copyLink} />
             <Timeline jobs={cv.jobs} onPick={pickJob} ui={{ totalYears: t.tlYears, roles: t.tlRoles, hint: t.tlHint }} />
+            {/* Legenda: sem ela as etiquetas nos cards nao se explicam */}
+            <div className={styles.lifeLegend}>
+              <span className={styles.lpCORPO}><i />{t.lpCorpo}</span>
+              <span className={styles.lpNOMAD}><i />{t.lpNomad}</span>
+              <span className={styles.lpSTREETKID}><i />{t.lpStreetkid}</span>
+            </div>
             <div className={styles.timeline}>
               {jobs.length === 0 && <p className={styles.empty}>{t.emptyExp}</p>}
               {jobs.map((j) => {
@@ -396,6 +402,7 @@ export default function Home() {
                           <div className={styles.jobRole}>{j.role}</div>
                           <div className={styles.jobOrg}>{j.org}</div>
                           {j.loc && <div className={styles.jobLoc}>{j.loc}</div>}
+                          <div className={`${styles.lifepath} ${styles['lp' + j.path]}`}>{j.path}</div>
                         </div>
                         <div className={styles.jobMeta}>
                           <span className={styles.period}>{j.period}</span>

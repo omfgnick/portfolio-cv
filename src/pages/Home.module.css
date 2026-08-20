@@ -654,3 +654,42 @@ html[data-theme="light"] .skillLvl { color: var(--emerald-700); text-shadow: non
 html[data-theme="light"] .slot { background: rgba(6, 115, 108, .05); }
 html[data-theme="light"] .slotIcon { color: #fff; background: var(--emerald-600); }
 html[data-theme="light"] .slotTag { color: var(--lime-600); border-color: rgba(153, 16, 47, .3); }
+
+/* ── Lifepath ──────────────────────────────────────────────────
+   Marca COMO o trabalho aconteceu, nao o cargo: CORPO dentro da
+   operacao de uma grande corporacao, NOMAD alocado por fornecedor
+   num cliente, STREETKID TI local com mao na massa. E rotulo de
+   cenario sobre um fato real; o cargo e a empresa continuam ali
+   em cima, escritos por extenso. */
+.lifepath {
+  display: inline-block;
+  margin-top: 6px;
+  font-family: var(--font-hud);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  padding: 3px 8px;
+  clip-path: var(--chamfer-sm);
+  border: 1px solid currentColor;
+}
+.lpCORPO     { color: var(--aurora-cyan); }
+.lpNOMAD     { color: var(--cp-yellow); }
+.lpSTREETKID { color: var(--rose-400); }
+
+.lifeLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 12px;
+  font-family: var(--font-hud);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  color: var(--text-tertiary);
+}
+.lifeLegend span { display: inline-flex; align-items: center; gap: 6px; }
+.lifeLegend i { width: 9px; height: 9px; clip-path: var(--chamfer-sm); background: currentColor; }
+
+html[data-theme="light"] .lpCORPO     { color: var(--emerald-700); }
+html[data-theme="light"] .lpNOMAD     { color: #8a6d00; }
+html[data-theme="light"] .lpSTREETKID { color: var(--lime-600); }

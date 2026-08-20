@@ -1,60 +1,79 @@
 /* ================================================================
-   PORTFOLIO — DESIGN TOKENS
-   Mesmo sistema da landing SynapseNutri (Precision Health / noir aurora):
-   paleta esmeralda→ciano→violeta sobre tinta noir, Fraunces + Inter +
-   JetBrains Mono. Adaptado e autocontido para o currículo.
+   PORTFOLIO - DESIGN TOKENS
+   Identidade "HUD Cyberpunk": ciano de neon sobre quase-preto azulado,
+   com carmim como cor de estrutura - moldura, alerta e acao destrutiva.
+
+   O carmim fica em borda, moldura, LED e numero grande. Em corpo de
+   texto ele nao vai: sobre #05070c da ~5.5:1, o que passa, mas sobre as
+   superficies translucidas cai, e o teste de acessibilidade reprova.
+   Texto continua em ciano claro e branco-gelo.
    ================================================================ */
 
 :root {
-  /* ── Brand palette — AFTERLIFE (Cyberpunk 2077): verde-teal atmosférico,
-        brilho de neon menta, âmbar quente de destaque e vermelho de alerta. ── */
-  /* Accent primário: verde-menta do letreiro Afterlife (tokens --emerald-*). */
-  --emerald-900: #063d2c;
-  --emerald-700: #0a9e70;
-  --emerald-600: #14c98e;
-  --emerald-500: #35f0b0;
-  --emerald-400: #6cffcf;
-  --emerald-300: #a7ffe4;
+  /* Accent primario: ciano de neon (mantem o nome --emerald-* porque e
+     o token que toda a UI ja referencia; renomear espalharia o diff por
+     dez arquivos de CSS sem mudar nada visualmente). */
+  --emerald-900: #03343a;
+  --emerald-700: #0bbcb0;
+  --emerald-600: #16d7c8;
+  --emerald-500: #2ff0df;
+  --emerald-400: #5cfbec;
+  --emerald-300: #a6fff6;
 
-  /* Highlight: âmbar quente (glow do balcão, status, "ok"). */
-  --lime-600: #d99b1c;
-  --lime-500: #f6c453;
-  --lime-400: #ffd97a;
+  /* Highlight: carmim (LED, disponibilidade, cursor, acao destrutiva). */
+  --lime-600: #d61439;
+  --lime-500: #ff2d55;
+  --lime-400: #ff5c78;
 
-  --aurora-cyan:   #22e0c8;   /* teal */
-  --aurora-violet: #0e7a6e;   /* verde-teal profundo (gradiente monocromático) */
-  --amber-400:     #f6c453;
-  --rose-400:      #ff4d4d;   /* vermelho de alerta */
+  --aurora-cyan:   #2ff0df;
+  --aurora-violet: #ff2d55;   /* o gradiente fecha em carmim */
+  --amber-400:     #ff5c78;
+  --rose-400:      #ff2d55;
+  --cp-yellow:     #fcee0a;   /* a cor-assinatura do Cyberpunk 2077 */
 
-  /* Noir esverdeado (superfícies profundas, atmosféricas) */
-  --noir-1: #04110d;
-  --noir-2: #071a14;
-  --noir-3: #0b261e;
+  /* Quase-preto azulado */
+  --noir-1: #05070c;
+  --noir-2: #090d15;
+  --noir-3: #0d1420;
 
-  /* Gradients & aurora effects */
-  --grad-aurora:  linear-gradient(95deg, var(--emerald-400) 0%, var(--aurora-cyan) 52%, var(--aurora-violet) 100%);
+  /* Gradients & neon effects */
+  /* O carmim entra so na ponta: no meio ele lava o ciano e o texto
+     em gradiente fica rosado e sem definicao. */
+  --grad-aurora:  linear-gradient(95deg, var(--emerald-300) 0%, var(--aurora-cyan) 62%, var(--rose-400) 100%);
   --grad-brand:   linear-gradient(135deg, var(--emerald-500) 0%, var(--aurora-cyan) 100%);
-  --aurora-line:  rgba(45, 232, 213, 0.12);
-  --aurora-line2: rgba(45, 232, 213, 0.22);
-  --aurora-glass: rgba(9, 26, 20, 0.6);
-  --glow-emerald: 0 12px 40px -12px rgba(53, 240, 176, 0.55);
+  --aurora-line:  rgba(255, 45, 85, 0.58);
+  --aurora-line2: rgba(255, 45, 85, 0.88);
+  --aurora-glass: rgba(9, 13, 21, 0.66);
+  --glow-emerald: 0 12px 40px -12px rgba(47, 240, 223, 0.5);
+  --glow-rose:    0 0 18px -2px rgba(255, 45, 85, 0.55);
 
-  /* ── Semantic (dark) ───────────────────────────────────────── */
+  /* Cantos cortados: a geometria que define o HUD */
+  --chamfer:    polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+  /* Preenchimento do painel: quase opaco de proposito. Ele fica sobre a
+     camada que faz as vezes de borda, e translucido deixaria o carmim
+     atravessar e tingir o painel inteiro. */
+  --panel-fill: #080d16;
+  --chamfer-sm: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+
+  /* Semantic (dark) */
   --surface-base:    var(--noir-1);
   --surface-raised:  var(--noir-2);
   --surface-overlay: var(--noir-3);
-  --card-bg:         rgba(210, 255, 240, 0.035);
+  --card-bg:         rgba(18, 38, 54, 0.32);
   --card-border:     var(--aurora-line);
 
-  --text-primary:   #e6fff5;
-  --text-secondary: rgba(230, 255, 245, 0.72);
-  --text-tertiary:  rgba(230, 255, 245, 0.50);
+  --text-primary:   #eafcff;
+  --text-secondary: rgba(234, 252, 255, 0.78);
+  --text-tertiary:  rgba(234, 252, 255, 0.58);
   --border:         var(--aurora-line);
   --border-strong:  var(--aurora-line2);
-  --border-focus:   var(--aurora-cyan);
+  --border-focus:   var(--emerald-400);
 
   /* ── Typography ────────────────────────────────────────────── */
-  --font-display: 'Fraunces', 'Times New Roman', Georgia, serif;
+  /* Rajdhani e a fonte da UI do proprio Cyberpunk 2077 (SIL OFL).
+     Fraunces fica como reserva para quem bloqueia webfont. */
+  --font-display: 'Rajdhani', 'Fraunces', 'Segoe UI', system-ui, sans-serif;
+  --font-hud:     'Rajdhani', ui-sans-serif, system-ui, sans-serif;
   --font-sans:    'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --font-body:    var(--font-sans);
   --font-mono:    'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
@@ -81,10 +100,11 @@
   --tracking-wide:   0.08em;
 
   /* ── Radius / shadow / motion ──────────────────────────────── */
-  --radius-sm:  8px;
-  --radius-md:  12px;
-  --radius-lg:  18px;
-  --radius-xl:  24px;
+  /* Raios quase zerados: o HUD e feito de cantos vivos e cortados. */
+  --radius-sm:  2px;
+  --radius-md:  2px;
+  --radius-lg:  3px;
+  --radius-xl:  3px;
   --radius-pill: 999px;
   --shadow-card: 0 22px 60px rgba(2, 6, 10, 0.55);
   --ease: cubic-bezier(0.2, 0.75, 0.2, 1);
@@ -95,21 +115,22 @@
    Mantém a identidade Afterlife (verde-teal), mas com acentos mais
    escuros para contraste em superfícies claras. */
 :root[data-theme="light"] {
-  --emerald-900: #d1fae5;
-  --emerald-700: #0a7f5f;
-  --emerald-600: #0a8f68;
-  --emerald-500: #0a8f68;
-  --emerald-400: #0c9d70;
-  --emerald-300: #0a7f5f;
+  --emerald-900: #d2f7f5;
+  --emerald-700: #067b74;
+  --emerald-600: #068a82;
+  --emerald-500: #068a82;
+  --emerald-400: #05948b;
+  --emerald-300: #067b74;
 
-  --lime-600: #a15c00;
-  --lime-500: #b06a00;
-  --lime-400: #c07a00;
+  /* Carmim escuro: no claro o vermelho vivo nao alcanca 4.5:1 */
+  --lime-600: #99102f;
+  --lime-500: #b3123a;
+  --lime-400: #c21540;
 
-  --aurora-cyan:   #0e8f88;
-  --aurora-violet: #6d3bd6;
-  --amber-400:     #b06a00;
-  --rose-400:      #d13a4e;
+  --aurora-cyan:   #0c8f88;
+  --aurora-violet: #b3123a;   /* carmim escurecido para contraste no claro */
+  --amber-400:     #b3123a;
+  --rose-400:      #b3123a;
 
   --noir-1: #f3f7f5;
   --noir-2: #ffffff;
@@ -117,8 +138,8 @@
 
   --grad-aurora: linear-gradient(95deg, var(--emerald-600) 0%, var(--aurora-cyan) 52%, var(--aurora-violet) 100%);
   --grad-brand:  linear-gradient(135deg, var(--emerald-600) 0%, var(--aurora-cyan) 100%);
-  --aurora-line:  rgba(10, 120, 100, 0.14);
-  --aurora-line2: rgba(10, 120, 100, 0.26);
+  --aurora-line:  rgba(179, 18, 58, 0.20);
+  --aurora-line2: rgba(179, 18, 58, 0.38);
   --aurora-glass: rgba(255, 255, 255, 0.7);
   --glow-emerald: 0 14px 40px -16px rgba(10, 143, 104, 0.45);
 

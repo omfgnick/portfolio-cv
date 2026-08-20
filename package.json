@@ -11,8 +11,10 @@
     "gen:pdf": "tsx scripts/gen-pdf.ts",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "playwright test",
-    "lhci": "lhci autorun"
+    "test:e2e": "playwright test --project=chromium",
+    "lhci": "lhci autorun",
+    "test:visual": "playwright test --project=visual",
+    "test:visual:update": "playwright test --project=visual --update-snapshots"
   },
   "dependencies": {
     "lucide-react": "^0.453.0",

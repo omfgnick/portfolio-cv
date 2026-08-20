@@ -23,21 +23,21 @@ void main(){
   float a=fbm(q*1.5+vec2(t*.045,t*.028));
   float b=fbm(q*2.1-vec2(t*.034,t*.05)+a*1.3);
   float c=fbm(q*1.1+vec2(-t*.025,t*.04)+b*.8);
-  vec3 col=vec3(.008,.05,.04);
-  col=mix(col,vec3(.05,.55,.40),smoothstep(.42,.88,a)*.64);
-  col=mix(col,vec3(.02,.50,.46),smoothstep(.52,.95,b)*.42);
-  col=mix(col,vec3(.02,.30,.24),smoothstep(.58,.92,c)*.34);
-  col=mix(col,vec3(.85,.60,.14),smoothstep(.83,.99,a*b*2.1)*.14);
+  vec3 col=vec3(.02,.027,.047);
+  col=mix(col,vec3(.06,.55,.54),smoothstep(.42,.88,a)*.42);
+  col=mix(col,vec3(.03,.40,.46),smoothstep(.52,.95,b)*.30);
+  col=mix(col,vec3(.02,.16,.26),smoothstep(.58,.92,c)*.30);
+  col=mix(col,vec3(.90,.12,.26),smoothstep(.80,.99,a*b*2.1)*.20);
   float vig=smoothstep(1.45,.18,length(uv-vec2(.5,.42)));
   gl_FragColor=vec4(col*vig,1.);
 }`
 
 const CSS_FALLBACK: React.CSSProperties = {
   background:
-    'radial-gradient(60% 50% at 18% 8%, rgba(53,240,176,.28), transparent 65%),' +
-    'radial-gradient(50% 45% at 82% 16%, rgba(34,224,200,.18), transparent 65%),' +
-    'radial-gradient(55% 50% at 50% 55%, rgba(14,122,110,.16), transparent 65%),' +
-    '#04110d',
+    'radial-gradient(60% 50% at 18% 8%, rgba(47,240,223,.20), transparent 65%),' +
+    'radial-gradient(50% 45% at 82% 16%, rgba(255,45,85,.14), transparent 65%),' +
+    'radial-gradient(55% 50% at 50% 55%, rgba(20,90,110,.16), transparent 65%),' +
+    '#05070c',
 }
 
 export default function AuroraCanvas({ variant = 'full', className, style }: {

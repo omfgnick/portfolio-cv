@@ -34,6 +34,7 @@ const QRCode = lazy(() => import('@/components/qr/QRCode'))
 const VisitorPanel = lazy(() => import('@/components/VisitorPanel'))
 const CommandPalette = lazy(() => import('@/components/CommandPalette'))
 const ShortcutsHelp = lazy(() => import('@/components/ShortcutsHelp'))
+const Breach = lazy(() => import('@/components/Breach'))
 const RecruiterView = lazy(() => import('@/components/RecruiterView'))
 
 const NAV = [
@@ -76,7 +77,9 @@ function SecHead({ cmd, tag, id, onCopy, copied, label }: {
   onCopy: (id: string) => void; copied: boolean; label: string
 }) {
   return (
-    <div className={styles.cmd}>
+    // data-reveal reaproveita o IntersectionObserver que ja existe: o glitch
+    // dispara uma vez, quando a secao entra na tela, e nao a cada render.
+    <div className={styles.cmd} data-reveal>
       <span className={styles.cmdLine}><span className={styles.cmdPrompt}>&gt;</span> {cmd}<span className={styles.cmdCaret} /></span>
       <button className={`${styles.cmdLink} ${copied ? styles.cmdLinkOn : ''}`} type="button"
         onClick={() => onCopy(id)} aria-label={label} title={label}>
@@ -97,6 +100,7 @@ export default function Home() {
   const [clock, setClock] = useState('--:--:--')
   const [paletteOpen, setPaletteOpen] = useState(false)
   const [helpOpen, setHelpOpen] = useState(false)
+  const [breachOpen, setBreachOpen] = useState(false)
   const [theme, setTheme] = useState<'dark' | 'light'>(
     () => (typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark'),
   )
@@ -140,7 +144,7 @@ export default function Home() {
     document.documentElement.setAttribute('data-theme', next)
     try { localStorage.setItem('nm_theme', next) } catch { /* noop */ }
     const meta = document.querySelector('meta[name="theme-color"]')
-    if (meta) meta.setAttribute('content', next === 'light' ? '#f3f7f5' : '#04110d')
+    if (meta) meta.setAttribute('content', next === 'light' ? '#f3f7f5' : '#05070c')
   }
   const toggleLang = () => {
     const next: Lang = lang === 'pt' ? 'en' : 'pt'
@@ -300,8 +304,8 @@ export default function Home() {
           <button className={styles.hudCmd} type="button" onClick={() => setPaletteOpen(true)} aria-label="Command palette (Ctrl/Cmd + K)">
             <Command size={13} /> K
           </button>
-          {visits && <span className={styles.hudVisits} title="visits"><Globe size={12} /> {nfmt(visits.total)}</span>}
-          <span className={styles.hudClock}><span className={styles.hudLed} /> {clock}</span>
+          {visits && <span className={styles.hudVisits} title="visits" data-testid="hud-visits"><Globe size={12} /> {nfmt(visits.total)}</span>}
+          <span className={styles.hudClock} data-testid="hud-clock"><span className={styles.hudLed} /> {clock}</span>
         </div>
 
         <main className={styles.content} id="main-content" tabIndex={-1}>
@@ -333,7 +337,7 @@ export default function Home() {
 
             <div ref={termRef} className={`${styles.panel} ${styles.term}`}>
               <div className={styles.panelHead}><span className={styles.phId}>TTY·0</span><span className={styles.phDots}><i /><i /><i /></span><span className={styles.phStatus}>noc@vivo</span></div>
-              <TerminalPanel boot={cv.terminal} ctx={{ lang, goto, toggleTheme, toggleLang, print: () => window.print(), vcard: downloadVCard, links: { linkedin: P.linkedin, github: P.github, wa: waUrl } }} />
+              <TerminalPanel boot={cv.terminal} ctx={{ lang, goto, toggleTheme, toggleLang, print: () => window.print(), vcard: downloadVCard, breach: () => setBreachOpen(true), links: { linkedin: P.linkedin, github: P.github, wa: waUrl } }} />
             </div>
           </section>
 
@@ -381,6 +385,12 @@ export default function Home() {
           <section id="experience" className={styles.section}>
             <SecHead cmd={t.sectionTitle.experience} tag="02" id="experience" onCopy={copySectionLink} copied={copied === 'sec:experience'} label={t.copyLink} />
             <Timeline jobs={cv.jobs} onPick={pickJob} ui={{ totalYears: t.tlYears, roles: t.tlRoles, hint: t.tlHint }} />
+            {/* Legenda: sem ela as etiquetas nos cards nao se explicam */}
+            <div className={styles.lifeLegend}>
+              <span className={styles.lpCORPO}><i />{t.lpCorpo}</span>
+              <span className={styles.lpNOMAD}><i />{t.lpNomad}</span>
+              <span className={styles.lpSTREETKID}><i />{t.lpStreetkid}</span>
+            </div>
             <div className={styles.timeline}>
               {jobs.length === 0 && <p className={styles.empty}>{t.emptyExp}</p>}
               {jobs.map((j) => {
@@ -394,6 +404,7 @@ export default function Home() {
                           <div className={styles.jobRole}>{j.role}</div>
                           <div className={styles.jobOrg}>{j.org}</div>
                           {j.loc && <div className={styles.jobLoc}>{j.loc}</div>}
+                          <div className={`${styles.lifepath} ${styles['lp' + j.path]}`}>{j.path}</div>
                         </div>
                         <div className={styles.jobMeta}>
                           <span className={styles.period}>{j.period}</span>
@@ -420,9 +431,14 @@ export default function Home() {
               {skills.length === 0 && <p className={styles.empty}>{t.emptySkill}</p>}
               {skills.map(s => (
                 <div key={s.title} className={`${styles.panel} ${styles.skill} ${styles.reveal}`} data-reveal>
+                  <div className={styles.skillAttr}>{s.attr}</div>
                   <div className={styles.skillH}>
                     <div className={styles.skillT}><Icon name={s.icon} size={16} /> {s.title}</div>
-                    <div className={styles.signal}>{Array.from({ length: 5 }).map((_, k) => <i key={k} className={k < s.level ? styles.on : ''} style={{ height: 6 + k * 2 }} />)}</div>
+                    <div className={styles.skillLvl} aria-hidden="true">{s.level}</div>
+                  </div>
+                  {/* aria-hidden porque a barra repete o que o numero ao lado ja diz */}
+                  <div className={styles.signal} aria-hidden="true">
+                    {Array.from({ length: 5 }).map((_, k) => <i key={k} className={k < s.level ? styles.on : ''} />)}
                   </div>
                   <div className={styles.chips}>{s.chips.map(c => <span key={c} className={styles.chip}>{c}</span>)}</div>
                 </div>
@@ -454,9 +470,18 @@ export default function Home() {
             <div className={styles.cols}>
               <div className={`${styles.panel} ${styles.pad} ${styles.reveal}`} data-reveal>
                 <div className={styles.subhead}>{t.certifications}</div>
-                <div className={styles.snap}>
+                {/* Slots de cyberware: cada certificacao e um modulo instalado */}
+                <div className={styles.slots}>
                   {cv.certs.map(c => (
-                    <div key={c.title} className={styles.snapRow}><ShieldCheck size={16} /><div><div className={styles.snapT}>{c.title}</div><div className={styles.snapS}>{c.sub}</div>{c.cred && <div className={styles.cred}>cred: {c.cred}</div>}</div></div>
+                    <div key={c.title} className={styles.slot}>
+                      <div className={styles.slotIcon}><ShieldCheck size={15} /></div>
+                      <div className={styles.slotBody}>
+                        <div className={styles.snapT}>{c.title}</div>
+                        <div className={styles.snapS}>{c.sub}</div>
+                        {c.cred && <div className={styles.cred}>cred: {c.cred}</div>}
+                      </div>
+                      <div className={styles.slotTag} aria-hidden="true">INSTALLED</div>
+                    </div>
                   ))}
                 </div>
                 <a className={styles.verifyLink} href={P.linkedin} target="_blank" rel="noopener noreferrer nofollow">{t.verify} <ArrowUpRight size={12} /></a>
@@ -519,6 +544,7 @@ export default function Home() {
         )}
         {paletteOpen && <CommandPalette open onClose={() => setPaletteOpen(false)} items={cmdItems} ui={t} />}
         {helpOpen && <ShortcutsHelp open onClose={() => setHelpOpen(false)} lang={lang} />}
+        {breachOpen && <Breach onClose={() => setBreachOpen(false)} lang={lang} />}
       </Suspense>
     </div>
   )

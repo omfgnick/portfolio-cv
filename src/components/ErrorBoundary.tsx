@@ -12,10 +12,10 @@ export default class ErrorBoundary extends Component<{ children: ReactNode }, { 
       return (
         <div style={{
           minHeight: '100dvh', display: 'grid', placeItems: 'center', padding: 24, textAlign: 'center',
-          background: '#04110d', color: '#e6fff5', fontFamily: 'ui-monospace, monospace',
+          background: '#05070c', color: '#eafcff', fontFamily: 'ui-monospace, monospace',
         }}>
           <div style={{ maxWidth: 460 }}>
-            <div style={{ fontSize: 40, color: '#35f0b0', fontWeight: 800 }}>× ERR</div>
+            <div style={{ fontSize: 40, color: '#ff2d55', fontWeight: 800 }}>× ERR</div>
             <h1 style={{ fontSize: 18, margin: '10px 0 8px' }}>Algo quebrou nesta sessão.</h1>
             <p style={{ opacity: 0.7, fontSize: 13, lineHeight: 1.6 }}>
               Um erro inesperado interrompeu a renderização. Recarregue a página para tentar de novo.

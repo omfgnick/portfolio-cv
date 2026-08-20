@@ -7,7 +7,7 @@
 .skip {
   position: fixed; left: 12px; top: -60px; z-index: 200;
   padding: 10px 16px; border-radius: 10px;
-  background: var(--emerald-500); color: #04110d; font-weight: 700;
+  background: var(--emerald-500); color: #04121a; font-weight: 700;
   font-size: .82rem; letter-spacing: .02em; text-decoration: none;
   box-shadow: 0 8px 26px rgba(0,0,0,.4); transition: top .18s ease;
 }
@@ -17,8 +17,8 @@
 .auroraBg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -3; display: block; }
 .gridBg {
   position: fixed; inset: -2px; z-index: -2; pointer-events: none;
-  background-image: linear-gradient(rgba(45,232,213,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(45,232,213,.05) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(255,45,85,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,45,85,.055) 1px, transparent 1px);
   background-size: 48px 48px;
   mask-image: radial-gradient(1300px 900px at 60% 20%, #000 55%, transparent 92%);
   -webkit-mask-image: radial-gradient(1300px 900px at 60% 20%, #000 55%, transparent 92%);
@@ -119,7 +119,7 @@
 .heroMain { display: flex; flex-direction: column; }
 .heroBody { padding: 24px 26px 26px; }
 .name { font-family: var(--font-display); font-size: clamp(30px, 4.6vw, 46px); font-weight: 700; line-height: 1.04;
-  margin: 14px 0 8px; letter-spacing: -.02em; text-shadow: 0 0 26px rgba(53,240,176,.28); }
+  margin: 14px 0 8px; letter-spacing: -.02em; text-shadow: 0 0 26px rgba(47,240,223,.30); }
 .nameAccent { background: var(--grad-aurora); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .role { font-family: var(--font-mono); font-size: clamp(12.5px, 1.5vw, 14.5px); color: var(--text-secondary); }
 .idLine { margin-top: 14px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; color: var(--text-tertiary); }
@@ -231,8 +231,7 @@
 .skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
 @media (max-width: 760px) { .skills { grid-template-columns: 1fr; } }
 .skill { padding: 16px; transition: border-color .2s, transform .16s var(--ease); }
-.skill:hover { transform: translateY(-2px); border-color: var(--aurora-line2);
-  background: radial-gradient(340px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--emerald-500) 13%, transparent), transparent 45%), var(--card-bg); }
+.skill:hover { transform: translateY(-2px); }
 .skillH { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .skillT { display: flex; align-items: center; gap: 9px; font-weight: 700; font-size: 13px; color: var(--text-primary); }
 .skillT svg { color: var(--emerald-400); }
@@ -293,8 +292,8 @@
   .shell {
     --text-primary: #0b1424; --text-secondary: #2a3646; --text-tertiary: #55606d;
     --card-bg: #ffffff; --card-border: #cfd6df; --border: #e3e7ed; --border-strong: #c7cfd9;
-    --emerald-500: #0a7f5f; --emerald-400: #0a7f5f; --emerald-300: #0a7f5f;
-    --aurora-cyan: #0a7f5f; --lime-500: #a15c00;
+    --emerald-500: #06736c; --emerald-400: #06736c; --emerald-300: #06736c;
+    --aurora-cyan: #06736c; --lime-500: #99102f; --rose-400: #99102f;
     --shadow-card: none; --glow-emerald: none;
     background: #fff !important;
   }
@@ -317,7 +316,15 @@
     background: none !important; -webkit-background-clip: border-box !important; background-clip: border-box !important;
     -webkit-text-fill-color: #0b1424 !important; color: #0b1424 !important;
   }
-  .timeline::before { background: #0a7f5f !important; }
+  .timeline::before { background: #06736c !important; }
+
+  /* O nome e um letreiro de neon na tela; no papel o brilho vira borrao
+     cinza e a oscilacao nao existe. Fica so a letra. */
+  .name { text-shadow: none !important; animation: none !important; }
+  .nameAccent { filter: none !important; }
+  /* Amarelo em papel branco nao se le */
+  .idLine .avail { color: #99102f !important; text-shadow: none !important; }
+  .cmdTag { color: #06736c !important; border-color: #cfd6df !important; }
 }
 
 /* ── Reveal (fail-safe) ────────────────────────────────────── */
@@ -353,3 +360,336 @@ html[data-theme="light"] .shell {
     var(--surface-base);
 }
 html[data-theme="light"] .primary { color: #ffffff; }
+
+/* ============================================================
+   HUD CYBERPUNK — geometria
+   ------------------------------------------------------------
+   Duas regras guiam o que leva canto cortado:
+
+   - elemento de preenchimento solido (botao, selo, marca, aba)
+     recebe clip-path, porque a forma resolve sozinha;
+   - painel com moldura fica retangular e ganha cantos de ciano
+     reforcados, porque clip-path corta a borda na diagonal e
+     recuperar isso exigiria duas camadas empilhadas em cada
+     painel - custo alto para uma diferenca que o HUD de
+     referencia tambem resolve com cantos.
+   ============================================================ */
+
+/* ── Moldura chanfrada de verdade ──────────────────────────────
+   A borda acompanha o corte diagonal. O truque: o elemento inteiro
+   e recortado no chanfro e seu FUNDO faz as vezes de borda; um
+   pseudo-elemento recuado 1px, com o mesmo recorte, e o
+   preenchimento. Sobra 1px de "borda" que segue a diagonal, o que
+   clip-path sozinho nao consegue - ele corta a borda fora.
+
+   O fundo e um gradiente com parada dura: ciano nos dois cantos
+   cortados, carmim no resto. Assim a diagonal fica destacada sem
+   precisar de mais um elemento so para desenhar a linha. */
+.panel, .metrics, .job {
+  position: relative;
+  isolation: isolate;
+  border: 0;
+  border-radius: 0;
+  clip-path: var(--chamfer);
+  backdrop-filter: none;
+  background:
+    linear-gradient(225deg, var(--aurora-cyan) 0 24px, transparent 24px),
+    linear-gradient(45deg,  var(--aurora-cyan) 0 24px, transparent 24px),
+    var(--rose-400);
+}
+.panel > *, .metrics > *, .job > * { position: relative; z-index: 1; }
+.panel::after, .metrics::after, .job::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  /* A regra antiga do canto definia width/height fixos, e 'inset' nao
+     sobrepoe isso: o preenchimento saia com 11x11px e o painel inteiro
+     aparecia carmim. */
+  width: auto;
+  height: auto;
+  z-index: 0;
+  background: var(--panel-fill);
+  clip-path: var(--chamfer);
+  border: 0;
+  opacity: 1;
+  pointer-events: none;
+}
+/* O canto de ciano virou o proprio chanfro; o marcador antigo sai. */
+.panel::before { display: none; }
+.panelHead { background: color-mix(in srgb, var(--rose-400) 8%, transparent); }
+.metrics { border-left-color: var(--rose-400); }
+
+/* Cantos cortados nos elementos de preenchimento solido */
+.railBrand { clip-path: var(--chamfer); }
+.railLink { border-radius: 0; clip-path: var(--chamfer-sm); }
+.hudCmd, .hudIcon, .hudSearch, .hudVisits { clip-path: var(--chamfer-sm); }
+.tag, .period, .cmdTag, .cap { clip-path: var(--chamfer-sm); }
+.btn { clip-path: var(--chamfer-sm); border-radius: 0; }
+.chev { clip-path: var(--chamfer-sm); }
+
+/* O acento lateral da navegacao em carmim, como o HUD de referencia */
+.railOn::before { background: var(--rose-400); box-shadow: 0 0 10px var(--rose-400); }
+
+/* Scanline um pouco mais presente (a grade agora ja e carmim na origem) */
+.scan { opacity: .6; }
+
+/* No tema claro o carmim vivo nao se sustenta: a grade some e as
+   molduras voltam a ser discretas. */
+html[data-theme="light"] .gridBg { display: none; }
+html[data-theme="light"] .panel::before { box-shadow: none; }
+html[data-theme="light"] .name { text-shadow: none; }
+
+/* A moldura precisa ler como contorno de HUD, não como sombra: linha
+   carmim nítida e um halo curto para separar do fundo. */
+.cap, .skill { box-shadow: var(--shadow-card); }
+.panel, .metrics, .job { box-shadow: var(--shadow-card); }
+html[data-theme="light"] .panel,
+html[data-theme="light"] .metrics,
+html[data-theme="light"] .job,
+html[data-theme="light"] .cap,
+html[data-theme="light"] .skill { box-shadow: var(--shadow-card); }
+
+/* ============================================================
+   LETREIRO DE NEON — o nome
+   ------------------------------------------------------------
+   A Rajdhani e estreita e foi desenhada para caixa alta; com o
+   tracking negativo que servia a Fraunces ela empasta. Daí a
+   inversao: maiuscula e espacamento positivo.
+
+   A aberracao cromatica sai de text-shadow, nao de pseudo-elemento
+   com attr(data-text): dois deslocamentos (carmim a esquerda,
+   ciano a direita) dao o mesmo efeito sem duplicar o texto no DOM,
+   que e o que faria leitor de tela anunciar o nome duas vezes.
+   ============================================================ */
+.name {
+  font-size: clamp(32px, 5.2vw, 56px);
+  text-transform: uppercase;
+  letter-spacing: .045em;
+  font-weight: 700;
+  text-shadow:
+    -2px 0 0 rgba(255, 45, 85, .5),
+     2px 0 0 rgba(47, 240, 223, .4),
+     0 0 6px rgba(47, 240, 223, .8),
+     0 0 20px rgba(47, 240, 223, .45),
+     0 0 48px rgba(47, 240, 223, .25);
+  animation: neonHum 5.5s ease-in-out infinite;
+}
+
+/* O sobrenome era texto transparente recortado num gradiente. Com o
+   halo por tras, a letra perdia a borda e lia como um borrao rosado.
+   Tubo de neon tem nucleo quase branco e halo colorido - entao aqui
+   e preenchimento solido, e o brilho fica por conta do text-shadow
+   herdado de .name. */
+.nameAccent {
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  color: var(--emerald-300);
+}
+html[data-theme="light"] .nameAccent { color: var(--emerald-700); }
+
+/* Tubo de neon velho: oscila de leve e falha por um instante. */
+@keyframes neonHum {
+  0%, 41%, 43%, 55%, 100% { opacity: 1; }
+  42% { opacity: .82; }
+  56% { opacity: .9; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .name { animation: none; }
+}
+
+/* O amarelo do jogo entra so onde e sinal de estado - e a cor mais
+   reconhecivel do 2077, e usada em tudo vira ruido. */
+.idLine .avail { color: var(--cp-yellow); text-shadow: 0 0 12px rgba(252, 238, 10, .45); }
+.hudLed { background: var(--cp-yellow); box-shadow: 0 0 10px var(--cp-yellow); }
+.cmdTag { color: var(--cp-yellow); border-color: rgba(252, 238, 10, .35); }
+
+/* Rotulos da interface na fonte da UI do jogo */
+.railLabel, .hudPath, .subhead { font-family: var(--font-hud); font-weight: 600; }
+.railLabel { font-size: 9.5px; letter-spacing: .14em; }
+.hudPath { font-size: 12.5px; letter-spacing: .12em; }
+.subhead { font-size: 12.5px; letter-spacing: .16em; }
+
+/* No claro o neon vira borrão: fica só a letra. */
+html[data-theme="light"] .name {
+  text-shadow: none;
+  animation: none;
+}
+html[data-theme="light"] .nameAccent { filter: none; }
+html[data-theme="light"] .idLine .avail { color: var(--lime-600); text-shadow: none; }
+html[data-theme="light"] .cmdTag { color: var(--emerald-700); border-color: var(--border); }
+html[data-theme="light"] .hudLed { background: var(--emerald-600); box-shadow: none; }
+
+/* ── Glitch de entrada nos titulos de secao ────────────────────
+   Dispara uma vez, quando a secao entra na tela: o useReveal ja
+   observa [data-reveal] e usa unobserve depois de revelar, entao
+   nao ha risco de repetir a cada scroll.
+
+   So text-shadow e translate. Animar clip-path aqui daria o efeito
+   de "fatia" mas interpola mal entre inset() e none, e o titulo
+   pisca cortado em alguns navegadores. */
+@keyframes glitchIn {
+  0%   { transform: translateX(-3px); text-shadow: 3px 0 var(--rose-400), -3px 0 var(--aurora-cyan); }
+  15%  { transform: translateX(3px);  text-shadow: -4px 0 var(--rose-400), 4px 0 var(--aurora-cyan); }
+  30%  { transform: translateX(-2px); text-shadow: 2px 0 var(--rose-400), -2px 0 var(--aurora-cyan); }
+  45%  { transform: translateX(2px);  text-shadow: -3px 0 var(--rose-400), 3px 0 var(--aurora-cyan); }
+  60%  { transform: translateX(-1px); text-shadow: 1px 0 var(--rose-400), -1px 0 var(--aurora-cyan); }
+  100% { transform: none; text-shadow: none; }
+}
+.cmd.visible .cmdLine {
+  animation: glitchIn .42s steps(3, end) 1;
+}
+.cmd.visible .cmdTag {
+  animation: glitchIn .42s steps(3, end) 1 .06s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cmd.visible .cmdLine,
+  .cmd.visible .cmdTag { animation: none; }
+}
+/* No claro o glitch colorido fica sujo em vez de proposital */
+html[data-theme="light"] .cmd.visible .cmdLine,
+html[data-theme="light"] .cmd.visible .cmdTag { animation: none; }
+
+/* ── Skills no formato de atributo ─────────────────────────────
+   O atributo do jogo entra como etiqueta pequena; o rotulo grande
+   continua sendo a competencia real, porque e ela que o recrutador
+   procura quando escaneia a pagina.
+
+   O nivel aparece como numero E como barra. A barra leva
+   aria-hidden: repetir a mesma informacao para quem usa leitor de
+   tela e ruido, nao acessibilidade. */
+.skill { padding: 14px 16px 16px; }
+.skillAttr {
+  font-family: var(--font-hud);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  color: var(--cp-yellow);
+  opacity: .85;
+  margin-bottom: 6px;
+}
+.skillLvl {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--aurora-cyan);
+  text-shadow: 0 0 14px rgba(47, 240, 223, .5);
+}
+/* Barra segmentada, no formato entalhado da UI de perks do jogo */
+.signal { display: flex; align-items: stretch; gap: 3px; height: 6px; margin-top: 10px; }
+.signal i {
+  flex: 1;
+  background: rgba(234, 252, 255, .12);
+  opacity: 1;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 3px) 100%, 0 100%);
+}
+.signal i.on {
+  background: var(--aurora-cyan);
+  box-shadow: 0 0 8px rgba(47, 240, 223, .7);
+}
+
+/* O hover trocava o 'background' do card - e o fundo agora e a moldura
+   chanfrada, entao a borda sumia no hover. O brilho passa para o
+   preenchimento, que e o pseudo-elemento. */
+.skill:hover { background: none; }
+.skill:hover::after {
+  background:
+    radial-gradient(340px circle at var(--mx, 50%) var(--my, 50%),
+      color-mix(in srgb, var(--emerald-500) 14%, transparent), transparent 45%),
+    var(--panel-fill);
+}
+html[data-theme="light"] .skillAttr { color: var(--lime-600); }
+html[data-theme="light"] .skillLvl { color: var(--emerald-700); text-shadow: none; }
+
+/* ── Certificacoes como slots de cyberware ─────────────────────
+   Cada credencial vira um modulo instalado: moldura chanfrada,
+   icone em caixa de ciano e etiqueta de estado.
+
+   A etiqueta leva aria-hidden - "INSTALLED" e cenario, nao
+   informacao, e num leitor de tela so atrapalharia a leitura da
+   certificacao em si. */
+.slots { display: grid; gap: 10px; }
+.slot {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 12px;
+  background: rgba(47, 240, 223, .04);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--aurora-cyan);
+  clip-path: var(--chamfer-sm);
+  transition: background .18s, border-color .18s;
+}
+.slot:hover { background: rgba(47, 240, 223, .08); border-color: var(--aurora-line2); }
+.slotIcon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  color: var(--noir-1);
+  background: var(--aurora-cyan);
+  clip-path: var(--chamfer-sm);
+  flex: 0 0 auto;
+}
+.slotBody { min-width: 0; }
+.slotTag {
+  font-family: var(--font-hud);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  color: var(--cp-yellow);
+  border: 1px solid rgba(252, 238, 10, .3);
+  padding: 3px 7px;
+  clip-path: var(--chamfer-sm);
+  white-space: nowrap;
+}
+@media (max-width: 520px) {
+  .slot { grid-template-columns: auto 1fr; }
+  .slotTag { display: none; }
+}
+html[data-theme="light"] .slot { background: rgba(6, 115, 108, .05); }
+html[data-theme="light"] .slotIcon { color: #fff; background: var(--emerald-600); }
+html[data-theme="light"] .slotTag { color: var(--lime-600); border-color: rgba(153, 16, 47, .3); }
+
+/* ── Lifepath ──────────────────────────────────────────────────
+   Marca COMO o trabalho aconteceu, nao o cargo: CORPO dentro da
+   operacao de uma grande corporacao, NOMAD alocado por fornecedor
+   num cliente, STREETKID TI local com mao na massa. E rotulo de
+   cenario sobre um fato real; o cargo e a empresa continuam ali
+   em cima, escritos por extenso. */
+.lifepath {
+  display: inline-block;
+  margin-top: 6px;
+  font-family: var(--font-hud);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  padding: 3px 8px;
+  clip-path: var(--chamfer-sm);
+  border: 1px solid currentColor;
+}
+.lpCORPO     { color: var(--aurora-cyan); }
+.lpNOMAD     { color: var(--cp-yellow); }
+.lpSTREETKID { color: var(--rose-400); }
+
+.lifeLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 12px;
+  font-family: var(--font-hud);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  color: var(--text-tertiary);
+}
+.lifeLegend span { display: inline-flex; align-items: center; gap: 6px; }
+.lifeLegend i { width: 9px; height: 9px; clip-path: var(--chamfer-sm); background: currentColor; }
+
+html[data-theme="light"] .lpCORPO     { color: var(--emerald-700); }
+html[data-theme="light"] .lpNOMAD     { color: #8a6d00; }
+html[data-theme="light"] .lpSTREETKID { color: var(--lime-600); }

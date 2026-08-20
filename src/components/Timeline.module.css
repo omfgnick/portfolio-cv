@@ -38,7 +38,7 @@
 .label {
   position: absolute; left: 6px; top: 50%; transform: translateY(-50%);
   font-family: var(--font-mono); font-size: .6rem; letter-spacing: .02em;
-  color: #04110d; font-weight: 700; white-space: nowrap; pointer-events: none;
+  color: #04121a; font-weight: 700; white-space: nowrap; pointer-events: none;
   max-width: calc(100% - 10px); overflow: hidden; text-overflow: ellipsis;
 }
 

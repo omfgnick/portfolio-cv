@@ -27,6 +27,7 @@ export interface UIStrings {
   tlYears: string; tlRoles: string; tlHint: string
   rvOpen: string; rvTitle: string; rvNow: string; rvStack: string; rvCerts: string; rvPdf: string; rvEmail: string; rvFull: string
   themeToggle: string; langToggle: string
+  lpCorpo: string; lpNomad: string; lpStreetkid: string
   // visitor panel
   visits: string; live: string; last14: string; topCountries: string; source: string; waiting: string; visitCount: string; direct: string; noReferrer: string
 }
@@ -60,6 +61,9 @@ export const UI: Record<Lang, UIStrings> = {
     rvOpen: 'Resumo rápido (30s)', rvTitle: 'RESUMO EXECUTIVO // 30 SEGUNDOS', rvNow: '// POSIÇÃO MAIS RECENTE',
     rvStack: '// STACK PRINCIPAL', rvCerts: '// CERTIFICAÇÕES', rvPdf: 'Baixar CV (PDF)', rvEmail: 'E-mail', rvFull: 'ver o currículo completo →',
     themeToggle: 'Tema claro/escuro', langToggle: 'Idioma PT/EN',
+    lpCorpo: 'CORPO · dentro da operação de uma grande corporação',
+    lpNomad: 'NOMAD · alocado por fornecedor num cliente',
+    lpStreetkid: 'STREETKID · TI local, mão na massa',
     visits: 'visitas', live: 'ao vivo', last14: 'ÚLTIMOS 14 DIAS', topCountries: 'TOP PAÍSES', source: 'ORIGEM', waiting: 'aguardando…', visitCount: 'visita(s)', direct: 'direto', noReferrer: 'sem referrer',
   },
   en: {
@@ -90,6 +94,9 @@ export const UI: Record<Lang, UIStrings> = {
     rvOpen: 'Quick summary (30s)', rvTitle: 'EXECUTIVE SUMMARY // 30 SECONDS', rvNow: '// MOST RECENT ROLE',
     rvStack: '// CORE STACK', rvCerts: '// CERTIFICATIONS', rvPdf: 'Download CV (PDF)', rvEmail: 'E-mail', rvFull: 'see the full résumé →',
     themeToggle: 'Light/dark theme', langToggle: 'Language PT/EN',
+    lpCorpo: 'CORPO · inside a large corporation’s operation',
+    lpNomad: 'NOMAD · placed at a client through a vendor',
+    lpStreetkid: 'STREETKID · hands-on local IT',
     visits: 'visits', live: 'live', last14: 'LAST 14 DAYS', topCountries: 'TOP COUNTRIES', source: 'SOURCE', waiting: 'waiting…', visitCount: 'visit(s)', direct: 'direct', noReferrer: 'no referrer',
   },
 }

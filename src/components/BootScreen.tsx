@@ -11,7 +11,7 @@ const LINES = [
   '● systems operational',
 ]
 
-export default function BootScreen({ skipText }: { skipText: string }) {
+export default function BootScreen({ skipText, head, aria }: { skipText: string; head: string; aria: string }) {
   const [show, setShow] = useState(true)
   const [n, setN] = useState(0)
   const [closing, setClosing] = useState(false)
@@ -32,13 +32,13 @@ export default function BootScreen({ skipText }: { skipText: string }) {
 
   if (!show) return null
   return (
-    <div className={`${styles.boot} ${closing ? styles.closing : ''}`} role="status" aria-label="Inicializando sistema">
+    <div className={`${styles.boot} ${closing ? styles.closing : ''}`} role="status" aria-label={aria}>
       {/* Camadas de cenario. aria-hidden porque nada aqui e informacao: quem
           usa leitor de tela ouve o aria-label do container e mais nada. */}
       <div className={styles.sweep} aria-hidden="true" />
       <div className={styles.bars} aria-hidden="true" />
       <div className={styles.mark} aria-hidden="true" data-text="NM">NM</div>
-      <div className={styles.head} aria-hidden="true">NIGHT CITY // OPS TERMINAL</div>
+      <div className={styles.head} aria-hidden="true">{head}</div>
       <div className={styles.term}>
         {LINES.slice(0, n).map((l, i) => (
           <div key={i} className={styles.line}>

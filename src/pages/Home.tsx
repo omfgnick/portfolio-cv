@@ -255,19 +255,19 @@ export default function Home() {
   return (
     <div className={styles.shell}>
       <a className={styles.skip} href="#main-content">{t.skipToContent}</a>
-      <BootScreen skipText={t.bootSkip} />
+      <BootScreen skipText={t.bootSkip} head={t.bootHead} aria={t.ariaBoot} />
       <Suspense fallback={null}><AuroraCanvas className={styles.auroraBg} /></Suspense>
       <div className={styles.gridBg} aria-hidden="true" />
       <div className={styles.scan} aria-hidden="true" />
       <div className={styles.progress} aria-hidden="true"><span style={{ transform: `scaleX(${scrollPct})` }} /></div>
 
       <a className={`${styles.fab} ${styles.wa}`} href={waUrl} target="_blank" rel="noopener noreferrer nofollow" aria-label="WhatsApp"><MessageCircle size={22} /></a>
-      <button className={`${styles.fab} ${styles.top} ${toTop ? styles.show : ''}`} type="button" aria-label="Top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}><ArrowUp size={20} /></button>
+      <button className={`${styles.fab} ${styles.top} ${toTop ? styles.show : ''}`} type="button" aria-label={t.ariaTop} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}><ArrowUp size={20} /></button>
 
       {/* LEFT RAIL */}
       <aside className={styles.rail}>
-        <a className={styles.railBrand} href="#top" aria-label="Home"><span>NM</span></a>
-        <nav className={styles.railNav} aria-label="Sections">
+        <a className={styles.railBrand} href="#top" aria-label={t.ariaHome}><span>NM</span></a>
+        <nav className={styles.railNav} aria-label={t.ariaSections}>
           {NAV.map(n => (
             <a key={n.id} href={`#${n.id}`} className={`${styles.railLink} ${active === n.id ? styles.railOn : ''}`} aria-current={active === n.id ? 'true' : undefined}>
               <n.icon size={19} />
@@ -288,7 +288,7 @@ export default function Home() {
           <span className={styles.hudPath}>SYS://<b>{active.toUpperCase()}</b></span>
           <label className={styles.hudSearch}>
             <Search size={14} />
-            <input ref={searchRef} value={query} onChange={e => setQuery(e.target.value)} type="search" placeholder={t.searchPh} aria-label="Search" autoComplete="off" />
+            <input ref={searchRef} value={query} onChange={e => setQuery(e.target.value)} type="search" placeholder={t.searchPh} aria-label={t.ariaSearch} autoComplete="off" />
             <span className={styles.kbd}>/</span>
           </label>
           <button className={styles.hudIcon} type="button" onClick={toggleLang} aria-label={t.langToggle} title={t.langToggle} data-testid="lang-toggle">
@@ -301,7 +301,7 @@ export default function Home() {
             aria-label={t.rvOpen} title={t.rvOpen} data-testid="recruiter-open">
             <Gauge size={14} />
           </button>
-          <button className={styles.hudCmd} type="button" onClick={() => setPaletteOpen(true)} aria-label="Command palette (Ctrl/Cmd + K)">
+          <button className={styles.hudCmd} type="button" onClick={() => setPaletteOpen(true)} aria-label={`${t.ariaPalette} (Ctrl/Cmd + K)`}>
             <Command size={13} /> K
           </button>
           {visits && <span className={styles.hudVisits} title="visits" data-testid="hud-visits"><Globe size={12} /> {nfmt(visits.total)}</span>}
@@ -312,7 +312,7 @@ export default function Home() {
           {/* HERO */}
           <section ref={heroRef} className={styles.hero}>
             <div className={`${styles.panel} ${styles.heroMain}`}>
-              <div className={styles.panelHead}><span className={styles.phId}>OPR·001</span><span className={styles.phDots}><i /><i /><i /></span><span className={styles.phStatus}>DOSSIER</span></div>
+              <div className={styles.panelHead}><span className={styles.phId}>OPR·001</span><span className={styles.phDots}><i /><i /><i /></span><span className={styles.phStatus}>{t.dossier}</span></div>
               <div className={styles.heroBody}>
                 {AVAILABILITY.open && (
                   <span className={aurora.badge}><span className={aurora.dot} /> {getAvailabilityNote(lang) ?? t.available}</span>
@@ -320,8 +320,8 @@ export default function Home() {
                 <h1 className={styles.name} data-text="Nicolas Mesquita Fernandes">Nicolas Mesquita <span className={styles.nameAccent}>Fernandes</span></h1>
                 <p className={styles.role}>{P.role}</p>
                 <div className={styles.idLine}>
-                  <span>ID <b>NMF·2014</b></span><i>//</i><span>CLEARANCE <b>NOC-N3</b></span><i>//</i><span>LOC <b>SÃO PAULO</b></span>
-                  {AVAILABILITY.open && <><i>//</i><span>STATUS <b className={styles.avail}>AVAILABLE</b></span></>}
+                  <span>ID <b>NMF·2014</b></span><i>//</i><span>{t.clearance} <b>NOC-N3</b></span><i>//</i><span>{t.locLbl} <b>SÃO PAULO</b></span>
+                  {AVAILABILITY.open && <><i>//</i><span>{t.statusLbl} <b className={styles.avail}>{t.availableTag}</b></span></>}
                 </div>
                 <p className={styles.tagline}>{P.tagline}</p>
                 <div className={styles.tags}>{P.tags.map(tag => <span key={tag} className={styles.tag}><ChevronRight size={12} /> {tag}</span>)}</div>
@@ -404,7 +404,7 @@ export default function Home() {
                           <div className={styles.jobRole}>{j.role}</div>
                           <div className={styles.jobOrg}>{j.org}</div>
                           {j.loc && <div className={styles.jobLoc}>{j.loc}</div>}
-                          <div className={`${styles.lifepath} ${styles['lp' + j.path]}`}>{j.path}</div>
+                          <div className={`${styles.lifepath} ${styles['lp' + j.path]}`}>{t.paths[j.path]}</div>
                         </div>
                         <div className={styles.jobMeta}>
                           <span className={styles.period}>{j.period}</span>
@@ -431,7 +431,7 @@ export default function Home() {
               {skills.length === 0 && <p className={styles.empty}>{t.emptySkill}</p>}
               {skills.map(s => (
                 <div key={s.title} className={`${styles.panel} ${styles.skill} ${styles.reveal}`} data-reveal>
-                  <div className={styles.skillAttr}>{s.attr}</div>
+                  <div className={styles.skillAttr}>{t.attrs[s.attr]}</div>
                   <div className={styles.skillH}>
                     <div className={styles.skillT}><Icon name={s.icon} size={16} /> {s.title}</div>
                     <div className={styles.skillLvl} aria-hidden="true">{s.level}</div>
@@ -480,7 +480,7 @@ export default function Home() {
                         <div className={styles.snapS}>{c.sub}</div>
                         {c.cred && <div className={styles.cred}>cred: {c.cred}</div>}
                       </div>
-                      <div className={styles.slotTag} aria-hidden="true">INSTALLED</div>
+                      <div className={styles.slotTag} aria-hidden="true">{t.installed}</div>
                     </div>
                   ))}
                 </div>
@@ -528,7 +528,7 @@ export default function Home() {
 
           <footer className={styles.footer}>
             <div>© {year} NICOLAS MESQUITA FERNANDES</div>
-            <div>REACT · VITE · TYPESCRIPT · <span className={styles.footOk}>SYSTEMS OPERATIONAL</span></div>
+            <div>REACT · VITE · TYPESCRIPT · <span className={styles.footOk}>{t.systemsOk}</span></div>
           </footer>
         </main>
       </div>
@@ -544,7 +544,7 @@ export default function Home() {
         )}
         {paletteOpen && <CommandPalette open onClose={() => setPaletteOpen(false)} items={cmdItems} ui={t} />}
         {helpOpen && <ShortcutsHelp open onClose={() => setHelpOpen(false)} lang={lang} />}
-        {breachOpen && <Breach onClose={() => setBreachOpen(false)} lang={lang} />}
+        {breachOpen && <Breach onClose={() => setBreachOpen(false)} lang={lang} title={t.breachTitle} />}
       </Suspense>
     </div>
   )

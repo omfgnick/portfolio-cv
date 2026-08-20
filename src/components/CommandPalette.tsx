@@ -16,7 +16,7 @@ const norm = (s: string) => {
   try { return t.replace(/\p{Diacritic}/gu, '') } catch { return t.replace(/[̀-ͯ]/g, '') }
 }
 
-interface PaletteUI { palettePh: string; paletteEmpty: string; navHint: string; selectHint: string; closeHint: string }
+interface PaletteUI { palettePh: string; paletteEmpty: string; navHint: string; selectHint: string; closeHint: string; ariaPalette: string; ariaCommand: string }
 
 export default function CommandPalette({ open, onClose, items, ui }: { open: boolean; onClose: () => void; items: CmdItem[]; ui: PaletteUI }) {
   const [q, setQ] = useState('')
@@ -46,11 +46,11 @@ export default function CommandPalette({ open, onClose, items, ui }: { open: boo
   }
 
   return (
-    <div className={styles.overlay} onMouseDown={onClose} role="dialog" aria-modal="true" aria-label="Command palette">
+    <div className={styles.overlay} onMouseDown={onClose} role="dialog" aria-modal="true" aria-label={ui.ariaPalette}>
       <div ref={boxRef} className={styles.box} onMouseDown={e => e.stopPropagation()} onKeyDown={onKey}>
         <div className={styles.head}>
           <Search size={15} />
-          <input ref={inputRef} value={q} onChange={e => { setQ(e.target.value); setIdx(0) }} placeholder={ui.palettePh} aria-label="Command" />
+          <input ref={inputRef} value={q} onChange={e => { setQ(e.target.value); setIdx(0) }} placeholder={ui.palettePh} aria-label={ui.ariaCommand} />
           <span className={styles.esc}>ESC</span>
         </div>
         <div className={styles.list} role="listbox">

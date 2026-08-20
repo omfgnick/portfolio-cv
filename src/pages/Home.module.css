@@ -7,7 +7,7 @@
 .skip {
   position: fixed; left: 12px; top: -60px; z-index: 200;
   padding: 10px 16px; border-radius: 10px;
-  background: var(--emerald-500); color: #04110d; font-weight: 700;
+  background: var(--emerald-500); color: #04121a; font-weight: 700;
   font-size: .82rem; letter-spacing: .02em; text-decoration: none;
   box-shadow: 0 8px 26px rgba(0,0,0,.4); transition: top .18s ease;
 }
@@ -17,8 +17,8 @@
 .auroraBg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -3; display: block; }
 .gridBg {
   position: fixed; inset: -2px; z-index: -2; pointer-events: none;
-  background-image: linear-gradient(rgba(45,232,213,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(45,232,213,.05) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(255,45,85,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,45,85,.055) 1px, transparent 1px);
   background-size: 48px 48px;
   mask-image: radial-gradient(1300px 900px at 60% 20%, #000 55%, transparent 92%);
   -webkit-mask-image: radial-gradient(1300px 900px at 60% 20%, #000 55%, transparent 92%);
@@ -119,7 +119,7 @@
 .heroMain { display: flex; flex-direction: column; }
 .heroBody { padding: 24px 26px 26px; }
 .name { font-family: var(--font-display); font-size: clamp(30px, 4.6vw, 46px); font-weight: 700; line-height: 1.04;
-  margin: 14px 0 8px; letter-spacing: -.02em; text-shadow: 0 0 26px rgba(53,240,176,.28); }
+  margin: 14px 0 8px; letter-spacing: -.02em; text-shadow: 0 0 26px rgba(47,240,223,.30); }
 .nameAccent { background: var(--grad-aurora); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .role { font-family: var(--font-mono); font-size: clamp(12.5px, 1.5vw, 14.5px); color: var(--text-secondary); }
 .idLine { margin-top: 14px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; color: var(--text-tertiary); }
@@ -353,3 +353,55 @@ html[data-theme="light"] .shell {
     var(--surface-base);
 }
 html[data-theme="light"] .primary { color: #ffffff; }
+
+/* ============================================================
+   HUD CYBERPUNK — geometria
+   ------------------------------------------------------------
+   Duas regras guiam o que leva canto cortado:
+
+   - elemento de preenchimento solido (botao, selo, marca, aba)
+     recebe clip-path, porque a forma resolve sozinha;
+   - painel com moldura fica retangular e ganha cantos de ciano
+     reforcados, porque clip-path corta a borda na diagonal e
+     recuperar isso exigiria duas camadas empilhadas em cada
+     painel - custo alto para uma diferenca que o HUD de
+     referencia tambem resolve com cantos.
+   ============================================================ */
+
+/* Molduras: carmim de estrutura, cantos de ciano */
+.panel { border-left-color: var(--rose-400); }
+.panel::before, .panel::after { opacity: 1; width: 14px; height: 14px; }
+.panel::before { box-shadow: 0 0 12px -2px var(--aurora-cyan); }
+.panelHead { background: color-mix(in srgb, var(--rose-400) 8%, transparent); }
+.metrics { border-left-color: var(--rose-400); }
+
+/* Cantos cortados nos elementos de preenchimento solido */
+.railBrand { clip-path: var(--chamfer); }
+.railLink { border-radius: 0; clip-path: var(--chamfer-sm); }
+.hudCmd, .hudIcon, .hudSearch, .hudVisits { clip-path: var(--chamfer-sm); }
+.tag, .period, .cmdTag, .cap { clip-path: var(--chamfer-sm); }
+.btn { clip-path: var(--chamfer-sm); border-radius: 0; }
+.chev { clip-path: var(--chamfer-sm); }
+
+/* O acento lateral da navegacao em carmim, como o HUD de referencia */
+.railOn::before { background: var(--rose-400); box-shadow: 0 0 10px var(--rose-400); }
+
+/* Scanline um pouco mais presente (a grade agora ja e carmim na origem) */
+.scan { opacity: .6; }
+
+/* No tema claro o carmim vivo nao se sustenta: a grade some e as
+   molduras voltam a ser discretas. */
+html[data-theme="light"] .gridBg { display: none; }
+html[data-theme="light"] .panel::before { box-shadow: none; }
+html[data-theme="light"] .name { text-shadow: none; }
+
+/* A moldura precisa ler como contorno de HUD, não como sombra: linha
+   carmim nítida e um halo curto para separar do fundo. */
+.panel, .metrics, .job, .cap, .skill {
+  box-shadow: var(--shadow-card), 0 0 0 1px rgba(255, 45, 85, .10);
+}
+html[data-theme="light"] .panel,
+html[data-theme="light"] .metrics,
+html[data-theme="light"] .job,
+html[data-theme="light"] .cap,
+html[data-theme="light"] .skill { box-shadow: var(--shadow-card); }

@@ -69,8 +69,8 @@
   font-size: .82rem; font-family: inherit;
 }
 .btn:hover, .btn:focus-visible { border-color: var(--emerald-400); color: var(--emerald-400); }
-.primary { background: var(--emerald-500); border-color: var(--emerald-500); color: #04110d; font-weight: 650; }
-.primary:hover, .primary:focus-visible { filter: brightness(1.08); color: #04110d; }
+.primary { background: var(--emerald-500); border-color: var(--emerald-500); color: #04121a; font-weight: 650; }
+.primary:hover, .primary:focus-visible { filter: brightness(1.08); color: #04121a; }
 
 .full {
   margin-top: 9px; background: none; border: 0; padding: 0; cursor: pointer;

@@ -140,7 +140,7 @@ export default function Home() {
     document.documentElement.setAttribute('data-theme', next)
     try { localStorage.setItem('nm_theme', next) } catch { /* noop */ }
     const meta = document.querySelector('meta[name="theme-color"]')
-    if (meta) meta.setAttribute('content', next === 'light' ? '#f3f7f5' : '#04110d')
+    if (meta) meta.setAttribute('content', next === 'light' ? '#f3f7f5' : '#05070c')
   }
   const toggleLang = () => {
     const next: Lang = lang === 'pt' ? 'en' : 'pt'

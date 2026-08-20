@@ -31,6 +31,14 @@ const STATS = {
     count: 10 + i,
   })),
   referrers: [{ host: 'github.com', count: 271 }],
+  // Sem isto a faixa de engajamento não renderiza e ninguém testa aquele ramo
+  engagement: {
+    sessions: 412,
+    actions: { pdf: 96, linkedin: 74, recruiter: 51, github: 33, terminal: 12, vcard: 7 },
+    sections: { about: 400, experience: 288, skills: 210, credentials: 96 },
+    depth: { '0': 90, '25': 140, '50': 96, '75': 58, '100': 28 },
+    dwell: { '0': 120, '10': 150, '30': 98, '120': 44 },
+  },
 }
 
 export const test = base.extend({

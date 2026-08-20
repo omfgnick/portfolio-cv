@@ -1,12 +1,22 @@
 import { useEffect, useState } from 'react'
 import { VISITS_ENDPOINT } from '@/data/config'
 
+/** Agregados de engajamento: contagem por balde, sem nada por pessoa. */
+export interface Engagement {
+  sessions?: number
+  actions?: Record<string, number>
+  sections?: Record<string, number>
+  depth?: Record<string, number>
+  dwell?: Record<string, number>
+}
+
 export interface VisitStats {
   total: number
   countries: { code: string; count: number }[]
   days?: { date: string; count: number }[]
   referrers?: { host: string; count: number }[]
   live?: number
+  engagement?: Engagement
 }
 
 /**

@@ -63,6 +63,19 @@ export default function VisitorPanel({ data, lang }: { data: VisitStats | null; 
   const dMax = Math.max(1, ...days.map(d => d.count))
   const referrer = (data.referrers || [])[0]
 
+  // Engajamento: tudo agregado por balde, nada por pessoa. Se ninguem enviou
+  // ainda, a faixa inteira nao aparece - moldura vazia nao informa nada.
+  const eng = data.engagement || {}
+  const sessions = eng.sessions || 0
+  const acoes = Object.entries(eng.actions || {}).sort((a, b) => b[1] - a[1]).slice(0, 4)
+  // Baldes fixos: sempre os mesmos, para a barra nao mudar de forma conforme
+  // os dados chegam
+  const DEPTH = ['0', '25', '50', '75', '100']
+  const DWELL: [string, string][] = [['0', '<10s'], ['10', '30s'], ['30', '2min'], ['120', '2min+']]
+  const depthMax = Math.max(1, ...DEPTH.map(k => (eng.depth || {})[k] || 0))
+  const dwellMax = Math.max(1, ...DWELL.map(([k]) => (eng.dwell || {})[k] || 0))
+  const temEngajamento = sessions > 0
+
   // Grade a cada 30 graus, desenhada só dentro da faixa visível
   const grat: string[] = []
   for (let x = 0; x <= MW; x += 30) grat.push(`M${x} ${VIEW_TOP}V${VIEW_TOP + VIEW_H}`)
@@ -134,6 +147,59 @@ export default function VisitorPanel({ data, lang }: { data: VisitStats | null; 
           </div>
         </div>
       </div>
+
+      {temEngajamento && (
+        <div className={styles.eng}>
+          <div className={styles.engHead}>
+            <span className={styles.engTitle}>{u.engTitle}</span>
+            <span className={styles.engSessions}>{nf(sessions)} {u.engSessions}</span>
+          </div>
+
+          <div className={styles.engGrid}>
+            <div className={styles.cell}>
+              <div className={styles.cLbl}>{u.engActions}</div>
+              <div className={styles.acts}>
+                {acoes.length === 0 && <span className={styles.await}>{u.engNone}</span>}
+                {acoes.map(([k, n]) => (
+                  <span key={k} className={styles.act}>
+                    {u.engNames[k] || k}<b>{nf(n)}</b>
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className={styles.cell}>
+              <div className={styles.cLbl}>{u.engDepth}</div>
+              <div className={styles.bars}>
+                {DEPTH.map(k => {
+                  const v = (eng.depth || {})[k] || 0
+                  return (
+                    <span key={k} className={styles.barWrap} title={`${k}% — ${nf(v)}`}>
+                      <i style={{ height: `${Math.max(4, (v / depthMax) * 100)}%` }} />
+                      <em>{k}%</em>
+                    </span>
+                  )
+                })}
+              </div>
+            </div>
+
+            <div className={styles.cell}>
+              <div className={styles.cLbl}>{u.engDwell}</div>
+              <div className={styles.bars}>
+                {DWELL.map(([k, rotulo]) => {
+                  const v = (eng.dwell || {})[k] || 0
+                  return (
+                    <span key={k} className={styles.barWrap} title={`${rotulo} — ${nf(v)}`}>
+                      <i style={{ height: `${Math.max(4, (v / dwellMax) * 100)}%` }} />
+                      <em>{rotulo}</em>
+                    </span>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }

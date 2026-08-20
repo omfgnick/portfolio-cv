@@ -40,6 +40,12 @@ async function settle(page: Page) {
   await page.addStyleTag({
     content: `
       canvas { display: none !important; }
+      /* A grade e a scanline sao 'position: fixed': ancoradas na viewport, nao
+         na secao. Qualquer mudanca de altura ACIMA da secao muda o pedaco de
+         fundo que aparece atras dela, e o snapshot falha por algo que nao tem
+         a ver com o componente. Foi o que aconteceu quando a faixa de
+         engajamento cresceu o painel de visitantes. */
+      [data-backdrop] { display: none !important; }
       *, *::before, *::after {
         animation: none !important;
         transition: none !important;

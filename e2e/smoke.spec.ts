@@ -150,6 +150,28 @@ test.describe('portfolio-cv', () => {
     await expect(dlg).toBeHidden()
   })
 
+  test('o painel mostra o engajamento que o worker ja coletava', async ({ page }) => {
+    const painel = page.getByLabel(/Tráfego de visitantes|Visitor traffic/)
+    await painel.scrollIntoViewIfNeeded()
+    await expect(painel).toContainText(/WHAT PEOPLE DO|O QUE AS PESSOAS FAZEM/)
+    await expect(painel).toContainText(/412/)               // sessoes do fixture
+    await expect(painel).toContainText(/Downloaded the CV|Baixou o CV/)
+    // 5 baldes de rolagem + 4 de permanencia
+    await expect(painel.locator('[class*="barWrap"]')).toHaveCount(9)
+  })
+
+  test('sem engajamento, a faixa nao aparece em vez de mostrar moldura vazia', async ({ page }) => {
+    await page.route('**/*.workers.dev/**', r => r.fulfill({
+      status: 200, contentType: 'application/json',
+      headers: { 'access-control-allow-origin': '*' },
+      body: JSON.stringify({ total: 5, countries: [], days: [], referrers: [], live: 0, engagement: {} }),
+    }))
+    await page.goto('./')
+    const painel = page.getByLabel(/Tráfego de visitantes|Visitor traffic/)
+    await expect(painel).toBeVisible()
+    await expect(painel).not.toContainText(/WHAT PEOPLE DO|O QUE AS PESSOAS FAZEM/)
+  })
+
   test('sem violações sérias de acessibilidade (axe)', async ({ page }) => {
     test.setTimeout(AXE_TIMEOUT)
     const found = await axeCheck(page)

@@ -207,6 +207,10 @@ export default {
         referrers: toSorted(agg.referrers, 'host').slice(0, 5),
         live,
         engagement,
+        // Sem isto o estado da migração é invisível de fora: as listas voltam
+        // vazias e não dá para saber se é porque não há dado ou porque o
+        // list() foi barrado pela cota. Fica null quando não há pendência.
+        migration_pending: agg.migrationPending || null,
       })
     } catch (err) {
       // Cota do KV estourada, KV indisponível, JSON corrompido: seja o que for,

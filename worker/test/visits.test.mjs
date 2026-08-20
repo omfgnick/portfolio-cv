@@ -105,5 +105,22 @@ const check = (label, cond, extra = '') => {
   check('total incrementou', j2.total === 616, `total=${j2.total}`)
 }
 
+// 8. a pendencia da migracao aparece na resposta
+{
+  const base = fakeKV({ seed: { total: '615' } })
+  const VISITS = { ops: base.ops, get: base.get.bind(base), put: base.put.bind(base),
+                   async list() { throw new Error('KV list() limit exceeded for the day.') } }
+  const j = await (await worker.fetch(req('https://x/stats'), { VISITS })).json()
+  check('migracao pendente aparece no /stats', typeof j.migration_pending === 'string', `valor=${JSON.stringify(j.migration_pending)}`)
+  check('e diz o motivo', String(j.migration_pending).includes('limit'))
+}
+
+// 9. sem pendencia, o campo vem nulo em vez de string vazia
+{
+  const VISITS = fakeKV({ seed: { total: '1', agg: JSON.stringify({ migrated: true }) } })
+  const j = await (await worker.fetch(req('https://x/stats'), { VISITS })).json()
+  check('sem pendencia o campo e nulo', j.migration_pending === null, `valor=${JSON.stringify(j.migration_pending)}`)
+}
+
 console.log(fails === 0 ? '\nTUDO OK' : `\n${fails} FALHA(S)`)
 process.exit(fails ? 1 : 0)

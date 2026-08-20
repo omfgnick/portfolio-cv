@@ -20,3 +20,85 @@
 .skip { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; color: var(--text-tertiary); }
 
 @media (prefers-reduced-motion: reduce) { .boot { display: none !important; } }
+
+/* ── Boot cinematografico ──────────────────────────────────────
+   Tudo aqui e cenario e leva aria-hidden; quem usa leitor de tela
+   ouve o aria-label do container e nada mais.
+
+   A duracao NAO muda: 1,9s ate fechar, pulavel a qualquer tecla ou
+   clique. Boot bonito que atrasa quem so quer ler o curriculo e
+   um defeito, nao um efeito. */
+
+/* Marca com falha de tubo e deslocamento RGB */
+.mark {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: clamp(38px, 7vw, 62px);
+  font-weight: 700;
+  letter-spacing: .1em;
+  line-height: 1;
+  color: var(--text-primary);
+  text-shadow:
+    -2px 0 0 rgba(255, 45, 85, .6),
+     2px 0 0 rgba(47, 240, 223, .5),
+     0 0 18px rgba(47, 240, 223, .5);
+  animation: markIn .9s steps(4, end) 1;
+}
+@keyframes markIn {
+  0%   { opacity: 0; transform: translateX(-8px) skewX(9deg); }
+  20%  { opacity: 1; transform: translateX(6px) skewX(-6deg); }
+  40%  { opacity: .3; transform: translateX(-3px) skewX(3deg); }
+  60%  { opacity: 1; transform: none; }
+  70%  { opacity: .5; }
+  100% { opacity: 1; transform: none; }
+}
+
+.head {
+  font-family: var(--font-hud);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .3em;
+  color: var(--cp-yellow);
+  opacity: .9;
+  margin-top: -4px;
+}
+
+/* Faixa de interferencia atravessando a tela uma vez */
+.sweep {
+  position: absolute;
+  left: 0; right: 0;
+  height: 90px;
+  pointer-events: none;
+  background: linear-gradient(180deg,
+    transparent,
+    rgba(47, 240, 223, .07) 40%,
+    rgba(255, 45, 85, .09) 60%,
+    transparent);
+  animation: sweep 1.5s linear 1;
+}
+@keyframes sweep {
+  0%   { top: -12%; opacity: 0; }
+  12%  { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { top: 104%; opacity: 0; }
+}
+
+/* Perda de sinal: barras horizontais que somem depressa */
+.bars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg,
+    rgba(255, 45, 85, .05) 0 2px,
+    transparent 2px 5px);
+  animation: barsOut 1.1s ease-out 1 forwards;
+}
+@keyframes barsOut {
+  0%   { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(9px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mark, .sweep, .bars { animation: none; }
+  .sweep, .bars { display: none; }
+}

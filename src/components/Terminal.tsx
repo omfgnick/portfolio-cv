@@ -100,7 +100,7 @@ export default function Terminal({ boot, ctx }: { boot: string[]; ctx: TermCtx }
         <form className={styles.inputRow} onSubmit={e => { e.preventDefault(); run(input); setInput('') }}>
           <span className={styles.prompt}>noc@vivo:~$</span>
           <input id="nm-term-input" className={styles.input} value={input} onChange={e => setInput(e.target.value)}
-            spellCheck={false} autoComplete="off" aria-label="terminal" placeholder={pt ? "digite 'help'" : "type 'help'"} />
+            spellCheck={false} autoComplete="off" aria-label={pt ? 'Terminal interativo' : 'Interactive terminal'} placeholder={pt ? "digite 'help'" : "type 'help'"} />
           <span className={styles.caret} />
         </form>
       )}

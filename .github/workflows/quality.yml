@@ -76,6 +76,9 @@ jobs:
         timeout-minutes: 6
         run: npx playwright install --with-deps chromium
       - run: npm run build
+      # O Worker de visitas ja caiu em producao por estourar a cota do KV;
+      # este teste conta as operacoes para a regressao nao passar batida.
+      - run: npm run test:worker
       - run: npm run test:e2e
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}

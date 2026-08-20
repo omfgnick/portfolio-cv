@@ -28,6 +28,14 @@ export interface UIStrings {
   rvOpen: string; rvTitle: string; rvNow: string; rvStack: string; rvCerts: string; rvPdf: string; rvEmail: string; rvFull: string
   themeToggle: string; langToggle: string
   lpCorpo: string; lpNomad: string; lpStreetkid: string
+  dossier: string; clearance: string; locLbl: string; statusLbl: string; availableTag: string
+  installed: string; systemsOk: string; bootHead: string; breachTitle: string
+  /* Atributos e caminhos de vida com os nomes oficiais de cada idioma */
+  /* Rotulos de acessibilidade: leitor de tela tem de ouvir o idioma da pagina */
+  ariaBoot: string; ariaPalette: string; ariaCommand: string; ariaTerminal: string
+  ariaVisitors: string; ariaTop: string; ariaHome: string; ariaSections: string; ariaSearch: string
+  attrs: Record<'BODY' | 'REFLEXES' | 'TECHNICAL' | 'INTELLIGENCE' | 'COOL', string>
+  paths: Record<'CORPO' | 'NOMAD' | 'STREETKID', string>
   // visitor panel
   visits: string; live: string; last14: string; topCountries: string; source: string; waiting: string; visitCount: string; direct: string; noReferrer: string
 }
@@ -61,9 +69,19 @@ export const UI: Record<Lang, UIStrings> = {
     rvOpen: 'Resumo rápido (30s)', rvTitle: 'RESUMO EXECUTIVO // 30 SEGUNDOS', rvNow: '// POSIÇÃO MAIS RECENTE',
     rvStack: '// STACK PRINCIPAL', rvCerts: '// CERTIFICAÇÕES', rvPdf: 'Baixar CV (PDF)', rvEmail: 'E-mail', rvFull: 'ver o currículo completo →',
     themeToggle: 'Tema claro/escuro', langToggle: 'Idioma PT/EN',
-    lpCorpo: 'CORPO · dentro da operação de uma grande corporação',
-    lpNomad: 'NOMAD · alocado por fornecedor num cliente',
-    lpStreetkid: 'STREETKID · TI local, mão na massa',
+    lpCorpo: 'CORPORATIVO · dentro da operação de uma grande corporação',
+    lpNomad: 'NÔMADE · alocado por fornecedor num cliente',
+    lpStreetkid: 'FILHO DAS RUAS · TI local, mão na massa',
+    dossier: 'DOSSIÊ', clearance: 'CREDENCIAL', locLbl: 'LOCAL', statusLbl: 'SITUAÇÃO',
+    availableTag: 'DISPONÍVEL', installed: 'INSTALADO',
+    systemsOk: 'SISTEMAS OPERACIONAIS',
+    bootHead: 'NIGHT CITY // TERMINAL DE OPS',
+    breachTitle: 'PROTOCOLO DE INVASÃO',
+    ariaBoot: 'Inicializando o sistema', ariaPalette: 'Paleta de comandos', ariaCommand: 'Comando',
+    ariaTerminal: 'Terminal interativo', ariaVisitors: 'Tráfego de visitantes', ariaTop: 'Voltar ao topo',
+    ariaHome: 'Início', ariaSections: 'Seções', ariaSearch: 'Buscar',
+    attrs: { BODY: 'CORPO', REFLEXES: 'REFLEXOS', TECHNICAL: 'HABILIDADE TÉCNICA', INTELLIGENCE: 'INTELIGÊNCIA', COOL: 'FRIEZA' },
+    paths: { CORPO: 'CORPORATIVO', NOMAD: 'NÔMADE', STREETKID: 'FILHO DAS RUAS' },
     visits: 'visitas', live: 'ao vivo', last14: 'ÚLTIMOS 14 DIAS', topCountries: 'TOP PAÍSES', source: 'ORIGEM', waiting: 'aguardando…', visitCount: 'visita(s)', direct: 'direto', noReferrer: 'sem referrer',
   },
   en: {
@@ -97,6 +115,16 @@ export const UI: Record<Lang, UIStrings> = {
     lpCorpo: 'CORPO · inside a large corporation’s operation',
     lpNomad: 'NOMAD · placed at a client through a vendor',
     lpStreetkid: 'STREETKID · hands-on local IT',
+    dossier: 'DOSSIER', clearance: 'CLEARANCE', locLbl: 'LOC', statusLbl: 'STATUS',
+    availableTag: 'AVAILABLE', installed: 'INSTALLED',
+    systemsOk: 'SYSTEMS OPERATIONAL',
+    bootHead: 'NIGHT CITY // OPS TERMINAL',
+    breachTitle: 'BREACH PROTOCOL',
+    ariaBoot: 'Booting system', ariaPalette: 'Command palette', ariaCommand: 'Command',
+    ariaTerminal: 'Interactive terminal', ariaVisitors: 'Visitor traffic', ariaTop: 'Back to top',
+    ariaHome: 'Home', ariaSections: 'Sections', ariaSearch: 'Search',
+    attrs: { BODY: 'BODY', REFLEXES: 'REFLEXES', TECHNICAL: 'TECHNICAL ABILITY', INTELLIGENCE: 'INTELLIGENCE', COOL: 'COOL' },
+    paths: { CORPO: 'CORPO', NOMAD: 'NOMAD', STREETKID: 'STREETKID' },
     visits: 'visits', live: 'live', last14: 'LAST 14 DAYS', topCountries: 'TOP COUNTRIES', source: 'SOURCE', waiting: 'waiting…', visitCount: 'visit(s)', direct: 'direct', noReferrer: 'no referrer',
   },
 }

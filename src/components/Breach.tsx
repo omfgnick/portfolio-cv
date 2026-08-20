@@ -54,7 +54,7 @@ function build(): { grid: string[][]; target: string[] } {
   return { grid, target }
 }
 
-export default function Breach({ onClose, lang }: { onClose: () => void; lang: 'pt' | 'en' }) {
+export default function Breach({ onClose, lang, title }: { onClose: () => void; lang: 'pt' | 'en'; title: string }) {
   const pt = lang === 'pt'
   const [{ grid, target }, setGame] = useState(build)
   const [buffer, setBuffer] = useState<{ code: string; r: number; c: number }[]>([])
@@ -102,10 +102,10 @@ export default function Breach({ onClose, lang }: { onClose: () => void; lang: '
   }, [status, pt])
 
   return (
-    <div className={styles.backdrop} role="dialog" aria-modal="true" aria-label="Breach Protocol">
+    <div className={styles.backdrop} role="dialog" aria-modal="true" aria-label={title}>
       <div className={styles.box}>
         <div className={styles.head}>
-          <span className={styles.title}>BREACH PROTOCOL</span>
+          <span className={styles.title}>{title}</span>
           <button ref={closeRef} className={styles.close} type="button" onClick={onClose}
             aria-label={pt ? 'Fechar' : 'Close'}>×</button>
         </div>

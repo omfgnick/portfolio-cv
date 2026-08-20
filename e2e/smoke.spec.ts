@@ -126,6 +126,9 @@ test.describe('portfolio-cv', () => {
   }
 
   test('breach protocol abre pelo terminal e respeita a regra do jogo', async ({ page }) => {
+    // O titulo do dialogo agora e traduzido, entao o teste fixa o idioma em
+    // vez de depender do locale do navegador que roda a suite.
+    await page.goto('./?lang=en')
     const term = page.locator('#nm-term-input')
     await term.click()
     await term.fill('breach')

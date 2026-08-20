@@ -54,7 +54,7 @@ export default function VisitorPanel({ data, lang }: { data: VisitStats | null; 
   for (let lat = 0; lat <= 180; lat += 45) grat.push(`M0 ${lat}H${MW}`)
 
   return (
-    <section className={styles.panel} aria-label="Visitor traffic">
+    <section className={styles.panel} aria-label={lang === 'pt' ? 'Tráfego de visitantes' : 'Visitor traffic'}>
       <div className={styles.head}>
         <span className={styles.title}><Globe size={13} /> GLOBAL TRAFFIC</span>
         {!!data.live && <span className={styles.live}><i /> {data.live} {u.live}</span>}

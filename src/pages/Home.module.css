@@ -520,3 +520,34 @@ html[data-theme="light"] .nameAccent { filter: none; }
 html[data-theme="light"] .idLine .avail { color: var(--lime-600); text-shadow: none; }
 html[data-theme="light"] .cmdTag { color: var(--emerald-700); border-color: var(--border); }
 html[data-theme="light"] .hudLed { background: var(--emerald-600); box-shadow: none; }
+
+/* ── Glitch de entrada nos titulos de secao ────────────────────
+   Dispara uma vez, quando a secao entra na tela: o useReveal ja
+   observa [data-reveal] e usa unobserve depois de revelar, entao
+   nao ha risco de repetir a cada scroll.
+
+   So text-shadow e translate. Animar clip-path aqui daria o efeito
+   de "fatia" mas interpola mal entre inset() e none, e o titulo
+   pisca cortado em alguns navegadores. */
+@keyframes glitchIn {
+  0%   { transform: translateX(-3px); text-shadow: 3px 0 var(--rose-400), -3px 0 var(--aurora-cyan); }
+  15%  { transform: translateX(3px);  text-shadow: -4px 0 var(--rose-400), 4px 0 var(--aurora-cyan); }
+  30%  { transform: translateX(-2px); text-shadow: 2px 0 var(--rose-400), -2px 0 var(--aurora-cyan); }
+  45%  { transform: translateX(2px);  text-shadow: -3px 0 var(--rose-400), 3px 0 var(--aurora-cyan); }
+  60%  { transform: translateX(-1px); text-shadow: 1px 0 var(--rose-400), -1px 0 var(--aurora-cyan); }
+  100% { transform: none; text-shadow: none; }
+}
+.cmd.visible .cmdLine {
+  animation: glitchIn .42s steps(3, end) 1;
+}
+.cmd.visible .cmdTag {
+  animation: glitchIn .42s steps(3, end) 1 .06s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cmd.visible .cmdLine,
+  .cmd.visible .cmdTag { animation: none; }
+}
+/* No claro o glitch colorido fica sujo em vez de proposital */
+html[data-theme="light"] .cmd.visible .cmdLine,
+html[data-theme="light"] .cmd.visible .cmdTag { animation: none; }

@@ -76,7 +76,9 @@ function SecHead({ cmd, tag, id, onCopy, copied, label }: {
   onCopy: (id: string) => void; copied: boolean; label: string
 }) {
   return (
-    <div className={styles.cmd}>
+    // data-reveal reaproveita o IntersectionObserver que ja existe: o glitch
+    // dispara uma vez, quando a secao entra na tela, e nao a cada render.
+    <div className={styles.cmd} data-reveal>
       <span className={styles.cmdLine}><span className={styles.cmdPrompt}>&gt;</span> {cmd}<span className={styles.cmdCaret} /></span>
       <button className={`${styles.cmdLink} ${copied ? styles.cmdLinkOn : ''}`} type="button"
         onClick={() => onCopy(id)} aria-label={label} title={label}>

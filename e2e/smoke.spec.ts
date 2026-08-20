@@ -125,6 +125,28 @@ test.describe('portfolio-cv', () => {
     return serious.map(v => `${v.id} (${v.impact}) — ${v.nodes.length}x: ${v.nodes[0]?.html?.slice(0, 90)}`)
   }
 
+  test('breach protocol abre pelo terminal e respeita a regra do jogo', async ({ page }) => {
+    const term = page.locator('#nm-term-input')
+    await term.click()
+    await term.fill('breach')
+    await term.press('Enter')
+
+    const dlg = page.getByRole('dialog', { name: 'Breach Protocol' })
+    await expect(dlg).toBeVisible()
+
+    // Primeira jogada: a linha 0 inteira esta liberada, e so ela
+    const playable = dlg.locator('button[role=gridcell]:not([disabled])')
+    await expect(playable).toHaveCount(5)
+
+    // Depois de jogar, a selecao fica presa na coluna da escolha anterior:
+    // sobram 4 (as 5 da coluna menos a celula ja usada)
+    await playable.first().click()
+    await expect(dlg.locator('button[role=gridcell]:not([disabled])')).toHaveCount(4)
+
+    await page.keyboard.press('Escape')
+    await expect(dlg).toBeHidden()
+  })
+
   test('sem violações sérias de acessibilidade (axe)', async ({ page }) => {
     test.setTimeout(AXE_TIMEOUT)
     const found = await axeCheck(page)

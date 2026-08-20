@@ -11,6 +11,7 @@ export interface TermCtx {
   toggleLang: () => void
   print: () => void
   vcard: () => void
+  breach: () => void
   links: { linkedin: string; github: string; wa: string }
 }
 
@@ -75,6 +76,10 @@ export default function Terminal({ boot, ctx }: { boot: string[]; ctx: TermCtx }
       case 'lang': case 'language': ctx.toggleLang(); push('✓ pt/en', 'ok'); break
       case 'pdf': case 'print': ctx.print(); push('✓ print', 'ok'); break
       case 'vcard': ctx.vcard(); push('✓ vcard.vcf', 'ok'); break
+      // Easter egg: nao aparece no help de proposito
+      case 'breach': case 'hack':
+        ctx.breach()
+        push(pt ? '✓ breach protocol iniciado' : '✓ breach protocol started', 'ok'); break
       case 'whoami': push('nicolas.mesquita — infrastructure & incident operations', 'ok'); break
       case 'clear': case 'cls': setLines([]); break
       case 'sudo': push(pt ? 'nice try 😏' : 'nice try 😏', 'err'); break

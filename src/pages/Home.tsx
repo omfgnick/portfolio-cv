@@ -34,6 +34,7 @@ const QRCode = lazy(() => import('@/components/qr/QRCode'))
 const VisitorPanel = lazy(() => import('@/components/VisitorPanel'))
 const CommandPalette = lazy(() => import('@/components/CommandPalette'))
 const ShortcutsHelp = lazy(() => import('@/components/ShortcutsHelp'))
+const Breach = lazy(() => import('@/components/Breach'))
 const RecruiterView = lazy(() => import('@/components/RecruiterView'))
 
 const NAV = [
@@ -99,6 +100,7 @@ export default function Home() {
   const [clock, setClock] = useState('--:--:--')
   const [paletteOpen, setPaletteOpen] = useState(false)
   const [helpOpen, setHelpOpen] = useState(false)
+  const [breachOpen, setBreachOpen] = useState(false)
   const [theme, setTheme] = useState<'dark' | 'light'>(
     () => (typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark'),
   )
@@ -335,7 +337,7 @@ export default function Home() {
 
             <div ref={termRef} className={`${styles.panel} ${styles.term}`}>
               <div className={styles.panelHead}><span className={styles.phId}>TTY·0</span><span className={styles.phDots}><i /><i /><i /></span><span className={styles.phStatus}>noc@vivo</span></div>
-              <TerminalPanel boot={cv.terminal} ctx={{ lang, goto, toggleTheme, toggleLang, print: () => window.print(), vcard: downloadVCard, links: { linkedin: P.linkedin, github: P.github, wa: waUrl } }} />
+              <TerminalPanel boot={cv.terminal} ctx={{ lang, goto, toggleTheme, toggleLang, print: () => window.print(), vcard: downloadVCard, breach: () => setBreachOpen(true), links: { linkedin: P.linkedin, github: P.github, wa: waUrl } }} />
             </div>
           </section>
 
@@ -542,6 +544,7 @@ export default function Home() {
         )}
         {paletteOpen && <CommandPalette open onClose={() => setPaletteOpen(false)} items={cmdItems} ui={t} />}
         {helpOpen && <ShortcutsHelp open onClose={() => setHelpOpen(false)} lang={lang} />}
+        {breachOpen && <Breach onClose={() => setBreachOpen(false)} lang={lang} />}
       </Suspense>
     </div>
   )

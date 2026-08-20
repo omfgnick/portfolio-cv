@@ -405,3 +405,74 @@ html[data-theme="light"] .metrics,
 html[data-theme="light"] .job,
 html[data-theme="light"] .cap,
 html[data-theme="light"] .skill { box-shadow: var(--shadow-card); }
+
+/* ============================================================
+   LETREIRO DE NEON — o nome
+   ------------------------------------------------------------
+   A Rajdhani e estreita e foi desenhada para caixa alta; com o
+   tracking negativo que servia a Fraunces ela empasta. Daí a
+   inversao: maiuscula e espacamento positivo.
+
+   A aberracao cromatica sai de text-shadow, nao de pseudo-elemento
+   com attr(data-text): dois deslocamentos (carmim a esquerda,
+   ciano a direita) dao o mesmo efeito sem duplicar o texto no DOM,
+   que e o que faria leitor de tela anunciar o nome duas vezes.
+   ============================================================ */
+.name {
+  font-size: clamp(32px, 5.2vw, 56px);
+  text-transform: uppercase;
+  letter-spacing: .045em;
+  font-weight: 700;
+  text-shadow:
+    -2px 0 0 rgba(255, 45, 85, .5),
+     2px 0 0 rgba(47, 240, 223, .4),
+     0 0 6px rgba(47, 240, 223, .8),
+     0 0 20px rgba(47, 240, 223, .45),
+     0 0 48px rgba(47, 240, 223, .25);
+  animation: neonHum 5.5s ease-in-out infinite;
+}
+
+/* O sobrenome era texto transparente recortado num gradiente. Com o
+   halo por tras, a letra perdia a borda e lia como um borrao rosado.
+   Tubo de neon tem nucleo quase branco e halo colorido - entao aqui
+   e preenchimento solido, e o brilho fica por conta do text-shadow
+   herdado de .name. */
+.nameAccent {
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  color: var(--emerald-300);
+}
+html[data-theme="light"] .nameAccent { color: var(--emerald-700); }
+
+/* Tubo de neon velho: oscila de leve e falha por um instante. */
+@keyframes neonHum {
+  0%, 41%, 43%, 55%, 100% { opacity: 1; }
+  42% { opacity: .82; }
+  56% { opacity: .9; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .name { animation: none; }
+}
+
+/* O amarelo do jogo entra so onde e sinal de estado - e a cor mais
+   reconhecivel do 2077, e usada em tudo vira ruido. */
+.idLine .avail { color: var(--cp-yellow); text-shadow: 0 0 12px rgba(252, 238, 10, .45); }
+.hudLed { background: var(--cp-yellow); box-shadow: 0 0 10px var(--cp-yellow); }
+.cmdTag { color: var(--cp-yellow); border-color: rgba(252, 238, 10, .35); }
+
+/* Rotulos da interface na fonte da UI do jogo */
+.railLabel, .hudPath, .subhead { font-family: var(--font-hud); font-weight: 600; }
+.railLabel { font-size: 9.5px; letter-spacing: .14em; }
+.hudPath { font-size: 12.5px; letter-spacing: .12em; }
+.subhead { font-size: 12.5px; letter-spacing: .16em; }
+
+/* No claro o neon vira borrão: fica só a letra. */
+html[data-theme="light"] .name {
+  text-shadow: none;
+  animation: none;
+}
+html[data-theme="light"] .nameAccent { filter: none; }
+html[data-theme="light"] .idLine .avail { color: var(--lime-600); text-shadow: none; }
+html[data-theme="light"] .cmdTag { color: var(--emerald-700); border-color: var(--border); }
+html[data-theme="light"] .hudLed { background: var(--emerald-600); box-shadow: none; }

@@ -156,6 +156,16 @@
   --border-strong:  rgba(12, 40, 32, 0.18);
   --border-focus:   var(--emerald-600);
 
+  /* Estes tres nasceram no tema escuro e ficaram sem par aqui, e um deles
+     quebrou a pagina: --panel-fill e o preenchimento do painel chanfrado, que
+     no escuro e quase preto. Sem sobrescrever, o tema claro desenhava painel
+     preto com texto preto por cima - contraste de 1:1, ilegivel.
+     O axe nao pegou porque o preenchimento e um pseudo-elemento, e ele nao
+     conta o fundo de ::after como fundo do texto. */
+  --panel-fill: #ffffff;
+  --cp-yellow:  #8a6d00;   /* amarelo vivo some no branco */
+  --glow-rose:  0 0 14px -4px rgba(179, 18, 58, 0.35);
+
   --shadow-card: 0 18px 48px rgba(15, 40, 33, 0.10);
   color-scheme: light;
 }

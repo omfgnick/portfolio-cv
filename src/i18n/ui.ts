@@ -32,6 +32,8 @@ export interface UIStrings {
   installed: string; systemsOk: string; bootHead: string; breachTitle: string
   /* Atributos e caminhos de vida com os nomes oficiais de cada idioma */
   /* Rotulos de acessibilidade: leitor de tela tem de ouvir o idioma da pagina */
+  engTitle: string; engActions: string; engDepth: string; engDwell: string
+  engSessions: string; engNone: string; engNames: Record<string, string>
   ariaBoot: string; ariaPalette: string; ariaCommand: string; ariaTerminal: string
   ariaVisitors: string; ariaTop: string; ariaHome: string; ariaSections: string; ariaSearch: string
   attrs: Record<'BODY' | 'REFLEXES' | 'TECHNICAL' | 'INTELLIGENCE' | 'COOL', string>
@@ -77,6 +79,13 @@ export const UI: Record<Lang, UIStrings> = {
     systemsOk: 'SISTEMAS OPERACIONAIS',
     bootHead: 'NIGHT CITY // TERMINAL DE OPS',
     breachTitle: 'PROTOCOLO DE INVASÃO',
+    engTitle: 'O QUE AS PESSOAS FAZEM', engActions: 'AÇÕES', engDepth: 'ROLAGEM', engDwell: 'PERMANÊNCIA',
+    engSessions: 'sessões', engNone: 'ainda sem dados',
+    engNames: {
+      pdf: 'Baixou o CV', linkedin: 'Abriu o LinkedIn', github: 'Abriu o GitHub',
+      whatsapp: 'Chamou no WhatsApp', email: 'Copiou o e-mail', vcard: 'Salvou o contato',
+      recruiter: 'Abriu o resumo', terminal: 'Usou o terminal',
+    },
     ariaBoot: 'Inicializando o sistema', ariaPalette: 'Paleta de comandos', ariaCommand: 'Comando',
     ariaTerminal: 'Terminal interativo', ariaVisitors: 'Tráfego de visitantes', ariaTop: 'Voltar ao topo',
     ariaHome: 'Início', ariaSections: 'Seções', ariaSearch: 'Buscar',
@@ -120,6 +129,13 @@ export const UI: Record<Lang, UIStrings> = {
     systemsOk: 'SYSTEMS OPERATIONAL',
     bootHead: 'NIGHT CITY // OPS TERMINAL',
     breachTitle: 'BREACH PROTOCOL',
+    engTitle: 'WHAT PEOPLE DO', engActions: 'ACTIONS', engDepth: 'SCROLL DEPTH', engDwell: 'TIME ON PAGE',
+    engSessions: 'sessions', engNone: 'no data yet',
+    engNames: {
+      pdf: 'Downloaded the CV', linkedin: 'Opened LinkedIn', github: 'Opened GitHub',
+      whatsapp: 'Messaged on WhatsApp', email: 'Copied the e-mail', vcard: 'Saved the contact',
+      recruiter: 'Opened the summary', terminal: 'Used the terminal',
+    },
     ariaBoot: 'Booting system', ariaPalette: 'Command palette', ariaCommand: 'Command',
     ariaTerminal: 'Interactive terminal', ariaVisitors: 'Visitor traffic', ariaTop: 'Back to top',
     ariaHome: 'Home', ariaSections: 'Sections', ariaSearch: 'Search',

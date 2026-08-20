@@ -257,8 +257,8 @@ export default function Home() {
       <a className={styles.skip} href="#main-content">{t.skipToContent}</a>
       <BootScreen skipText={t.bootSkip} head={t.bootHead} aria={t.ariaBoot} />
       <Suspense fallback={null}><AuroraCanvas className={styles.auroraBg} /></Suspense>
-      <div className={styles.gridBg} aria-hidden="true" />
-      <div className={styles.scan} aria-hidden="true" />
+      <div className={styles.gridBg} data-backdrop="1" aria-hidden="true" />
+      <div className={styles.scan} data-backdrop="1" aria-hidden="true" />
       <div className={styles.progress} aria-hidden="true"><span style={{ transform: `scaleX(${scrollPct})` }} /></div>
 
       <a className={`${styles.fab} ${styles.wa}`} href={waUrl} target="_blank" rel="noopener noreferrer nofollow" aria-label="WhatsApp"><MessageCircle size={22} /></a>

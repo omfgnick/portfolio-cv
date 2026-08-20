@@ -376,10 +376,47 @@ html[data-theme="light"] .primary { color: #ffffff; }
      referencia tambem resolve com cantos.
    ============================================================ */
 
-/* Molduras: carmim de estrutura, cantos de ciano */
-.panel { border-left-color: var(--rose-400); }
-.panel::before, .panel::after { opacity: 1; width: 14px; height: 14px; }
-.panel::before { box-shadow: 0 0 12px -2px var(--aurora-cyan); }
+/* ── Moldura chanfrada de verdade ──────────────────────────────
+   A borda acompanha o corte diagonal. O truque: o elemento inteiro
+   e recortado no chanfro e seu FUNDO faz as vezes de borda; um
+   pseudo-elemento recuado 1px, com o mesmo recorte, e o
+   preenchimento. Sobra 1px de "borda" que segue a diagonal, o que
+   clip-path sozinho nao consegue - ele corta a borda fora.
+
+   O fundo e um gradiente com parada dura: ciano nos dois cantos
+   cortados, carmim no resto. Assim a diagonal fica destacada sem
+   precisar de mais um elemento so para desenhar a linha. */
+.panel, .metrics, .job {
+  position: relative;
+  isolation: isolate;
+  border: 0;
+  border-radius: 0;
+  clip-path: var(--chamfer);
+  backdrop-filter: none;
+  background:
+    linear-gradient(225deg, var(--aurora-cyan) 0 24px, transparent 24px),
+    linear-gradient(45deg,  var(--aurora-cyan) 0 24px, transparent 24px),
+    var(--rose-400);
+}
+.panel > *, .metrics > *, .job > * { position: relative; z-index: 1; }
+.panel::after, .metrics::after, .job::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  /* A regra antiga do canto definia width/height fixos, e 'inset' nao
+     sobrepoe isso: o preenchimento saia com 11x11px e o painel inteiro
+     aparecia carmim. */
+  width: auto;
+  height: auto;
+  z-index: 0;
+  background: var(--panel-fill);
+  clip-path: var(--chamfer);
+  border: 0;
+  opacity: 1;
+  pointer-events: none;
+}
+/* O canto de ciano virou o proprio chanfro; o marcador antigo sai. */
+.panel::before { display: none; }
 .panelHead { background: color-mix(in srgb, var(--rose-400) 8%, transparent); }
 .metrics { border-left-color: var(--rose-400); }
 
@@ -405,9 +442,8 @@ html[data-theme="light"] .name { text-shadow: none; }
 
 /* A moldura precisa ler como contorno de HUD, não como sombra: linha
    carmim nítida e um halo curto para separar do fundo. */
-.panel, .metrics, .job, .cap, .skill {
-  box-shadow: var(--shadow-card), 0 0 0 1px rgba(255, 45, 85, .10);
-}
+.cap, .skill { box-shadow: var(--shadow-card); }
+.panel, .metrics, .job { box-shadow: var(--shadow-card); }
 html[data-theme="light"] .panel,
 html[data-theme="light"] .metrics,
 html[data-theme="light"] .job,

@@ -49,6 +49,10 @@
 
   /* Cantos cortados: a geometria que define o HUD */
   --chamfer:    polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+  /* Preenchimento do painel: quase opaco de proposito. Ele fica sobre a
+     camada que faz as vezes de borda, e translucido deixaria o carmim
+     atravessar e tingir o painel inteiro. */
+  --panel-fill: #080d16;
   --chamfer-sm: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
 
   /* Semantic (dark) */

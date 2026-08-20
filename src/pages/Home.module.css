@@ -293,8 +293,8 @@
   .shell {
     --text-primary: #0b1424; --text-secondary: #2a3646; --text-tertiary: #55606d;
     --card-bg: #ffffff; --card-border: #cfd6df; --border: #e3e7ed; --border-strong: #c7cfd9;
-    --emerald-500: #0a7f5f; --emerald-400: #0a7f5f; --emerald-300: #0a7f5f;
-    --aurora-cyan: #0a7f5f; --lime-500: #a15c00;
+    --emerald-500: #06736c; --emerald-400: #06736c; --emerald-300: #06736c;
+    --aurora-cyan: #06736c; --lime-500: #99102f; --rose-400: #99102f;
     --shadow-card: none; --glow-emerald: none;
     background: #fff !important;
   }
@@ -317,7 +317,15 @@
     background: none !important; -webkit-background-clip: border-box !important; background-clip: border-box !important;
     -webkit-text-fill-color: #0b1424 !important; color: #0b1424 !important;
   }
-  .timeline::before { background: #0a7f5f !important; }
+  .timeline::before { background: #06736c !important; }
+
+  /* O nome e um letreiro de neon na tela; no papel o brilho vira borrao
+     cinza e a oscilacao nao existe. Fica so a letra. */
+  .name { text-shadow: none !important; animation: none !important; }
+  .nameAccent { filter: none !important; }
+  /* Amarelo em papel branco nao se le */
+  .idLine .avail { color: #99102f !important; text-shadow: none !important; }
+  .cmdTag { color: #06736c !important; border-color: #cfd6df !important; }
 }
 
 /* ── Reveal (fail-safe) ────────────────────────────────────── */

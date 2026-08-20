@@ -66,7 +66,10 @@ const check = (label, cond, extra = '') => {
   const j = await r.json()
   check('KV falhando devolve 200', r.status === 200, `status=${r.status}`)
   check('resposta tem CORS', r.headers.get('access-control-allow-origin') === '*')
-  check('marca degradado', typeof j.degraded === 'string' && j.total === 0)
+  check('marca degradado', typeof j.degraded === 'string')
+  // Zero seria exibido pelo cliente e pareceria perda de visitas; nulo faz o
+  // contador sumir, que e a leitura honesta de "nao sei".
+  check('total degradado e NULO, nao zero', j.total === null, `total=${JSON.stringify(j.total)}`)
 }
 
 // 5. "ao vivo" ignora minutos velhos
@@ -76,6 +79,30 @@ const check = (label, cond, extra = '') => {
   const VISITS = fakeKV({ seed: { total: '1', agg: JSON.stringify({ migrated: true, live }) } })
   const j = await (await worker.fetch(req('https://x/stats'), { VISITS })).json()
   check('ao vivo soma so os 20 min recentes', j.live === 5, `live=${j.live}`)
+}
+
+// 6. list() bloqueado pela cota nao pode derrubar o total
+{
+  const base = fakeKV({ seed: { total: '615' } })
+  const VISITS = {
+    ops: base.ops,
+    get: base.get.bind(base),
+    put: base.put.bind(base),
+    async list() { throw new Error('KV list() limit exceeded for the day.') },
+  }
+  const j = await (await worker.fetch(req('https://x/stats'), { VISITS })).json()
+  check('cota de list() nao zera o total', j.total === 615, `total=${j.total}`)
+  check('resposta segue valida', Array.isArray(j.countries) && j.days.length === 14)
+}
+
+// 7. /hit continua contando mesmo sem poder migrar
+{
+  const base = fakeKV({ seed: { total: '615' } })
+  const VISITS = { ops: base.ops, get: base.get.bind(base), put: base.put.bind(base), async list() { throw new Error('limit') } }
+  await worker.fetch(req('https://x/hit', 'POST'), { VISITS })
+  check('/hit grava mesmo com list() bloqueado', VISITS.ops.put === 2, `put=${VISITS.ops.put}`)
+  const j2 = await (await worker.fetch(req('https://x/stats'), { VISITS })).json()
+  check('total incrementou', j2.total === 616, `total=${j2.total}`)
 }
 
 console.log(fails === 0 ? '\nTUDO OK' : `\n${fails} FALHA(S)`)

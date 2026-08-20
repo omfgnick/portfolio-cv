@@ -76,15 +76,27 @@ async function migrate(env, agg) {
   agg.days = agg.days || {}
   agg.referrers = agg.referrers || {}
 
-  for (const [prefix, bucket] of [['c:', 'countries'], ['d:', 'days'], ['r:', 'referrers']]) {
-    const list = await env.VISITS.list({ prefix })
-    for (const k of list.keys) {
-      const v = parseInt(await env.VISITS.get(k.name), 10) || 0
-      const name = k.name.slice(prefix.length)
-      agg[bucket][name] = (agg[bucket][name] || 0) + v
+  // A migração é a ÚNICA coisa aqui que ainda depende de list(), e list() é
+  // exatamente o que a cota derruba primeiro. Se ela falhar, não pode levar o
+  // resto junto: o total de visitas não precisa de listagem nenhuma e tem de
+  // continuar aparecendo.
+  //
+  // Sem a flag 'migrated', a tentativa se repete no próximo dia, quando a cota
+  // reseta. Somar depois não duplica nada: as chaves antigas e o registro novo
+  // são conjuntos separados.
+  try {
+    for (const [prefix, bucket] of [['c:', 'countries'], ['d:', 'days'], ['r:', 'referrers']]) {
+      const list = await env.VISITS.list({ prefix })
+      for (const k of list.keys) {
+        const v = parseInt(await env.VISITS.get(k.name), 10) || 0
+        const name = k.name.slice(prefix.length)
+        agg[bucket][name] = (agg[bucket][name] || 0) + v
+      }
     }
+    agg.migrated = true
+  } catch (err) {
+    agg.migrationPending = String((err && err.message) || err)
   }
-  agg.migrated = true
   return agg
 }
 
@@ -198,9 +210,19 @@ export default {
       })
     } catch (err) {
       // Cota do KV estourada, KV indisponível, JSON corrompido: seja o que for,
-      // a resposta continua válida e com CORS. O site esconde o contador em
-      // silêncio, em vez de estourar erro no console de todo visitante.
-      return json({ total: 0, countries: [], days: [], referrers: [], live: 0, engagement: {}, degraded: String(err && err.message || err) }, 200)
+      // a resposta continua válida e com CORS, para o site não estourar erro no
+      // console de todo visitante.
+      //
+      // total vai NULO, e não zero. Zero é um número, e o cliente o exibiria:
+      // o contador cairia de 615 para 0 na cara do visitante, como se as visitas
+      // tivessem sumido. Com nulo, o useVisits (que exige typeof === 'number')
+      // simplesmente não popula, e o contador some da tela — que é a verdade:
+      // não é zero, é desconhecido.
+      return json({
+        total: null,
+        countries: [], days: [], referrers: [], live: null, engagement: {},
+        degraded: String((err && err.message) || err),
+      }, 200)
     }
   },
 }

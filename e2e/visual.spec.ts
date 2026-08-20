@@ -65,6 +65,36 @@ test.describe('regressão visual', () => {
     await settle(page)
   })
 
+  /**
+   * O tema claro ficou de fora da primeira versão destes testes, e foi
+   * exatamente ali que a página quebrou: painel preto com texto preto, porque
+   * --panel-fill não tinha par no claro. Snapshot só do escuro é meia
+   * cobertura.
+   */
+  test('seção de skills — tema claro', async ({ page }) => {
+    await page.evaluate(() => document.documentElement.setAttribute('data-theme', 'light'))
+    const el = page.locator('#skills')
+    await el.scrollIntoViewIfNeeded()
+    await page.waitForTimeout(400)
+    await expect(el).toHaveScreenshot('skills-claro.png', {
+      animations: 'disabled',
+      mask: unstable(page),
+      maxDiffPixelRatio: 0.001,
+      threshold: 0.12,
+    })
+  })
+
+  test('herói — tema claro', async ({ page }) => {
+    await page.evaluate(() => document.documentElement.setAttribute('data-theme', 'light'))
+    await page.waitForTimeout(400)
+    await expect(page.locator('#about')).toHaveScreenshot('hero-claro.png', {
+      animations: 'disabled',
+      mask: unstable(page),
+      maxDiffPixelRatio: 0.001,
+      threshold: 0.12,
+    })
+  })
+
   test('seção de skills', async ({ page }) => {
     const el = page.locator('#skills')
     await el.scrollIntoViewIfNeeded()

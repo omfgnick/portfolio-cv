@@ -55,3 +55,59 @@
 .source:hover { color: var(--emerald-400); }
 
 @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+
+/* ── Depoimento como shard ──────────────────────────────────────
+   Os shards do jogo são documentos de texto com moldura e um
+   cabeçalho de origem. O depoimento em si não muda: continua sendo
+   citação com autoria, que é o que um recrutador precisa ler. */
+.card {
+  position: relative;
+  isolation: isolate;
+  border: 0;
+  border-radius: 0;
+  clip-path: var(--chamfer);
+  background:
+    linear-gradient(225deg, var(--aurora-cyan) 0 22px, transparent 22px),
+    var(--rose-400);
+  padding: 0;
+}
+.card > * { position: relative; z-index: 1; }
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  background: var(--panel-fill);
+  clip-path: var(--chamfer);
+  pointer-events: none;
+}
+
+.shardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 7px 14px;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--rose-400) 8%, transparent);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: .12em;
+}
+.shardId { color: var(--aurora-cyan); font-weight: 700; }
+.shardSrc { color: var(--text-tertiary); }
+
+/* O conteúdo precisa do respiro que o padding do card tinha antes */
+.quote, .who, .translated { padding-left: 16px; padding-right: 16px; }
+.quote { padding-top: 14px; }
+.who { padding-bottom: 14px; }
+
+html[data-theme="light"] .card {
+  background:
+    linear-gradient(225deg, var(--emerald-600) 0 22px, transparent 22px),
+    var(--rose-400);
+}
+html[data-theme="light"] .shardHead { background: color-mix(in srgb, var(--rose-400) 6%, transparent); }
+html[data-theme="light"] .shardId { color: var(--emerald-700); }

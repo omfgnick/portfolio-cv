@@ -15,8 +15,15 @@ export default function Testimonials({ lang, source, ui }: Props) {
   return (
     <>
       <div className={styles.grid}>
-        {TESTIMONIALS.map(t => (
+        {TESTIMONIALS.map((t, i) => (
           <figure key={t.name} className={styles.card}>
+            {/* Cabecalho de shard: identificador e origem, como os documentos
+                de texto do jogo. E cenario, entao vai aria-hidden - o
+                depoimento e a autoria continuam sendo texto normal. */}
+            <div className={styles.shardHead} aria-hidden="true">
+              <span className={styles.shardId}>SHARD·{String(i + 1).padStart(3, '0')}</span>
+              <span className={styles.shardSrc}>LINKEDIN // VERIFIED</span>
+            </div>
             <span className={styles.mark} aria-hidden="true">&rdquo;</span>
             <blockquote className={styles.quote} cite={source}>
               {pt ? t.quote : t.quoteEn}

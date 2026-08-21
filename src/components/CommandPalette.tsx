@@ -48,6 +48,14 @@ export default function CommandPalette({ open, onClose, items, ui }: { open: boo
   return (
     <div className={styles.overlay} onMouseDown={onClose} role="dialog" aria-modal="true" aria-label={ui.ariaPalette}>
       <div ref={boxRef} className={styles.box} onMouseDown={e => e.stopPropagation()} onKeyDown={onKey}>
+        {/* Barra de RAM do menu de quickhack. E cenario: aria-hidden porque nao
+            ha recurso nenhum sendo consumido, e anuncia-la seria mentira. */}
+        <div className={styles.ram} aria-hidden="true">
+          <span className={styles.ramLabel}>RAM</span>
+          {Array.from({ length: 8 }).map((_, i) => (
+            <i key={i} className={i < 8 - Math.min(6, idx) ? styles.ramOn : ''} />
+          ))}
+        </div>
         <div className={styles.head}>
           <Search size={15} />
           <input ref={inputRef} value={q} onChange={e => { setQ(e.target.value); setIdx(0) }} placeholder={ui.palettePh} aria-label={ui.ariaCommand} />
@@ -61,6 +69,9 @@ export default function CommandPalette({ open, onClose, items, ui }: { open: boo
               onMouseEnter={() => setIdx(k)} onClick={() => run(i)}>
               <i.icon size={16} className={styles.icon} />
               <span className={styles.label}>{i.label}</span>
+              {/* "Custo" derivado do proprio id: estavel entre renders e sem
+                  Math.random, que mudaria o numero a cada tecla digitada. */}
+              <span className={styles.cost} aria-hidden="true">{1 + (i.id.length % 4)}</span>
               {i.hint && <span className={styles.hint}>{i.hint}</span>}
               {k === idx && <CornerDownLeft size={13} className={styles.enter} />}
             </button>

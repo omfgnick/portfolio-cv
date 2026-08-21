@@ -2,7 +2,7 @@ import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import {
   Search, ChevronDown, Copy, Check, Printer, ArrowUp, MessageCircle,
   Linkedin, Github, Mail, Phone, MapPin, ExternalLink, ChevronRight,
-  User, Briefcase, Cpu, Award, Radio, Download, Command, Globe, FolderGit2, ArrowUpRight, Sun, Moon, Languages, FileText, Link2, Quote, Gauge,
+  User, Briefcase, Cpu, Award, Radio, Download, Command, Globe, FolderGit2, ArrowUpRight, Sun, Moon, ScanLine, Languages, FileText, Link2, Quote, Gauge,
   Headphones, Radar, ShieldAlert, ListChecks, Lock, Terminal,
   Activity, Network, DatabaseBackup, ShieldCheck, Server, Cloud, type LucideIcon,
 } from 'lucide-react'
@@ -16,6 +16,7 @@ import BootScreen from '@/components/BootScreen'
 import TerminalPanel from '@/components/Terminal'
 import Testimonials from '@/components/Testimonials'
 import Timeline from '@/components/Timeline'
+import { useScanner } from '@/hooks/useScanner'
 import { useReveal } from '@/hooks/useReveal'
 import { useVisits } from '@/hooks/useVisits'
 import { useEngagement } from '@/hooks/useEngagement'
@@ -154,6 +155,7 @@ export default function Home() {
   }
 
   useReveal(styles.visible)
+  const scanner = useScanner()
 
   // Reflete o resumo na URL sem empilhar histórico
   useEffect(() => {
@@ -297,6 +299,11 @@ export default function Home() {
           <button className={styles.hudIcon} type="button" onClick={toggleTheme} aria-label={t.themeToggle} title={t.themeToggle} data-testid="theme-toggle">
             {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
           </button>
+          <button className={`${styles.hudIcon} ${scanner.ativo ? styles.hudOn : ''}`} type="button"
+            onClick={scanner.alternar} aria-pressed={scanner.ativo}
+            aria-label={t.scanToggle} title={t.scanToggle} data-testid="scan-toggle">
+            <ScanLine size={14} />
+          </button>
           <button className={styles.hudIcon} type="button" onClick={() => { eng.track('recruiter'); setRecruiter(true) }}
             aria-label={t.rvOpen} title={t.rvOpen} data-testid="recruiter-open">
             <Gauge size={14} />
@@ -355,7 +362,7 @@ export default function Home() {
           <Suspense fallback={null}><VisitorPanel data={visits} lang={lang} /></Suspense>
 
           {/* ABOUT */}
-          <section id="about" className={styles.section}>
+          <section id="about" className={styles.section} data-scan-label="DOSSIER">
             <SecHead cmd={t.sectionTitle.about} tag="01" id="about" onCopy={copySectionLink} copied={copied === 'sec:about'} label={t.copyLink} />
             <div className={styles.cols}>
               <div className={`${styles.panel} ${styles.pad} ${styles.reveal}`} data-reveal>
@@ -382,7 +389,7 @@ export default function Home() {
           </section>
 
           {/* EXPERIENCE */}
-          <section id="experience" className={styles.section}>
+          <section id="experience" className={styles.section} data-scan-label="TIMELINE">
             <SecHead cmd={t.sectionTitle.experience} tag="02" id="experience" onCopy={copySectionLink} copied={copied === 'sec:experience'} label={t.copyLink} />
             <Timeline jobs={cv.jobs} onPick={pickJob} ui={{ totalYears: t.tlYears, roles: t.tlRoles, hint: t.tlHint }} />
             {/* Legenda: sem ela as etiquetas nos cards nao se explicam */}
@@ -425,7 +432,7 @@ export default function Home() {
           </section>
 
           {/* SKILLS */}
-          <section id="skills" className={styles.section}>
+          <section id="skills" className={styles.section} data-scan-label="ATTRIBUTES">
             <SecHead cmd={t.sectionTitle.skills} tag="03" id="skills" onCopy={copySectionLink} copied={copied === 'sec:skills'} label={t.copyLink} />
             <div ref={skillsRef} className={styles.skills}>
               {skills.length === 0 && <p className={styles.empty}>{t.emptySkill}</p>}
@@ -447,7 +454,7 @@ export default function Home() {
           </section>
 
           {/* PROJECTS */}
-          <section id="projects" className={styles.section}>
+          <section id="projects" className={styles.section} data-scan-label="PROJECTS">
             <SecHead cmd={t.sectionTitle.projects} tag="04" id="projects" onCopy={copySectionLink} copied={copied === 'sec:projects'} label={t.copyLink} />
             <div className={styles.projects}>
               {cv.projects.map(pr => (
@@ -465,7 +472,7 @@ export default function Home() {
           </section>
 
           {/* CREDENTIALS */}
-          <section id="credentials" className={styles.section}>
+          <section id="credentials" className={styles.section} data-scan-label="CYBERWARE">
             <SecHead cmd={t.sectionTitle.credentials} tag="05" id="credentials" onCopy={copySectionLink} copied={copied === 'sec:credentials'} label={t.copyLink} />
             <div className={styles.cols}>
               <div className={`${styles.panel} ${styles.pad} ${styles.reveal}`} data-reveal>
@@ -496,7 +503,7 @@ export default function Home() {
           </section>
 
           {/* DEPOIMENTOS — recomendações reais do LinkedIn, transcritas literalmente */}
-          <section id="praise" className={styles.section}>
+          <section id="praise" className={styles.section} data-scan-label="SHARDS">
             <SecHead cmd={t.sectionTitle.praise} tag="06" id="praise" onCopy={copySectionLink} copied={copied === 'sec:praise'} label={t.copyLink} />
             <div className={styles.reveal} data-reveal>
               <Testimonials lang={lang} source={`${P.linkedin}details/recommendations/`} ui={{ verifyOn: t.verifyOn, translated: t.translated }} />

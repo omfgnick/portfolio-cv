@@ -172,6 +172,35 @@ test.describe('portfolio-cv', () => {
     await expect(painel).not.toContainText(/WHAT PEOPLE DO|O QUE AS PESSOAS FAZEM/)
   })
 
+  test('modo scanner liga pela tecla S e desliga com Esc', async ({ page }) => {
+    const raiz = page.locator('html')
+    await expect(raiz).not.toHaveAttribute('data-scan', 'on')
+
+    await page.keyboard.press('s')
+    await expect(raiz).toHaveAttribute('data-scan', 'on')
+
+    await page.keyboard.press('Escape')
+    await expect(raiz).not.toHaveAttribute('data-scan', 'on')
+  })
+
+  test('a tecla S dentro de um campo de texto NAO liga o scanner', async ({ page }) => {
+    // Sem esta guarda, digitar "sla" na busca ligaria e desligaria o scanner
+    // no meio da palavra - e o usuario nao faria ideia do porque.
+    const busca = page.getByRole('searchbox')
+    await busca.click()
+    await busca.fill('sla')
+    await expect(page.locator('html')).not.toHaveAttribute('data-scan', 'on')
+    await expect(busca).toHaveValue('sla')
+  })
+
+  test('o botao do HUD tambem alterna o scanner', async ({ page }) => {
+    const botao = page.getByTestId('scan-toggle')
+    await expect(botao).toHaveAttribute('aria-pressed', 'false')
+    await botao.click()
+    await expect(botao).toHaveAttribute('aria-pressed', 'true')
+    await expect(page.locator('html')).toHaveAttribute('data-scan', 'on')
+  })
+
   test('sem violações sérias de acessibilidade (axe)', async ({ page }) => {
     test.setTimeout(AXE_TIMEOUT)
     const found = await axeCheck(page)
@@ -182,6 +211,16 @@ test.describe('portfolio-cv', () => {
     test.setTimeout(AXE_TIMEOUT)
     await page.getByTestId('theme-toggle').click()
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
+    const found = await axeCheck(page)
+    expect(found, found.join('\n')).toEqual([])
+  })
+
+  test('acessibilidade com o scanner ligado', async ({ page }) => {
+    // O scanner cobre a pagina de rotulos em amarelo; se algum ficar ilegivel,
+    // e aqui que aparece.
+    test.setTimeout(AXE_TIMEOUT)
+    await page.getByTestId('scan-toggle').click()
+    await expect(page.locator('html')).toHaveAttribute('data-scan', 'on')
     const found = await axeCheck(page)
     expect(found, found.join('\n')).toEqual([])
   })

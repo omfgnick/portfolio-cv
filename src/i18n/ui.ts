@@ -28,6 +28,7 @@ export interface UIStrings {
   rvOpen: string; rvTitle: string; rvNow: string; rvStack: string; rvCerts: string; rvPdf: string; rvEmail: string; rvFull: string
   themeToggle: string; langToggle: string
   lpCorpo: string; lpNomad: string; lpStreetkid: string
+  scanToggle: string
   dossier: string; clearance: string; locLbl: string; statusLbl: string; availableTag: string
   installed: string; systemsOk: string; bootHead: string; breachTitle: string
   /* Atributos e caminhos de vida com os nomes oficiais de cada idioma */
@@ -74,6 +75,7 @@ export const UI: Record<Lang, UIStrings> = {
     lpCorpo: 'CORPORATIVO · dentro da operação de uma grande corporação',
     lpNomad: 'NÔMADE · alocado por fornecedor num cliente',
     lpStreetkid: 'FILHO DAS RUAS · TI local, mão na massa',
+    scanToggle: 'Modo scanner (tecla S)',
     dossier: 'DOSSIÊ', clearance: 'CREDENCIAL', locLbl: 'LOCAL', statusLbl: 'SITUAÇÃO',
     availableTag: 'DISPONÍVEL', installed: 'INSTALADO',
     systemsOk: 'SISTEMAS OPERACIONAIS',
@@ -124,6 +126,7 @@ export const UI: Record<Lang, UIStrings> = {
     lpCorpo: 'CORPO · inside a large corporation’s operation',
     lpNomad: 'NOMAD · placed at a client through a vendor',
     lpStreetkid: 'STREETKID · hands-on local IT',
+    scanToggle: 'Scanner mode (press S)',
     dossier: 'DOSSIER', clearance: 'CLEARANCE', locLbl: 'LOC', statusLbl: 'STATUS',
     availableTag: 'AVAILABLE', installed: 'INSTALLED',
     systemsOk: 'SYSTEMS OPERATIONAL',

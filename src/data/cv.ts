@@ -143,13 +143,12 @@ const JOBS_L: { role: L; org: string; loc?: L; start: string; end: string; perio
 const SKILLS_L: { title: L; level: number; icon: string; chips: string[]; attr: Attribute }[] = [
   { title: { pt: 'Monitoramento / NOC', en: 'Monitoring / NOC' }, level: 5, icon: 'Activity', chips: ['SolarWinds', 'Netcool/Omnibus', 'HP SiteScope', 'Nagios', 'Check_MK', 'Grafana'], attr: 'REFLEXES' },
   { title: { pt: 'ITSM / Incidentes', en: 'ITSM / Incidents' }, level: 5, icon: 'ListChecks', chips: ['BMC Remedy', 'Jira', 'GLPI', 'ITIL', 'SLA', 'Incident Mgmt', 'Escalation'], attr: 'COOL' },
-  { title: { pt: 'Suporte de campo / Logística', en: 'Field support / Logistics' }, level: 4, icon: 'Headphones', chips: ['Zebra printers', 'Handhelds', '3D scanners', 'MDM', 'IT asset inventory', '5S'], attr: 'BODY' },
   { title: { pt: 'Redes', en: 'Networking' }, level: 4, icon: 'Network', chips: ['TCP/IP', 'LAN/WAN', 'DNS', 'Wi-Fi', 'VPN', 'Switching/Routing', 'Cisco Meraki'], attr: 'TECHNICAL' },
   { title: { pt: 'Automação / Scripting', en: 'Automation / Scripting' }, level: 4, icon: 'Terminal', chips: ['PowerShell', 'Bash', 'Python', 'Git/GitHub', 'Routine automation'], attr: 'INTELLIGENCE' },
+  { title: { pt: 'Suporte de campo / Logística', en: 'Field support / Logistics' }, level: 4, icon: 'Headphones', chips: ['Zebra printers', 'Handhelds', '3D scanners', 'MDM', 'IT asset inventory', '5S'], attr: 'BODY' },
   { title: { pt: 'Backup / Continuidade', en: 'Backup / Continuity' }, level: 4, icon: 'DatabaseBackup', chips: ['Symantec NetBackup', 'HP Data Protector', 'Backup/Restore'], attr: 'BODY' },
   { title: { pt: 'Sistemas', en: 'Systems' }, level: 4, icon: 'Server', chips: ['Windows', 'Linux', 'Active Directory', 'Microsoft 365', 'SQL/SQL Server', 'Microsoft Office'], attr: 'BODY' },
   { title: { pt: 'Produção · MDM · Cloud', en: 'Production · MDM · Cloud' }, level: 3, icon: 'Cloud', chips: ['BMC Control-M', 'MDM', 'Workspace ONE', 'AWS (fundamentals)'], attr: 'TECHNICAL' },
-  { title: { pt: 'Segurança (formação)', en: 'Security (education)' }, level: 2, icon: 'ShieldCheck', chips: ['Cybersecurity fundamentals', 'Pentest (intro)', 'Security best practices'], attr: 'INTELLIGENCE' },
 ]
 
 const CERTS_L: { title: L; sub: L; cred?: string }[] = [

@@ -74,7 +74,7 @@ for (const vp of VIEWPORTS) {
         })
         return { rows: rows.length, labelled, overlapping, scrollsInside: wrap.scrollWidth > wrap.clientWidth, wrapRight: wr.right }
       })
-      expect(r.rows).toBe(10)
+      expect(r.rows).toBe(6)
       // toda posição precisa estar identificada, dentro ou ao lado da barra
       expect(r.labelled).toBe(r.rows)
       expect(r.overlapping, 'rótulo sobrepondo a barra').toBe(0)

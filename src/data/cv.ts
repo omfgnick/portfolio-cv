@@ -23,15 +23,15 @@ export interface Project { name: string; desc: string; tags: string[]; url: stri
 
 const PROFILE_L = {
   name: 'Nicolas Mesquita Fernandes',
-  role: { pt: '// Especialista em Operações de Infraestrutura e Incidentes', en: '// Infrastructure & Incident Operations Specialist' },
+  role: { pt: '// Analista de Suporte e NOC · Infraestrutura', en: '// IT Support & NOC Analyst · Infrastructure' },
   tagline: {
-    pt: 'Especialista em operação de infraestrutura crítica, monitoração NOC e gestão de incidentes. Foco em SLA/MTTR, padronização (runbooks) e automação para reduzir esforço manual e erro humano.',
-    en: 'Specialist in critical-infrastructure operations, NOC monitoring and incident management. Focused on SLA/MTTR, standardization (runbooks) and automation to cut manual effort and human error.',
+    pt: '~7 anos em NOC e monitoração de incidentes para a Telefônica/Vivo e suporte recente à operação logística do Mercado Livre. SLA, troubleshooting e automação de rotinas.',
+    en: '~7 years of NOC monitoring and incident handling for Telefônica/Vivo, plus recent support for Mercado Livre’s logistics operation. SLA, troubleshooting and routine automation.',
   },
   tags: [
-    { pt: 'Suporte N1/N2/N3', en: 'N1/N2/N3 Support' },
-    { pt: 'NOC / SLA', en: 'NOC / SLA' },
-    { pt: 'Segurança da Informação', en: 'Information Security' },
+    { pt: 'Suporte N1/N2', en: 'N1/N2 Support' },
+    { pt: 'NOC / Monitoração', en: 'NOC / Monitoring' },
+    { pt: 'Service Desk e campo', en: 'Service Desk & field' },
     { pt: 'Automação (PowerShell/Bash/Python)', en: 'Automation (PowerShell/Bash/Python)' },
   ],
   linkedin: 'https://www.linkedin.com/in/nicolasmesquita/',
@@ -40,29 +40,29 @@ const PROFILE_L = {
 }
 
 const METRICS_L: { count: number; suffix?: string; label: L }[] = [
-  { count: 12, suffix: '+', label: { pt: 'anos em operações de TI', en: 'years in IT operations' } },
-  { count: 10, label: { pt: 'projetos & experiências', en: 'projects & roles' } },
+  { count: 7, label: { pt: 'anos em NOC e monitoração', en: 'years in NOC & monitoring' } },
+  { count: 3, suffix: '+', label: { pt: 'anos em suporte técnico', en: 'years in technical support' } },
   { count: 9, label: { pt: 'certificações técnicas', en: 'technical certifications' } },
   { count: 3, label: { pt: 'linguagens de automação', en: 'automation languages' } },
 ]
 
 const TERMINAL_L: L[] = [
   { pt: '$whoami', en: '$whoami' },
-  { pt: 'nicolas.mesquita — operações de infraestrutura e incidentes', en: 'nicolas.mesquita — infrastructure & incident operations' },
+  { pt: 'nicolas.mesquita — suporte e NOC · Cajamar/SP', en: 'nicolas.mesquita — IT support & NOC · Cajamar/SP' },
   { pt: '$uptime', en: '$uptime' },
-  { pt: 'online desde 2014 · foco em SLA/MTTR', en: 'online since 2014 · focused on SLA/MTTR' },
+  { pt: 'em TI desde 2012 · foco em SLA', en: 'in IT since 2012 · focused on SLA' },
   { pt: '$monitor --stack', en: '$monitor --stack' },
-  { pt: 'SolarWinds · Remedy · Grafana · Zabbix · Meraki [ok]', en: 'SolarWinds · Remedy · Grafana · Zabbix · Meraki [ok]' },
+  { pt: 'SolarWinds · Remedy · Nagios · Check_MK · Grafana · Meraki [ok]', en: 'SolarWinds · Remedy · Nagios · Check_MK · Grafana · Meraki [ok]' },
   { pt: '$status', en: '$status' },
   { pt: '● sistemas operacionais — disponível para oportunidades', en: '● systems operational — open to opportunities' },
 ]
 
 const CAPS_L = [
-  { icon: 'Headphones', h: { pt: 'Suporte N1/N2/N3', en: 'N1/N2/N3 Support' }, d: { pt: 'Troubleshooting de hardware/software, redes e incidentes críticos.', en: 'Hardware/software, network and critical-incident troubleshooting.' } },
+  { icon: 'Headphones', h: { pt: 'Suporte N1/N2', en: 'N1/N2 Support' }, d: { pt: 'Troubleshooting de hardware, software, rede e usuários (AD, senhas e acessos).', en: 'Hardware, software, network and user troubleshooting (AD, passwords and access).' } },
   { icon: 'Radar', h: { pt: 'NOC / Monitoração', en: 'NOC / Monitoring' }, d: { pt: 'Triagem, escalonamento e acompanhamento orientado a SLA.', en: 'SLA-driven triage, escalation and follow-up.' } },
   { icon: 'ShieldAlert', h: { pt: 'Gestão de Incidentes', en: 'Incident Management' }, d: { pt: 'Comunicação objetiva e follow-up até a normalização.', en: 'Clear communication and follow-up until resolution.' } },
-  { icon: 'ListChecks', h: { pt: 'ITSM', en: 'ITSM' }, d: { pt: 'Incident / Problem / Change — conceitos e rotina operacional.', en: 'Incident / Problem / Change — concepts and daily practice.' } },
-  { icon: 'Lock', h: { pt: 'Segurança', en: 'Security' }, d: { pt: 'Boas práticas, políticas, backups e auditoria básica.', en: 'Best practices, policies, backups and basic auditing.' } },
+  { icon: 'ListChecks', h: { pt: 'Chamados (ITSM)', en: 'Ticketing (ITSM)' }, d: { pt: 'Incidentes e requisições dentro do SLA no Remedy, Jira e GLPI.', en: 'Incidents and requests within SLA in Remedy, Jira and GLPI.' } },
+  { icon: 'Server', h: { pt: 'Campo e logística', en: 'Field & logistics' }, d: { pt: 'Impressoras Zebra, handhelds, leitores 3D, MDM e inventário em centro de distribuição.', en: 'Zebra printers, handhelds, 3D scanners, MDM and inventory in a distribution center.' } },
   { icon: 'Terminal', h: { pt: 'Automação', en: 'Automation' }, d: { pt: 'Scripts e rotinas em PowerShell/Bash/Python para consistência.', en: 'PowerShell/Bash/Python scripts and routines for consistency.' } },
 ]
 
@@ -79,90 +79,50 @@ const JOBS_L: { role: L; org: string; loc?: L; start: string; end: string; perio
       { pt: 'MDM para dispositivos móveis; configuração de hardware (ex.: leitores 3D).', en: 'MDM for mobile devices; hardware setup (e.g. 3D scanners).' },
       { pt: 'Aplicação de 5S e padronização de postos.', en: '5S application and workstation standardization.' },
       { pt: 'Guias de boas práticas; gestão e controle de inventário.', en: 'Best-practice guides; inventory management and control.' },
+      { pt: 'Active Directory (desbloqueio de contas e redefinição de senhas); Grafana para visualização de indicadores.', en: 'Active Directory (account unlocks and password resets); Grafana for KPI visualization.' },
     ],
   },
   {
-    role: { pt: 'Operador de Suporte Datacenter — NOC Mc Donald’s', en: 'Datacenter Support Operator — NOC McDonald’s' }, org: 'Telefónica Ingeniería de Seguridad', path: 'CORPO',
-    start: '2019-10', end: '2022-04', period: { pt: 'out/2019 – abr/2022 · 2 anos 7 meses', en: 'Oct 2019 – Apr 2022 · 2 yrs 7 mos' },
-    filter: 'operador suporte datacenter noc mcdonalds telefonica ingenieria seguridad solarwinds remedy meraki links operadoras ping switches access-point pos sat kvs quiosque sla',
-    desc: { pt: 'Monitoração de links via SolarWinds; incidentes via BMC Remedy; validação de conectividade; acionamento de operadoras; Cisco Meraki.', en: 'Link monitoring with SolarWinds; incidents in BMC Remedy; connectivity validation; carrier escalation; Cisco Meraki.' },
+    role: { pt: 'Recolocação e estudos', en: 'Job search & studies' }, org: 'Pausa na carreira', path: 'STREETKID',
+    start: '2022-05', end: '2024-10', period: { pt: 'mai/2022 – out/2024', en: 'May 2022 – Oct 2024' },
+    filter: 'recolocacao estudos pausa carreira defesa cibernetica estacio cisco aws pentest desec',
+    desc: { pt: 'Busca de recolocação; a partir de 2024, Tecnólogo em Defesa Cibernética (Estácio) e cursos de Cisco e AWS.', en: 'Job search; from 2024 on, Associate Degree in Cyber Defense (Estácio) plus Cisco and AWS courses.' },
     points: [
-      { pt: 'Monitoração e abertura/acompanhamento de incidentes (SolarWinds + Remedy).', en: 'Monitoring and incident opening/tracking (SolarWinds + Remedy).' },
-      { pt: 'Validação de conectividade em lojas (Ping): switches, APs, POS, SAT, KVS, quiosques e Meraki.', en: 'Store connectivity checks (ping): switches, APs, POS, SAT, KVS, kiosks and Meraki.' },
-      { pt: 'Acionamento e acompanhamento com operadoras até normalização.', en: 'Carrier engagement and follow-up until resolution.' },
+      { pt: 'Entre 2022 e 2023, dedicação à recolocação no mercado.', en: '2022–2023: focused on returning to the job market.' },
+      { pt: 'Jan/2024: início do Tecnólogo em Defesa Cibernética (Estácio), concluído em jul/2026.', en: 'Jan 2024: started the Associate Degree in Cyber Defense (Estácio), completed Jul 2026.' },
+      { pt: 'Cursos: Introdução à Cibersegurança (Cisco), Pentest na Prática (Desec) e AWS Cloud Practitioner Essentials.', en: 'Courses: Introduction to Cybersecurity (Cisco), Hands-on Pentesting (Desec) and AWS Cloud Practitioner Essentials.' },
     ],
   },
   {
-    role: { pt: 'Analista de Suporte — Projeto TDATA Telefônica | VIVO', en: 'Support Analyst — TDATA Telefônica | VIVO Project' }, org: 'Tech Mahindra – Brasil', path: 'NOMAD',
-    start: '2019-05', end: '2019-09', period: { pt: 'mai/2019 – set/2019 · 5 meses', en: 'May 2019 – Sep 2019 · 5 mos' },
-    filter: 'analista suporte projeto tdata telefonica vivo tech mahindra noc n1 sla relatorios emails solarwinds dashboard remedy servidores infraestrutura redes escalonamento',
-    desc: { pt: 'NOC Telefônica (Tdata): monitoramento de incidentes, N1, SLA, relatórios, acionamentos e escalonamentos.', en: 'Telefônica NOC (Tdata): incident monitoring, N1, SLA, reporting, escalations.' },
+    role: { pt: 'Analista de Suporte / Operador NOC — Projeto NOC McDonald’s (Telefônica | Vivo)', en: 'Support Analyst / NOC Operator — McDonald’s NOC Project (Telefônica | Vivo)' }, org: 'SONDA → Tech Mahindra → Telefónica Ingeniería de Seguridad', path: 'CORPO',
+    loc: { pt: 'Mesmo projeto, com troca de prestadora', en: 'Same project, across contractor changes' }, start: '2017-02', end: '2022-04', period: { pt: 'fev/2017 – abr/2022 · 5 anos 3 meses', en: 'Feb 2017 – Apr 2022 · 5 yrs 3 mos' },
+    filter: 'analista suporte operador noc mcdonalds telefonica vivo sonda tech mahindra ingenieria seguridad tdata solarwinds remedy meraki links operadoras ping switches access-point pos sat kvs quiosque sla servidores relatorios',
+    desc: { pt: 'NOC de lojas McDonald’s para a Telefônica/Vivo: SolarWinds, BMC Remedy, validação de conectividade, acionamento de operadoras e Cisco Meraki.', en: 'McDonald’s store NOC for Telefônica/Vivo: SolarWinds, BMC Remedy, connectivity checks, carrier escalation and Cisco Meraki.' },
     points: [
-      { pt: 'Monitoramento e tratamento de incidentes no primeiro nível; acompanhamento de chamados.', en: 'First-level incident monitoring and handling; ticket follow-up.' },
-      { pt: 'Acompanhamento de SLA; relatórios e comunicação com o cliente via e-mail.', en: 'SLA tracking; reporting and client communication by e-mail.' },
-      { pt: 'Monitoração de servidores (virtuais e físicos), infraestrutura e redes.', en: 'Monitoring of servers (virtual and physical), infrastructure and networks.' },
+      { pt: 'Monitoração de links e abertura/acompanhamento de incidentes (SolarWinds + BMC Remedy) dentro do SLA.', en: 'Link monitoring and incident opening/tracking (SolarWinds + BMC Remedy) within SLA.' },
+      { pt: 'Validação de conectividade nas lojas (ping): switches, APs, POS, SAT, KVS, quiosques e Cisco Meraki.', en: 'Store connectivity checks (ping): switches, APs, POS, SAT, KVS, kiosks and Cisco Meraki.' },
+      { pt: 'Contato com a loja (modem, reinício de equipamentos) e acionamento de operadoras até a normalização.', en: 'Store contact (modem checks, equipment restarts) and carrier escalation until resolution.' },
+      { pt: 'Em 2019, apoio também ao NOC TDATA: servidores físicos e virtuais, SLA e relatórios ao cliente.', en: 'In 2019, also supported the TDATA NOC: physical and virtual servers, SLA and client reporting.' },
     ],
   },
   {
-    role: { pt: 'Analista de Suporte — Projeto NOC Mc Donald’s Telefônica | VIVO', en: 'Support Analyst — NOC McDonald’s Telefônica | VIVO Project' }, org: 'Tech Mahindra – Brasil', path: 'NOMAD',
-    start: '2017-11', end: '2019-09', period: { pt: 'nov/2017 – set/2019 · 1 ano 11 meses', en: 'Nov 2017 – Sep 2019 · 1 yr 11 mos' },
-    filter: 'analista suporte noc mcdonalds telefonica vivo tech mahindra solarwinds remedy links ping switches access-point pos sat kvs quiosque operadoras',
-    desc: { pt: 'Monitoração de links via SolarWinds; incidentes via BMC Remedy; validação de conectividade e indisponibilidade; operadoras.', en: 'Link monitoring with SolarWinds; incidents in BMC Remedy; connectivity/outage validation; carriers.' },
+    role: { pt: 'Analista de Monitoração e Produção — Projeto NDC (Telefônica | Vivo)', en: 'Monitoring & Production Analyst — NDC Project (Telefônica | Vivo)' }, org: 'Stefanini → end-to-end technology', path: 'CORPO',
+    loc: { pt: 'São Paulo · mesmo projeto, com troca de prestadora', en: 'São Paulo · same project, across contractor changes' }, start: '2014-11', end: '2016-09', period: { pt: 'nov/2014 – set/2016 · 1 ano 11 meses', en: 'Nov 2014 – Sep 2016 · 1 yr 11 mos' },
+    filter: 'analista monitoracao producao ponto focal ndc telefonica vivo stefanini end-to-end technology netcool omnibus sitescope remedy control-m netbackup restore incidentes acionamento comunicacao lideranca',
+    desc: { pt: 'Monitoração de infraestrutura crítica (Netcool/Omnibus + SiteScope), incidentes no Remedy, Control-M e NetBackup.', en: 'Critical-infrastructure monitoring (Netcool/Omnibus + SiteScope), Remedy incidents, Control-M and NetBackup.' },
     points: [
-      { pt: 'Monitoração e incidentes (SolarWinds + Remedy).', en: 'Monitoring and incidents (SolarWinds + Remedy).' },
-      { pt: 'Validação de conectividade em loja e diagnóstico de indisponibilidade.', en: 'In-store connectivity validation and outage diagnosis.' },
-      { pt: 'Acionamento de operadoras e acompanhamento.', en: 'Carrier engagement and follow-up.' },
-    ],
-  },
-  {
-    role: { pt: 'Analista de Suporte — Projeto NOC Mc Donald’s Telefônica | VIVO', en: 'Support Analyst — NOC McDonald’s Telefônica | VIVO Project' }, org: 'SONDA Brasil', path: 'CORPO',
-    start: '2017-02', end: '2017-10', period: { pt: 'fev/2017 – out/2017 · 9 meses', en: 'Feb 2017 – Oct 2017 · 9 mos' },
-    filter: 'analista suporte noc mcdonalds telefonica vivo sonda solarwinds remedy links ping indisponibilidade operadoras',
-    desc: { pt: 'Monitoração de links; incidentes Remedy; validação e acionamento de operadoras.', en: 'Link monitoring; Remedy incidents; validation and carrier escalation.' },
-    points: [
-      { pt: 'Monitoração (SolarWinds) e abertura/acompanhamento de incidentes (Remedy).', en: 'Monitoring (SolarWinds) and incident opening/tracking (Remedy).' },
-      { pt: 'Validação de conectividade e indisponibilidade; acionamento de operadoras.', en: 'Connectivity/outage validation; carrier escalation.' },
-    ],
-  },
-  {
-    role: { pt: 'Analista de Produção — Projeto NDC Telefônica | VIVO', en: 'Production Analyst — NDC Telefônica | VIVO Project' }, org: 'end-to-end technology', path: 'CORPO',
-    start: '2016-06', end: '2016-09', period: { pt: 'jun/2016 – set/2016 · 4 meses', en: 'Jun 2016 – Sep 2016 · 4 mos' },
-    filter: 'analista producao ndc telefonica vivo end-to-end technology control-m schedules remedy restore netbackup batch jobs',
-    desc: { pt: 'Control-M (rerun/hold/free/force ok/kill/run now/confirm/ordenação), schedules, Remedy, restores e NetBackup.', en: 'Control-M (rerun/hold/free/force ok/kill/run now/confirm/ordering), schedules, Remedy, restores and NetBackup.' },
-    points: [
-      { pt: 'Operação de rotinas no Control-M e acompanhamento de schedules em produção.', en: 'Control-M job operation and production schedule monitoring.' },
-      { pt: 'Chamados em Remedy e atividades de restore/backup (NetBackup).', en: 'Remedy tickets and restore/backup activities (NetBackup).' },
-    ],
-  },
-  {
-    role: { pt: 'Analista de Monitoração / Ponto Focal — Projeto NDC Telefônica | VIVO', en: 'Monitoring Analyst / Focal Point — NDC Telefônica | VIVO Project' }, org: 'end-to-end technology', path: 'CORPO',
-    start: '2016-04', end: '2016-09', period: { pt: 'abr/2016 – set/2016 · 6 meses', en: 'Apr 2016 – Sep 2016 · 6 mos' },
-    filter: 'analista monitoracao ponto focal ndc telefonica vivo end-to-end technology netcool omnibus sitescope remedy incidentes acionamento comunicacao diretoria grafana zabbix nagios',
-    desc: { pt: 'Netcool/Omnibus + SiteScope; incidentes Remedy; acionamento técnico; comunicação com diretoria/gestores.', en: 'Netcool/Omnibus + SiteScope; Remedy incidents; technical escalation; communication with leadership/managers.' },
-    points: [
-      { pt: 'Monitoração de infraestrutura e análise de alarmes (Netcool/Omnibus + SiteScope).', en: 'Infrastructure monitoring and alarm analysis (Netcool/Omnibus + SiteScope).' },
-      { pt: 'Incidentes Remedy, acionamento técnico e acompanhamento de resolução.', en: 'Remedy incidents, technical escalation and resolution follow-up.' },
-      { pt: 'Comunicação com liderança conforme plano e tempos definidos.', en: 'Communication with leadership per the defined plan and timelines.' },
-    ],
-  },
-  {
-    role: { pt: 'Analista de Monitoração / Ponto Focal — Projeto NDC Telefônica | VIVO', en: 'Monitoring Analyst / Focal Point — NDC Telefônica | VIVO Project' }, org: 'Stefanini', path: 'CORPO',
-    loc: { pt: 'São Paulo e Região, Brasil', en: 'São Paulo Area, Brazil' }, start: '2014-11', end: '2016-03', period: { pt: 'nov/2014 – mar/2016 · 1 ano 5 meses', en: 'Nov 2014 – Mar 2016 · 1 yr 5 mos' },
-    filter: 'analista monitoracao ponto focal ndc telefonica vivo stefanini netcool omnibus sitescope remedy incidentes acionamento comunicacao lideranca',
-    desc: { pt: 'Monitoração de infraestrutura crítica; alarmes; Remedy; acionamentos; acompanhamento e comunicação com liderança.', en: 'Critical-infrastructure monitoring; alarms; Remedy; escalations; follow-up and leadership communication.' },
-    points: [
-      { pt: 'Monitoração e análise de alarmes em sistemas/servidores críticos.', en: 'Monitoring and alarm analysis on critical systems/servers.' },
-      { pt: 'Incidentes Remedy, acionamento técnico e follow-up de resolução.', en: 'Remedy incidents, technical escalation and resolution follow-up.' },
-      { pt: 'Comunicação com liderança conforme plano.', en: 'Communication with leadership per the plan.' },
+      { pt: 'Monitoração e análise de alarmes de sistemas e servidores críticos (Netcool/Omnibus + SiteScope).', en: 'Alarm monitoring and analysis for critical systems and servers (Netcool/Omnibus + SiteScope).' },
+      { pt: 'Incidentes no BMC Remedy, acionamento técnico e comunicação com a liderança conforme o plano.', en: 'BMC Remedy incidents, technical escalation and leadership communication per the plan.' },
+      { pt: 'Produção: operação de jobs no Control-M e restores/backups no NetBackup.', en: 'Production: Control-M job operation and NetBackup restores/backups.' },
     ],
   },
   {
     role: { pt: 'Técnico de Informática Sênior', en: 'Senior IT Technician' }, org: 'Lojas Marabraz', path: 'STREETKID',
     loc: { pt: 'São Paulo e Região, Brasil', en: 'São Paulo Area, Brazil' }, start: '2013-08', end: '2014-05', period: { pt: 'ago/2013 – mai/2014 · 10 meses', en: 'Aug 2013 – May 2014 · 10 mos' },
-    filter: 'tecnico informatica senior marabraz monitoramento open-source mapas scripts bash powershell backup hp data protector vmware nagios zabbix grafana',
-    desc: { pt: 'Monitoramento open-source + mapas; scripts Bash/PowerShell; jobs de backup HP Data Protector; VMware.', en: 'Open-source monitoring + maps; Bash/PowerShell scripts; HP Data Protector backup jobs; VMware.' },
+    filter: 'tecnico informatica senior marabraz monitoramento nagios check_mk checkmk mapas scripts bash powershell backup hp data protector vmware',
+    desc: { pt: 'Monitoramento com Nagios e Check_MK + mapas; scripts Bash/PowerShell; jobs de backup HP Data Protector; VMware.', en: 'Monitoring with Nagios and Check_MK + maps; Bash/PowerShell scripts; HP Data Protector backup jobs; VMware.' },
     points: [
-      { pt: 'Monitoramento com ferramentas open-source e mapas de visualização.', en: 'Monitoring with open-source tools and visualization maps.' },
+      { pt: 'Monitoramento com Nagios e Check_MK e mapas de visualização da saúde do ambiente.', en: 'Monitoring with Nagios and Check_MK, with maps showing environment health.' },
       { pt: 'Scripts em Bash e PowerShell para demandas de monitoração.', en: 'Bash and PowerShell scripts for monitoring needs.' },
       { pt: 'Operação e criação de jobs de backup (HP Data Protector).', en: 'Operating and building backup jobs (HP Data Protector).' },
     ],
@@ -181,14 +141,15 @@ const JOBS_L: { role: L; org: string; loc?: L; start: string; end: string; perio
 ]
 
 const SKILLS_L: { title: L; level: number; icon: string; chips: string[]; attr: Attribute }[] = [
-  { title: { pt: 'Monitoramento / NOC', en: 'Monitoring / NOC' }, level: 5, icon: 'Activity', chips: ['SolarWinds', 'Netcool/Omnibus', 'HP SiteScope', 'Zabbix', 'Nagios', 'Grafana'], attr: 'REFLEXES' },
-  { title: { pt: 'ITSM / Incidentes', en: 'ITSM / Incidents' }, level: 5, icon: 'ListChecks', chips: ['BMC Remedy', 'Jira', 'GLPI', 'ITIL', 'SLA', 'Incident Mgmt', 'Escalation', 'Problem/Change', 'RCA', 'Runbooks'], attr: 'COOL' },
+  { title: { pt: 'Monitoramento / NOC', en: 'Monitoring / NOC' }, level: 5, icon: 'Activity', chips: ['SolarWinds', 'Netcool/Omnibus', 'HP SiteScope', 'Nagios', 'Check_MK', 'Grafana'], attr: 'REFLEXES' },
+  { title: { pt: 'ITSM / Incidentes', en: 'ITSM / Incidents' }, level: 5, icon: 'ListChecks', chips: ['BMC Remedy', 'Jira', 'GLPI', 'ITIL', 'SLA', 'Incident Mgmt', 'Escalation'], attr: 'COOL' },
+  { title: { pt: 'Suporte de campo / Logística', en: 'Field support / Logistics' }, level: 4, icon: 'Headphones', chips: ['Zebra printers', 'Handhelds', '3D scanners', 'MDM', 'IT asset inventory', '5S'], attr: 'BODY' },
   { title: { pt: 'Redes', en: 'Networking' }, level: 4, icon: 'Network', chips: ['TCP/IP', 'LAN/WAN', 'DNS', 'Wi-Fi', 'VPN', 'Switching/Routing', 'Cisco Meraki'], attr: 'TECHNICAL' },
   { title: { pt: 'Automação / Scripting', en: 'Automation / Scripting' }, level: 4, icon: 'Terminal', chips: ['PowerShell', 'Bash', 'Python', 'Git/GitHub', 'Routine automation'], attr: 'INTELLIGENCE' },
-  { title: { pt: 'Backup / Continuidade', en: 'Backup / Continuity' }, level: 4, icon: 'DatabaseBackup', chips: ['Symantec NetBackup', 'HP Data Protector', 'Backup/Restore', 'Disaster Recovery', 'Restore validation'], attr: 'BODY' },
-  { title: { pt: 'Segurança', en: 'Security' }, level: 3, icon: 'ShieldCheck', chips: ['Information Security', 'Cybersecurity', 'Pentest (fundamentals)', 'Vulnerability Assessment', 'Hardening', 'Security Awareness'], attr: 'INTELLIGENCE' },
-  { title: { pt: 'Sistemas', en: 'Systems' }, level: 4, icon: 'Server', chips: ['Windows', 'Linux', 'Active Directory', 'IAM basics', 'SQL/SQL Server', 'Microsoft Office'], attr: 'BODY' },
-  { title: { pt: 'Produção · MDM · Cloud', en: 'Production · MDM · Cloud' }, level: 3, icon: 'Cloud', chips: ['BMC Control-M', 'MDM', 'Workspace ONE', 'AWS (fundamentals)', 'Cloud Computing'], attr: 'TECHNICAL' },
+  { title: { pt: 'Backup / Continuidade', en: 'Backup / Continuity' }, level: 4, icon: 'DatabaseBackup', chips: ['Symantec NetBackup', 'HP Data Protector', 'Backup/Restore'], attr: 'BODY' },
+  { title: { pt: 'Sistemas', en: 'Systems' }, level: 4, icon: 'Server', chips: ['Windows', 'Linux', 'Active Directory', 'Microsoft 365', 'SQL/SQL Server', 'Microsoft Office'], attr: 'BODY' },
+  { title: { pt: 'Produção · MDM · Cloud', en: 'Production · MDM · Cloud' }, level: 3, icon: 'Cloud', chips: ['BMC Control-M', 'MDM', 'Workspace ONE', 'AWS (fundamentals)'], attr: 'TECHNICAL' },
+  { title: { pt: 'Segurança (formação)', en: 'Security (education)' }, level: 2, icon: 'ShieldCheck', chips: ['Cybersecurity fundamentals', 'Pentest (intro)', 'Security best practices'], attr: 'INTELLIGENCE' },
 ]
 
 const CERTS_L: { title: L; sub: L; cred?: string }[] = [
@@ -214,7 +175,7 @@ const CONTACTS_L: { type: string; label: L; value: string; href?: string; copy?:
   { type: 'phone', label: { pt: 'Telefone', en: 'Phone' }, value: '+55 11 94232-7967', href: 'tel:+5511942327967', copy: '+5511942327967', icon: 'Phone' },
   { type: 'linkedin', label: { pt: 'LinkedIn', en: 'LinkedIn' }, value: 'linkedin.com/in/nicolasmesquita', href: 'https://www.linkedin.com/in/nicolasmesquita/', copy: 'https://www.linkedin.com/in/nicolasmesquita/', icon: 'Linkedin' },
   { type: 'github', label: { pt: 'GitHub', en: 'GitHub' }, value: 'github.com/omfgnick', href: 'https://github.com/omfgnick', copy: 'https://github.com/omfgnick', icon: 'Github' },
-  { type: 'location', label: { pt: 'Localização', en: 'Location' }, value: 'São Paulo, Brasil', icon: 'MapPin' },
+  { type: 'location', label: { pt: 'Localização', en: 'Location' }, value: 'Cajamar – SP (Grande São Paulo)', icon: 'MapPin' },
 ]
 
 const PROJECTS_L: { name: string; desc: L; tags: string[]; url: string }[] = [

@@ -7,12 +7,12 @@ export function downloadVCard(): void {
     'VERSION:3.0',
     'N:Fernandes;Nicolas Mesquita;;;',
     `FN:${PROFILE.name}`,
-    'TITLE:Infrastructure & Incident Operations Specialist',
+    'TITLE:Analista de Suporte e NOC',
     'EMAIL;TYPE=INTERNET:omfg_nick@hotmail.com',
     'TEL;TYPE=CELL:+5511942327967',
     `URL:${PROFILE.linkedin}`,
     `URL:${PROFILE.github}`,
-    'ADR;TYPE=HOME:;;;São Paulo;;;Brasil',
+    'ADR;TYPE=HOME:;;;Cajamar;SP;;Brasil',
     'END:VCARD',
   ]
   const blob = new Blob([lines.join('\r\n')], { type: 'text/vcard;charset=utf-8' })

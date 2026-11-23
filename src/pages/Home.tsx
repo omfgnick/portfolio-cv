@@ -327,7 +327,7 @@ export default function Home() {
                 <h1 className={styles.name} data-text="Nicolas Mesquita Fernandes">Nicolas Mesquita <span className={styles.nameAccent}>Fernandes</span></h1>
                 <p className={styles.role}>{P.role}</p>
                 <div className={styles.idLine}>
-                  <span>ID <b>NMF·2014</b></span><i>//</i><span>{t.clearance} <b>NOC-N3</b></span><i>//</i><span>{t.locLbl} <b>SÃO PAULO</b></span>
+                  <span>ID <b>NMF·2012</b></span><i>//</i><span>{t.clearance} <b>NOC-N2</b></span><i>//</i><span>{t.locLbl} <b>CAJAMAR · SP</b></span>
                   {AVAILABILITY.open && <><i>//</i><span>{t.statusLbl} <b className={styles.avail}>{t.availableTag}</b></span></>}
                 </div>
                 <p className={styles.tagline}>{P.tagline}</p>
@@ -379,9 +379,9 @@ export default function Home() {
               <div className={`${styles.panel} ${styles.pad} ${styles.reveal}`} data-reveal>
                 <div className={styles.subhead}>{t.snapshot}</div>
                 <div className={styles.snap}>
-                  <div className={styles.snapRow}><MapPin size={16} /><div><div className={styles.snapT}>São Paulo, {lang === 'pt' ? 'Brasil' : 'Brazil'}</div><div className={styles.snapS}>{t.presential}</div></div></div>
+                  <div className={styles.snapRow}><MapPin size={16} /><div><div className={styles.snapT}>Cajamar – SP, {lang === 'pt' ? 'Brasil' : 'Brazil'}</div><div className={styles.snapS}>{t.presential}</div></div></div>
                   <div className={styles.snapRow}><Activity size={16} /><div><div className={styles.snapT}>{t.focus}</div><div className={styles.snapS}>{t.focusVal}</div></div></div>
-                  <div className={styles.snapRow}><Server size={16} /><div><div className={styles.snapT}>{t.stack}</div><div className={styles.snapS}>SolarWinds · Remedy · Grafana · Zabbix · Meraki</div></div></div>
+                  <div className={styles.snapRow}><Server size={16} /><div><div className={styles.snapT}>{t.stack}</div><div className={styles.snapS}>SolarWinds · Remedy · Nagios · Check_MK · Grafana · Meraki</div></div></div>
                   <div className={styles.snapRow}><Network size={16} /><div><div className={styles.snapT}>{t.languages}</div><div className={styles.snapS}>{t.languagesVal}</div></div></div>
                 </div>
               </div>

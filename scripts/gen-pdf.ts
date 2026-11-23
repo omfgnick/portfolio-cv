@@ -27,9 +27,9 @@ function build(lang: Lang, outfile: string): Promise<void> {
 
   // Header
   doc.font('Helvetica-Bold').fontSize(21).fillColor(DARK).text(PROFILE_INFO.name)
-  doc.font('Helvetica').fontSize(10.5).fillColor(EMERALD).text('Infrastructure & Incident Operations Specialist')
+  doc.font('Helvetica').fontSize(10.5).fillColor(EMERALD).text(cv.profile.role.replace(/^\/\/\s*/, ''))
   doc.font('Helvetica').fontSize(8.5).fillColor(GREY)
-    .text(`omfg_nick@hotmail.com   ·   +55 11 94232-7967   ·   São Paulo, ${lang === 'pt' ? 'Brasil' : 'Brazil'}`)
+    .text(`omfg_nick@hotmail.com   ·   +55 11 94232-7967   ·   Cajamar – SP, ${lang === 'pt' ? 'Brasil' : 'Brazil'}`)
   doc.fillColor(EMERALD).text('linkedin.com/in/nicolasmesquita   ·   github.com/omfgnick   ·   omfgnick.github.io/portfolio-cv')
 
   // Summary

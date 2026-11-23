@@ -25,8 +25,8 @@ const PROFILE_L = {
   name: 'Nicolas Mesquita Fernandes',
   role: { pt: '// Analista de Suporte e NOC · Infraestrutura', en: '// IT Support & NOC Analyst · Infrastructure' },
   tagline: {
-    pt: '~7 anos em NOC e monitoração de incidentes para a Telefônica/Vivo e suporte recente à operação logística do Mercado Livre. SLA, troubleshooting e automação de rotinas.',
-    en: '~7 years of NOC monitoring and incident handling for Telefônica/Vivo, plus recent support for Mercado Livre’s logistics operation. SLA, troubleshooting and routine automation.',
+    pt: '~7 anos de NOC e incidentes para a Telefônica/Vivo e suporte recente à logística do Mercado Livre.',
+    en: '~7 years of NOC and incident handling for Telefônica/Vivo, plus recent logistics support at Mercado Livre.',
   },
   tags: [
     { pt: 'Suporte N1/N2', en: 'N1/N2 Support' },
@@ -40,8 +40,8 @@ const PROFILE_L = {
 }
 
 const METRICS_L: { count: number; suffix?: string; label: L }[] = [
-  { count: 7, label: { pt: 'anos em NOC e monitoração', en: 'years in NOC & monitoring' } },
-  { count: 3, suffix: '+', label: { pt: 'anos em suporte técnico', en: 'years in technical support' } },
+  { count: 7, label: { pt: 'anos de NOC', en: 'years in NOC' } },
+  { count: 3, suffix: '+', label: { pt: 'anos de suporte', en: 'years in support' } },
   { count: 9, label: { pt: 'certificações técnicas', en: 'technical certifications' } },
   { count: 3, label: { pt: 'linguagens de automação', en: 'automation languages' } },
 ]

@@ -205,7 +205,7 @@ const CERTS_L: { title: L; sub: L; cred?: string }[] = [
 
 const EDU_L: { title: L; sub: L }[] = [
   { title: { pt: 'Tecnólogo em Defesa Cibernética (superior completo)', en: 'Associate Degree in Technology — Cyber Defense (completed)' }, sub: { pt: 'Estácio · jan/2024 – jul/2026', en: 'Estácio · Jan 2024 – Jul 2026' } },
-  { title: { pt: 'Sistemas de Informação — 3 anos cursados (trancado)', en: 'Information Systems — 3 years completed (on hold)' }, sub: { pt: 'FACCAMP · a partir de 2011', en: 'FACCAMP · from 2011' } },
+  { title: { pt: 'Sistemas de Informação — 3 anos cursados (trancado)', en: 'Information Systems — 3 years completed (on hold)' }, sub: { pt: 'FACCAMP · 2011 – 2013', en: 'FACCAMP · 2011 – 2013' } },
   { title: { pt: 'Formação Técnica', en: 'Technical Diploma' }, sub: { pt: 'ETEC Gino Rezaghi · 2009 – 2010', en: 'ETEC Gino Rezaghi · 2009 – 2010' } },
 ]
 
